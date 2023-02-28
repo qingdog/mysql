@@ -13,13 +13,13 @@
 |数据库管理系统|操纵和管理数据库的大型软件|DataBase ManagementSystem (DBMS)|
 |SQL|操作关系型数据库的编程语言，定义了一套操作关系型数据库统一**标准**|Structured QueryLanguage (SQL)|
 
-![](./images/chapter1/Aspose.Words.7067c9a2-e30f-4ce3-88cd-292a9b19e5f9.001.jpeg)
+![](./images/chapter1/image1.jpeg)
 
 
 
 而目前主流的关系型数据库管理系统的市场占有率排名如下：
 
-![](./images/chapter1/Aspose.Words.7067c9a2-e30f-4ce3-88cd-292a9b19e5f9.002.jpeg)
+![](./images/chapter1/image2.jpeg)
 
 * Oracle：大型的收费数据库，  Oracle公司产品，价格昂贵。
 
@@ -55,7 +55,7 @@ MySQL数据库有很好的兼容性。
 
 #### **1.2.1 版本**
 
-![](./images/chapter1/Aspose.Words.7067c9a2-e30f-4ce3-88cd-292a9b19e5f9.012.jpeg)
+![](./images/chapter1/image2.jpeg)
 
 官方：   [**https://www.mysql.com/**](https://www.mysql.com/)
 
@@ -82,13 +82,13 @@ MySQL官方提供了两种不同的版本：
 
 下载地址：  [**https://downloads.mysql.com/archives/installer/**](https://downloads.mysql.com/archives/installer/)
 
-![](./images/chapter1/Aspose.Words.7067c9a2-e30f-4ce3-88cd-292a9b19e5f9.015.jpeg)
+![](./images/chapter1/image3.png)
 
 
 
 也可以使用课程资料中提供的MySQL的安装包：
 
-![](./images/chapter1/Aspose.Words.7067c9a2-e30f-4ce3-88cd-292a9b19e5f9.016.jpeg)
+![](./images/chapter1/image4.jpeg)
 
 
 
@@ -102,39 +102,41 @@ MySQL官方提供了两种不同的版本：
 
 1). 双击官方下来的安装包文件
 
-![](./images/chapter1/Aspose.Words.7067c9a2-e30f-4ce3-88cd-292a9b19e5f9.017.jpeg)
+![](./images/chapter1/image5.png)
 
 
 
 2). 根据安装提示进行安装
 
-![](./images/chapter1/Aspose.Words.7067c9a2-e30f-4ce3-88cd-292a9b19e5f9.018.png)
+![](./images/chapter1/image6.png)
 
-![](./images/chapter1/Aspose.Words.7067c9a2-e30f-4ce3-88cd-292a9b19e5f9.019.jpeg)
+![](./images/chapter1/image7.jpeg)
 
-![](./images/chapter1/Aspose.Words.7067c9a2-e30f-4ce3-88cd-292a9b19e5f9.020.png)
+![](./images/chapter1/image8.jpeg)
 
 
 
 安装MySQL的相关组件，这个过程可能需要耗时几分钟，耐心等待。
 
-![](./images/chapter1/Aspose.Words.7067c9a2-e30f-4ce3-88cd-292a9b19e5f9.021.jpeg)
+![](./images/chapter1/image9.jpeg)
 
-![](./images/chapter1/Aspose.Words.7067c9a2-e30f-4ce3-88cd-292a9b19e5f9.022.png)
+![](./images/chapter1/image10.jpeg)
 
-![](./images/chapter1/Aspose.Words.7067c9a2-e30f-4ce3-88cd-292a9b19e5f9.023.jpeg)
+![](./images/chapter1/image11.jpeg)
 
-![](./images/chapter1/Aspose.Words.7067c9a2-e30f-4ce3-88cd-292a9b19e5f9.024.jpeg)
+![](./images/chapter1/image12.jpeg)
+
+![](./images/chapter1/image13.jpeg)
 
 
 
 <font color="red">**输入MySQL中root用户的密码 ,一定记得记住该密码**</font>
 
-![](./images/chapter1/Aspose.Words.7067c9a2-e30f-4ce3-88cd-292a9b19e5f9.025.jpeg)
+![](./images/chapter1/image14.jpeg)
 
-![](./images/chapter1/Aspose.Words.7067c9a2-e30f-4ce3-88cd-292a9b19e5f9.026.jpeg)
+![](./images/chapter1/image15.jpeg)
 
-![](./images/chapter1/Aspose.Words.7067c9a2-e30f-4ce3-88cd-292a9b19e5f9.027.jpeg)
+![](./images/chapter1/image16.jpeg)
 
 3). 配置
 
@@ -142,26 +144,26 @@ MySQL官方提供了两种不同的版本：
 
 A. 在此电脑上，右键选择属性
 
-![](./images/chapter1/Aspose.Words.7067c9a2-e30f-4ce3-88cd-292a9b19e5f9.028.jpeg)
+![](./images/chapter1/image17.png)
 
 
 
 B. 点击左侧的  "高级系统设置 "，选择环境变量
 
-![](./images/chapter1/Aspose.Words.7067c9a2-e30f-4ce3-88cd-292a9b19e5f9.029.jpeg)
+![](./images/chapter1/image18.jpeg)
 
 
 
 C. 找到  Path 系统变量 , 点击  "编辑 "
 
 
-![](./images/chapter1/Aspose.Words.7067c9a2-e30f-4ce3-88cd-292a9b19e5f9.030.jpeg)
+![](./images/chapter1/image19.jpeg)
 
 
 
 D. 选择  "新建 " , 将MySQL Server的安装目录下的bin目录添加到环境变量
 
-![](./images/chapter1/Aspose.Words.7067c9a2-e30f-4ce3-88cd-292a9b19e5f9.031.jpeg)
+![](./images/chapter1/image20.jpeg)
 
 
 
@@ -181,41 +183,28 @@ net start mysql80
 net stop mysql80
 ```
 
-![](./images/chapter1/Aspose.Words.7067c9a2-e30f-4ce3-88cd-292a9b19e5f9.033.png)
+![](./images/chapter1/image22.jpeg)
 
-**注意  ：  上述的  mysql80 是我们在安装MySQL时，默认指定的mysql的系统服务名，不是固**
-
-**定的，如果未改动，默认就是mysql80。**
+<font style="background-color: rgb(235,248,242)">***注意  ：  上述的  mysql80 是我们在安装MySQL时，默认指定的mysql的系统服务名，不是固定的，如果未改动，默认就是mysql80。***</font>
 
 
-![](./images/chapter1/Aspose.Words.7067c9a2-e30f-4ce3-88cd-292a9b19e5f9.035.jpeg)
-
-![](./images/chapter1/Aspose.Words.7067c9a2-e30f-4ce3-88cd-292a9b19e5f9.034.png)
-
-
-
-
+![](./images/chapter1/image24.png)
 
 
 #### **1.2.5 客户端连接**
 
 1). 方式一：使用MySQL提供的客户端命令行工具
 
-![](./images/chapter1/Aspose.Words.7067c9a2-e30f-4ce3-88cd-292a9b19e5f9.036.jpeg)
+![](./images/chapter1/image27.jpeg)
 
 2). 方式二：使用系统自带的命令行工具执行指令
 
 ```shell
 mysql  [-h 127.0.0.1]  [-P 3306]  -u root -p
-
 参数：
-
     -h : MySQL服务所在的主机IP
-
     -P : MySQL服务端口号， 默认3306
-
     -u : MySQL数据库用户名
-
     -p ： MySQL数据库用户名对应的密码
 ```
 
@@ -223,9 +212,9 @@ mysql  [-h 127.0.0.1]  [-P 3306]  -u root -p
 
 连接本地的MySQL，则无需指定这两个参数。
 
-![](./images/chapter1/Aspose.Words.7067c9a2-e30f-4ce3-88cd-292a9b19e5f9.038.jpeg)
+![](./images/chapter1/image27.jpeg)
 
-**注意：   使用这种方式进行连接时，需要安装完毕后配置PATH环境变量。**
+<font style="background: aquamarine;">***注意：   使用这种方式进行连接时，需要安装完毕后配置PATH环境变量。***</font>
 
 
 #### **1.2.6 数据模型**
@@ -242,7 +231,7 @@ SQLServer这些都是属于关系型数据库，里面都是基于二维表存�
 
 数据的数据库就成为关系型数据库，不是基于二维表存储数据的数据库，就是非关系型数据库。
 
-![](./images/chapter1/Aspose.Words.7067c9a2-e30f-4ce3-88cd-292a9b19e5f9.040.png)
+![](./images/chapter1/image29.png)
 
 特点：
 
@@ -256,7 +245,7 @@ B. 使用SQL语言操作，  标准统一 ，使用方便。
 
 MySQL是关系型数据库，是基于二维表进行数据存储的，具体的结构图下 :
 
-![](./images/chapter1/Aspose.Words.7067c9a2-e30f-4ce3-88cd-292a9b19e5f9.041.jpeg)
+![](./images/chapter1/image30.jpeg)
 
 * 我们可以通过MySQL客户端连接数据库管理系统DBMS，然后通过DBMS操作数据库。
 
@@ -266,19 +255,11 @@ MySQL是关系型数据库，是基于二维表进行数据存储的，具体的
 
 含多行记录。
 
-
-
-
-
-
-
 ## **2. SQL**
 
 全称  Structured  Query Language，结构化查询语言。操作关系型数据库的编程语言，定义了
 
 一套操作关系型数据库统一**标准**  。
-
-
 
 ### **2.1 SQL通用语法**
 
@@ -295,8 +276,6 @@ MySQL是关系型数据库，是基于二维表进行数据存储的，具体的
 * 单行注释：  -- 注释内容    或    # 注释内容
 
 * 多行注释：  /* 注释内容  */
-
-
 
 ### **2.2 SQL分类**
 
@@ -323,7 +302,7 @@ Data  Definition Language，数据定义语言，用来定义数据库对象(数
 show databases ;
 ```
 
-![](./images/chapter1/Aspose.Words.7067c9a2-e30f-4ce3-88cd-292a9b19e5f9.047.png)
+![](./images/chapter1/image32.jpeg)
 
 **2). 查询当前数据库**
 
@@ -346,11 +325,11 @@ A. 创建一个itcast数据库 , 使用数据库默认的字符集。
 create database itcast;
 ```
 
-![](./images/chapter1/Aspose.Words.7067c9a2-e30f-4ce3-88cd-292a9b19e5f9.048.jpeg)
+![](./images/chapter1/image36.jpeg)
 
 在同一个数据库服务器中，不能创建两个名称相同的数据库，否则将会报错。
 
-![](./images/chapter1/Aspose.Words.7067c9a2-e30f-4ce3-88cd-292a9b19e5f9.049.jpeg)
+![](./images/chapter1/image37.png)
 
 可以通过if not exists 参数来解决这个问题，数据库不存在 , 则创建该数据库，如果存在，则不
 
@@ -362,7 +341,7 @@ create database if not extists itcast;
 ```
 
 
-![](./images/chapter1/Aspose.Words.7067c9a2-e30f-4ce3-88cd-292a9b19e5f9.050.png)
+![](./images/chapter1/image39.jpeg)
 
 
 
@@ -373,7 +352,7 @@ B. 创建一个itheima数据库，并且指定字符集
 create database itheima default charset utf8mb4;
 ```
 
-![](./images/chapter1/Aspose.Words.7067c9a2-e30f-4ce3-88cd-292a9b19e5f9.051.jpeg)
+![](./images/chapter1/image41.jpeg)
 
 
 
@@ -387,7 +366,7 @@ drop database [ if exists ] 数据库名 ;
 
 执行删除，否则不执行删除。
 
-![](./images/chapter1/Aspose.Words.7067c9a2-e30f-4ce3-88cd-292a9b19e5f9.052.jpeg)
+![](./images/chapter1/image43.png)
 
 
 
@@ -407,10 +386,6 @@ use itcast;
 ```
 
 
-
-
-
-
 #### **2.3.2 表操作**
 
 ##### **2.3.2.1 表操作-查询创建**
@@ -421,16 +396,14 @@ use itcast;
 show tables;
 ```
 
-
-
-比如 ,我们可以切换到sys这个系统数据库 ,并查看系统数据库中的所有表结构。
+比如 ,我们以切换到sys这个系统数据库 ,并查看系统数据库中的所有表结构。
 
 ```sql
 use sys;
 show tables;
 ```
 
-![](./images/chapter1/Aspose.Words.7067c9a2-e30f-4ce3-88cd-292a9b19e5f9.054.jpeg)
+![](./images/chapter1/image48.jpeg)
 
 
 
@@ -444,13 +417,11 @@ desc 表名 ;
 
 息。
 
-![](./images/chapter1/Aspose.Words.7067c9a2-e30f-4ce3-88cd-292a9b19e5f9.055.jpeg)
+![](./images/chapter1/image50.jpeg)
 
 
 
 **3). 查询指定表的建表语句**
-
-
 
 ```sql
 show create table 表名 ;
@@ -459,7 +430,7 @@ show create table 表名 ;
 
 到，因为这部分是数据库的默认值，如：存储引擎、字符集等。
 
-![](./images/chapter1/Aspose.Words.7067c9a2-e30f-4ce3-88cd-292a9b19e5f9.056.jpeg)
+![](./images/chapter1/image52.jpeg)
 
 
 
@@ -475,23 +446,21 @@ CREATE TABLE  表名(
     字段n  字段n类型 [COMMENT  字段n注释 ]
 ) [ COMMENT  表注释 ] ;
 ```
-<font style="background-color: palegreen;">***注意 : [...] 内为可选参数，最后一个字段后面没有逗号***</font>
-
-<font style="background: lightgreen">***注意 : [...] 内为可选参数，最后一个字段后面没有逗号***</font>
+<font style="background: aquamarine;">***注意 : [...] 内为可选参数，最后一个字段后面没有逗号***</font>
 
 
-比如，我们创建一张表  tb user ，对应的结构如下，那么建表语句为：
+比如，我们创建一张表  tb_user ，对应的结构如下，那么建表语句为：
 
 
-![](./images/chapter1/Aspose.Words.7067c9a2-e30f-4ce3-88cd-292a9b19e5f9.058.jpeg)
+![](./images/chapter1/image55.png)
 
 ```sql
-create table tb user (
-    id int comment '编号 ',
-    name varchar (50) comment '姓名 ',
-    age int comment '年龄 ',
-    gender varchar (1) comment '性别 '
-) comment '用户表 ';
+create table tb_user (
+    id int comment '编号',
+    name varchar (50) comment '姓名',
+    age int comment '年龄',
+    gender varchar (1) comment '性别'
+) comment '用户表';
 ```
 
 ##### **2.3.2.2 表操作-数据类型**
@@ -522,10 +491,10 @@ MySQL中的数据类型有很多，主要分为三类：数值类型、字符串
 如 :
     1). 年龄字段 -- 不会出现负数, 而且人的年龄不会太大
     age tinyint unsigned
+    
     2). 分数 -- 总分100分, 最多出现一位小数
     score double (4,1)
 ```
-
 
 2). 字符串类型
 
@@ -573,6 +542,7 @@ char 与  varchar 都可以描述字符串，  char是定长字符串，指定�
 如 :
     1). 生日字段 birthday
     birthday date
+    
     2). 创建时间 createtime
     createtime  datetime
 ```
@@ -603,20 +573,20 @@ char 与  varchar 都可以描述字符串，  char是定长字符串，指定�
 
 ```sql
 create table emp(
-    id int comment '编号 ',
-    workno varchar (10) comment '工号 ',
-    name varchar (10) comment '姓名 ',
-    gender char (1) comment '性别 ',
-    age tinyint unsigned comment '年龄 ',
-    idcard char (18) comment '身份证号 ',
-    entrydate date comment '入职时间 '
-) comment '员工表 ';
+    id int comment '编号',
+    workno varchar (10) comment '工号',
+    name varchar (10) comment '姓名',
+    gender char (1) comment '性别',
+    age tinyint unsigned comment '年龄',
+    idcard char (18) comment '身份证号',
+    entrydate date comment '入职时间'
+) comment '员工表';
 ```
 SQL语句编写完毕之后，就可以在MySQL的命令行中执行SQL，然后也可以通过  desc 指令查询表结构
 
 信息：
 
-![](./images/chapter1/Aspose.Words.7067c9a2-e30f-4ce3-88cd-292a9b19e5f9.066.jpeg)
+![](./images/chapter1/image61.jpeg)
 
 
 
@@ -641,7 +611,7 @@ ALTER TABLE 表名 ADD  字段名  类型 (长度)  [ COMMENT 注释 ]  [ 约束
 
 
 ```sql
-ALTER TABLE emp ADD nickname varchar (20)  COMMENT '昵称 ';
+ALTER TABLE emp ADD nickname varchar (20)  COMMENT '昵称';
 ```
 
 
@@ -664,7 +634,7 @@ ALTER TABLE 表名 CHANGE  旧字段名  新字段名  类型 (长度)  [ COMMEN
 
 
 ```sql
-ALTER TABLE emp CHANGE  nickname  username varchar (30)  COMMENT '昵称 ';
+ALTER TABLE emp CHANGE  nickname  username varchar (30)  COMMENT '昵称';
 ```
 
 
@@ -723,7 +693,7 @@ DROP  TABLE [ IF  EXISTS ]  表名;
 如果tb_user表存在，则删除tb_user表
 
 ```sql
-DROP  TABLE IF  EXISTS  tb user;
+DROP  TABLE IF  EXISTS  tb_user;
 ```
 
 2). 删除指定表 , 并重新创建表
@@ -733,7 +703,7 @@ DROP  TABLE IF  EXISTS  tb user;
 TRUNCATE  TABLE 表名;
 ```
 
-注意 : 在删除表的时候，表中的全部数据也都会被删除。
+<font style="background: aquamarine;">***注意 : 在删除表的时候，表中的全部数据也都会被删除。***</font>
 
 
 
@@ -752,7 +722,7 @@ TRUNCATE  TABLE 表名;
 
 mysql主流的图形化界面工具，有以下几种：
 
-![](./images/chapter1/Aspose.Words.7067c9a2-e30f-4ce3-88cd-292a9b19e5f9.071.jpeg)
+![](./images/chapter1/image75.png)
 
 而本次课程中，选择最后一种DataGrip，这种图形化界面工具，功能更加强大，界面提示更加友好，
 
@@ -764,23 +734,23 @@ mysql主流的图形化界面工具，有以下几种：
 
 1). 找到资料中准备好的安装包，双击开始安装
 
-![](./images/chapter1/Aspose.Words.7067c9a2-e30f-4ce3-88cd-292a9b19e5f9.072.jpeg)
+![](./images/chapter1/image76.png)
 
 2). 点击next，一步一步的完成安装
 
-![](./images/chapter1/Aspose.Words.7067c9a2-e30f-4ce3-88cd-292a9b19e5f9.073.jpeg)
+![](./images/chapter1/image77.jpeg)
 
 选择DataGrip的安装目录，然后选择下一步
 
-![](./images/chapter1/Aspose.Words.7067c9a2-e30f-4ce3-88cd-292a9b19e5f9.074.jpeg)
+![](./images/chapter1/image78.png)
 
-![](./images/chapter1/Aspose.Words.7067c9a2-e30f-4ce3-88cd-292a9b19e5f9.075.jpeg)
+![](./images/chapter1/image79.png)
 
 下一步，执行安装
 
-![](./images/chapter1/Aspose.Words.7067c9a2-e30f-4ce3-88cd-292a9b19e5f9.076.jpeg)
+![](./images/chapter1/image80.png)
 
-![](./images/chapter1/Aspose.Words.7067c9a2-e30f-4ce3-88cd-292a9b19e5f9.077.jpeg)
+![](./images/chapter1/image81.png)
 
 
 
@@ -792,13 +762,13 @@ mysql主流的图形化界面工具，有以下几种：
 
 参考图示 , 一步步操作即可
 
-![](./images/chapter1/Aspose.Words.7067c9a2-e30f-4ce3-88cd-292a9b19e5f9.078.jpeg)
+![](./images/chapter1/image82.jpeg)
 
 配置以及驱动jar包下载完毕之后，就可以点击  "Test Connection" 就可以测试，是否可以连接
 
 MySQL，如果出现  "Successed"，就表名连接成功了  。
 
-![](./images/chapter1/Aspose.Words.7067c9a2-e30f-4ce3-88cd-292a9b19e5f9.079.jpeg)
+![](./images/chapter1/image83.jpeg)
 
 
 
@@ -808,22 +778,25 @@ MySQL，如果出现  "Successed"，就表名连接成功了  。
 
 操作如下：
 
-![](./images/chapter1/Aspose.Words.7067c9a2-e30f-4ce3-88cd-292a9b19e5f9.080.jpeg)
+![](./images/chapter1/image84.jpeg)
 
 
 
 3). 创建数据库
 
-![](./images/chapter1/Aspose.Words.7067c9a2-e30f-4ce3-88cd-292a9b19e5f9.082.jpeg)
+![](./images/chapter1/image85.jpeg)
 
-注意 :
 
-以下两种方式都可以创建数据库：
 
+<font style="background: aquamarine;">***注意 :***</font>
+
+<font style="background: aquamarine;">***以下两种方式都可以创建数据库：***</font>
+
+```sql
 A. create database db01;
 
 B. create schema db01;
-
+```
 
 
 
@@ -831,9 +804,9 @@ B. create schema db01;
 
 在指定的数据库上面右键，选择new --> Table
 
-![](./images/chapter1/Aspose.Words.7067c9a2-e30f-4ce3-88cd-292a9b19e5f9.084.jpeg)
+![](./images/chapter1/image87.jpeg)
 
-![](./images/chapter1/Aspose.Words.7067c9a2-e30f-4ce3-88cd-292a9b19e5f9.085.jpeg)
+![](./images/chapter1/image88.jpeg)
 
 
 
@@ -841,9 +814,9 @@ B. create schema db01;
 
 在需要修改的表上，右键选择  "Modify Table..."
 
-![](./images/chapter1/Aspose.Words.7067c9a2-e30f-4ce3-88cd-292a9b19e5f9.086.png)
+![](./images/chapter1/image89.png)
 
-![](./images/chapter1/Aspose.Words.7067c9a2-e30f-4ce3-88cd-292a9b19e5f9.087.jpeg)
+![](./images/chapter1/image90.jpeg)
 
 如果想增加字段，直接点击+号，录入字段信息，然后点击Execute即可。
 
@@ -858,11 +831,11 @@ B. create schema db01;
 
 在指定的数据库上，右键，选择  New --> Query Console
 
-![](./images/chapter1/Aspose.Words.7067c9a2-e30f-4ce3-88cd-292a9b19e5f9.088.jpeg)
+![](./images/chapter1/image91.jpeg)
 
 然后就可以在打开的Query Console控制台，并在控制台中编写SQL，执行SQL。
 
-![](./images/chapter1/Aspose.Words.7067c9a2-e30f-4ce3-88cd-292a9b19e5f9.089.jpeg)
+![](./images/chapter1/image92.jpeg)
 
 
 
@@ -901,7 +874,7 @@ INSERT INTO 表名 (字段名1, 字段名2, ...)  VALUES (值1, 值2, ...);
 
 
 ```sql
-insert into employee (id,workno,name,gender,age,idcard,entrydate)values (1, '1 ', 'Itcast ', '男 ',10, '123456789012345678 ', '2000-01-01 ');
+insert into employee (id,workno,name,gender,age,idcard,entrydate)values (1, '1', 'Itcast', '男',10, '123456789012345678', '2000-01-01');
 ```
 插入数据完成之后，我们有两种方式，查询数据库的数据：
 
@@ -909,7 +882,7 @@ A. 方式一
 
 在左侧的表名上双击，就可以查看这张表的数据。
 
-![](./images/chapter1/Aspose.Words.7067c9a2-e30f-4ce3-88cd-292a9b19e5f9.093.jpeg)
+![](./images/chapter1/image95.jpeg)
 
 B. 方式二
 
@@ -928,17 +901,15 @@ select * from employee;
 
 
 ```sql
-insert into employee (id,workno,name,gender,age,idcard,entrydate)values (1, '1 ', 'Itcast ', '男 ',-1, '123456789012345678 ', '2000-01-01 ');
+insert into employee (id,workno,name,gender,age,idcard,entrydate)values (1, '1', 'Itcast', '男',-1, '123456789012345678', '2000-01-01');
 ```
 执行上述的SQL语句时，报错了，具体的错误信息如下：
 
-![](./images/chapter1/Aspose.Words.7067c9a2-e30f-4ce3-88cd-292a9b19e5f9.094.jpeg)
+![](./images/chapter1/image98.png)
 
-因为  employee 表的age字段类型为  tinyint，而且还是无符号的  unsigned ，所以取值只能在
+因为  employee 表的age字段类型为  tinyint，而且还是无符号的  unsigned ，所以取值只能在 0-255 之间。
 
-0-255 之间。
-
-![](./images/chapter1/Aspose.Words.7067c9a2-e30f-4ce3-88cd-292a9b19e5f9.095.jpeg)
+![](./images/chapter1/image99.png)
 
 
 
@@ -954,7 +925,7 @@ INSERT INTO 表名 VALUES (值1, 值2, ...);
 案例：插入数据到employee表，具体的SQL如下：
 
 ```sql
-insert into employee values (2, '2 ', '张无忌 ', '男 ',18, '123456789012345670 ', '2005-01-01 ');
+insert into employee values (2, '2', '张无忌', '男',18, '123456789012345670', '2005-01-01');
 ```
 
 **3). 批量添加数据**
@@ -974,18 +945,18 @@ INSERT INTO 表名 VALUES (值1, 值2, ...), (值1, 值2, ...), (值1, 值2, ...
 案例：批量插入数据到employee表，具体的SQL如下：
 
 ```sql
-insert into employee values (3, '3 ', '韦一笑 ', '男 ',38, '123456789012345670 ', '2005-01-01 '), (4, '4 ', '赵敏 ', '女 ',18, '123456789012345670 ', '2005-01-01 ');
+insert into employee values (3, '3', '韦一笑', '男',38, '123456789012345670', '2005-01-01'), (4, '4', '赵敏', '女',18, '123456789012345670', '2005-01-01');
 ```
 
 
 
-注意事项 :
+<font style="background: aquamarine;">***注意事项 :***</font>
 
-• 插入数据时，指定的字段顺序需要与值的顺序是一一对应的。
+* <font style="background: aquamarine;">***插入数据时，指定的字段顺序需要与值的顺序是一对应的。***</font>
 
-• 字符串和日期型数据应该包含在引号中。
+* <font style="background: aquamarine;">***字符串和日期型数据应该包含在引号中。***</font>
 
-• 插入的数据大小，应该在字段的规定范围内。
+* <font style="background: aquamarine;">***插入的数据大小，应该在字段的规定范围内。***</font>
 
 
 
@@ -1010,26 +981,28 @@ A. 修改id为1的数据， 将name修改为itheima
 
 
 ```sql
-update employee set name = 'itheima ' where id = 1;
+update employee set name = 'itheima' where id = 1;
 ```
 B. 修改id为1的数据 , 将name修改为小昭 , gender修改为  女
 
 
 ```sql
-update employee set name = '小昭 ' , gender = '女 ' where id = 1;
+update employee set name = '小昭' , gender = '女' where id = 1;
 ```
 C. 将所有的员工入职日期修改为  2008-01-01
 
 
 ```sql
-update employee set entrydate = '2008-01-01 ';
+update employee set entrydate = '2008-01-01';
 ```
 
 
 
-注意事项 :
+<font style="background: aquamarine;">***注意事项 :***</font>
 
-修改语句的条件可以有，也可以没有，如果没有条件，则会修改整张表的所有数据。
+<font style="background: aquamarine;">***修改语句的条件可以有，也可以没有，如果没有条件，则会修改整张表的所有数据。***</font>
+
+
 
 
 #### **2.5.3 删除数据**
@@ -1048,7 +1021,7 @@ DELETE  FROM  表名   [ WHERE  条件 ] ;
 A. 删除gender为女的员工
 
 ```sql
-delete from employee where gender = '女 ';
+delete from employee where gender = '女';
 ```
 B. 删除所有员工
 
@@ -1059,20 +1032,16 @@ delete from employee;
 
 
 
-注意事项 :
+<font style="background: aquamarine;">***注意事项 :***</font>
 
-• DELETE 语句的条件可以有，也可以没有，  如果没有条件，则会删除整张表的所有数
+* <font style="background: aquamarine;">***DELETE 语句的条件可以有，也可以没有，  如果没有条件，则会删除整张表的所有数据。***</font>
 
-据。
+* <font style="background: aquamarine;">***DELETE 语句不能删除某一个字段的值(可以使用UPDATE，将该字段值置为NULL即可)。***</font>
 
-• DELETE 语句不能删除某一个字段的值(可以使用UPDATE，将该字段值置为NULL即
-
-可)。
-
-• 当进行删除全部数据操作时，  datagrip会提示我们，询问是否确认删除，我们直接点击 Execute即可。
+* <font style="background: aquamarine;">***当进行删除全部数据操作时，  datagrip会提示我们，询问是否确认删除，我们直接点击 Execute即可。***</font>
 
 
-![](./images/chapter1/Aspose.Words.7067c9a2-e30f-4ce3-88cd-292a9b19e5f9.103.jpeg)
+![](./images/chapter1/image116.png)
 
 
 ### **2.6 DQL**
@@ -1089,7 +1058,7 @@ DQL英文全称是Data Query Language(数据查询语言)，数据查询语言�
 
 还会涉及到条件、排序、分页等操作。
 
-![](./images/chapter1/Aspose.Words.7067c9a2-e30f-4ce3-88cd-292a9b19e5f9.104.jpeg)
+![](./images/chapter1/image117.jpeg)
 
 
 
@@ -1100,82 +1069,80 @@ drop table if exists employee;
 
 create table emp(
 
-    id int comment '编号 ',
+    id int comment '编号',
 
-    workno varchar (10) comment '工号 ',
+    workno varchar (10) comment '工号',
 
-    name varchar (10) comment '姓名 ',
+    name varchar (10) comment '姓名',
 
-    gender char (1) comment '性别 ',
+    gender char (1) comment '性别',
 
-    age tinyint unsigned comment '年龄 ',
+    age tinyint unsigned comment '年龄',
 
-    idcard char (18) comment '身份证号 ',
+    idcard char (18) comment '身份证号',
 
-    workaddress varchar (50) comment '工作地址 ',
+    workaddress varchar (50) comment '工作地址',
 
-    entrydate date comment '入职时间 '
+    entrydate date comment '入职时间'
 
-)comment '员工表 ';
+)comment '员工表';
 
-
-INSERT INTO emp (id, workno, name, gender, age, idcard, workaddress, entrydate)
-
-VALUES (1, '00001 ', '柳岩666 ', '女 ', 20, '123456789012345678 ', '北京 ', '2000-01-01 ');
 
 INSERT INTO emp (id, workno, name, gender, age, idcard, workaddress, entrydate)
 
-VALUES (2, '00002 ', '张无忌 ', '男 ', 18, '123456789012345670 ', '北京 ', '2005-09-01 ');
+	VALUES (1, '00001', '柳岩666', '女', 20, '123456789012345678', '北京', '2000-01-01');
 
 INSERT INTO emp (id, workno, name, gender, age, idcard, workaddress, entrydate)
 
-VALUES (3, '00003 ', '韦一笑 ', '男 ', 38, '123456789712345670 ', '上海 ', '2005-08-01 ');
+	VALUES (2, '00002', '张无忌', '男', 18, '123456789012345670', '北京', '2005-09-01');
 
 INSERT INTO emp (id, workno, name, gender, age, idcard, workaddress, entrydate)
 
-VALUES (4, '00004 ', '赵敏 ', '女 ', 18, '123456757123845670 ', '北京 ', '2009-12-01 ');
+	VALUES (3, '00003', '韦一笑', '男', 38, '123456789712345670', '上海', '2005-08-01');
 
 INSERT INTO emp (id, workno, name, gender, age, idcard, workaddress, entrydate)
 
-VALUES (5, '00005 ', '小昭 ', '女 ', 16, '123456769012345678 ', '上海 ', '2007-07-01 ');
+	VALUES (4, '00004', '赵敏', '女', 18, '123456757123845670', '北京', '2009-12-01');
 
 INSERT INTO emp (id, workno, name, gender, age, idcard, workaddress, entrydate)
 
-VALUES (6, '00006 ', '杨逍 ', '男 ', 28, '12345678931234567X ', '北京 ', '2006-01-01 ');
+	VALUES (5, '00005', '小昭', '女', 16, '123456769012345678', '上海', '2007-07-01');
 
 INSERT INTO emp (id, workno, name, gender, age, idcard, workaddress, entrydate)
 
-VALUES (7, '00007 ', '范瑶 ', '男 ', 40, '123456789212345670 ', '北京 ', '2005-05-01 ');
+	VALUES (6, '00006', '杨逍', '男', 28, '12345678931234567X', '北京', '2006-01-01');
 
 INSERT INTO emp (id, workno, name, gender, age, idcard, workaddress, entrydate)
 
-VALUES (8, '00008 ', '黛绮丝 ', '女 ', 38, '123456157123645670 ', '天津 ', '2015-05-01 ');
-
-INSERT INTO emp (id, workno, name, gender, age, idcard, workaddress, entrydate) VALUES (9, '00009 ', '范凉凉 ', '女 ', 45, '123156789012345678 ', '北京 ', '2010-04-01 ');
-
-INSERT INTO emp (id, workno, name, gender, age, idcard, workaddress, entrydate) VALUES (10, '00010 ', '陈友谅 ', '男 ', 53, '123456789012345670 ', '上海 ', '2011-01-
-
-01 ');
-
-INSERT INTO emp (id, workno, name, gender, age, idcard, workaddress, entrydate) VALUES (11, '00011 ', '张士诚 ', '男 ', 55, '123567897123465670 ', '江苏 ', '2015-05-
-
-01 ');
-
-INSERT INTO emp (id, workno, name, gender, age, idcard, workaddress, entrydate) VALUES (12, '00012 ', '常遇春 ', '男 ', 32, '123446757152345670 ', '北京 ', '2004-02-
-
-01 ');
-
-INSERT INTO emp (id, workno, name, gender, age, idcard, workaddress, entrydate) VALUES (13, '00013 ', '张三丰 ', '男 ', 88, '123656789012345678 ', '江苏 ', '2020-11-
-
-01 ');
-
-INSERT INTO emp (id, workno, name, gender, age, idcard, workaddress, entrydate) VALUES (14, '00014 ', '灭绝 ', '女 ', 65, '123456719012345670 ', '西安 ', '2019-05-01 ');
+	VALUES (7, '00007', '范瑶', '男', 40, '123456789212345670', '北京', '2005-05-01');
 
 INSERT INTO emp (id, workno, name, gender, age, idcard, workaddress, entrydate)
 
-VALUES (15, '00015 ', '胡青牛 ', '男 ', 70, '12345674971234567X ', '西安 ', '2018-04-01 ');
+	VALUES (8, '00008', '黛绮丝', '女', 38, '123456157123645670', '天津', '2015-05-01');
 
-INSERT INTO emp (id, workno, name, gender, age, idcard, workaddress, entrydate) VALUES (16, '00016 ', '周芷若 ', '女 ', 18, null, '北京 ', '2012-06-01 ');
+INSERT INTO emp (id, workno, name, gender, age, idcard, workaddress, entrydate) 
+	VALUES (9, '00009', '范凉凉', '女', 45, '123156789012345678', '北京', '2010-04-01');
+
+INSERT INTO emp (id, workno, name, gender, age, idcard, workaddress, entrydate) 
+	VALUES (10, '00010', '陈友谅', '男', 53, '123456789012345670', '上海', '2011-01-01');
+
+INSERT INTO emp (id, workno, name, gender, age, idcard, workaddress, entrydate) 
+	VALUES (11, '00011', '张士诚', '男', 55, '123567897123465670', '江苏', '2015-05-01');
+
+INSERT INTO emp (id, workno, name, gender, age, idcard, workaddress, entrydate) 
+	VALUES (12, '00012', '常遇春', '男', 32, '123446757152345670', '北京', '2004-02-01');
+
+INSERT INTO emp (id, workno, name, gender, age, idcard, workaddress, entrydate) 
+	VALUES (13, '00013', '张三丰', '男', 88, '123656789012345678', '江苏', '2020-11-01');
+
+INSERT INTO emp (id, workno, name, gender, age, idcard, workaddress, entrydate) 
+	VALUES (14, '00014', '灭绝', '女', 65, '123456719012345670', '西安', '2019-05-01');
+
+INSERT INTO emp (id, workno, name, gender, age, idcard, workaddress, entrydate)
+	VALUES (15, '00015', '胡青牛', '男', 70, '12345674971234567X', '西安', '2018-04-01');
+
+INSERT INTO emp (id, workno, name, gender, age, idcard, workaddress, entrydate) 
+	VALUES (16, '00016', '周芷若', '女', 18, null, '北京', '2012-06-01');
 ```
 
 准备完毕后，我们就可以看到emp表中准备的16条数据。接下来，我们再来完成DQL语法的学习。
@@ -1235,7 +1202,7 @@ SELECT  *  FROM   表名 ;
 
 
 
-注意   : * 号代表查询所有字段，在实际开发中尽量少用（不直观、影响效率）。
+<font style="background: aquamarine;">***注意   : * 号代表查询所有字段，在实际开发中尽量少用（不直观、影响效率）。***</font>
 
 
 **2). 字段设置别名**
@@ -1284,19 +1251,19 @@ C. 查询所有员工的工作地址 ,起别名
 
 
 ```sql
-select workaddress as '工作地址 ' from emp;
+select workaddress as '工作地址' from emp;
 ```
 
 
 ```sql
 -- as可以省略
-select workaddress '工作地址 ' from emp;
+select workaddress '工作地址' from emp;
 ```
 D. 查询公司员工的上班地址有哪些(不要重复)
 
 
 ```sql
-select distinct workaddress '工作地址 ' from emp;
+select distinct workaddress '工作地址' from emp;
 ```
 
 
@@ -1391,7 +1358,7 @@ select * from emp where age between 15 and 20;
 H. 查询性别为  女  且年龄小于  25岁的员工信息
 
 ```sql
-select * from emp where gender = '女 ' and age < 25;
+select * from emp where gender = '女' and age < 25;
 ```
 I. 查询年龄等于18 或  20 或  40 的员工信息
 
@@ -1409,9 +1376,9 @@ select * from emp where name like '    ';
 K. 查询身份证号最后一位是X的员工信息
 
 ```sql
-select * from emp where idcard like '%X ';
+select * from emp where idcard like '%X';
 
-select * from emp where idcard like 'X ';
+select * from emp where idcard like 'X';
 ```
 
 #### **2.6.4 聚合函数**
@@ -1483,7 +1450,7 @@ E. 统计西安地区员工的年龄之和
 
 
 ```sql
-select sum (age) from emp where workaddress = '西安 ';
+select sum (age) from emp where workaddress = '西安';
 ```
 
 
@@ -1508,11 +1475,11 @@ SELECT  字段列表  FROM   表名   [ WHERE   条件 ]  GROUP   BY  分组字�
 
 注意事项 :
 
-• 分组之后，查询的字段一般为聚合函数和分组字段，查询其他字段无任何意义。
+* 分组之后，查询的字段一般为聚合函数和分组字段，查询其他字段无任何意义。
 
-• 执行顺序 : where > 聚合函数  > having 。
+* 执行顺序 : where > 聚合函数  > having 。
 
-• 支持多字段分组 , 具体语法为   : group by columnA,columnB
+* 支持多字段分组 , 具体语法为   : group by columnA,columnB
 
 
 案例 :
@@ -1542,7 +1509,7 @@ D. 统计各个工作地址上班的男性及女性员工的数量
 
 
 ```sql
-select workaddress, gender, count(*) '数量 ' from emp group by gender , workaddress;
+select workaddress, gender, count(*) '数量' from emp group by gender , workaddress;
 ```
 
 
@@ -1554,7 +1521,7 @@ select workaddress, gender, count(*) '数量 ' from emp group by gender , workad
 
 排序在日常开发中是非常常见的一个操作，有升序排序，也有降序排序。
 
-![](./images/chapter1/Aspose.Words.7067c9a2-e30f-4ce3-88cd-292a9b19e5f9.122.jpeg)
+![](./images/chapter1/image161.png)
 
 1). 语法
 
@@ -1564,15 +1531,15 @@ SELECT  字段列表  FROM   表名  ORDER  BY  字段1  排序方式1 , 字段2
 ```
 2). 排序方式
 
-*ASC : 升序(默认值)
+* ASC : 升序(默认值)
 
-*DESC: 降序
+* DESC: 降序
 
-注意事项：
+<font style="background: aquamarine;">***注意事项：***</font>
 
-• 如果是升序 , 可以不指定排序方式ASC ;
+* <font style="background: aquamarine;">***如果是升序 , 可以不指定排序方式ASC ;***</font>
 
-• 如果是多字段排序，  当第一个字段值相同时，才会根据第二个字段进行排序  ;
+* <font style="background: aquamarine;">***如果是多字段排序，  当第一个字段值相同时，才会根据第二个字段进行排序  ;***</font>
 
 案例 :
 
@@ -1608,7 +1575,7 @@ select * from emp order by age asc , entrydate desc;
 
 都需要借助于数据库的分页操作。
 
-![](./images/chapter1/Aspose.Words.7067c9a2-e30f-4ce3-88cd-292a9b19e5f9.126.jpeg)
+![](./images/chapter1/image167.png)
 
 1). 语法
 
@@ -1619,13 +1586,13 @@ SELECT  字段列表  FROM   表名  LIMIT  起始索引, 查询记录数 ;
 
 
 
-注意事项 :
+<font style="background: aquamarine;">***注意事项 :***</font>
 
-• 起始索引从0开始， 起始索引  =  （查询页码  - 1） * 每页显示记录数。
+* <font style="background: aquamarine;">***起始索引从0开始， 起始索引  =  （查询页码  - 1） * 每页显示记录数。***</font>
 
-• 分页查询是数据库的方言，不同的数据库有不同的实现，  MySQL中是LIMIT。
+* <font style="background: aquamarine;">***分页查询是数据库的方言，不同的数据库有不同的实现，  MySQL中是LIMIT。***</font>
 
-• 如果查询的是第一页数据，起始索引可以省略，直接简写为  limit 10。
+* <font style="background: aquamarine;">***如果查询的是第一页数据，起始索引可以省略，直接简写为  limit 10。***</font>
 
 
 案例 :
@@ -1648,13 +1615,13 @@ select * from emp limit 10,10;
 1). 查询年龄为20,21,22,23岁的员工信息。
 
 ```sql
-select * from emp where gender = '女 ' and age in (20,21,22,23);
+select * from emp where gender = '女' and age in (20,21,22,23);
 ```
 
 2). 查询性别为  男  ，并且年龄在  20-40 岁(含)以内的姓名为三个字的员工。
 
 ```sql
-select * from emp where gender = '男 ' and ( age between 20 and 40 ) and name like '___';
+select * from emp where gender = '男' and ( age between 20 and 40 ) and name like '___';
 ```
 
 3). 统计员工表中 , 年龄小于60岁的  , 男性员工和女性员工的人数。
@@ -1676,7 +1643,7 @@ select name , age from emp where age <= 35 order by age asc , entrydate desc;
 
 
 ```sql
-select * from emp where gender = '男 ' and age between 20 and 40 order by age asc ,entrydate asc limit 5 ;
+select * from emp where gender = '男' and age between 20 and 40 order by age asc ,entrydate asc limit 5 ;
 ```
 
 
@@ -1690,7 +1657,7 @@ select * from emp where gender = '男 ' and age between 20 and 40 order by age a
 
 来说明的是DQL语句在执行时的执行顺序，也就是先执行那一部分，后执行那一部分。
 
-![](./images/chapter1/Aspose.Words.7067c9a2-e30f-4ce3-88cd-292a9b19e5f9.131.jpeg)
+![](./images/chapter1/image177.jpeg)
 
 
 
@@ -1726,7 +1693,7 @@ select e.name ename , e.age eage from emp e where eage > 15 order by age asc;
 ```
 执行上述SQL报错了 :
 
-![](./images/chapter1/Aspose.Words.7067c9a2-e30f-4ce3-88cd-292a9b19e5f9.132.jpeg)
+![](./images/chapter1/image181.jpeg)
 
 由此我们可以得出结论 : from 先执行，然后执行  where ，  再执行select 。
 
@@ -1753,7 +1720,7 @@ having ... select ... order by ... limit ...
 DCL英文全称是**Data Control Language**(数据控制语言)，用来管理数据库用户、控制数据库的访问权限。
 
 
-![](./images/chapter1/Aspose.Words.7067c9a2-e30f-4ce3-88cd-292a9b19e5f9.133.png)
+![](./images/chapter1/image183.png)
 
 
 #### **2.7.1 管理用户**
@@ -1766,7 +1733,7 @@ select * from mysql.user;
 ```
 查询的结果如下 :
 
-![](./images/chapter1/Aspose.Words.7067c9a2-e30f-4ce3-88cd-292a9b19e5f9.134.jpeg)
+![](./images/chapter1/image185.jpeg)
 
 其中  Host代表当前用户访问的主机 , 如果为localhost, 仅代表只能够在当前本机访问，是不可以 远程访问的。    User代表的是访问该数据库的用户名。在MySQL中需要通过Host和User来唯一标识一
 
@@ -1778,32 +1745,30 @@ select * from mysql.user;
 
 
 ```sql
-CREATE USER '用户名 '@ '主机名 ' IDENTIFIED BY '密码 ';
+CREATE USER '用户名'@'主机名' IDENTIFIED BY '密码';
 ```
 3). 修改用户密码
 
 
 ```sql
-ALTER USER '用户名 '@ '主机名 ' IDENTIFIED WITH mysql native password BY '新密码 ' ;_      _
+ALTER USER '用户名'@'主机名' IDENTIFIED WITH mysql native password BY '新密码' ;
 ```
 4). 删除用户
 
 
 ```sql
-DROP USER '用户名 '@ '主机名 ' ;
+DROP USER '用户名'@'主机名' ;
 ```
 
 
 
-注意事项 :
+<font style="background: aquamarine;">***注意事项 :***</font>
 
-• 在MySQL中需要通过用户名@主机名的方式，来唯一标识一个用户。
+* <font style="background: aquamarine;">***在MySQL中需要通过用户名@主机名的方式，来唯一标识一个用户。***</font>
 
-• 主机名可以使用  % 通配。
+* <font style="background: aquamarine;">***主机名可以使用  % 通配。***</font>
 
-• 这类SQL开发人员操作的比较少，主要是DBA（  Database Administrator 数据库
-
-管理员）使用。
+* <font style="background: aquamarine;">***这类SQL开发人员操作的比较少，主要是DBA（  Database Administrator 数据库管理员）使用。***</font>
 
 
 案例：
@@ -1812,25 +1777,25 @@ A. 创建用户itcast, 只能够在当前主机localhost访问 , 密码123456;
 
 
 ```sql
-create user 'itcast '@ 'localhost ' identified by '123456 ';
+create user 'itcast'@'localhost' identified by '123456';
 ```
 B. 创建用户heima, 可以在任意主机访问该数据库 , 密码123456;
 
 
 ```sql
-create user 'heima '@ '% ' identified by '123456 ';
+create user 'heima'@'%' identified by '123456';
 ```
 C. 修改用户heima的访问密码为1234;
 
 
 ```sql
-alter user 'heima '@ '% ' identified with mysql_native_password by '1234 ';
+alter user 'heima'@'%' identified with mysql_native_password by '1234';
 ```
 D. 删除  itcast@localhost 用户
 
 
 ```sql
-drop user 'itcast '@ 'localhost ';
+drop user 'itcast'@'localhost';
 ```
 
 
@@ -1860,28 +1825,28 @@ MySQL中定义了很多种权限，但是常用的就以下几种：
 
 
 ```sql
-SHOW GRANTS FOR '用户名 '@ '主机名 ' ;
+SHOW GRANTS FOR '用户名'@'主机名' ;
 ```
 2). 授予权限
 
 
 ```sql
-GRANT 权限列表 ON 数据库名 .表名 TO '用户名 '@ '主机名 ';
+GRANT 权限列表 ON 数据库名 .表名 TO '用户名'@'主机名';
 ```
 3). 撤销权限
 
 
 ```sql
-REVOKE 权限列表 ON 数据库名 .表名 FROM '用户名 '@ '主机名 ';
+REVOKE 权限列表 ON 数据库名 .表名 FROM '用户名'@'主机名';
 ```
 
 
 
-注意事项：
+<font style="background: aquamarine;">***注意事项：***</font>
 
-• 多个权限之间，使用逗号分隔
+* <font style="background: aquamarine;">***多个权限之间，使用逗号分隔***</font>
 
-• 授权时，   数据库名和表名可以使用  * 进行通配，代表所有。
+* <font style="background: aquamarine;">***授权时，   数据库名和表名可以使用  * 进行通配，代表所有。***</font>
 
 
 案例 :
@@ -1890,19 +1855,19 @@ A. 查询   'heima'@'%' 用户的权限
 
 
 ```sql
-show grants for 'heima '@ '% ';
+show grants for 'heima'@'%';
 ```
 B. 授予   'heima'@'%' 用户itcast数据库所有表的所有操作权限
 
 
 ```sql
-grant all on itcast.* to 'heima '@ '% ';
+grant all on itcast.* to 'heima'@'%';
 ```
 C. 撤销   'heima'@'%' 用户的itcast数据库的所有权限
 
 
 ```sql
-revoke all on itcast.* from 'heima '@ '% ';
+revoke all on itcast.* from 'heima'@'%';
 ```
 
 
@@ -1916,7 +1881,9 @@ revoke all on itcast.* from 'heima '@ '% ';
 
 我们先来看两个场景：
 
-![](./images/chapter1/Aspose.Words.7067c9a2-e30f-4ce3-88cd-292a9b19e5f9.139.jpeg)
+
+
+![](./images/chapter1/image203.png)![](./images/chapter1/image202.png)
 
 1). 在企业的OA或其他的人力系统中，经常会提供的有这样一个功能，每一个员工登录上来之后都能   够看到当前员工入职的天数。    而在数据库中，存储的都是入职日期，如  2000-11-12，那如果快速计
 
@@ -1958,31 +1925,31 @@ A. concat : 字符串拼接
 
 
 ```sql
-select concat( 'Hello ' , ' MySQL ');
+select concat( 'Hello' , ' MySQL');
 ```
 B. lower : 全部转小写
 
 
 ```sql
-select lower ( 'Hello ');
+select lower ( 'Hello');
 ```
 C. upper : 全部转大写
 
 
 ```sql
-select upper ( 'Hello ');
+select upper ( 'Hello');
 ```
 D. lpad : 左填充
 
 
 ```sql
-select lpad( '01 ', 5, '- ');
+select lpad( '01', 5, '-');
 ```
 E. rpad : 右填充
 
 
 ```sql
-select rpad( '01 ', 5, '- ');
+select rpad( '01', 5, '-');
 ```
 F. trim : 去除空格
 
@@ -2002,7 +1969,7 @@ select substring( 'Hello MySQL ',1,5);
 
 案例 :
 
-![](./images/chapter1/Aspose.Words.7067c9a2-e30f-4ce3-88cd-292a9b19e5f9.140.jpeg)
+![](./images/chapter1/image211.jpeg)
 
 由于业务需求变更，企业员工的工号，统一为5位数，目前不足5位数的全部在前面补0。比如：     1号员
 
@@ -2010,11 +1977,11 @@ select substring( 'Hello MySQL ',1,5);
 
 
 ```sql
-update emp set workno = lpad(workno, 5, '0 ');
+update emp set workno = lpad(workno, 5, '0');
 ```
 处理完毕后 , 具体的数据为 :
 
-![](./images/chapter1/Aspose.Words.7067c9a2-e30f-4ce3-88cd-292a9b19e5f9.141.jpeg)
+![](./images/chapter1/image213.jpeg)
 
 
 
@@ -2081,7 +2048,7 @@ select round(2.344,2);
 
 
 ```sql
-select lpad(round(rand()*1000000 , 0), 6, '0 ');
+select lpad(round(rand()*1000000 , 0), 6, '0');
 ```
 
 
@@ -2144,7 +2111,7 @@ F. datediff：获取两个日期相差的天数
 
 
 ```sql
-select datediff( '2021-10-01 ', '2021-12-01 ');
+select datediff( '2021-10-01', '2021-12-01');
 ```
 
 
@@ -2157,7 +2124,7 @@ select datediff( '2021-10-01 ', '2021-12-01 ');
 
 
 ```sql
-select name, datediff(curdate (), entrydate) as 'entrydays ' from emp order byentrydays desc;
+select name, datediff(curdate (), entrydate) as 'entrydays' from emp order byentrydays desc;
 ```
 
 
@@ -2185,7 +2152,7 @@ A. if
 
 
 ```sql
-select if(false, 'Ok ', 'Error ');
+select if(false, 'Ok', 'Error');
 ```
 
 
@@ -2194,9 +2161,9 @@ B. ifnull
 
 
 ```sql
-select ifnull( 'Ok ', 'Default ');
-select ifnull( '', 'Default ');
-select ifnull(null, 'Default ');
+select ifnull( 'Ok', 'Default');
+select ifnull( '', 'Default');
+select ifnull(null, 'Default');
 ```
 
 C. case when then else end
@@ -2207,7 +2174,7 @@ C. case when then else end
 ```sql
 select
     name,
-     ( case workaddress when '北京 ' then '一线城市 ' when '上海 ' then '一线城市 ' else'二线城市 ' end ) as '工作地址 '
+     ( case workaddress when '北京' then '一线城市' when '上海' then '一线城市' else'二线城市' end ) as '工作地址'
 from emp;
 ```
 
@@ -2217,21 +2184,15 @@ from emp;
 ```sql
 create table score (
 
-  id int comment 'ID ',
+  id int comment 'ID',
+  name varchar (20) comment '姓名',
+  math int comment '数学',
+  english int comment '英语',
+  chinese int comment '语文'
+) comment '学员成绩表';
 
-  name varchar (20) comment '姓名 ',
-
-  math int comment '数学 ',
-
-  english int comment '英语 ',
-
-  chinese int comment '语文 '
-
-) comment '学员成绩表 ';
-
-insert into score (id, name, math, english, chinese) VALUES (1, 'Tom ', 67, 88, 95
-
-), (2, 'Rose ' , 23, 66, 90), (3, 'Jack ', 56, 98, 76);
+insert into score (id, name, math, english, chinese) 
+	VALUES (1, 'Tom', 67, 88, 95), (2, 'Rose' , 23, 66, 90), (3, 'Jack', 56, 98, 76);
 ```
 
 
@@ -2239,19 +2200,9 @@ insert into score (id, name, math, english, chinese) VALUES (1, 'Tom ', 67, 88, 
 
 ```sql
 select id, name,
-
-   (case when math >= 85 then '优秀 ' when math >=60 then '及格 ' else '不及格 ' end )
-
-'数学 ',
-
-   (case when english >= 85 then '优秀 ' when english >=60 then '及格 ' else '不及格 '
-
-end ) '英语 ',
-
-   (case when chinese >= 85 then '优秀 ' when chinese >=60 then '及格 ' else '不及格 '
-
-end ) '语文 '
-
+   (case when math >= 85 then '优秀' when math >=60 then '及格' else '不及格' end ) '数学',
+   (case when english >= 85 then '优秀' when english >=60 then '及格' else '不及格' end ) '英语',
+   (case when chinese >= 85 then '优秀' when chinese >=60 then '及格' else '不及格' end ) '语文'
 from score;
 ```
 
@@ -2291,7 +2242,9 @@ MySQL的常见函数我们学习完了，那接下来，我们就来分析一下
 |默认约束|保存数据时，如果未指定该字段的值，则采用默认值|DEFAULT|
 |检查约束(8.0.16版本之后)|保证字段值满足某一个条件|CHECK|
 |外键约束|用来让两张表的数据之间建立连接，保证数据的一致性和完整性|FOREIGNKEY|
-注意：约束是作用于表中字段上的，可以在创建表/修改表的时候添加约束。
+
+<font style="background: aquamarine;">***注意：约束是作用于表中字段上的，可以在创建表/修改表的时候添加约束。***</font>
+
 
 
 ### **4.2 约束演示**
@@ -2315,37 +2268,33 @@ MySQL的常见函数我们学习完了，那接下来，我们就来分析一下
 
 
 ```sql
-CREATE TABLE tb user (
-    id int AUTO INCREMENT PRIMARY KEY  COMMENT  'ID唯一标识 ',
-    name varchar (10) NOT NULL UNIQUE  COMMENT  '姓名 ' ,
-    age int check (age > 0 && age <= 120)  COMMENT  '年龄 ' ,
-    status char (1) default  '1 '  COMMENT  '状态 ',
-    gender char (1)  COMMENT  '性别 '
+CREATE TABLE tb_user (
+    id int AUTO INCREMENT PRIMARY KEY  COMMENT  'ID唯一标识',
+    name varchar (10) NOT NULL UNIQUE  COMMENT  '姓名' ,
+    age int check (age > 0 && age <= 120)  COMMENT  '年龄' ,
+    status char (1) default  '1'  COMMENT  '状态',
+    gender char (1)  COMMENT  '性别'
 );
 ```
-在为字段添加约束时，我们只需要在字段之后加上约束的关键字即可，需要关注其语法。我们执行上面 的SQL把表结构创建完成，然后接下来，就可以通过一组数据进行测试，从而验证一下，约束是否可以
-
-生效。
+在为字段添加约束时，我们只需要在字段之后加上约束的关键字即可，需要关注其语法。我们执行上面 的SQL把表结构创建完成，然后接下来，就可以通过一组数据进行测试，从而验证一下，约束是否可以生效。
 
 
 ```sql
-insert into tb user (name,age,status,gender) values ( 'Tom1 ',19, '1 ', '男 '),( 'Tom2 ',25, '0 ', '男 ');
-insert into tb user (name,age,status,gender) values ( 'Tom3 ',19, '1 ', '男 ');
-insert into tb user (name,age,status,gender) values (null,19, '1 ', '男 ');
-insert into tb user (name,age,status,gender) values ( 'Tom3 ',19, '1 ', '男 ');
-insert into tb user (name,age,status,gender) values ( 'Tom4 ',80, '1 ', '男 ');
-insert into tb user (name,age,status,gender) values ( 'Tom5 ',-1, '1 ', '男 ');
-insert into tb user (name,age,status,gender) values ( 'Tom5 ',121, '1 ', '男 ');
-insert into tb user (name,age,gender) values ( 'Tom5 ',120, '男 ');
+insert into tb_user (name,age,status,gender) values ( 'Tom1',19, '1', '男'),( 'Tom2',25, '0', '男');
+insert into tb_user (name,age,status,gender) values ( 'Tom3',19, '1', '男');
+insert into tb_user (name,age,status,gender) values (null,19, '1', '男');
+insert into tb_user (name,age,status,gender) values ( 'Tom3',19, '1', '男');
+insert into tb_user (name,age,status,gender) values ( 'Tom4',80, '1', '男');
+insert into tb_user (name,age,status,gender) values ( 'Tom5',-1, '1', '男');
+insert into tb_user (name,age,status,gender) values ( 'Tom5',121, '1', '男');
+insert into tb_user (name,age,gender) values ( 'Tom5',120, '男');
 ```
 
 
 
-上面，我们是通过编写SQL语句的形式来完成约束的指定，那加入我们是通过图形化界面来创建表结构
+上面，我们是通过编写SQL语句的形式来完成约束的指定，那加入我们是通过图形化界面来创建表结构时，又该如何来指定约束呢？    只需要在创建表的时候，根据我们的需要选择对应的约束即可。
 
-时，又该如何来指定约束呢？    只需要在创建表的时候，根据我们的需要选择对应的约束即可。
-
-![](./images/chapter1/Aspose.Words.7067c9a2-e30f-4ce3-88cd-292a9b19e5f9.146.png)
+![](./images/chapter1/image235.jpeg)
 
 
 
@@ -2359,15 +2308,16 @@ insert into tb user (name,age,gender) values ( 'Tom5 ',120, '男 ');
 外键：用来让两张表的数据之间建立连接，从而保证数据的一致性和完整性。
 
 我们来看一个例子：
-![](./images/chapter1/Aspose.Words.7067c9a2-e30f-4ce3-88cd-292a9b19e5f9.147.jpeg)
+![](./images/chapter1/image236.jpeg)
 
 左侧的emp表是员工表，里面存储员工的基本信息，包含员工的ID、姓名、年龄、职位、薪资、入职日 期、上级主管ID、部门 ID，在员工的信息中存储的是部门的 ID dept_id，而这个部门的ID是关联的
 
 部门表dept的主键id，那emp表的dept_id就是外键 ,关联的是另一张表的主键。
 
-注意：目前上述两张表，只是在逻辑上存在这样一层关系；在数据库层面，并未建立外键关联，
 
-所以是无法保证数据的一致性和完整性的。
+
+<font style="background: aquamarine;">***注意：目前上述两张表，只是在逻辑上存在这样一层关系；在数据库层面，并未建立外键关联，所以是无法保证数据的一致性和完整性的。***</font>
+
 
 
 没有数据库外键关联的情况下，能够保证一致性和完整性呢，我们来测试一下。
@@ -2377,33 +2327,36 @@ insert into tb user (name,age,gender) values ( 'Tom5 ',120, '男 ');
 
 ```sql
 create table dept(
-    id   int auto increment comment 'ID ' primary key,
-    name varchar (50) not null comment '部门名称 '
-)comment '部门表 ';
-INSERT INTO dept (id, name) VALUES (1, '研发部 '), (2, '市场部 '), (3, '财务部 '), (4,'销售部 '), (5, '总经办 ');
+    id   int auto increment comment 'ID' primary key,
+    name varchar (50) not null comment '部门名称'
+)comment '部门表';
+
+INSERT INTO dept (id, name) VALUES (1, '研发部'), (2, '市场部'), (3, '财务部'), (4,'销售部'), (5, '总经办');
+
 create table emp(
-    id  int auto increment comment 'ID ' primary key,
-    name varchar (50) not null comment '姓名 ',
-    age  int comment '年龄 ',
-    job varchar (20) comment '职位 ',
-    salary int comment '薪资 ',
-    entrydate date comment '入职时间 ',
-    managerid int comment '直属领导ID ',
-    dept_id int comment '部门ID '
-)comment '员工表 ';
-INSERT INTO emp (id, name, age, job,salary, entrydate, managerid, dept_id)VALUES
-             (1, '金庸 ', 66, '总裁 ',20000, '2000-01-01 ', null,5), (2, '张无忌 ', 20,'项目经理 ',12500, '2005-12-05 ', 1,1),
-             (3, '杨逍 ', 33, '开发 ', 8400, '2000-11-03 ', 2,1), (4, '韦一笑 ', 48, '开发 ',11000, '2002-02-05 ', 2,1),
-             (5, '常遇春 ', 43, '开发 ',10500, '2004-09-07 ', 3,1), (6, '小昭 ', 19, '程序员鼓励师 ',6600, '2004-10-12 ', 2,1);
+    id  int auto increment comment 'ID' primary key,
+    name varchar (50) not null comment '姓名',
+    age  int comment '年龄',
+    job varchar (20) comment '职位',
+    salary int comment '薪资',
+    entrydate date comment '入职时间',
+    managerid int comment '直属领导ID',
+    dept_id int comment '部门ID'
+)comment '员工表';
+
+INSERT INTO emp (id, name, age, job,salary, entrydate, managerid, dept_id) VALUES 
+	(1, '金庸', 66, '总裁',20000, '2000-01-01', null,5), (2, '张无忌', 20,'项目经理',12500, '2005-12-05', 1,1),
+	(3, '杨逍', 33, '开发', 8400, '2000-11-03', 2,1), (4, '韦一笑', 48, '开发',11000, '2002-02-05', 2,1),
+	(5, '常遇春', 43, '开发',10500, '2004-09-07', 3,1), (6, '小昭', 19, '程序员鼓励师',6600, '2004-10-12', 2,1);
 ```
 
-![](./images/chapter1/Aspose.Words.7067c9a2-e30f-4ce3-88cd-292a9b19e5f9.150.jpeg)
+![](./images/chapter1/image238.jpeg)
 
 
 
 接下来，我们可以做一个测试，删除id为1的部门信息。
 
-![](./images/chapter1/Aspose.Words.7067c9a2-e30f-4ce3-88cd-292a9b19e5f9.151.png)
+![](./images/chapter1/image239.jpeg)
 
 结果，我们看到删除成功，而删除成功之后，部门表不存在id为1的部门，而在emp表中还有很多的员 工，关联的为id为1的部门，此时就出现了数据的不完整性。    而要想解决这个问题就得通过数据库的
 
@@ -2415,21 +2368,17 @@ INSERT INTO emp (id, name, age, job,salary, entrydate, managerid, dept_id)VALUES
 #### **4.3.2 语法**
 
 1). 添加外键
-```sql
+```text
 CREATE TABLE 表名(
-
   字段名     数据类型,
-
    ...
-
    [CONSTRAINT]   [外键名称]  FOREIGN  KEY (外键字段名)   REFERENCES   主表 (主表列名)
-
 );
+
+ALTER   TABLE  表名   ADD  CONSTRAINT   外键名称   FOREIGN   KEY (外键字段名) REFERENCES  主表 (主表列名) ;
 ```
 
-ALTER   TABLE  表名   ADD  CONSTRAINT   外键名称   FOREIGN   KEY (外键字段名)
 
-REFERENCES  主表 (主表列名) ;
 
 
 案例 :
@@ -2441,13 +2390,13 @@ REFERENCES  主表 (主表列名) ;
 alter table emp add constraint fk_emp_dept_id foreign key (dept_id) referencesdept(id);
 ```
 
-![](./images/chapter1/Aspose.Words.7067c9a2-e30f-4ce3-88cd-292a9b19e5f9.153.jpeg)
+![](./images/chapter1/image243.png)
 
 添加了外键约束之后，我们再到dept表(父表)删除id为1的记录，然后看一下会发生什么现象。    此时
 
 将会报错，不能删除或更新父表记录，因为存在外键约束。
 
-![](./images/chapter1/Aspose.Words.7067c9a2-e30f-4ce3-88cd-292a9b19e5f9.154.jpeg)
+![](./images/chapter1/image244.png)
 
 2). 删除外键
 
@@ -2503,39 +2452,48 @@ ALTER TABLE  表名  ADD CONSTRAINT  外键名称  FOREIGN KEY  (外键字段)  
 1). CASCADE
 
 ```sql
-alter table emp add constraint fk_emp_dept_id foreign key (dept_id) references
-
-dept(id) on update cascade on delete cascade ;
+alter table emp add constraint fk_emp_dept_id foreign key (dept_id) references dept(id) on update cascade on delete cascade ;
 ```
 
 A. 修改父表id为1的记录，将id修改为6
 
-
-|![](./images/chapter1/Aspose.Words.7067c9a2-e30f-4ce3-88cd-292a9b19e5f9.156.jpeg)
+![](./images/chapter1/image249.jpeg)
 
 
 我们发现，原来在子表中dept_id值为1的记录，现在也变为6了，这就是cascade级联的效果。
 
-```
-在一般的业务系统中，不会修改一张表的主键值。
-```
+<font style="background: aquamarine;">***在一般的业务系统中，不会修改一张表的主键值。***</font>
+
+
+
 B. 删除父表id为6的记录
 
-|![](./images/chapter1/Aspose.Words.7067c9a2-e30f-4ce3-88cd-292a9b19e5f9.157.jpeg)|
-|我们发现，父表的数据删除成功了，但是子表中关联的记录也被级联删除了。2). SET NULL在进行测试之前，我们先需要删除上面建立的外键  fk_emp_dept_id。然后再通过数据脚本，将emp、dept表的数据恢复了。|
-|1|alter tabledept(id) on|emp add constraintupdate set null on|fk_emp_dept_id foreigndelete set null ;|key|(dept_id)|references|
+![](./images/chapter1/image251.png)
+
+我们发现，父表的数据删除成功了，但是子表中关联的记录也被级联删除了。
+
+
+
+2). SET NULL
+
+在进行测试之前，我们先需要删除上面建立的外键  fk_emp_dept_id。然后再通过数据脚本，将emp、dept表的数据恢复了。
+
+```sql
+alter table emp add constraint fk_emp_dept_id foreign key (dept_id) references
+dept(id) on update set null on delete set null ;
+```
 
 
 
 接下来，我们删除id为1的数据，看看会发生什么样的现象。
 
-![](./images/chapter1/Aspose.Words.7067c9a2-e30f-4ce3-88cd-292a9b19e5f9.158.png)
+![](./images/chapter1/image253.png)
 
 我们发现父表的记录是可以正常的删除的，父表的数据删除之后，再打开子表  emp，我们发现子表emp
 
 的dept_id字段，原来dept_id为1的数据，现在都被置为NULL了。
 
-![](./images/chapter1/Aspose.Words.7067c9a2-e30f-4ce3-88cd-292a9b19e5f9.159.jpeg)
+![](./images/chapter1/image254.png)
 
 这就是SET NULL这种删除/更新行为的效果。
 
@@ -2568,25 +2526,13 @@ B. 删除父表id为6的记录
 #### **5.1.1 一对多**
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 * 案例 : 部门  与  员工的关系
 
 * 关系 : 一个部门对应多个员工，  一个员工对应一个部门
 
 * 实现 : 在多的一方建立外键，指向一的一方的主键
 
-![](./images/chapter1/Aspose.Words.7067c9a2-e30f-4ce3-88cd-292a9b19e5f9.166.png)
+![](./images/chapter1/image255.jpeg)
 
 
 #### **5.1.2 多对多**
@@ -2597,62 +2543,34 @@ B. 删除父表id为6的记录
 
 * 实现 : 建立第三张中间表，中间表至少包含两个外键，分别关联两方主键
 
-![](./images/chapter1/Aspose.Words.7067c9a2-e30f-4ce3-88cd-292a9b19e5f9.170.jpeg)
+![](./images/chapter1/image256.jpeg)
 
 对应的SQL脚本 :
 ```sql
 create table student(
+  id int auto increment primary key comment '主键ID',
+  name varchar (10) comment '姓名',
+  no varchar (10) comment '学号'
+) comment '学生表';
 
-  id int auto increment primary key comment '主键ID ',
+insert into student values (null, '黛绮丝', '2000100101'), (null, '谢逊', '2000100102'), (null, '殷天正', '2000100103'), (null, '韦一笑', '2000100104');
 
-  name varchar (10) comment '姓名 ',
+create table_course (
+    id int auto increment primary key comment '主键ID',
+    name varchar (10) comment '课程名称'
+) comment '课程表';
 
-  no varchar (10) comment '学号 '
-
-) comment '学生表 ';
-
-insert into student values (null, '黛绮丝 ', '2000100101 '), (null, '谢逊 ',
-
-'2000100102 '), (null, '殷天正 ', '2000100103 '), (null, '韦一笑 ', '2000100104 ');
-
-7
-
-8
-
-create table course (
-
-    id int auto increment primary key comment '主键ID ',
-
-
-
-    name varchar (10) comment '课程名称 '
-
-) comment '课程表 ';
-
-insert into course values (null, 'Java '), (null, 'PHP '), (null , 'MySQL ') ,
-
-(null, 'Hadoop ');
-
-
-
+insert into course values (null, 'Java'), (null, 'PHP'), (null , 'MySQL') ,(null, 'Hadoop');
 
 create table student_course (
-
-    id int auto increment comment '主键 ' primary key,
-
-    studentid int not null comment '学生ID ',
-
-    courseid  int not null comment '课程ID ',
-
+    id int auto increment comment '主键' primary key,
+    studentid int not null comment '学生ID',
+    courseid  int not null comment '课程ID',
     constraint fk_courseid foreign key (courseid) references course (id),
-
     constraint fk_studentid foreign key (studentid) references student (id)
+)comment '学生课程中间表';
 
-)comment '学生课程中间表 ';
-
-insert into student course values (null,1,1), (null,1,2), (null,1,3), (null,2,2),
-
-(null,2,3), (null,3,4);
+insert into student_course values (null,1,1), (null,1,2), (null,1,3), (null,2,2),(null,2,3), (null,3,4);
 ```
 
 #### **5.1.3 -对-**
@@ -2665,72 +2583,41 @@ insert into student course values (null,1,1), (null,1,2), (null,1,3), (null,2,2)
 
 * 实现 : 在任意一方加入外键，关联另外一方的主键，并且设置外键为唯一的(UNIQUE)
 
-![](./images/chapter1/Aspose.Words.7067c9a2-e30f-4ce3-88cd-292a9b19e5f9.176.jpeg)
+![](./images/chapter1/image259.jpeg)
 
 对应的SQL脚本 :
 ```sql
 create table tb_user (
-
-  id int auto increment primary key comment '主键ID ',
-
-  name varchar (10) comment '姓名 ',
-
-  age int comment '年龄 ',
-
+  id int auto increment primary key comment '主键ID',
+  name varchar (10) comment '姓名',
+  age int comment '年龄',
   gender char (1) comment '1: 男 , 2: 女 ',
-
-  phone char (11) comment '手机号 '
-
-) comment '用户基本信息表 ';
-
+  phone char (11) comment '手机号'
+) comment '用户基本信息表';
 
 create table tb_user edu (
-
-    id int auto increment primary key comment '主键ID ',
-
-    degree varchar (20) comment '学历 ',
-
-    major varchar (50) comment '专业 ',
-
-    primaryschool varchar (50) comment '小学 ',
-
-    middleschool varchar (50) comment '中学 ',
-
-    university varchar (50) comment '大学 ',
-
-    userid int unique comment '用户ID ',
-
-    constraint fk_userid foreign key (userid) references tb user (id)
-
-) comment '用户教育信息表 ';
-
-
-
-
+    id int auto increment primary key comment '主键ID',
+    degree varchar (20) comment '学历',
+    major varchar (50) comment '专业',
+    primaryschool varchar (50) comment '小学',
+    middleschool varchar (50) comment '中学',
+    university varchar (50) comment '大学',
+    userid int unique comment '用户ID',
+    constraint fk_userid foreign key (userid) references tb_user (id)
+) comment '用户教育信息表';
 
 insert into tb_user (id, name, age, gender, phone) values
+    (null, '黄渤',45, '1', '18800001111'),
+    (null, '冰冰',35, '2', '18800002222'),
+    (null, '码云',55, '1', '18800008888'),
+    (null, '李彦宏',50, '1', '18800009999');
 
-
-
-         (null, '黄渤 ',45, '1 ', '18800001111 '),
-
-         (null, '冰冰 ',35, '2 ', '18800002222 '),
-
-         (null, '码云 ',55, '1 ', '18800008888 '),
-
-         (null, '李彦宏 ',50, '1 ', '18800009999 ');
-
-26
-
-insert into tb user_edu (id, degree, major, primaryschool, middleschool,
-
+insert into tb_user_edu (id, degree, major, primaryschool, middleschool,
 university, userid) values
-
-         (null, '本科 ', '舞蹈 ', '静安区第一小学 ', '静安区第一中学 ', '北京舞蹈学院 ',1), 
-         (null, '硕士 ', '表演 ', '朝阳区第一小学 ', '朝阳区第一中学 ', '北京电影学院 ',2), 
-         (null, '本科 ', '英语 ', '杭州市第一小学 ', '杭州市第一中学 ', '杭州师范大学 ',3),
-
-         (null, '本科 ', '应用数学 ', '阳泉第一小学 ', '阳泉区第一中学 ', '清华大学 ',4);
+    (null, '本科', '舞蹈', '静安区第一小学', '静安区第一中学', '北京舞蹈学院',1), 
+    (null, '硕士', '表演', '朝阳区第一小学', '朝阳区第一中学', '北京电影学院',2), 
+    (null, '本科', '英语', '杭州市第一小学', '杭州市第一中学', '杭州师范大学',3),
+    (null, '本科', '应用数学', '阳泉第一小学', '阳泉区第一中学', '清华大学',4);
 ```
 
 
@@ -2746,86 +2633,44 @@ university, userid) values
 -- 创建dept表，并插入数据
 
 create table dept(
-
-  id   int auto increment comment 'ID ' primary key,
-
-  name varchar (50) not null comment '部门名称 '
-
-)comment '部门表 ';
-
-INSERT INTO dept (id, name) VALUES (1, '研发部 '), (2, '市场部 '), (3, '财务部 '), (4,
-
-'销售部 '), (5, '总经办 '), (6, '人事部 ');
-
-7
+  id   int auto increment comment 'ID' primary key,
+  name varchar (50) not null comment '部门名称'
+)comment '部门表';
+INSERT INTO dept (id, name) VALUES (1, '研发部'), (2, '市场部'), (3, '财务部'), (4, '销售部'), (5, '总经办'), (6, '人事部');
 
 -- 创建emp表，并插入数据
-
 create table emp(
-
-    id  int auto increment comment 'ID ' primary key,
-
-    name varchar (50) not null comment '姓名 ',
-
-    age  int comment '年龄 ',
-
-    job varchar (20) comment '职位 ',
-
-    salary int comment '薪资 ',
-
-    entrydate date comment '入职时间 ',
-
-    managerid int comment '直属领导ID ',
-
-    dept_id int comment '部门ID ' 
-
-)comment '员工表 ';
+    id  int auto increment comment 'ID' primary key,
+    name varchar (50) not null comment '姓名',
+    age  int comment '年龄',
+    job varchar (20) comment '职位',
+    salary int comment '薪资',
+    entrydate date comment '入职时间',
+    managerid int comment '直属领导ID',
+    dept_id int comment '部门ID' 
+)comment '员工表';
 
 -- 添加外键
+alter table emp add constraint fk_emp_dept_id foreign key (dept_id) references dept(id);
 
-alter table emp add constraint fk_emp_dept_id foreign key (dept_id) references
-
-dept(id);
-
-
-
-INSERT INTO emp (id, name, age, job,salary, entrydate, managerid, dept_id)
-
-VALUES
-
-             (1, '金庸 ', 66, '总裁 ',20000, '2000-01-01 ', null,5),
-
-             (2, '张无忌 ', 20, '项目经理 ',12500, '2005-12-05 ', 1,1),
-
-             (3, '杨逍 ', 33, '开发 ', 8400, '2000-11-03 ', 2,1),
-
-             (4, '韦一笑 ', 48, '开发 ',11000, '2002-02-05 ', 2,1),
-
-             (5, '常遇春 ', 43, '开发 ',10500, '2004-09-07 ', 3,1),
-
-             (6, '小昭 ', 19, '程序员鼓励师 ',6600, '2004-10-12 ', 2,1),
-
-             (7, '灭绝 ', 60, '财务总监 ',8500, '2002-09-12 ', 1,3),
-
-             (8, '周芷若 ', 19, '会计 ',48000, '2006-06-02 ', 7,3),
-
-             (9, '丁敏君 ', 23, '出纳 ',5250, '2009-05-13 ', 7,3),
-
-             (10, '赵敏 ', 20, '市场部总监 ',12500, '2004-10-12 ', 1,2),
-
-             (11, '鹿杖客 ', 56, '职员 ',3750, '2006-10-03 ', 10,2),
-
-             (12, '鹤笔翁 ', 19, '职员 ',3750, '2007-05-09 ', 10,2),
-
-             (13, '方东白 ', 19, '职员 ',5500, '2009-02-12 ', 10,2),
-
-             (14, '张三丰 ', 88, '销售总监 ',14000, '2004-10-12 ', 1,4),
-
-             (15, '俞莲舟 ', 38, '销售 ',4600, '2004-10-12 ', 14,4),
-
-             (16, '宋远桥 ', 40, '销售 ',4600, '2004-10-12 ', 14,4),
-
-             (17, '陈友谅 ', 42, null,2000, '2011-10-12 ', 1,null);
+INSERT INTO emp (id, name, age, job,salary, entrydate, managerid, dept_id) VALUES
+    (1, '金庸', 66, '总裁',20000, '2000-01-01', null,5),
+    (2, '张无忌', 20, '项目经理',12500, '2005-12-05', 1,1),
+    (3, '杨逍', 33, '开发', 8400, '2000-11-03', 2,1),
+    (4, '韦一笑', 48, '开发',11000, '2002-02-05', 2,1),
+    (5, '常遇春', 43, '开发',10500, '2004-09-07', 3,1),
+    (6, '小昭', 19, '程序员鼓励师',6600, '2004-10-12', 2,1),
+    (7, '灭绝', 60, '财务总监',8500, '2002-09-12', 1,3),
+    (8, '周芷若', 19, '会计',48000, '2006-06-02', 7,3),
+    (9, '丁敏君', 23, '出纳',5250, '2009-05-13', 7,3),
+    (10, '赵敏', 20, '市场部总监',12500, '2004-10-12', 1,2),
+    (11, '鹿杖客', 56, '职员',3750, '2006-10-03', 10,2),
+    (12, '鹤笔翁', 19, '职员',3750, '2007-05-09', 10,2),
+    (13, '方东白', 19, '职员',5500, '2009-02-12', 10,2),
+    (14, '张三丰', 88, '销售总监',14000, '2004-10-12', 1,4),
+    (15, '俞莲舟', 38, '销售',4600, '2004-10-12', 14,4),
+    (16, '宋远桥', 40, '销售',4600, '2004-10-12', 14,4),
+    (17, '陈友谅', 42, null,2000, '2011-10-12', 1,null);
     
 ```
 
@@ -2843,7 +2688,7 @@ dept表共6条记录，  emp表共17条记录。
 
 ; 具体的执行结果如下 :
 
-![](./images/chapter1/Aspose.Words.7067c9a2-e30f-4ce3-88cd-292a9b19e5f9.181.jpeg)
+![](./images/chapter1/image262.jpeg)
 
 此时 ,我们看到查询结果中包含了大量的结果集，总共102条记录，而这其实就是员工表emp所有的记录 (17) 与  部门表dept所有记录(6) 的所有组合情况，这种现象称之为笛卡尔积。接下来，就来简单
 
@@ -2851,19 +2696,19 @@ dept表共6条记录，  emp表共17条记录。
 
 笛卡尔积 : 笛卡尔乘积是指在数学中，两个集合A集合  和  B集合的所有组合情况。
 
-![](./images/chapter1/Aspose.Words.7067c9a2-e30f-4ce3-88cd-292a9b19e5f9.182.jpeg)
+![](./images/chapter1/image263.jpeg)
 
 而在多表查询中，我们是需要消除无效的笛卡尔积的，只保留两张表关联部分的数据。
 
-![](./images/chapter1/Aspose.Words.7067c9a2-e30f-4ce3-88cd-292a9b19e5f9.183.jpeg)
+![](./images/chapter1/image264.png)
 
-![](./images/chapter1/Aspose.Words.7067c9a2-e30f-4ce3-88cd-292a9b19e5f9.184.jpeg)
+![](./images/chapter1/image256.jpeg)
 
 在SQL语句中，如何来去除无效的笛卡尔积呢？    我们可以给多表查询加上连接查询的条件即可。
 
 select * from emp , dept where emp.dept_id = dept.id;
 
-![](./images/chapter1/Aspose.Words.7067c9a2-e30f-4ce3-88cd-292a9b19e5f9.185.jpeg)
+![](./images/chapter1/image266.jpeg)
 
 而由于id为17的员工，没有dept_id字段值，所以在多表查询时，根据连接查询的条件并没有查询
 
@@ -2887,14 +2732,14 @@ select * from emp , dept where emp.dept_id = dept.id;
 
 * 子查询
 
-![](./images/chapter1/Aspose.Words.7067c9a2-e30f-4ce3-88cd-292a9b19e5f9.193.jpeg)
+![](./images/chapter1/image267.png)
 
 
 
 
 ### **5.3 内连接**
 
-![](./images/chapter1/Aspose.Words.7067c9a2-e30f-4ce3-88cd-292a9b19e5f9.194.jpeg)
+![](./images/chapter1/image268.png)
 
 据。  (也就是绿色部分的数据)
 
@@ -2933,6 +2778,7 @@ A. 查询每一个员工的姓名  , 及关联的部门的名称   (隐式内连
 
 ```sql
 select emp.name , dept.name from emp , dept where emp.dept_id = dept.id ;
+
 -- 为每一张表起别名,简化SQL编写
 select e.name,d.name from emp e , dept d where e.dept_id = d.id;
 ```
@@ -2951,7 +2797,6 @@ ON ...
 select e.name, d.name from emp e inner join dept d  on e.dept_id = d.id;
 
 -- 为每一张表起别名,简化SQL编写
-
 select e.name, d.name from emp e join dept d  on e.dept_id = d.id;
 ```
 
@@ -2962,15 +2807,14 @@ select e.name, d.name from emp e join dept d  on e.dept_id = d.id;
 
 ② . tablea 别名1 , tableb 别名2 ;
 
+<font style="background: aquamarine;">***注意事项 :***</font>
 
-注意事项 :
-
-一旦为表起了别名，就不能再使用表名来指定对应的字段了，此时只能够使用别名来指定字段。
+* <font style="background: aquamarine;">***一旦为表起了别名，就不能再使用表名来指定对应的字段了，此时只能够使用别名来指定字段。***</font>
 
 
 ### **5.4 外连接**
 
-![](./images/chapter1/Aspose.Words.7067c9a2-e30f-4ce3-88cd-292a9b19e5f9.199.jpeg)
+![](./images/chapter1/image276.png)
 
 外连接分为两种，分别是：左外连接  和  右外连接。具体的语法结构为：
 
@@ -3022,14 +2866,17 @@ B. 查询dept表的所有数据 , 和对应的员工信息(右外连接)
 
 连接条件 : emp.dept_id = dept.id
 
+```sql
+select d.*, e.* from emp e right outer join dept d on e.dept_id = d.id;
 
-|1|select|d.*,|e.*|from|emp e right|outer|join|dept d on e.dept_id = d.id;|
-| :- | :- | :- | :- | :- | :- | :- | :- | :- |
-|2|||||||||
-|3|select|d.*,|e.*|from|dept d left|outer|join|emp e on e.dept_id = d.id;|
-|注意事项：
-左外连接和右外连接是可以相互替换的，只需要调整在连接查询时SQL中，表结构的先后顺
-序就可以了。而我们在日常开发使用时，更偏向于左外连接。
+select d.*, e.* from dept d left outer join emp e on e.dept_id = d.id;
+```
+
+
+
+<font style="background: aquamarine;">***注意事项：***</font>
+
+​		<font style="background: aquamarine;">***左外连接和右外连接是可以相互替换的，只需要调整在连接查询时SQL中，表结构的先后顺序就可以了。而我们在日常开发使用时，更偏向于左外连接。***</font>
 
 
 
@@ -3067,18 +2914,16 @@ B. 查询所有员工  emp 及其领导的名字  emp , 如果员工没有领导
 表结构 : emp a , emp b
 
 ```sql
-select a.name '员工 ', b.name '领导 ' from emp a left join emp b on a.managerid =
+select a.name '员工', b.name '领导' from emp a left join emp b on a.managerid =
 
 b.id;
 ```
 
 
 
-注意事项 :
+<font style="background: aquamarine;">***注意事项 :***</font>
 
-在自连接查询中，必须要为表起别名，要不然我们不清楚所指定的条件、返回的字段，到底
-
-是哪一张表的字段。
+​		<font style="background: aquamarine;">***在自连接查询中，必须要为表起别名，要不然我们不清楚所指定的条件、返回的字段，到底是哪一张表的字段。***</font>
 
 
 
@@ -3094,7 +2939,7 @@ SELECT  字段列表  FROM   表B  ....;
 ```
 * 对于联合查询的多张表的列数必须保持一致，字段类型也需要保持一致。
 
-*union all 会将全部的数据直接合并在一起， union 会对合并之后的数据去重。
+* union all 会将全部的数据直接合并在一起， union 会对合并之后的数据去重。
 
 
 
@@ -3115,6 +2960,8 @@ select * from emp where age > 50;
 
 ```
 
+![](./images/chapter1/image288.jpeg)
+
 union all查询出来的结果，仅仅进行简单的合并，并未去重。
 
 
@@ -3126,7 +2973,7 @@ union
 select * from emp where age > 50;
 ```
 
-![](./images/chapter1/Aspose.Words.7067c9a2-e30f-4ce3-88cd-292a9b19e5f9.208.jpeg)
+![](./images/chapter1/image290.jpeg)
 
 union 联合查询，会对查询出来的结果进行去重处理。
 
@@ -3138,9 +2985,7 @@ union 联合查询，会对查询出来的结果进行去重处理。
 
 错。如：
 
-![](./images/chapter1/Aspose.Words.7067c9a2-e30f-4ce3-88cd-292a9b19e5f9.209.jpeg)
-
-
+![](./images/chapter1/image291.png)
 
 
 
@@ -3203,13 +3048,13 @@ A. 查询  "销售部 " 的所有员工信息
 
 
 ```sql
-select id from dept where name = '销售部 ';
+select id from dept where name = '销售部';
 ```
 ② . 根据  "销售部 " 部门ID, 查询员工信息
 
 
 ```sql
-select * from emp where dept id = (select id from dept where name = '销售部 ');
+select * from emp where dept id = (select id from dept where name = '销售部');
 ```
 
 
@@ -3221,13 +3066,13 @@ B. 查询在  "方东白 " 入职之后的员工信息
 ① . 查询  方东白  的入职日期
 
 ```sql
-select entrydate from emp where name = '方东白 ';
+select entrydate from emp where name = '方东白';
 ```
 ② . 查询指定入职日期之后入职的员工信息
 
 
 ```sql
-select * from emp where entrydate > (select entrydate from emp where name = '方东白 ');
+select * from emp where entrydate > (select entrydate from emp where name = '方东白');
 ```
 
 
@@ -3261,13 +3106,13 @@ A. 查询  "销售部 " 和  "市场部 " 的所有员工信息
 
 
 ```sql
-select id from dept where name = '销售部 ' or name = '市场部 ';
+select id from dept where name = '销售部' or name = '市场部';
 ```
 ② . 根据部门ID, 查询员工信息
 
 
 ```sql
-select * from emp where dept id in (select id from dept where name = '销售部 ' orname = '市场部 ');
+select * from emp where dept id in (select id from dept where name = '销售部' orname = '市场部');
 ```
 
 
@@ -3280,15 +3125,15 @@ B. 查询比  财务部  所有人工资都高的员工信息
 
 
 ```sql
-select id from dept where name = '财务部 ';
-select salary from emp where dept id = (select id from dept where name = '财务部 ');
+select id from dept where name = '财务部';
+select salary from emp where dept id = (select id from dept where name = '财务部');
 ```
 ② . 比  财务部  所有人工资都高的员工信息
 
 ```sql
 select * from emp where salary > all ( select salary from emp where dept id =
 
-(select_id from dept where name = '财务部 ') );
+(select_id from dept where name = '财务部') );
 ```
 
 
@@ -3301,13 +3146,13 @@ C. 查询比研发部其中任意一人工资高的员工信息
 
 
 ```sql
-select salary from emp where dept id = (select id from dept where name = '研发部 ');
+select salary from emp where dept id = (select id from dept where name = '研发部');
 ```
 ② . 比研发部其中任意一人工资高的员工信息
 
 
 ```sql
-select * from emp where salary > any ( select salary from emp where dept id =(select id from dept where name = '研发部 ') );
+select * from emp where salary > any ( select salary from emp where dept id =(select id from dept where name = '研发部') );
 ```
 
 
@@ -3332,14 +3177,14 @@ A. 查询与  "张无忌 " 的薪资及直属领导相同的员工信息  ;
 
 
 ```sql
-select salary, managerid from emp where name = '张无忌 ';
+select salary, managerid from emp where name = '张无忌';
 ```
 
 
 ② . 查询与  "张无忌 " 的薪资及直属领导相同的员工信息  ;
 
 ```sql
-select * from emp where (salary,managerid) = (select salary, managerid from emp where name = '张无忌 ');
+select * from emp where (salary,managerid) = (select salary, managerid from emp where name = '张无忌');
 
 ```
 
@@ -3362,13 +3207,13 @@ A. 查询与  "鹿杖客 " , "宋远桥 " 的职位和薪资相同的员工信�
 
 
 ```sql
-select job, salary from emp where name = '鹿杖客 ' or name = '宋远桥 ';
+select job, salary from emp where name = '鹿杖客' or name = '宋远桥';
 ```
 ② . 查询与  "鹿杖客 " , "宋远桥 " 的职位和薪资相同的员工信息
 
 
 ```sql
-select * from emp where (job,salary) in ( select job, salary from emp where name = '鹿杖客 ' or name = '宋远桥 ' );
+select * from emp where (job,salary) in ( select job, salary from emp where name = '鹿杖客' or name = '宋远桥' );
 ```
 
 
@@ -3381,12 +3226,12 @@ B. 查询入职日期是  "2006-01-01" 之后的员工信息  , 及其部门信�
 
 
 ```sql
-select * from emp where entrydate > '2006-01-01 ';
+select * from emp where entrydate > '2006-01-01';
 ```
 ② . 查询这部分员工 , 对应的部门信息 ;
 
 ```sql
-select e.*, d.* from (select * from emp where entrydate > '2006-01-01 ') e left
+select e.*, d.* from (select * from emp where entrydate > '2006-01-01') e left
 
 join dept d on e.dept_id = d.id ;
 ```
@@ -3403,7 +3248,7 @@ create table salgrade (
     grade int,
     losal int,
     hisal int
-) comment '薪资等级表 ';
+) comment '薪资等级表';
 insert into salgrade values (1,0,3000);
 insert into salgrade values (2,3001,5000);
 insert into salgrade values (3,5001,8000);
@@ -3442,10 +3287,7 @@ select e.name , e.age , e.job , d.name from emp e , dept d where e.dept_id = d.i
 连接条件 : emp.dept_id = dept.id
 
 ```sql
-select e.name , e.age , e.job , d.name from emp e inner join dept d on e.dept_id =
-
-d.id where e.age < 30;
-
+select e.name , e.age , e.job , d.name from emp e inner join dept d on e.dept_id = d.id where e.age < 30;
 ```
 
 3). 查询拥有员工的部门ID、部门名称
@@ -3484,15 +3326,10 @@ select e.*, d.name from emp e left join dept d on e.dept_id = d.id where e.age >
 
 ```sql
 -- 方式一
-
 select e.* , s.grade , s.losal, s.hisal from emp e , salgrade s where e.salary >= s.losal and e.salary <= s.hisal;
 
 -- 方式二
-
-select e.* , s.grade , s.losal, s.hisal from emp e , salgrade s where e.salary
-
-between s.losal and s.hisal;
-
+select e.* , s.grade , s.losal, s.hisal from emp e , salgrade s where e.salary between s.losal and s.hisal;
 ```
 
 6). 查询  "研发部 " 所有员工的信息及  工资等级
@@ -3503,11 +3340,11 @@ between s.losal and s.hisal;
 
 emp.dept_id = dept.id
 
-查询条件   : dept.name = '研发部 '
+查询条件   : dept.name = '研发部'
 
 
 ```sql
-select e.* , s.grade from emp e , dept d , salgrade s where e.dept_id = d.id and ( e.salary between s.losal and s.hisal ) and d.name = '研发部 ';
+select e.* , s.grade from emp e , dept d , salgrade s where e.dept_id = d.id and ( e.salary between s.losal and s.hisal ) and d.name = '研发部';
 ```
 
 
@@ -3518,9 +3355,7 @@ select e.* , s.grade from emp e , dept d , salgrade s where e.dept_id = d.id and
 连接条件   :  emp.dept_id = dept.id
 
 ```sql
-select avg(e.salary) from emp e, dept d where e.dept_id = d.id and d.name = '研发
-
-部';
+select avg(e.salary) from emp e, dept d where e.dept_id = d.id and d.name = '研发部';
 ```
 
 
@@ -3531,13 +3366,13 @@ select avg(e.salary) from emp e, dept d where e.dept_id = d.id and d.name = '研
 
 
 ```sql
-select salary from emp where name = '灭绝 ';
+select salary from emp where name = '灭绝';
 ```
 ② . 查询比她工资高的员工数据
 
 
 ```sql
-select * from emp where salary > ( select salary from emp where name = '灭绝 ' );
+select * from emp where salary > ( select salary from emp where name = '灭绝' );
 ```
 
 
@@ -3559,48 +3394,36 @@ select * from emp where salary > ( select avg(salary) from emp );
 
 
 
-
-
 10). 查询低于本部门平均工资的员工信息
 
 ① . 查询指定部门平均薪资
 
-
-|1|select|avg(e1.salary)|from|emp|e1|where|e1.dept_id|=|1;|
-| :- | :- | :- | :- | :- | :- | :- | :- | :- | :- |
-|2|select|avg(e1.salary)|from|emp|e1|where|e1.dept_id|=|2;|
-|② . 查询低于本部门平均工资的员工信息|
-|1|<p>select * from emp e2 wheree1.dept_id = e2.dept_id );|e2.salary|<|(|select|avg(e1.salary)|from|emp|e1|where|
+```sql
+select avg(e1.salary) from emp e1 where e1.dept_id = 1;
+select avg(e1.salary) from emp e1 where e1.dept_id = 2;
+```
 
 
 
 11). 查询所有的部门信息 , 并统计部门的员工人数
 
 ```sql
-select d.id, d.name , ( select count(*) from emp e where e.dept_id = d.id ) '人数 '
-
-from dept d;
+select d.id, d.name , ( select count(*) from emp e where e.dept_id = d.id ) '人数' from dept d;
 ```
 
 
 
 12). 查询所有学生的选课情况 , 展示出学生名称 , 学号 , 课程名称
 
-
-
-表 : student , course , student course
+表 : student , course , student_course
 
 连接条件 : student.id = student_course.studentid , course.id =
 
-student course.courseid
-
-
+student_course.courseid
 
 ```sql
 select s.name , s.no , c.name from student s , student_course sc , course c wheres.id = sc.studentid and sc.courseid = c.id ;
 ```
-
-
 
 
 
@@ -3623,13 +3446,13 @@ select s.name , s.no , c.name from student s , student_course sc , course c wher
 就比如 : 张三给李四转账1000块钱，张三银行账户的钱减少1000，而李四银行账户的钱要增加
 
 1000。  这一组操作就必须在一个事务的范围内，要么都成功，要么都失败。
-![](./images/chapter1/Aspose.Words.7067c9a2-e30f-4ce3-88cd-292a9b19e5f9.223.jpeg)
+![](./images/chapter1/image325.jpeg)
 
 正常情况 : 转账这个操作 , 需要分为以下这么三步来完成  , 三步完成之后 , 张三减少1000, 而李四
 
 增加1000, 转账成功   :
 
-![](./images/chapter1/Aspose.Words.7067c9a2-e30f-4ce3-88cd-292a9b19e5f9.224.jpeg)![](./images/chapter1/Aspose.Words.7067c9a2-e30f-4ce3-88cd-292a9b19e5f9.225.jpeg)
+![](./images/chapter1/image326.png)![](./images/chapter1/image327.png)
 
 
 
@@ -3637,19 +3460,17 @@ select s.name , s.no , c.name from student s , student_course sc , course c wher
 
 三减少1000块钱 , 而李四的金额没变 , 这样就造成了数据的不一致 , 就出现问题了。
 
-![](./images/chapter1/Aspose.Words.7067c9a2-e30f-4ce3-88cd-292a9b19e5f9.226.png)
+![](./images/chapter1/image328.png)
+
+![](./images/chapter1/image329.png)
 
 为了解决上述的问题，就需要通过数据的事务来完成，我们只需要在业务逻辑执行之前开启事务，执行
 
 完毕后提交事务。如果执行过程中报错，则回滚事务，把数据恢复到事务开始之前的状态。
 
-![](./images/chapter1/Aspose.Words.7067c9a2-e30f-4ce3-88cd-292a9b19e5f9.227.jpeg)
+![](./images/chapter1/image330.jpeg)
 
-
-
-注意：   默认MySQL的事务是自动提交的，也就是说，当执行完一条DML语句时， MySQL会立即隐
-
-式的提交事务。
+<font style="background: aquamarine;">***注意：   默认MySQL的事务是自动提交的，也就是说，当执行完一条DML语句时， MySQL会立即隐式的提交事务。***</font>
 
 
 ### **6.2 事务操作**
@@ -3660,11 +3481,11 @@ select s.name , s.no , c.name from student s , student_course sc , course c wher
 ```sql
 drop  table if exists account;
 create table account(
-  id int primary key AUTO_INCREMENT comment 'ID ',
-  name varchar (10) comment '姓名 ',
-  money double (10,2) comment '余额 '
-) comment '账户表 ';
-insert into account(name, money) VALUES ( '张三 ',2000), ( '李四 ',2000);
+  id int primary key AUTO_INCREMENT comment 'ID',
+  name varchar (10) comment '姓名',
+  money double (10,2) comment '余额'
+) comment '账户表';
+insert into account(name, money) VALUES ( '张三',2000), ( '李四',2000);
 ```
 
 
@@ -3676,15 +3497,17 @@ insert into account(name, money) VALUES ( '张三 ',2000), ( '李四 ',2000);
 
 ```sql
 -- 1. 查询张三余额
-select * from account where name = '张三 '; 
+select * from account where name = '张三'; 
+
 -- 2. 张三的余额减少100
-update account set money = money - 1000 where name = '张三 '; 
+update account set money = money - 1000 where name = '张三'; 
+
 -- 3. 李四的余额增加100
-update account set money = money + 1000 where name = '李四 ';
+update account set money = money + 1000 where name = '李四';
 ```
 测试完毕之后检查数据的状态 , 可以看到数据操作前后是一致的。
 
-![](./images/chapter1/Aspose.Words.7067c9a2-e30f-4ce3-88cd-292a9b19e5f9.229.jpeg)
+![](./images/chapter1/image334.png)
 
 
 
@@ -3692,24 +3515,19 @@ update account set money = money + 1000 where name = '李四 ';
 
 ```sql
 -- 1. 查询张三余额
+select * from account where name = '张三'; 
 
-select * from account where name = '张三 '; 
 -- 2. 张三的余额减少1000
-
-update account set money = money - 1000 where name = '张三 ';
-
+update account set money = money - 1000 where name = '张三';
 出错了 ....
 
 -- 3. 李四的余额增加1000
-
-update account set money = money + 1000 where name = '李四 ';
+update account set money = money + 1000 where name = '李四';
 ```
 
-我们把数据都恢复到2000，  然后再次一次性执行上述的SQL语句(出错了 ....  这句话不符合SQL语
+我们把数据都恢复到2000，  然后再次一次性执行上述的SQL语句(出错了 ....  这句话不符合SQL语法 ,执行就会报错)，检查最终的数据情况 , 发现数据在操作前后不一致了。
 
-法 ,执行就会报错)，检查最终的数据情况 , 发现数据在操作前后不一致了。
-
-![](./images/chapter1/Aspose.Words.7067c9a2-e30f-4ce3-88cd-292a9b19e5f9.231.jpeg)
+![](./images/chapter1/image336.png)
 
 
 
@@ -3722,7 +3540,6 @@ update account set money = money + 1000 where name = '李四 ';
 
 ```sql
 SELECT  @@autocommit ;
-
 SET   @@autocommit = 0 ;
 ```
 
@@ -3741,9 +3558,7 @@ ROLLBACK;
 
 
 
-注意：上述的这种方式，我们是修改了事务的自动提交行为 , 把默认的自动提交修改为了手动提
-
-交 , 此时我们执行的DML语句都不会提交 , 需要手动的执行commit进行提交。
+<font style="background: aquamarine;">***注意：上述的这种方式，我们是修改了事务的自动提交行为 , 把默认的自动提交修改为了手动提交 , 此时我们执行的DML语句都不会提交 , 需要手动的执行commit进行提交。***</font>
 
 
 
@@ -3776,14 +3591,19 @@ ROLLBACK;
 ```sql
 -- 开启事务
 start transaction
+
 -- 1. 查询张三余额
-select * from account where name = '张三 ';
+select * from account where name = '张三';
+
 -- 2. 张三的余额减少100
-update account set money = money - 1000 where name = '张三 ';
+update account set money = money - 1000 where name = '张三';
+
 -- 3. 李四的余额增加1000
-update account set money = money + 1000 where name = '李四 ';
+update account set money = money + 1000 where name = '李四';
+
 -- 如果正常执行完毕, 则提交事务
 commit;
+
 -- 如果执行过程中报错, 则回滚事务
 -- rollback;
 ```
@@ -3796,22 +3616,20 @@ commit;
 
 * 一致性（Consistency）：事务完成时，必须使所有的数据都保持一致状态。
 
-* 隔离性（Isolation）：数据库系统提供的隔离机制，保证事务在不受外部并发操作影响的独立
-
-环境下运行。
+* 隔离性（Isolation）：数据库系统提供的隔离机制，保证事务在不受外部并发操作影响的独立环境下运行。
 
 * 持久性（Durability）：事务一旦提交或回滚，它对数据库中的数据的改变就是永久的。
 
 上述就是事务的四大特性，简称ACID。
 
-![](./images/chapter1/Aspose.Words.7067c9a2-e30f-4ce3-88cd-292a9b19e5f9.238.png)
+![](./images/chapter1/image345.jpeg)
 
 
 ### **6.4 并发事务问题**
 
 1). 赃读： 一个事务读到另外一个事务还没有提交的数据。
 
-![](./images/chapter1/Aspose.Words.7067c9a2-e30f-4ce3-88cd-292a9b19e5f9.239.jpeg)
+![](./images/chapter1/image346.png)
 
 比如B读取到了A未提交的数据。
 
@@ -3819,7 +3637,7 @@ commit;
 
 2). 不可重复读：  一个事务先后读取同一条记录，但两次读取的数据不同，称之为不可重复读。
 
-![](./images/chapter1/Aspose.Words.7067c9a2-e30f-4ce3-88cd-292a9b19e5f9.240.jpeg)
+![](./images/chapter1/image347.jpeg)
 
 事务A两次读取同一条记录，但是读取到的数据却是不一样的。
 
@@ -3827,7 +3645,7 @@ commit;
 
 已经存在，好像出现了  "幻影 "。
 
-![](./images/chapter1/Aspose.Words.7067c9a2-e30f-4ce3-88cd-292a9b19e5f9.241.jpeg)
+![](./images/chapter1/image348.jpeg)
 
 
 
@@ -3866,5 +3684,5 @@ SET  [ SESSION | GLOBAL ]  TRANSACTION  ISOLATION  LEVEL  { READ UNCOMMITTED |RE
 
 
 
-注意：事务隔离级别越高，数据越安全，但是性能越低。
+<font style="background: aquamarine;">***注意：事务隔离级别越高，数据越安全，但是性能越低。***</font>
 
