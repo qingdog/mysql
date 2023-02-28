@@ -76,3 +76,7 @@
 
 处理小圆点列表
 `• `替换成`* `
+
+
+
+手动替换`<font style="background: aquamarine;">***海蓝宝石背景色加粗斜体***</font>`
