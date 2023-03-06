@@ -256,7 +256,7 @@ height="2.5404166666666668in"}
 
 1). 无索引情况
 
-![](./media/image12.png){width="4.649656605424322in"height="4.449998906386702in"}
+![](./media/image12.png)
 
 在无索引情况下，就需要从第一行开始扫描，一直扫描到最后一行，我们称之为   全表扫描，性能很低。
 
@@ -310,7 +310,7 @@ MySQL的索引是在存储引擎层实现的，不同的存储引擎有不同的
 ### 2.2.2 **二叉树**
 假如说MySQL的索引结构采用二叉树的数据结构，比较理想的结构如下：
 
-![](./media/image14.jpeg){width="3.1019860017497813in"height="2.691666666666667in"}
+![](./media/image14.jpeg)
 
 如果主键是顺序插入的，则会形成一个单向链表，结构如下：
 
@@ -325,7 +325,7 @@ height="2.991665573053368in"}
 
 此时大家可能会想到，我们可以选择红黑树，红黑树是一颗自平衡二叉树，那这样即使是顺序插入数 据，最终形成的数据结构也是一颗平衡的二叉树,结构如下:
 
-![](./media/image16.jpeg){width="3.0781463254593175in"height="2.658332239720035in"}
+![](./media/image16.jpeg)
 
 但是，即使如此，由于红黑树也是一颗二叉树，所以也会存在一个缺点：
 
@@ -343,7 +343,7 @@ B-Tree，B树是一种多叉路衡查找树，相对于二叉树，B树每个节
 
 以一颗最大度数（max-degree）为5(5阶)的b-tree为例，那这个B树每个节点最多存储4个key，5 个指针：
 
-![](./media/image17.png){width="6.052566710411199in" height="1.81125in"}
+![](./media/image17.png)
 
 
 
@@ -351,7 +351,7 @@ B-Tree，B树是一种多叉路衡查找树，相对于二叉树，B树每个节
 
 [我们可以通过一个数据结构可视化的网站来简单演示一下。 **https://www.cs.usfca.edu/~gall es/visualization/BTree.html**](https://www.cs.usfca.edu/~galles/visualization/BTree.html)
 
-![](./media/image18.jpeg){width="6.152979002624672in" height="0.77in"}
+![](./media/image18.jpeg)
 
 插入一组数据： 100 65 169 368 900 556 780 35 215 1200 234 888 158 90 1000 88
 
@@ -419,7 +419,7 @@ MySQL中除了支持B+Tree索引，还支持一种索引类型---Hash索引。
 
 哈希索引就是采用一定的hash算法，将键值换算成新的hash值，映射到对应的槽位上，然后存储在hash表中。
 
-![](./media/image24.jpeg){width="6.076333114610674in"height="2.1313538932633422in"}
+![](./media/image24.jpeg)
 
 
 如果两个(或多个)键值，映射到一个相同的槽位上，他们就产生了hash冲突（也称为hash碰撞），可 以通过链表来解决。
@@ -602,10 +602,8 @@ INSERT INTO tb_user (name, phone, email, profession, age, gender, status, create
 	VALUES ('曹操', '17799990001', 'caocao666@qq.com', '通讯工程', 33, '1', '0', '2001-03-05 00:00:00');
 INSERT INTO tb_user (name, phone, email, profession, age, gender, status, createtime) 
 	VALUES ('赵云', '17799990002', '17799990@139.com', '英语', 34, '1', '2', '2002-03-02 00:00:00');
-
 INSERT INTO tb_user (name, phone, email, profession, age, gender, status, createtime) 
 	VALUES ('孙悟空', '17799990003', '17799990@sina.com', '工程造价', 54, '1', '0', '2001-07-02 00:00:00');
-
 INSERT INTO tb_user (name, phone, email, profession, age, gender, status, createtime) 
 	VALUES ('花木兰', '17799990004', '19980729@sina.com', '软件工程', 23, '2', '1', '2001-04-22 00:00:00');
 INSERT INTO tb_user (name, phone, email, profession, age, gender, status, createtime) 
@@ -845,7 +843,7 @@ show profile cpu for query query_id;
 
 查看每一条SQL的耗时情况:
 
-![](./media/image38.jpeg){width="6.076560586176728in"height="2.2799989063867017in"}
+![](./media/image38.jpeg)
 
 查看指定SQL各个阶段的耗时情况   :
 
@@ -901,7 +899,7 @@ height="0.76375in"}
 select * from tb_sku where id = 1\G;
 ```
 
-![](./media/image42.jpeg){width="6.061791338582677in"height="2.16125in"}
+![](./media/image42.jpeg)
 
 可以看到即使有1000w的数据,根据id进行数据查询,性能依然很快，因为主键id是有索引的。   那么接下来，我们再来根据 sn 字段进行查询，执行如下SQL：
 
@@ -934,7 +932,7 @@ height="0.4116655730533683in"}
 SELECT * FROM tb_sku WHERE sn = '100000003145001';
 ```
 
-![](./media/image45.jpeg){width="6.203587051618547in"height="2.2749989063867018in"}
+![](./media/image45.jpeg)
 
 
 我们明显会看到，sn字段建立了索引之后，查询性能大大提升。建立索引前后，查询耗时都不是一个数 量级的。
@@ -962,7 +960,7 @@ height="0.6621872265966754in"}
 explain select * from tb_user where profession = '软件工程' and age = 31;
 ```
 
-![](./media/image48.jpeg){width="6.152946194225722in"height="0.6581244531933508in"}
+![](./media/image48.jpeg)
 
 ```sql
 explain select * from tb_user where profession = '软件工程';
@@ -1047,7 +1045,7 @@ height="0.632082239720035in"}
 
 在tb_user表中，除了前面介绍的联合索引之外，还有一个索引，是phone字段的单列索引。
 
-![](./media/image56.jpeg){width="6.074061679790026in" height="1.0725in"}
+![](./media/image56.jpeg)
 
 A. 当根据phone字段进行等值匹配查询时, 索引生效。
 
@@ -1080,7 +1078,7 @@ explain select * from tb_user where profession = '软件工程' and age = 31 and
 ```
 
 
-![](./media/image59.jpeg){width="6.10293416447944in"height="1.4091666666666667in"}
+![](./media/image59.jpeg)
 
 ```sql
 explain select * from tb_user where phone = '17799990015';
@@ -1109,7 +1107,7 @@ explain select * from tb_user where profession like '%工程';
 explain select * from tb_user where profession like '%工%';
 ```
 
-![](./media/image61.jpeg){width="6.1457863079615045in"height="2.2224989063867016in"}
+![](./media/image61.jpeg)
 
 
 经过上述的测试，我们发现，在like模糊查询中，在关键字后面加%，索引可以生效。而如果在关键字 前面加了%，索引将会失效。
@@ -1144,7 +1142,7 @@ height="0.29333333333333333in"}
 
 建立了索引之后，我们再次执行上述的SQL语句，看看前后执行计划的变化。
 
-![](./media/image64.jpeg){width="6.086333114610674in" height="1.085in"}
+![](./media/image64.jpeg)
 
 最终，我们发现，当or连接的条件，左右两侧字段都有索引时，索引才会生效。
 
@@ -1179,7 +1177,7 @@ explain select * from tb_user where profession is not null;
 
 ![](./media/image68.jpeg){width="6.075921916010499in"
 height="0.34041666666666665in"}
-![](./media/image69.jpeg){width="6.100878171478565in"height="1.5640616797900262in"}
+![](./media/image69.jpeg)
 
 然后，再次执行上述的两条SQL，查看SQL语句的执行计划。
 
@@ -1333,13 +1331,13 @@ height="2.6877077865266843in"}
 
 C. 执行SQL：selet id,name from tb_user where name = 'Arm';
 
-![](./media/image81.jpeg){width="6.0932239720035in"height="1.2310411198600175in"}
+![](./media/image81.jpeg)
 
 虽然是根据name字段查询，查询二级索引，但是由于查询返回在字段为   id，name，在name的二级索引中，这两个值都是可以直接获取到的，因为覆盖索引，所以不需要回表查询，性能高。
 
 D. 执行SQL：selet id,name,gender from tb_user where name = 'Arm';
 
-![](./media/image82.jpeg){width="6.032050524934383in" height="2.6175in"}
+![](./media/image82.jpeg)
 
 由于在name的二级索引中，不包含gender，所以，需要两次索引扫描，也就是需要回表查询，性能相 对较差一点。
 
@@ -1391,7 +1389,7 @@ select count(distinct substring(email,1,5)) / count(*) from tb_user ;
 
 3). 前缀索引的查询流程
 
-![](./media/image84.jpeg){width="6.007824803149607in"height="2.965624453193351in"}
+![](./media/image84.jpeg)
 
 
 ### 2.6.8 **单列索引与联合索引**
@@ -1588,7 +1586,7 @@ A. 主键顺序插入效果
 
 ①. 从磁盘中申请页， 主键顺序插入
 
-![](./media/image93.jpeg){width="5.000052493438321in"height="1.5833333333333333in"}
+![](./media/image93.jpeg)
 
 ②. 第一个页没有满，继续往第一页插入
 
@@ -1615,7 +1613,7 @@ height="0.8972911198600175in"}
 
 ②. 此时再插入id为50的记录，我们来看看会发生什么现象会再次开启一个页，写入新的页中吗？
 
-![](./media/image98.jpeg){width="6.1702099737532805in"height="1.5396872265966755in"}
+![](./media/image98.jpeg)
 
 不会。因为，索引结构的叶子节点是有顺序的。按照顺序，应该存储在47之后。
 
@@ -1644,7 +1642,7 @@ height="0.6372911198600175in"}
 
 目前表中已有数据的索引结构(叶子节点)如下：
 
-![](./media/image104.jpeg){width="6.03873031496063in"height="0.6056244531933508in"}
+![](./media/image104.jpeg)
 
 当我们对已有数据进行删除时，具体的效果如下:
 
@@ -1684,7 +1682,7 @@ height="0.5606244531933509in"}
 
 * 尽量不要使用UUID做主键或者是其他自然主键，如身份证号。业务操作时，避免对主键的修改。
 
-![](./media/image110.png){width="6.145487751531059in" height="4.57in"}
+![](./media/image110.png)
 
 ## 3.3 **order by优化**
 
