@@ -5,7 +5,7 @@
 
 ### **1.1 数据库相关概念**
 
-在这一部分，我们先来讲解三个概念：数据库、数据库管理系统、  SQL。
+在这一部分，我们先来讲解三个概念：数据库、数据库管理系统、 SQL。
 
 |**名称**|**全称**|**简称**|
 | :- | :- | :- |
@@ -21,20 +21,20 @@
 
 ![](./images/chapter1/image2.jpeg)
 
-* Oracle：大型的收费数据库，  Oracle公司产品，价格昂贵。
+* Oracle：大型的收费数据库， Oracle公司产品，价格昂贵。
 
 * MySQL：开源免费的中小型数据库，后来Sun公司收购了MySQL，而Oracle又收购了Sun公司。
 
 目前Oracle推出了收费版本的MySQL，也提供了免费的社区版本。
 
 
-* SQL Server：Microsoft 公司推出的收费的中型数据库，  C#、 .net等语言常用。
+* SQL Server：Microsoft 公司推出的收费的中型数据库， C#、 .net等语言常用。
 
 * PostgreSQL：开源免费的中小型数据库。
 
 * DB2： IBM公司的大型收费数据库产品。
 
-* SQLLite：嵌入式的微型数据库。  Android内置的数据库采用的就是该数据库。
+* SQLLite：嵌入式的微型数据库。 Android内置的数据库采用的就是该数据库。
 
 * MariaDB：开源免费的中小型数据库。是MySQL数据库的另外一个分支、另外一个衍生产品，与
 
@@ -42,7 +42,7 @@ MySQL数据库有很好的兼容性。
 
 
 
-而不论我们使用的是上面的哪一个关系型数据库，最终在操作时，都是使用SQL语言来进行统一操作， 因为我们前面讲到SQL语言，是操作关系型数据库的 <font color="red">**统一标准**</font>  。所以即使我们现在学习的是MySQL， 假如我们以后到了公司，使用的是别的关系型数据库，如：  Oracle、 DB2、 SQLServer，也完全不用
+而不论我们使用的是上面的哪一个关系型数据库，最终在操作时，都是使用SQL语言来进行统一操作， 因为我们前面讲到SQL语言，是操作关系型数据库的 <font color="red">**统一标准**</font> 。所以即使我们现在学习的是MySQL， 假如我们以后到了公司，使用的是别的关系型数据库，如： Oracle、 DB2、 SQLServer，也完全不用
 
 担心，因为操作的方式都是一致的。
 
@@ -57,15 +57,15 @@ MySQL数据库有很好的兼容性。
 
 ![](./images/chapter1/image2.jpeg)
 
-官方：   [**https://www.mysql.com/**](https://www.mysql.com/)
+官方： [**https://www.mysql.com/**](https://www.mysql.com/)
 
 MySQL官方提供了两种不同的版本：
 
-*  社区版本（MySQL Community Server）
+* 社区版本（MySQL Community Server）
 
-免费，   MySQL不提供任何技术支持
+免费， MySQL不提供任何技术支持
 
-*  商业版本（MySQL Enterprise Edition）
+* 商业版本（MySQL Enterprise Edition）
 
 收费，可以使用30天，官方提供技术支持
 
@@ -80,7 +80,7 @@ MySQL官方提供了两种不同的版本：
 
 #### **1.2.2 下载**
 
-下载地址：  [**https://downloads.mysql.com/archives/installer/**](https://downloads.mysql.com/archives/installer/)
+下载地址： [**https://downloads.mysql.com/archives/installer/**](https://downloads.mysql.com/archives/installer/)
 
 ![](./images/chapter1/image3.png)
 
@@ -96,7 +96,7 @@ MySQL官方提供了两种不同的版本：
 
 #### **1.2.3 安装**
 
-要想使用MySQL，我们首先先得将MySQL安装好，我们可以根据下面的步骤，  一步一步的完成MySQL的
+要想使用MySQL，我们首先先得将MySQL安装好，我们可以根据下面的步骤， 一步一步的完成MySQL的
 
 安装。
 
@@ -148,20 +148,20 @@ A. 在此电脑上，右键选择属性
 
 
 
-B. 点击左侧的  "高级系统设置 "，选择环境变量
+B. 点击左侧的 "高级系统设置 "，选择环境变量
 
 ![](./images/chapter1/image18.jpeg)
 
 
 
-C. 找到  Path 系统变量 , 点击  "编辑 "
+C. 找到 Path 系统变量 , 点击 "编辑 "
 
 
 ![](./images/chapter1/image19.jpeg)
 
 
 
-D. 选择  "新建 " , 将MySQL Server的安装目录下的bin目录添加到环境变量
+D. 选择 "新建 " , 将MySQL Server的安装目录下的bin目录添加到环境变量
 
 ![](./images/chapter1/image20.jpeg)
 
@@ -185,7 +185,7 @@ net stop mysql80
 
 ![](./images/chapter1/image22.jpeg)
 
-<font style="background-color: rgb(235,248,242)">***注意  ：  上述的  mysql80 是我们在安装MySQL时，默认指定的mysql的系统服务名，不是固定的，如果未改动，默认就是mysql80。***</font>
+<font style="background-color: rgb(235,248,242)">***注意 ： 上述的 mysql80 是我们在安装MySQL时，默认指定的mysql的系统服务名，不是固定的，如果未改动，默认就是mysql80。***</font>
 
 
 ![](./images/chapter1/image24.png)
@@ -200,7 +200,7 @@ net stop mysql80
 2). 方式二：使用系统自带的命令行工具执行指令
 
 ```shell
-mysql  [-h 127.0.0.1]  [-P 3306]  -u root -p
+mysql [-h 127.0.0.1] [-P 3306] -u root -p
 参数：
     -h : MySQL服务所在的主机IP
     -P : MySQL服务端口号， 默认3306
@@ -214,7 +214,7 @@ mysql  [-h 127.0.0.1]  [-P 3306]  -u root -p
 
 ![](./images/chapter1/image27.jpeg)
 
-<font style="background: aquamarine;">***注意：   使用这种方式进行连接时，需要安装完毕后配置PATH环境变量。***</font>
+<font style="background: aquamarine;">***注意： 使用这种方式进行连接时，需要安装完毕后配置PATH环境变量。***</font>
 
 
 #### **1.2.6 数据模型**
@@ -235,9 +235,9 @@ SQLServer这些都是属于关系型数据库，里面都是基于二维表存�
 
 特点：
 
-A. 使用表存储数据，  格式统一 ，便于维护。
+A. 使用表存储数据， 格式统一 ，便于维护。
 
-B. 使用SQL语言操作，  标准统一 ，使用方便。
+B. 使用SQL语言操作， 标准统一 ，使用方便。
 
 
 
@@ -251,15 +251,15 @@ MySQL是关系型数据库，是基于二维表进行数据存储的，具体的
 
 * 可以使用SQL语句，通过数据库管理系统操作数据库，以及操作数据库中的表结构及数据。
 
-* 一个数据库服务器中可以创建多个数据库，  一个数据库中也可以包含多张表，而一张表中又可以包
+* 一个数据库服务器中可以创建多个数据库， 一个数据库中也可以包含多张表，而一张表中又可以包
 
 含多行记录。
 
 ## **2. SQL**
 
-全称  Structured  Query Language，结构化查询语言。操作关系型数据库的编程语言，定义了
+全称 Structured Query Language，结构化查询语言。操作关系型数据库的编程语言，定义了
 
-一套操作关系型数据库统一**标准**  。
+一套操作关系型数据库统一**标准** 。
 
 ### **2.1 SQL通用语法**
 
@@ -273,16 +273,16 @@ MySQL是关系型数据库，是基于二维表进行数据存储的，具体的
 
 4). 注释：
 
-* 单行注释：  -- 注释内容    或    # 注释内容
+* 单行注释： -- 注释内容 或 # 注释内容
 
-* 多行注释：  /* 注释内容  */
+* 多行注释： /* 注释内容 */
 
 ### **2.2 SQL分类**
 
-SQL语句，根据其功能，主要分为四类：  DDL、 DML、 DQL、 DCL。
+SQL语句，根据其功能，主要分为四类： DDL、 DML、 DQL、 DCL。
 
 
-|**分    类**|**全称**|**说明**|
+|**分类**|**全称**|**说明**|
 | :- | :- | :- |
 |**DDL**|**Data Definition Language**|数据定义语言，用来定义数据库对象(数据库，表，字段)|
 |**DML**|**Data Manipulation Language**|数据操作语言，用来对数据库表中的数据进行增删改|
@@ -291,7 +291,7 @@ SQL语句，根据其功能，主要分为四类：  DDL、 DML、 DQL、 DCL。
 
 ### **2.3 DDL**
 
-Data  Definition Language，数据定义语言，用来定义数据库对象(数据库，表，字段) 。
+Data Definition Language，数据定义语言，用来定义数据库对象(数据库，表，字段) 。
 
 #### **2.3.1 数据库操作**
 
@@ -362,7 +362,7 @@ create database itheima default charset utf8mb4;
 ```sql
 drop database [ if exists ] 数据库名 ;
 ```
-如果删除一个不存在的数据库，将会报错。此时，可以加上参数  if exists ，如果数据库存在，再
+如果删除一个不存在的数据库，将会报错。此时，可以加上参数 if exists ，如果数据库存在，再
 
 执行删除，否则不执行删除。
 
@@ -438,18 +438,18 @@ show create table 表名 ;
 
 
 ```text
-CREATE TABLE  表名(
-    字段1  字段1类型 [ COMMENT  字段1注释 ],
-    字段2  字段2类型 [COMMENT  字段2注释 ],
-    字段3  字段3类型 [COMMENT  字段3注释 ],
+CREATE TABLE 表名(
+    字段1 字段1类型 [ COMMENT 字段1注释 ],
+    字段2 字段2类型 [COMMENT 字段2注释 ],
+    字段3 字段3类型 [COMMENT 字段3注释 ],
      ......
-    字段n  字段n类型 [COMMENT  字段n注释 ]
-) [ COMMENT  表注释 ] ;
+    字段n 字段n类型 [COMMENT 字段n注释 ]
+) [ COMMENT 表注释 ] ;
 ```
 <font style="background: aquamarine;">***注意 : [...] 内为可选参数，最后一个字段后面没有逗号***</font>
 
 
-比如，我们创建一张表  tb_user ，对应的结构如下，那么建表语句为：
+比如，我们创建一张表 tb_user ，对应的结构如下，那么建表语句为：
 
 
 ![](./images/chapter1/image55.png)
@@ -467,22 +467,20 @@ create table tb_user (
 
 在上述的建表语句中，我们在指定字段的数据类型时，用到了int ，varchar，那么在MySQL中除了
 
-以上的数据类型，还有哪些常见的数据类型呢？    接下来 ,我们就来详细介绍一下MySQL的数据类型。
+以上的数据类型，还有哪些常见的数据类型呢？ 接下来 ,我们就来详细介绍一下MySQL的数据类型。
 
 MySQL中的数据类型有很多，主要分为三类：数值类型、字符串类型、日期时间类型。
 
-1). 数值类型
+###### 1). 数值类型
 
-
-
-|**类型**|**大小**|**有符号(SIGNED)范围**|**无符号(UNSIGNED)范围**|**描述**|
+|**类型**|**大小**|**有符号(SIGNED)范围**|**无符号(UNSIGNED)范围**|**描述                                                                                                                           **|
 | :- | :- | :- | :- | :- |
 |TINYINT|1byte|(-128， 127)|(0，255)|小整数值|
 |SMALLINT|2bytes|(-32768，32767)|(0， 65535)|大整数值|
 |MEDIUMINT|3bytes|(-8388608， 8388607)|(0， 16777215)|大整数值|
 |INT/INTEGER|4bytes|(-2147483648，2147483647)|(0，4294967295)|大整数值|
 |BIGINT|8bytes|(-2^63，2^63-1)|(0，2^64-1)|极大整数值|
-|FLOAT|4bytes|(-3.402823466 E+38，3.402823466351 E+38)|0 和   (1.175494351 E-38，3.402823466 E+38)|单精度浮点数值|
+|FLOAT|4bytes|(-3.402823466 E+38，3.402823466351 E+38)|0 和 (1.175494351 E-38，3.402823466 E+38)|单精度浮点数值|
 |DOUBLE|8bytes|(-1.7976931348623157E+308，1.7976931348623157E+308)|0 和(2.2250738585072014E-308，1.7976931348623157E+308)|双精度浮点数值|
 |DECIMAL||依赖于M(精度)和D(标度)的值|依赖于M(精度)和D(标度)的值|小数值(精确定点数)|
 
@@ -496,7 +494,7 @@ MySQL中的数据类型有很多，主要分为三类：数值类型、字符串
     score double (4,1)
 ```
 
-2). 字符串类型
+###### 2). 字符串类型
 
 
 |**类型**|**大小**|**描述**|
@@ -512,7 +510,7 @@ MySQL中的数据类型有很多，主要分为三类：数值类型、字符串
 |LONGBLOB|0-4 294 967 295 bytes|二进制形式的极大文本数据|
 |LONGTEXT|0-4 294 967 295 bytes|极大文本数据|
 
-char 与  varchar 都可以描述字符串，  char是定长字符串，指定长度多长，就占用多少个字符，和 字段值的长度无关  。而varchar是变长字符串，指定的长度为最大占用长度  。相对来说，  char的性能会更高些。
+char 与 varchar 都可以描述字符串， char是定长字符串，指定长度多长，就占用多少个字符，和 字段值的长度无关 。而varchar是变长字符串，指定的长度为最大占用长度 。相对来说， char的性能会更高些。
 
 ```text
 如：
@@ -527,13 +525,13 @@ char 与  varchar 都可以描述字符串，  char是定长字符串，指定�
     phone char (11)
 ```
 
-3). 日期时间类型
+###### 3). 日期时间类型
 
-|**类型**|**大    小**|**范围**|**格式**|**描述**|
+|**类型**|**大小**|**范围**|**格式**|**描述**|
 | :- | :- | :- | :- | :- |
-|DATE|3|1000-01-01 至  9999-12-31|YYYY-MM-DD|日期值|
-|TIME|3|-838:59:59 至  838:59:59|HH:MM:SS|时间值或持续时间|
-|YEAR|1|1901 至  2155|YYYY|年份值|
+|DATE|3|1000-01-01 至 9999-12-31|YYYY-MM-DD|日期值|
+|TIME|3|-838:59:59 至 838:59:59|HH:MM:SS|时间值或持续时间|
+|YEAR|1|1901 至 2155|YYYY|年份值|
 |DATETIME|8|1000-01-01 00:00:00 至9999-12-31 23:59:59|YYYY-MM-DDHH:MM:SS|混合日期和时间值|
 |TIMESTAMP|4|1970-01-01 00:00:01 至2038-01-19 03:14:07|YYYY-MM-DDHH:MM:SS|混合日期和时间值，时间戳|
 
@@ -544,7 +542,7 @@ char 与  varchar 都可以描述字符串，  char是定长字符串，指定�
     birthday date
     
     2). 创建时间 createtime
-    createtime  datetime
+    createtime datetime
 ```
 
 ##### **2.3.2.3 表操作-案例**
@@ -553,7 +551,7 @@ char 与  varchar 都可以描述字符串，  char是定长字符串，指定�
 
 1. 编号（纯数字）
 
-2. 员工工号   (字符串类型，长度不超过10位)
+2. 员工工号 (字符串类型，长度不超过10位)
 
 3. 员工姓名（字符串类型，长度不超过10位）
 
@@ -569,8 +567,6 @@ char 与  varchar 都可以描述字符串，  char是定长字符串，指定�
 
 对应的建表语句如下 :
 
-
-
 ```sql
 create table emp(
     id int comment '编号',
@@ -582,7 +578,7 @@ create table emp(
     entrydate date comment '入职时间'
 ) comment '员工表';
 ```
-SQL语句编写完毕之后，就可以在MySQL的命令行中执行SQL，然后也可以通过  desc 指令查询表结构
+SQL语句编写完毕之后，就可以在MySQL的命令行中执行SQL，然后也可以通过 desc 指令查询表结构
 
 信息：
 
@@ -590,20 +586,20 @@ SQL语句编写完毕之后，就可以在MySQL的命令行中执行SQL，然后
 
 
 
-表结构创建好了，里面的name字段是varchar类型，最大长度为10，也就意味着如果超过10将会报    错，如果我们想修改这个字段的类型  或  修改字段的长度该如何操作呢？接下来再来讲解DDL语句中，
+表结构创建好了，里面的name字段是varchar类型，最大长度为10，也就意味着如果超过10将会报错，如果我们想修改这个字段的类型 或 修改字段的长度该如何操作呢？接下来再来讲解DDL语句中，
 
 如何操作表字段。
 
 
 
 
-##### **2.3.2.4  表操作-修改**
+##### **2.3.2.4 表操作-修改**
 
 1). 添加字段
 
 
 ```sql
-ALTER TABLE 表名 ADD  字段名  类型 (长度)  [ COMMENT 注释 ]  [ 约束 ];
+ALTER TABLE 表名 ADD 字段名 类型 (长度) [ COMMENT 注释 ] [ 约束 ];
 ```
 案例 :
 
@@ -611,7 +607,7 @@ ALTER TABLE 表名 ADD  字段名  类型 (长度)  [ COMMENT 注释 ]  [ 约束
 
 
 ```sql
-ALTER TABLE emp ADD nickname varchar (20)  COMMENT '昵称';
+ALTER TABLE emp ADD nickname varchar (20) COMMENT '昵称';
 ```
 
 
@@ -619,14 +615,14 @@ ALTER TABLE emp ADD nickname varchar (20)  COMMENT '昵称';
 2). 修改数据类型
 
 ```sql
-ALTER TABLE 表名 MODIFY  字段名  新数据类型 (长度);
+ALTER TABLE 表名 MODIFY 字段名 新数据类型 (长度);
 ```
 
 3). 修改字段名和字段类型
 
 
 ```sql
-ALTER TABLE 表名 CHANGE  旧字段名  新字段名  类型 (长度)  [ COMMENT 注释 ]  [ 约束 ];
+ALTER TABLE 表名 CHANGE 旧字段名 新字段名 类型 (长度) [ COMMENT 注释 ] [ 约束 ];
 ```
 案例 :
 
@@ -634,7 +630,7 @@ ALTER TABLE 表名 CHANGE  旧字段名  新字段名  类型 (长度)  [ COMMEN
 
 
 ```sql
-ALTER TABLE emp CHANGE  nickname  username varchar (30)  COMMENT '昵称';
+ALTER TABLE emp CHANGE nickname username varchar (30) COMMENT '昵称';
 ```
 
 
@@ -643,7 +639,7 @@ ALTER TABLE emp CHANGE  nickname  username varchar (30)  COMMENT '昵称';
 
 
 ```sql
-ALTER TABLE 表名 DROP  字段名;
+ALTER TABLE 表名 DROP 字段名;
 ```
 案例 :
 
@@ -651,7 +647,7 @@ ALTER TABLE 表名 DROP  字段名;
 
 
 ```sql
-ALTER TABLE emp DROP  username;
+ALTER TABLE emp DROP username;
 ```
 
 
@@ -660,11 +656,11 @@ ALTER TABLE emp DROP  username;
 
 
 ```sql
-ALTER TABLE 表名 RENAME TO  新表名;
+ALTER TABLE 表名 RENAME TO 新表名;
 ```
 案例 :
 
-将emp表的表名修改为  employee
+将emp表的表名修改为 employee
 
 
 ```sql
@@ -682,9 +678,9 @@ ALTER TABLE emp RENAME TO employee;
 
 
 ```sql
-DROP  TABLE [ IF  EXISTS ]  表名;
+DROP TABLE [ IF EXISTS ] 表名;
 ```
-可选项  IF EXISTS 代表，只有表名存在时才会删除该表，表名不存在，则不执行删除操作(如果不
+可选项 IF EXISTS 代表，只有表名存在时才会删除该表，表名不存在，则不执行删除操作(如果不
 
 加该参数项，删除一张不存在的表，执行将会报错)。
 
@@ -693,14 +689,14 @@ DROP  TABLE [ IF  EXISTS ]  表名;
 如果tb_user表存在，则删除tb_user表
 
 ```sql
-DROP  TABLE IF  EXISTS  tb_user;
+DROP TABLE IF EXISTS tb_user;
 ```
 
 2). 删除指定表 , 并重新创建表
 
 
 ```sql
-TRUNCATE  TABLE 表名;
+TRUNCATE TABLE 表名;
 ```
 
 <font style="background: aquamarine;">***注意 : 在删除表的时候，表中的全部数据也都会被删除。***</font>
@@ -714,9 +710,9 @@ TRUNCATE  TABLE 表名;
 
 行在命令进行操作，主要存在以下两点问题：
 
-1).会影响开发效率  ;
+1).会影响开发效率 ;
 
-2). 使用起来，并不直观，并不方便  ；
+2). 使用起来，并不直观，并不方便 ；
 
 所以呢，我们在日常的开发中，会借助于MySQL的图形化界面，来简化开发，提高开发效率。而目前
 
@@ -764,9 +760,9 @@ mysql主流的图形化界面工具，有以下几种：
 
 ![](./images/chapter1/image82.jpeg)
 
-配置以及驱动jar包下载完毕之后，就可以点击  "Test Connection" 就可以测试，是否可以连接
+配置以及驱动jar包下载完毕之后，就可以点击 "Test Connection" 就可以测试，是否可以连接
 
-MySQL，如果出现  "Successed"，就表名连接成功了  。
+MySQL，如果出现 "Successed"，就表名连接成功了 。
 
 ![](./images/chapter1/image83.jpeg)
 
@@ -812,7 +808,7 @@ B. create schema db01;
 
 5). 修改表结构
 
-在需要修改的表上，右键选择  "Modify Table..."
+在需要修改的表上，右键选择 "Modify Table..."
 
 ![](./images/chapter1/image89.png)
 
@@ -829,7 +825,7 @@ B. create schema db01;
 
 6). 在DataGrip中执行SQL语句
 
-在指定的数据库上，右键，选择  New --> Query Console
+在指定的数据库上，右键，选择 New --> Query Console
 
 ![](./images/chapter1/image91.jpeg)
 
@@ -865,12 +861,12 @@ DML英文全称是Data Manipulation Language(数据操作语言)，用来对数�
 
 
 ```sql
-INSERT INTO 表名 (字段名1, 字段名2, ...)  VALUES (值1, 值2, ...);
+INSERT INTO 表名 (字段名1, 字段名2, ...) VALUES (值1, 值2, ...);
 ```
 
 
 
-案例 : 给employee表所有的字段添加数据  ；
+案例 : 给employee表所有的字段添加数据 ；
 
 
 ```sql
@@ -907,7 +903,7 @@ insert into employee (id,workno,name,gender,age,idcard,entrydate)values (1, '1',
 
 ![](./images/chapter1/image98.png)
 
-因为  employee 表的age字段类型为  tinyint，而且还是无符号的  unsigned ，所以取值只能在 0-255 之间。
+因为 employee 表的age字段类型为 tinyint，而且还是无符号的 unsigned ，所以取值只能在 0-255 之间。
 
 ![](./images/chapter1/image99.png)
 
@@ -932,7 +928,7 @@ insert into employee values (2, '2', '张无忌', '男',18, '123456789012345670'
 
 
 ```sql
-INSERT INTO 表名 (字段名1, 字段名2, ...)  VALUES (值1, 值2, ...), (值1, 值2, ...), (值1, 值2, ...) ;
+INSERT INTO 表名 (字段名1, 字段名2, ...) VALUES (值1, 值2, ...), (值1, 值2, ...), (值1, 值2, ...) ;
 ```
 
 
@@ -970,7 +966,7 @@ insert into employee values (3, '3', '韦一笑', '男',38, '123456789012345670'
 
 
 ```sql
-UPDATE   表名   SET   字段名1 = 值1 , 字段名2 = 值2 , .... [ WHERE  条件 ] ;
+UPDATE 表名 SET 字段名1 = 值1 , 字段名2 = 值2 , .... [ WHERE 条件 ] ;
 ```
 
 
@@ -983,13 +979,13 @@ A. 修改id为1的数据， 将name修改为itheima
 ```sql
 update employee set name = 'itheima' where id = 1;
 ```
-B. 修改id为1的数据 , 将name修改为小昭 , gender修改为  女
+B. 修改id为1的数据 , 将name修改为小昭 , gender修改为 女
 
 
 ```sql
 update employee set name = '小昭' , gender = '女' where id = 1;
 ```
-C. 将所有的员工入职日期修改为  2008-01-01
+C. 将所有的员工入职日期修改为 2008-01-01
 
 
 ```sql
@@ -1011,7 +1007,7 @@ update employee set entrydate = '2008-01-01';
 
 
 ```sql
-DELETE  FROM  表名   [ WHERE  条件 ] ;
+DELETE FROM 表名 [ WHERE 条件 ] ;
 ```
 
 
@@ -1034,11 +1030,11 @@ delete from employee;
 
 <font style="background: aquamarine;">***注意事项 :***</font>
 
-* <font style="background: aquamarine;">***DELETE 语句的条件可以有，也可以没有，  如果没有条件，则会删除整张表的所有数据。***</font>
+* <font style="background: aquamarine;">***DELETE 语句的条件可以有，也可以没有， 如果没有条件，则会删除整张表的所有数据。***</font>
 
 * <font style="background: aquamarine;">***DELETE 语句不能删除某一个字段的值(可以使用UPDATE，将该字段值置为NULL即可)。***</font>
 
-* <font style="background: aquamarine;">***当进行删除全部数据操作时，  datagrip会提示我们，询问是否确认删除，我们直接点击 Execute即可。***</font>
+* <font style="background: aquamarine;">***当进行删除全部数据操作时， datagrip会提示我们，询问是否确认删除，我们直接点击 Execute即可。***</font>
 
 
 ![](./images/chapter1/image116.png)
@@ -1062,7 +1058,7 @@ DQL英文全称是Data Query Language(数据查询语言)，数据查询语言�
 
 
 
-那么，本小节我们主要学习的就是如何进行数据的查询操作。    我们先来完成如下数据准备工作 :
+那么，本小节我们主要学习的就是如何进行数据的查询操作。 我们先来完成如下数据准备工作 :
 
 ```sql
 drop table if exists employee;
@@ -1161,7 +1157,7 @@ FROM
     表名列表
 WHERE
     条件列表
-GROUP  BY
+GROUP BY
     分组字段列表
 HAVING
     分组后条件列表
@@ -1194,27 +1190,27 @@ LIMIT
 
 
 ```sql
-SELECT   字段1, 字段2, 字段3 ...  FROM   表名 ;
+SELECT 字段1, 字段2, 字段3 ... FROM 表名 ;
 ```
 ```sql
-SELECT  *  FROM   表名 ;
+SELECT * FROM 表名 ;
 ```
 
 
 
-<font style="background: aquamarine;">***注意   : * 号代表查询所有字段，在实际开发中尽量少用（不直观、影响效率）。***</font>
+<font style="background: aquamarine;">***注意 : * 号代表查询所有字段，在实际开发中尽量少用（不直观、影响效率）。***</font>
 
 
 **2). 字段设置别名**
 
 
 ```sql
-SELECT   字段1  [ AS  别名1 ] , 字段2  [ AS  别名2 ]   ...  FROM   表名;
+SELECT 字段1 [ AS 别名1 ] , 字段2 [ AS 别名2 ] ... FROM 表名;
 ```
 
 
 ```sql
-SELECT   字段1  [ 别名1 ] , 字段2  [ 别名2 ]   ...  FROM   表名;
+SELECT 字段1 [ 别名1 ] , 字段2 [ 别名2 ] ... FROM 表名;
 ```
 
 
@@ -1223,14 +1219,14 @@ SELECT   字段1  [ 别名1 ] , 字段2  [ 别名2 ]   ...  FROM   表名;
 
 
 ```sql
-SELECT  DISTINCT  字段列表  FROM   表名;
+SELECT DISTINCT 字段列表 FROM 表名;
 ```
 
 
 
 案例：
 
-A. 查询指定字段  name, workno, age并返回
+A. 查询指定字段 name, workno, age并返回
 
 
 ```sql
@@ -1274,7 +1270,7 @@ select distinct workaddress '工作地址' from emp;
 
 
 ```sql
-SELECT  字段列表  FROM   表名   WHERE   条件列表 ;
+SELECT 字段列表 FROM 表名 WHERE 条件列表 ;
 ```
 **2). 条件**
 
@@ -1288,7 +1284,7 @@ SELECT  字段列表  FROM   表名   WHERE   条件列表 ;
 |<|小于|
 |<=|小于等于|
 |=|等于|
-|<> 或  !=|不等于|
+|<> 或 !=|不等于|
 |BETWEEN ... AND ...|在某个范围之内(含最小、最大值)|
 |IN(...)|在in之后的列表中的值，多选一|
 |LIKE 占位符|模糊匹配(_匹配单个字符 , %匹配任意个字符)|
@@ -1299,28 +1295,28 @@ SELECT  字段列表  FROM   表名   WHERE   条件列表 ;
 
 |**逻辑运算符**|**功能**|
 | :- | :- |
-|AND 或  &&|并且   (多个条件同时成立)|
-|OR 或   |||或者   (多个条件任意一个成立)|
-|NOT 或  !|非  , 不是|
+|AND 或 &&|并且 (多个条件同时成立)|
+|OR 或 |||或者 (多个条件任意一个成立)|
+|NOT 或 !|非 , 不是|
 
 
 
 案例 :
 
-A. 查询年龄等于  88 的员工
+A. 查询年龄等于 88 的员工
 
 
 ```sql
 select * from emp where age = 88;
 ```
-B. 查询年龄小于  20 的员工信息
+B. 查询年龄小于 20 的员工信息
 
 
 
 ```sql
 select * from emp where age < 20;
 ```
-C. 查询年龄小于等于  20 的员工信息
+C. 查询年龄小于等于 20 的员工信息
 
 
 ```sql
@@ -1338,14 +1334,14 @@ E. 查询有身份证号的员工信息
 ```sql
 select * from emp where idcard is not null;
 ```
-F. 查询年龄不等于  88 的员工信息
+F. 查询年龄不等于 88 的员工信息
 
 ```sql
 select * from emp where age != 88;
 select * from emp where age <> 88;
 ```
 
-G. 查询年龄在15岁(包含) 到  20岁(包含)之间的员工信息
+G. 查询年龄在15岁(包含) 到 20岁(包含)之间的员工信息
 
 ```sql
 select * from emp where age >= 15 && age <= 20;
@@ -1355,23 +1351,23 @@ select * from emp where age >= 15 and age <= 20;
 select * from emp where age between 15 and 20;
 ```
 
-H. 查询性别为  女  且年龄小于  25岁的员工信息
+H. 查询性别为 女 且年龄小于 25岁的员工信息
 
 ```sql
 select * from emp where gender = '女' and age < 25;
 ```
-I. 查询年龄等于18 或  20 或  40 的员工信息
+I. 查询年龄等于18 或 20 或 40 的员工信息
 
 
 ```sql
 select * from emp where age = 18 or age = 20 or age =40;
 select * from emp where age in (18,20,40);
 ```
-J. 查询姓名为两个字的员工信息  _ %
+J. 查询姓名为两个字的员工信息 _ %
 
 
 ```sql
-select * from emp where name like '    ';
+select * from emp where name like ' ';
 ```
 K. 查询身份证号最后一位是X的员工信息
 
@@ -1385,7 +1381,7 @@ select * from emp where idcard like 'X';
 
 1). 介绍
 
-将一列数据作为一个整体，进行纵向计算  。
+将一列数据作为一个整体，进行纵向计算 。
 
 2). 常见的聚合函数
 
@@ -1402,10 +1398,10 @@ select * from emp where idcard like 'X';
 
 
 ```sql
-SELECT  聚合函数(字段列表)  FROM   表名 ;
+SELECT 聚合函数(字段列表) FROM 表名 ;
 ```
 
-注意   : NULL值是不参与所有聚合函数运算的。
+注意 : NULL值是不参与所有聚合函数运算的。
 
 
 
@@ -1418,14 +1414,14 @@ A. 统计该企业员工数量
 select count(*) from emp; -- 统计的是总记录数
 select count(idcard) from emp; -- 统计的是idcard字段不为null的记录数
 ```
-对于count聚合函数，统计符合条件的总记录数，还可以通过  count(数字/字符串)的形式进行统计
+对于count聚合函数，统计符合条件的总记录数，还可以通过 count(数字/字符串)的形式进行统计
 
 查询，比如：
 
 
 |1|select count(1) from emp;|
 | :- | :- |
-|对于count(*) 、count(字段)、  count(1) 的具体原理，我们在进阶篇中SQL优化部分会详细讲解，此处大家只需要知道如何使用即可。|
+|对于count(*) 、count(字段)、 count(1) 的具体原理，我们在进阶篇中SQL优化部分会详细讲解，此处大家只需要知道如何使用即可。|
 B. 统计该企业员工的平均年龄
 
 
@@ -1462,35 +1458,35 @@ select sum (age) from emp where workaddress = '西安';
 
 1). 语法
 ```sql
-SELECT  字段列表  FROM   表名   [ WHERE   条件 ]  GROUP   BY  分组字段名   [ HAVING  分组后过滤条件 ];
+SELECT 字段列表 FROM 表名 [ WHERE 条件 ] GROUP BY 分组字段名 [ HAVING 分组后过滤条件 ];
 ```
 
 2). where与having区别
 
-* 执行时机不同：  where是分组之前进行过滤，不满足where条件，不参与分组；而having是分组
+* 执行时机不同： where是分组之前进行过滤，不满足where条件，不参与分组；而having是分组
 
 之后对结果进行过滤。
 
-* 判断条件不同：  where不能对聚合函数进行判断，而having可以。
+* 判断条件不同： where不能对聚合函数进行判断，而having可以。
 
 注意事项 :
 
 * 分组之后，查询的字段一般为聚合函数和分组字段，查询其他字段无任何意义。
 
-* 执行顺序 : where > 聚合函数  > having 。
+* 执行顺序 : where > 聚合函数 > having 。
 
-* 支持多字段分组 , 具体语法为   : group by columnA,columnB
+* 支持多字段分组 , 具体语法为 : group by columnA,columnB
 
 
 案例 :
 
-A. 根据性别分组  , 统计男性员工  和  女性员工的数量
+A. 根据性别分组 , 统计男性员工 和 女性员工的数量
 
 
 ```sql
 select gender, count(*) from emp group by gender ;
 ```
-B. 根据性别分组  , 统计男性员工  和  女性员工的平均年龄
+B. 根据性别分组 , 统计男性员工 和 女性员工的平均年龄
 
 
 ```sql
@@ -1498,7 +1494,7 @@ select gender, avg(age) from emp group by gender ;
 ```
 
 
-C. 查询年龄小于45的员工  , 并根据工作地址分组  , 获取员工数量大于等于3的工作地址
+C. 查询年龄小于45的员工 , 并根据工作地址分组 , 获取员工数量大于等于3的工作地址
 ```sql
 select workaddress, count(*) address_count from emp where age < 45 group by
 
@@ -1527,7 +1523,7 @@ select workaddress, gender, count(*) '数量' from emp group by gender , workadd
 
 
 ```sql
-SELECT  字段列表  FROM   表名  ORDER  BY  字段1  排序方式1 , 字段2  排序方式2 ;
+SELECT 字段列表 FROM 表名 ORDER BY 字段1 排序方式1 , 字段2 排序方式2 ;
 ```
 2). 排序方式
 
@@ -1539,7 +1535,7 @@ SELECT  字段列表  FROM   表名  ORDER  BY  字段1  排序方式1 , 字段2
 
 * <font style="background: aquamarine;">***如果是升序 , 可以不指定排序方式ASC ;***</font>
 
-* <font style="background: aquamarine;">***如果是多字段排序，  当第一个字段值相同时，才会根据第二个字段进行排序  ;***</font>
+* <font style="background: aquamarine;">***如果是多字段排序， 当第一个字段值相同时，才会根据第二个字段进行排序 ;***</font>
 
 案例 :
 
@@ -1558,7 +1554,7 @@ select * from emp order by entrydate desc;
 ```
 
 
-C. 根据年龄对公司的员工进行升序排序  , 年龄相同  , 再按照入职时间进行降序排序
+C. 根据年龄对公司的员工进行升序排序 , 年龄相同 , 再按照入职时间进行降序排序
 
 
 ```sql
@@ -1581,18 +1577,18 @@ select * from emp order by age asc , entrydate desc;
 
 
 ```sql
-SELECT  字段列表  FROM   表名  LIMIT  起始索引, 查询记录数 ;
+SELECT 字段列表 FROM 表名 LIMIT 起始索引, 查询记录数 ;
 ```
 
 
 
 <font style="background: aquamarine;">***注意事项 :***</font>
 
-* <font style="background: aquamarine;">***起始索引从0开始， 起始索引  =  （查询页码  - 1） * 每页显示记录数。***</font>
+* <font style="background: aquamarine;">***起始索引从0开始， 起始索引 = （查询页码 - 1） * 每页显示记录数。***</font>
 
-* <font style="background: aquamarine;">***分页查询是数据库的方言，不同的数据库有不同的实现，  MySQL中是LIMIT。***</font>
+* <font style="background: aquamarine;">***分页查询是数据库的方言，不同的数据库有不同的实现， MySQL中是LIMIT。***</font>
 
-* <font style="background: aquamarine;">***如果查询的是第一页数据，起始索引可以省略，直接简写为  limit 10。***</font>
+* <font style="background: aquamarine;">***如果查询的是第一页数据，起始索引可以省略，直接简写为 limit 10。***</font>
 
 
 案例 :
@@ -1604,7 +1600,7 @@ select * from emp limit 0,10;
 select * from emp limit 10;
 ```
 
-B. 查询第2页员工数据 , 每页展示10条记录  --------> (页码-1)*页展示记录数
+B. 查询第2页员工数据 , 每页展示10条记录 --------> (页码-1)*页展示记录数
 
 ```sql
 select * from emp limit 10,10;
@@ -1618,13 +1614,13 @@ select * from emp limit 10,10;
 select * from emp where gender = '女' and age in (20,21,22,23);
 ```
 
-2). 查询性别为  男  ，并且年龄在  20-40 岁(含)以内的姓名为三个字的员工。
+2). 查询性别为 男 ，并且年龄在 20-40 岁(含)以内的姓名为三个字的员工。
 
 ```sql
 select * from emp where gender = '男' and ( age between 20 and 40 ) and name like '___';
 ```
 
-3). 统计员工表中 , 年龄小于60岁的  , 男性员工和女性员工的人数。
+3). 统计员工表中 , 年龄小于60岁的 , 男性员工和女性员工的人数。
 
 ```sql
 select gender, count(*) from emp where age < 60 group by gender;
@@ -1673,17 +1669,17 @@ select name , age from emp where age > 15 order by age asc;
 
 
 
-在查询时，我们给emp表起一个别名  e，然后在select 及  where中使用该别名。
+在查询时，我们给emp表起一个别名 e，然后在select 及 where中使用该别名。
 
 
 ```sql
 select e.name , e.age from emp e where e.age > 15 order by age asc;
 ```
-执行上述SQL语句后，我们看到依然可以正常的查询到结果，此时就说明：     from 先执行 , 然后
+执行上述SQL语句后，我们看到依然可以正常的查询到结果，此时就说明： from 先执行 , 然后
 
-where 和  select 执行。那  where 和  select 到底哪个先执行呢 ?
+where 和 select 执行。那 where 和 select 到底哪个先执行呢 ?
 
-此时，此时我们可以给select后面的字段起别名，然后在  where 中使用这个别名，然后看看是否可
+此时，此时我们可以给select后面的字段起别名，然后在 where 中使用这个别名，然后看看是否可
 
 以执行成功。
 
@@ -1695,7 +1691,7 @@ select e.name ename , e.age eage from emp e where eage > 15 order by age asc;
 
 ![](./images/chapter1/image181.jpeg)
 
-由此我们可以得出结论 : from 先执行，然后执行  where ，  再执行select 。
+由此我们可以得出结论 : from 先执行，然后执行 where ， 再执行select 。
 
 
 
@@ -1705,11 +1701,11 @@ select e.name ename , e.age eage from emp e where eage > 15 order by age asc;
 ```sql
 select e.name ename , e.age eage from emp e where e.age > 15 order by eage asc;
 ```
-结果执行成功。    那么也就验证了 : order by 是在select 语句之后执行的。
+结果执行成功。 那么也就验证了 : order by 是在select 语句之后执行的。
 
 
 
-综上所述，我们可以看到DQL语句的执行顺序为：     from ... where ... group by ...
+综上所述，我们可以看到DQL语句的执行顺序为： from ... where ... group by ...
 
 having ... select ... order by ... limit ...
 
@@ -1735,7 +1731,7 @@ select * from mysql.user;
 
 ![](./images/chapter1/image185.jpeg)
 
-其中  Host代表当前用户访问的主机 , 如果为localhost, 仅代表只能够在当前本机访问，是不可以 远程访问的。    User代表的是访问该数据库的用户名。在MySQL中需要通过Host和User来唯一标识一
+其中 Host代表当前用户访问的主机 , 如果为localhost, 仅代表只能够在当前本机访问，是不可以 远程访问的。 User代表的是访问该数据库的用户名。在MySQL中需要通过Host和User来唯一标识一
 
 个用户。
 
@@ -1766,9 +1762,9 @@ DROP USER '用户名'@'主机名' ;
 
 * <font style="background: aquamarine;">***在MySQL中需要通过用户名@主机名的方式，来唯一标识一个用户。***</font>
 
-* <font style="background: aquamarine;">***主机名可以使用  % 通配。***</font>
+* <font style="background: aquamarine;">***主机名可以使用 % 通配。***</font>
 
-* <font style="background: aquamarine;">***这类SQL开发人员操作的比较少，主要是DBA（  Database Administrator 数据库管理员）使用。***</font>
+* <font style="background: aquamarine;">***这类SQL开发人员操作的比较少，主要是DBA（ Database Administrator 数据库管理员）使用。***</font>
 
 
 案例：
@@ -1791,7 +1787,7 @@ C. 修改用户heima的访问密码为1234;
 ```sql
 alter user 'heima'@'%' identified with mysql_native_password by '1234';
 ```
-D. 删除  itcast@localhost 用户
+D. 删除 itcast@localhost 用户
 
 
 ```sql
@@ -1846,24 +1842,24 @@ REVOKE 权限列表 ON 数据库名 .表名 FROM '用户名'@'主机名';
 
 * <font style="background: aquamarine;">***多个权限之间，使用逗号分隔***</font>
 
-* <font style="background: aquamarine;">***授权时，   数据库名和表名可以使用  * 进行通配，代表所有。***</font>
+* <font style="background: aquamarine;">***授权时， 数据库名和表名可以使用 * 进行通配，代表所有。***</font>
 
 
 案例 :
 
-A. 查询   'heima'@'%' 用户的权限
+A. 查询 'heima'@'%' 用户的权限
 
 
 ```sql
 show grants for 'heima'@'%';
 ```
-B. 授予   'heima'@'%' 用户itcast数据库所有表的所有操作权限
+B. 授予 'heima'@'%' 用户itcast数据库所有表的所有操作权限
 
 
 ```sql
 grant all on itcast.* to 'heima'@'%';
 ```
-C. 撤销   'heima'@'%' 用户的itcast数据库的所有权限
+C. 撤销 'heima'@'%' 用户的itcast数据库的所有权限
 
 
 ```sql
@@ -1875,9 +1871,8 @@ revoke all on itcast.* from 'heima'@'%';
 
 
 ## **3. 函数**
-函数  是指一段可以直接被另一段程序调用的程序或代码。    也就意味着，这一段程序或代码在MySQL中 已经给我们提供了，我们要做的就是在合适的业务场景调用对应的函数完成对应的业务需求即可。    那
-
-么，函数到底在哪儿使用呢？
+函数 是指一段可以直接被另一段程序调用的程序或代码。 也就意味着，这一段程序或代码在MySQL中 已经给我们提供了，我们要做的就是在合适的业务场景调用对应的函数完成对应的业务需求即可。
+那么，函数到底在哪儿使用呢？
 
 我们先来看两个场景：
 
@@ -1885,7 +1880,7 @@ revoke all on itcast.* from 'heima'@'%';
 
 ![](./images/chapter1/image203.png)![](./images/chapter1/image202.png)
 
-1). 在企业的OA或其他的人力系统中，经常会提供的有这样一个功能，每一个员工登录上来之后都能   够看到当前员工入职的天数。    而在数据库中，存储的都是入职日期，如  2000-11-12，那如果快速计
+1). 在企业的OA或其他的人力系统中，经常会提供的有这样一个功能，每一个员工登录上来之后都能 够看到当前员工入职的天数。 而在数据库中，存储的都是入职日期，如 2000-11-12，那如果快速计
 
 算出天数呢？
 
@@ -1893,11 +1888,11 @@ revoke all on itcast.* from 'heima'@'%';
 
 分数值，如98/75，如何快速判定分数的等级呢？
 
-其实，上述的这一类的需求呢，我们通过MySQL中的函数都可以很方便的实现  。
+其实，上述的这一类的需求呢，我们通过MySQL中的函数都可以很方便的实现 。
 
 
 
-MySQL中的函数主要分为以下四类：    字符串函数、数值函数、日期函数、流程函数。
+MySQL中的函数主要分为以下四类： 字符串函数、数值函数、日期函数、流程函数。
 
 
 
@@ -1955,11 +1950,9 @@ F. trim : 去除空格
 
 
 ```sql
-select trim ( ' Hello  MySQL ');
+select trim ( 'Hello MySQL ');
 ```
 G. substring : 截取子字符串
-
-
 
 ```sql
 select substring( 'Hello MySQL ',1,5);
@@ -1971,7 +1964,7 @@ select substring( 'Hello MySQL ',1,5);
 
 ![](./images/chapter1/image211.jpeg)
 
-由于业务需求变更，企业员工的工号，统一为5位数，目前不足5位数的全部在前面补0。比如：     1号员
+由于业务需求变更，企业员工的工号，统一为5位数，目前不足5位数的全部在前面补0。比如： 1号员
 
 工的工号应该为00001。
 
@@ -2042,7 +2035,7 @@ select round(2.344,2);
 
 通过数据库的函数，生成一个六位数的随机验证码。
 
-思路：   获取随机数可以通过rand()函数，但是获取出来的随机数是在0-1之间的，所以可以在其基础
+思路： 获取随机数可以通过rand()函数，但是获取出来的随机数是在0-1之间的，所以可以在其基础
 
 上乘以1000000，然后舍弃小数部分，如果长度不足6位，补0
 
@@ -2068,7 +2061,7 @@ select lpad(round(rand()*1000000 , 0), 6, '0');
 |MONTH(date)|获取指定date的月份|
 |DAY(date)|获取指定date的日期|
 |DATE_ADD(date, INTERVAL exprtype)|返回一个日期/时间值加上一个时间间隔expr后的时间值|
-|DATEDIFF(date1,date2)|返回起始时间date1 和  结束时间date2之间的天数|
+|DATEDIFF(date1,date2)|返回起始时间date1 和 结束时间date2之间的天数|
 
 
 
@@ -2102,8 +2095,6 @@ select DAY(now ());
 ```
 E. date_add：增加指定的时间间隔
 
-
-
 ```sql
 select date add(now (), INTERVAL 70 YEAR );
 ```
@@ -2120,14 +2111,12 @@ select datediff( '2021-10-01', '2021-12-01');
 
 查询所有员工的入职天数，并根据入职天数倒序排序。
 
-思路：   入职天数，就是通过当前日期  - 入职日期，所以需要使用datediff函数来完成。
+思路： 入职天数，就是通过当前日期 - 入职日期，所以需要使用datediff函数来完成。
 
 
 ```sql
 select name, datediff(curdate (), entrydate) as 'entrydays' from emp order byentrydays desc;
 ```
-
-
 
 
 
@@ -2155,8 +2144,6 @@ A. if
 select if(false, 'Ok', 'Error');
 ```
 
-
-
 B. ifnull
 
 
@@ -2168,13 +2155,13 @@ select ifnull(null, 'Default');
 
 C. case when then else end
 
-需求 : 查询emp表的员工姓名和工作地址   (北京/上海  ----> 一线城市  , 其他  ----> 二线城市)
+需求 : 查询emp表的员工姓名和工作地址 (北京/上海 ----> 一线城市 , 其他 ----> 二线城市)
 
 
 ```sql
 select
     name,
-     ( case workaddress when '北京' then '一线城市' when '上海' then '一线城市' else'二线城市' end ) as '工作地址'
+    ( case workaddress when '北京' then '一线城市' when '上海' then '一线城市' else'二线城市' end ) as '工作地址'
 from emp;
 ```
 
@@ -2183,7 +2170,6 @@ from emp;
 案例 :
 ```sql
 create table score (
-
   id int comment 'ID',
   name varchar (20) comment '姓名',
   math int comment '数学',
@@ -2212,11 +2198,11 @@ MySQL的常见函数我们学习完了，那接下来，我们就来分析一下
 
 思考一下需要用到什么样的函数来实现 ?
 
-1). 数据库中，存储的是入职日期，如  2000-01-01，如何快速计算出入职天数呢？    -------->
+1). 数据库中，存储的是入职日期，如 2000-01-01，如何快速计算出入职天数呢？ -------->
 
 答案 : datediff
 
-2). 数据库中，存储的是学生的分数值，如98、 75，如何快速判定分数的等级呢？    ---------->
+2). 数据库中，存储的是学生的分数值，如98、 75，如何快速判定分数的等级呢？ ---------->
 
 答案 : case ... when ...
 
@@ -2253,7 +2239,7 @@ MySQL的常见函数我们学习完了，那接下来，我们就来分析一下
 
 修改表的时候来指定呢，接下来我们就通过一个案例，来演示一下。
 
-案例需求：    根据需求，  完成表结构的创建。需求如下：
+案例需求： 根据需求， 完成表结构的创建。需求如下：
 
 
 |**字段名**|**字段含义**|**字段类型**|**约束条件**|**约束关键字**|
@@ -2269,11 +2255,11 @@ MySQL的常见函数我们学习完了，那接下来，我们就来分析一下
 
 ```sql
 CREATE TABLE tb_user (
-    id int AUTO INCREMENT PRIMARY KEY  COMMENT  'ID唯一标识',
-    name varchar (10) NOT NULL UNIQUE  COMMENT  '姓名' ,
-    age int check (age > 0 && age <= 120)  COMMENT  '年龄' ,
-    status char (1) default  '1'  COMMENT  '状态',
-    gender char (1)  COMMENT  '性别'
+    id int AUTO INCREMENT PRIMARY KEY COMMENT 'ID唯一标识',
+    name varchar (10) NOT NULL UNIQUE COMMENT '姓名' ,
+    age int check (age > 0 && age <= 120) COMMENT '年龄' ,
+    status char (1) default '1' COMMENT '状态',
+    gender char (1) COMMENT '性别'
 );
 ```
 在为字段添加约束时，我们只需要在字段之后加上约束的关键字即可，需要关注其语法。我们执行上面 的SQL把表结构创建完成，然后接下来，就可以通过一组数据进行测试，从而验证一下，约束是否可以生效。
@@ -2292,7 +2278,7 @@ insert into tb_user (name,age,gender) values ( 'Tom5',120, '男');
 
 
 
-上面，我们是通过编写SQL语句的形式来完成约束的指定，那加入我们是通过图形化界面来创建表结构时，又该如何来指定约束呢？    只需要在创建表的时候，根据我们的需要选择对应的约束即可。
+上面，我们是通过编写SQL语句的形式来完成约束的指定，那加入我们是通过图形化界面来创建表结构时，又该如何来指定约束呢？ 只需要在创建表的时候，根据我们的需要选择对应的约束即可。
 
 ![](./images/chapter1/image235.jpeg)
 
@@ -2327,16 +2313,16 @@ insert into tb_user (name,age,gender) values ( 'Tom5',120, '男');
 
 ```sql
 create table dept(
-    id   int auto increment comment 'ID' primary key,
+    id int auto increment comment 'ID' primary key,
     name varchar (50) not null comment '部门名称'
 )comment '部门表';
 
 INSERT INTO dept (id, name) VALUES (1, '研发部'), (2, '市场部'), (3, '财务部'), (4,'销售部'), (5, '总经办');
 
 create table emp(
-    id  int auto increment comment 'ID' primary key,
+    id int auto increment comment 'ID' primary key,
     name varchar (50) not null comment '姓名',
-    age  int comment '年龄',
+    age int comment '年龄',
     job varchar (20) comment '职位',
     salary int comment '薪资',
     entrydate date comment '入职时间',
@@ -2358,7 +2344,7 @@ INSERT INTO emp (id, name, age, job,salary, entrydate, managerid, dept_id) VALUE
 
 ![](./images/chapter1/image239.jpeg)
 
-结果，我们看到删除成功，而删除成功之后，部门表不存在id为1的部门，而在emp表中还有很多的员 工，关联的为id为1的部门，此时就出现了数据的不完整性。    而要想解决这个问题就得通过数据库的
+结果，我们看到删除成功，而删除成功之后，部门表不存在id为1的部门，而在emp表中还有很多的员工，关联的为id为1的部门，此时就出现了数据的不完整性。 而要想解决这个问题就得通过数据库的
 
 外键约束。
 
@@ -2370,12 +2356,12 @@ INSERT INTO emp (id, name, age, job,salary, entrydate, managerid, dept_id) VALUE
 1). 添加外键
 ```text
 CREATE TABLE 表名(
-  字段名     数据类型,
+  字段名 数据类型,
    ...
-   [CONSTRAINT]   [外键名称]  FOREIGN  KEY (外键字段名)   REFERENCES   主表 (主表列名)
+   [CONSTRAINT] [外键名称] FOREIGN KEY (外键字段名) REFERENCES 主表 (主表列名)
 );
 
-ALTER   TABLE  表名   ADD  CONSTRAINT   外键名称   FOREIGN   KEY (外键字段名) REFERENCES  主表 (主表列名) ;
+ALTER TABLE 表名 ADD CONSTRAINT 外键名称 FOREIGN KEY (外键字段名) REFERENCES 主表 (主表列名) ;
 ```
 
 
@@ -2387,12 +2373,12 @@ ALTER   TABLE  表名   ADD  CONSTRAINT   外键名称   FOREIGN   KEY (外键�
 
 
 ```sql
-alter table emp add constraint fk_emp_dept_id foreign key (dept_id) referencesdept(id);
+alter table emp add constraint fk_emp_dept_id foreign key (dept_id) references dept(id);
 ```
 
 ![](./images/chapter1/image243.png)
 
-添加了外键约束之后，我们再到dept表(父表)删除id为1的记录，然后看一下会发生什么现象。    此时
+添加了外键约束之后，我们再到dept表(父表)删除id为1的记录，然后看一下会发生什么现象。 此时
 
 将会报错，不能删除或更新父表记录，因为存在外键约束。
 
@@ -2402,7 +2388,7 @@ alter table emp add constraint fk_emp_dept_id foreign key (dept_id) referencesde
 
 
 ```sql
-ALTER   TABLE  表名   DROP  FOREIGN  KEY  外键名称;
+ALTER TABLE 表名 DROP FOREIGN KEY 外键名称;
 ```
 
 
@@ -2429,16 +2415,18 @@ alter table emp drop foreign key fk_emp_dept_id;
 
 |**行为**|**说明**|
 | :- | :- |
-|NOACTION|当在父表中删除/更新对应记录时，首先检查该记录是否有对应外键，如果有则不允许删除/更新。    (与  RESTRICT 一致) 默认行为|
-|RESTRICT|当在父表中删除/更新对应记录时，首先检查该记录是否有对应外键，如果有则不允许删除/更新。    (与  NO ACTION 一致) 默认行为|
+|NOACTION|当在父表中删除/更新对应记录时，首先检查该记录是否有对应外键，如果有则不允许删除/更新。 (与 RESTRICT 一致) 默认行为|
+|RESTRICT|当在父表中删除/更新对应记录时，首先检查该记录是否有对应外键，如果有则不允许删除/更新。 (与 NO ACTION 一致) 默认行为|
 |CASCADE|当在父表中删除/更新对应记录时，首先检查该记录是否有对应外键，如果有，则也删除/更新外键在子表中的记录。|
 |SET NULL|当在父表中删除对应记录时，首先检查该记录是否有对应外键，如果有则设置子表中该外键值为null （这就要求该外键允许取null）。|
-|SETDEFAULT|父表有变更时，子表将外键列设置成一个默认的值   (Innodb不支持)|
+|SETDEFAULT|父表有变更时，子表将外键列设置成一个默认的值 (Innodb不支持)|
+
 具体语法为 :
 
 
 ```sql
-ALTER TABLE  表名  ADD CONSTRAINT  外键名称  FOREIGN KEY  (外键字段)   REFERENCES主表名 (主表字段名)   ON UPDATE CASCADE ON DELETE CASCADE;
+ALTER TABLE 表名 ADD CONSTRAINT 外键名称 FOREIGN KEY (外键字段) REFERENCES 主表名 (主表字段名) 
+	ON UPDATE CASCADE ON DELETE CASCADE;
 ```
 
 
@@ -2447,12 +2435,13 @@ ALTER TABLE  表名  ADD CONSTRAINT  外键名称  FOREIGN KEY  (外键字段)  
 
 由于NO ACTION 是默认行为，我们前面语法演示的时候，已经测试过了，就不再演示了，这里我们再
 
-演示其他的两种行为：  CASCADE、 SET NULL。
+演示其他的两种行为： CASCADE、 SET NULL。
 
 1). CASCADE
 
 ```sql
-alter table emp add constraint fk_emp_dept_id foreign key (dept_id) references dept(id) on update cascade on delete cascade ;
+alter table emp add constraint fk_emp_dept_id foreign key (dept_id) references dept(id) 
+	on update cascade on delete cascade ;
 ```
 
 A. 修改父表id为1的记录，将id修改为6
@@ -2476,11 +2465,11 @@ B. 删除父表id为6的记录
 
 2). SET NULL
 
-在进行测试之前，我们先需要删除上面建立的外键  fk_emp_dept_id。然后再通过数据脚本，将emp、dept表的数据恢复了。
+在进行测试之前，我们先需要删除上面建立的外键 fk_emp_dept_id。然后再通过数据脚本，将emp、dept表的数据恢复了。
 
 ```sql
-alter table emp add constraint fk_emp_dept_id foreign key (dept_id) references
-dept(id) on update set null on delete set null ;
+alter table emp add constraint fk_emp_dept_id foreign key (dept_id) references dept(id) 
+	on update set null on delete set null ;
 ```
 
 
@@ -2489,7 +2478,7 @@ dept(id) on update set null on delete set null ;
 
 ![](./images/chapter1/image253.png)
 
-我们发现父表的记录是可以正常的删除的，父表的数据删除之后，再打开子表  emp，我们发现子表emp
+我们发现父表的记录是可以正常的删除的，父表的数据删除之后，再打开子表 emp，我们发现子表emp
 
 的dept_id字段，原来dept_id为1的数据，现在都被置为NULL了。
 
@@ -2526,9 +2515,9 @@ dept(id) on update set null on delete set null ;
 #### **5.1.1 一对多**
 
 
-* 案例 : 部门  与  员工的关系
+* 案例 : 部门 与 员工的关系
 
-* 关系 : 一个部门对应多个员工，  一个员工对应一个部门
+* 关系 : 一个部门对应多个员工， 一个员工对应一个部门
 
 * 实现 : 在多的一方建立外键，指向一的一方的主键
 
@@ -2537,9 +2526,9 @@ dept(id) on update set null on delete set null ;
 
 #### **5.1.2 多对多**
 
-* 案例 : 学生  与  课程的关系
+* 案例 : 学生 与 课程的关系
 
-* 关系 : 一个学生可以选修多门课程，  一门课程也可以供多个学生选择
+* 关系 : 一个学生可以选修多门课程， 一门课程也可以供多个学生选择
 
 * 实现 : 建立第三张中间表，中间表至少包含两个外键，分别关联两方主键
 
@@ -2553,7 +2542,9 @@ create table student(
   no varchar (10) comment '学号'
 ) comment '学生表';
 
-insert into student values (null, '黛绮丝', '2000100101'), (null, '谢逊', '2000100102'), (null, '殷天正', '2000100103'), (null, '韦一笑', '2000100104');
+insert into student values 
+	(null, '黛绮丝', '2000100101'), (null, '谢逊', '2000100102'), 
+	(null, '殷天正', '2000100103'), (null, '韦一笑', '2000100104');
 
 create table_course (
     id int auto increment primary key comment '主键ID',
@@ -2565,7 +2556,7 @@ insert into course values (null, 'Java'), (null, 'PHP'), (null , 'MySQL') ,(null
 create table student_course (
     id int auto increment comment '主键' primary key,
     studentid int not null comment '学生ID',
-    courseid  int not null comment '课程ID',
+    courseid int not null comment '课程ID',
     constraint fk_courseid foreign key (courseid) references course (id),
     constraint fk_studentid foreign key (studentid) references student (id)
 )comment '学生课程中间表';
@@ -2573,13 +2564,11 @@ create table student_course (
 insert into student_course values (null,1,1), (null,1,2), (null,1,3), (null,2,2),(null,2,3), (null,3,4);
 ```
 
-#### **5.1.3 -对-**
+#### **5.1.3 一对一**
 
-* 案例 : 用户  与  用户详情的关系
+* 案例 : 用户 与 用户详情的关系
 
-* 关系 : 一对一关系，多用于单表拆分，将一张表的基础字段放在一张表中，其他详情字段放在另
-
-一张表中，以提升操作效率
+* 关系 : 一对一关系，多用于单表拆分，将一张表的基础字段放在一张表中，其他详情字段放在另一张表中，以提升操作效率
 
 * 实现 : 在任意一方加入外键，关联另外一方的主键，并且设置外键为唯一的(UNIQUE)
 
@@ -2612,8 +2601,7 @@ insert into tb_user (id, name, age, gender, phone) values
     (null, '码云',55, '1', '18800008888'),
     (null, '李彦宏',50, '1', '18800009999');
 
-insert into tb_user_edu (id, degree, major, primaryschool, middleschool,
-university, userid) values
+insert into tb_user_edu (id, degree, major, primaryschool, middleschool, university, userid) values
     (null, '本科', '舞蹈', '静安区第一小学', '静安区第一中学', '北京舞蹈学院',1), 
     (null, '硕士', '表演', '朝阳区第一小学', '朝阳区第一中学', '北京电影学院',2), 
     (null, '本科', '英语', '杭州市第一小学', '杭州市第一中学', '杭州师范大学',3),
@@ -2626,23 +2614,24 @@ university, userid) values
 
 #### **5.2.1 数据准备**
 
-1). 删除之前  emp, dept表的测试数据
+1). 删除之前 emp, dept表的测试数据
 
 2). 执行如下脚本，创建emp表与dept表并插入测试数据
 ```sql
 -- 创建dept表，并插入数据
-
 create table dept(
-  id   int auto increment comment 'ID' primary key,
+  id int auto increment comment 'ID' primary key,
   name varchar (50) not null comment '部门名称'
 )comment '部门表';
-INSERT INTO dept (id, name) VALUES (1, '研发部'), (2, '市场部'), (3, '财务部'), (4, '销售部'), (5, '总经办'), (6, '人事部');
+
+INSERT INTO dept (id, name) VALUES 
+	(1, '研发部'), (2, '市场部'), (3, '财务部'), (4, '销售部'), (5, '总经办'), (6, '人事部');
 
 -- 创建emp表，并插入数据
 create table emp(
-    id  int auto increment comment 'ID' primary key,
+    id int auto increment comment 'ID' primary key,
     name varchar (50) not null comment '姓名',
-    age  int comment '年龄',
+    age int comment '年龄',
     job varchar (20) comment '职位',
     salary int comment '薪资',
     entrydate date comment '入职时间',
@@ -2671,10 +2660,9 @@ INSERT INTO emp (id, name, age, job,salary, entrydate, managerid, dept_id) VALUE
     (15, '俞莲舟', 38, '销售',4600, '2004-10-12', 14,4),
     (16, '宋远桥', 40, '销售',4600, '2004-10-12', 14,4),
     (17, '陈友谅', 42, null,2000, '2011-10-12', 1,null);
-    
 ```
 
-dept表共6条记录，  emp表共17条记录。
+dept表共6条记录， emp表共17条记录。
 
 
 
@@ -2682,19 +2670,19 @@ dept表共6条记录，  emp表共17条记录。
 
 多表查询就是指从多张表中查询数据。
 
-原来查询单表数据，执行的SQL形式为：  select * from emp;
+原来查询单表数据，执行的SQL形式为： select * from emp;
 
-那么我们要执行多表查询，就只需要使用逗号分隔多张表即可，如：    select * from emp , dept
+那么我们要执行多表查询，就只需要使用逗号分隔多张表即可，如： select * from emp , dept; 
 
-; 具体的执行结果如下 :
+具体的执行结果如下 :
 
 ![](./images/chapter1/image262.jpeg)
 
-此时 ,我们看到查询结果中包含了大量的结果集，总共102条记录，而这其实就是员工表emp所有的记录 (17) 与  部门表dept所有记录(6) 的所有组合情况，这种现象称之为笛卡尔积。接下来，就来简单
+此时 ,我们看到查询结果中包含了大量的结果集，总共102条记录，而这其实就是员工表emp所有的记录 (17) 与 部门表dept所有记录(6) 的所有组合情况，这种现象称之为笛卡尔积。接下来，就来简单
 
 介绍下笛卡尔积。
 
-笛卡尔积 : 笛卡尔乘积是指在数学中，两个集合A集合  和  B集合的所有组合情况。
+笛卡尔积 : 笛卡尔乘积是指在数学中，两个集合A集合 和 B集合的所有组合情况。
 
 ![](./images/chapter1/image263.jpeg)
 
@@ -2704,7 +2692,7 @@ dept表共6条记录，  emp表共17条记录。
 
 ![](./images/chapter1/image256.jpeg)
 
-在SQL语句中，如何来去除无效的笛卡尔积呢？    我们可以给多表查询加上连接查询的条件即可。
+在SQL语句中，如何来去除无效的笛卡尔积呢？ 我们可以给多表查询加上连接查询的条件即可。
 
 select * from emp , dept where emp.dept_id = dept.id;
 
@@ -2719,16 +2707,15 @@ select * from emp , dept where emp.dept_id = dept.id;
 #### **5.2.3 分类**
 
 * 连接查询
+  * 内连接：相当于查询A、B交集部分数据
 
-* 内连接：相当于查询A、B交集部分数据
+  * 外连接：
 
-* 外连接：
+  * 左外连接：查询左表所有数据，以及两张表交集部分数据
 
-* 左外连接：查询左表所有数据，以及两张表交集部分数据
+  * 右外连接：查询右表所有数据，以及两张表交集部分数据
 
-* 右外连接：查询右表所有数据，以及两张表交集部分数据
-
-* 自连接：当前表与自身的连接查询，自连接必须使用表别名
+  * 自连接：当前表与自身的连接查询，自连接必须使用表别名
 
 * 子查询
 
@@ -2741,13 +2728,7 @@ select * from emp , dept where emp.dept_id = dept.id;
 
 ![](./images/chapter1/image268.png)
 
-据。  (也就是绿色部分的数据)
-
-
-
-
-
-内连接查询的是两张表交集部分的数
+内连接查询的是两张表交集部分的数据。 (也就是绿色部分的数据)
 
 内连接的语法分为两种 : 隐式内连接、显式内连接。先来学习一下具体的语法结构。
 
@@ -2755,21 +2736,20 @@ select * from emp , dept where emp.dept_id = dept.id;
 
 
 ```sql
-SELECT  字段列表   FROM   表1 , 表
-WHERE   条件 ... ;
+SELECT 字段列表 FROM 表1 , 表2 WHERE 条件 ... ;
 ```
 2). 显式内连接
 
 
 ```sql
-SELECT  字段列表   FROM   表1  [ INNER ]  JOIN 表2  ON  连接条件 ... ;
+SELECT 字段列表 FROM 表1 [ INNER ] JOIN 表2 ON 连接条件 ... ;
 ```
 
 
 
 案例 :
 
-A. 查询每一个员工的姓名  , 及关联的部门的名称   (隐式内连接实现)
+A. 查询每一个员工的姓名 , 及关联的部门的名称 (隐式内连接实现)
 
 表结构 : emp , dept
 
@@ -2785,19 +2765,17 @@ select e.name,d.name from emp e , dept d where e.dept_id = d.id;
 
 
 
-B. 查询每一个员工的姓名  , 及关联的部门的名称   (显式内连接实现)  --- INNER JOIN ...
-
-ON ...
+B. 查询每一个员工的姓名 , 及关联的部门的名称 (显式内连接实现) --- INNER JOIN ...ON ...
 
 表结构 : emp , dept
 
 连接条件 : emp.dept_id = dept.id
 
 ```sql
-select e.name, d.name from emp e inner join dept d  on e.dept_id = d.id;
+select e.name, d.name from emp e inner join dept d on e.dept_id = d.id;
 
 -- 为每一张表起别名,简化SQL编写
-select e.name, d.name from emp e join dept d  on e.dept_id = d.id;
+select e.name, d.name from emp e join dept d on e.dept_id = d.id;
 ```
 
 
@@ -2809,20 +2787,20 @@ select e.name, d.name from emp e join dept d  on e.dept_id = d.id;
 
 <font style="background: aquamarine;">***注意事项 :***</font>
 
-* <font style="background: aquamarine;">***一旦为表起了别名，就不能再使用表名来指定对应的字段了，此时只能够使用别名来指定字段。***</font>
+​		<font style="background: aquamarine;">***一旦为表起了别名，就不能再使用表名来指定对应的字段了，此时只能够使用别名来指定字段。***</font>
 
 
 ### **5.4 外连接**
 
 ![](./images/chapter1/image276.png)
 
-外连接分为两种，分别是：左外连接  和  右外连接。具体的语法结构为：
+外连接分为两种，分别是：左外连接 和 右外连接。具体的语法结构为：
 
 1). 左外连接
 
 
 ```sql
-SELECT  字段列表   FROM   表1  LEFT  [ OUTER ]  JOIN 表2  ON  条件 ... ;
+SELECT 字段列表 FROM 表1 LEFT [ OUTER ] JOIN 表2 ON 条件 ... ;
 ```
 左外连接相当于查询表1(左表)的所有数据，当然也包含表1和表2交集部分的数据。
 
@@ -2832,7 +2810,7 @@ SELECT  字段列表   FROM   表1  LEFT  [ OUTER ]  JOIN 表2  ON  条件 ... ;
 
 
 ```sql
-SELECT  字段列表   FROM   表1  RIGHT  [ OUTER ]  JOIN 表2  ON  条件 ... ;
+SELECT 字段列表 FROM 表1 RIGHT [ OUTER ] JOIN 表2 ON 条件 ... ;
 ```
 右外连接相当于查询表2(右表)的所有数据，当然也包含表1和表2交集部分的数据。
 
@@ -2890,7 +2868,7 @@ select d.*, e.* from dept d left outer join emp e on e.dept_id = d.id;
 
 
 ```sql
-SELECT  字段列表   FROM   表A   别名A   JOIN  表A    别名B   ON  条件 ... ;
+SELECT 字段列表 FROM 表A 别名A JOIN 表A 别名B ON 条件 ... ;
 ```
 而对于自连接查询，可以是内连接查询，也可以是外连接查询。
 
@@ -2898,7 +2876,7 @@ SELECT  字段列表   FROM   表A   别名A   JOIN  表A    别名B   ON  条�
 
 案例：
 
-A. 查询员工  及其  所属领导的名字
+A. 查询员工 及其 所属领导的名字
 
 表结构 : emp
 
@@ -2909,7 +2887,7 @@ select a.name , b.name from emp a , emp b where a.managerid = b.id;
 
 
 
-B. 查询所有员工  emp 及其领导的名字  emp , 如果员工没有领导 , 也需要查询出来
+B. 查询所有员工 emp 及其领导的名字 emp , 如果员工没有领导 , 也需要查询出来
 
 表结构 : emp a , emp b
 
@@ -2933,9 +2911,9 @@ b.id;
 
 
 ```sql
-SELECT  字段列表   FROM   表A  ...
+SELECT 字段列表 FROM 表A ...
 UNION [ ALL ]
-SELECT  字段列表  FROM   表B  ....;
+SELECT 字段列表 FROM 表B ....;
 ```
 * 对于联合查询的多张表的列数必须保持一致，字段类型也需要保持一致。
 
@@ -2945,19 +2923,16 @@ SELECT  字段列表  FROM   表B  ....;
 
 案例 :
 
-A. 将薪资低于  5000 的员工  , 和  年龄大于  50 岁的员工全部查询出来 .
+A. 将薪资低于 5000 的员工 , 和 年龄大于 50 岁的员工全部查询出来 .
 
-当前对于这个需求，我们可以直接使用多条件查询，使用逻辑运算符  or 连接即可。    那这里呢，我们
+当前对于这个需求，我们可以直接使用多条件查询，使用逻辑运算符 or 连接即可。 那这里呢，我们
 
 也可以通过union/union all来联合查询 .
 
 ```sql
 select * from emp where salary < 5000
-
 union all
-
 select * from emp where age > 50;
-
 ```
 
 ![](./images/chapter1/image288.jpeg)
@@ -2998,8 +2973,7 @@ union 联合查询，会对查询出来的结果进行去重处理。
 
 SQL语句中嵌套SELECT语句，称为嵌套查询，又称子查询。
 ```sql
-SELECT  *  FROM   t
-WHERE  column1 =  ( SELECT  column1  FROM  t2 );
+SELECT * FROM t1 WHERE column1 = ( SELECT column1 FROM t2 );
 ```
 
 子查询外部的语句可以是INSERT / UPDATE / DELETE / SELECT 的任何一个。
@@ -3034,23 +3008,23 @@ C. SELECT之后
 
 子查询返回的结果是单个值（数字、字符串、日期等），最简单的形式，这种子查询称为标量子查询。
 
-常用的操作符：  =  <>  >   >=   <  <=
+常用的操作符： = <> > >= < <=
 
 
 
 案例 :
 
-A. 查询  "销售部 " 的所有员工信息
+A. 查询 "销售部 " 的所有员工信息
 
 完成这个需求时，我们可以将需求分解为两步：
 
-① . 查询  "销售部 " 部门ID
+① . 查询 "销售部 " 部门ID
 
 
 ```sql
 select id from dept where name = '销售部';
 ```
-② . 根据  "销售部 " 部门ID, 查询员工信息
+② . 根据 "销售部 " 部门ID, 查询员工信息
 
 
 ```sql
@@ -3059,11 +3033,11 @@ select * from emp where dept id = (select id from dept where name = '销售部')
 
 
 
-B. 查询在  "方东白 " 入职之后的员工信息
+B. 查询在 "方东白 " 入职之后的员工信息
 
 完成这个需求时，我们可以将需求分解为两步：
 
-① . 查询  方东白  的入职日期
+① . 查询 方东白 的入职日期
 
 ```sql
 select entrydate from emp where name = '方东白';
@@ -3083,7 +3057,7 @@ select * from emp where entrydate > (select entrydate from emp where name = '方
 
 子查询返回的结果是一列（可以是多行），这种子查询称为列子查询。
 
-常用的操作符：  IN 、NOT IN 、  ANY 、 SOME 、  ALL
+常用的操作符： IN 、NOT IN 、 ANY 、 SOME 、 ALL
 
 
 |**操作符**|**描述**|
@@ -3098,11 +3072,11 @@ select * from emp where entrydate > (select entrydate from emp where name = '方
 
 案例 :
 
-A. 查询  "销售部 " 和  "市场部 " 的所有员工信息
+A. 查询 "销售部 " 和 "市场部 " 的所有员工信息
 
 分解为以下两步 :
 
-① . 查询  "销售部 " 和  "市场部 " 的部门ID
+① . 查询 "销售部 " 和 "市场部 " 的部门ID
 
 
 ```sql
@@ -3117,23 +3091,23 @@ select * from emp where dept id in (select id from dept where name = '销售部'
 
 
 
-B. 查询比  财务部  所有人工资都高的员工信息
+B. 查询比 财务部 所有人工资都高的员工信息
 
 分解为以下两步 :
 
-① . 查询所有  财务部  人员工资
+① . 查询所有 财务部 人员工资
 
 
 ```sql
 select id from dept where name = '财务部';
+
 select salary from emp where dept id = (select id from dept where name = '财务部');
 ```
-② . 比  财务部  所有人工资都高的员工信息
+② . 比 财务部 所有人工资都高的员工信息
 
 ```sql
 select * from emp where salary > all ( select salary from emp where dept id =
-
-(select_id from dept where name = '财务部') );
+	(select_id from dept where name = '财务部') );
 ```
 
 
@@ -3152,7 +3126,8 @@ select salary from emp where dept id = (select id from dept where name = '研发
 
 
 ```sql
-select * from emp where salary > any ( select salary from emp where dept id =(select id from dept where name = '研发部') );
+select * from emp where salary > any 
+	( select salary from emp where dept id =(select id from dept where name = '研发部') );
 ```
 
 
@@ -3163,17 +3138,17 @@ select * from emp where salary > any ( select salary from emp where dept id =(se
 
 子查询返回的结果是一行（可以是多列），这种子查询称为行子查询。
 
-常用的操作符：  = 、<> 、 IN 、NOT IN
+常用的操作符： = 、<> 、 IN 、NOT IN
 
 
 
 案例 :
 
-A. 查询与  "张无忌 " 的薪资及直属领导相同的员工信息  ;
+A. 查询与 "张无忌 " 的薪资及直属领导相同的员工信息 ;
 
 这个需求同样可以拆解为两步进行 :
 
-① . 查询  "张无忌 " 的薪资及直属领导
+① . 查询 "张无忌 " 的薪资及直属领导
 
 
 ```sql
@@ -3181,11 +3156,10 @@ select salary, managerid from emp where name = '张无忌';
 ```
 
 
-② . 查询与  "张无忌 " 的薪资及直属领导相同的员工信息  ;
+② . 查询与 "张无忌 " 的薪资及直属领导相同的员工信息 ;
 
 ```sql
 select * from emp where (salary,managerid) = (select salary, managerid from emp where name = '张无忌');
-
 ```
 
 
@@ -3193,36 +3167,37 @@ select * from emp where (salary,managerid) = (select salary, managerid from emp 
 
 子查询返回的结果是多行多列，这种子查询称为表子查询。
 
-常用的操作符：  IN
+常用的操作符： IN
 
 
 
 案例 :
 
-A. 查询与  "鹿杖客 " , "宋远桥 " 的职位和薪资相同的员工信息
+A. 查询与 "鹿杖客 " , "宋远桥 " 的职位和薪资相同的员工信息
 
 分解为两步执行 :
 
-① . 查询  "鹿杖客 " , "宋远桥 " 的职位和薪资
+① . 查询 "鹿杖客 " , "宋远桥 " 的职位和薪资
 
 
 ```sql
 select job, salary from emp where name = '鹿杖客' or name = '宋远桥';
 ```
-② . 查询与  "鹿杖客 " , "宋远桥 " 的职位和薪资相同的员工信息
+② . 查询与 "鹿杖客 " , "宋远桥 " 的职位和薪资相同的员工信息
 
 
 ```sql
-select * from emp where (job,salary) in ( select job, salary from emp where name = '鹿杖客' or name = '宋远桥' );
+select * from emp where (job,salary) in 
+	( select job, salary from emp where name = '鹿杖客' or name = '宋远桥' );
 ```
 
 
 
-B. 查询入职日期是  "2006-01-01" 之后的员工信息  , 及其部门信息
+B. 查询入职日期是 "2006-01-01" 之后的员工信息 , 及其部门信息
 
 分解为两步执行 :
 
-① . 入职日期是  "2006-01-01" 之后的员工信息
+① . 入职日期是 "2006-01-01" 之后的员工信息
 
 
 ```sql
@@ -3231,9 +3206,8 @@ select * from emp where entrydate > '2006-01-01';
 ② . 查询这部分员工 , 对应的部门信息 ;
 
 ```sql
-select e.*, d.* from (select * from emp where entrydate > '2006-01-01') e left
-
-join dept d on e.dept_id = d.id ;
+select e.*, d.* from (select * from emp where entrydate > '2006-01-01') e 
+	left join dept d on e.dept_id = d.id ;
 ```
 
 
@@ -3249,6 +3223,7 @@ create table salgrade (
     losal int,
     hisal int
 ) comment '薪资等级表';
+
 insert into salgrade values (1,0,3000);
 insert into salgrade values (2,3001,5000);
 insert into salgrade values (3,5001,8000);
@@ -3261,13 +3236,13 @@ insert into salgrade values (8,25001,30000);
 
 
 
-在这个案例中，我们主要运用上面所讲解的多表查询的语法，完成以下的12个需求即可，而这里主要涉
+在这个案例中，我们主要运用上面所讲解的多表查询的语法，完成以下的12个需求即可，而这里主要涉及到的表就三张：
 
-及到的表就三张：  emp员工表、  dept部门表、  salgrade薪资等级表  。
+emp员工表、 dept部门表、 salgrade薪资等级表 。
 
 
 
-1). 查询员工的姓名、  年龄、职位、部门信息    （隐式内连接）
+1). 查询员工的姓名、 年龄、职位、部门信息 （隐式内连接）
 
 表 : emp , dept
 
@@ -3303,9 +3278,7 @@ select distinct d.id , d.name from emp e , dept d where e.dept_id = d.id;
 
 
 
-4). 查询所有年龄大于40岁的员工 , 及其归属的部门名称 ; 如果员工没有分配部门 , 也需要展示出
-
-来(外连接)
+4). 查询所有年龄大于40岁的员工 , 及其归属的部门名称 ; 如果员工没有分配部门 , 也需要展示出来(外连接)
 
 表 : emp , dept
 
@@ -3322,7 +3295,7 @@ select e.*, d.name from emp e left join dept d on e.dept_id = d.id where e.age >
 
 表 : emp , salgrade
 
-连接条件   : emp.salary >= salgrade.losal and emp.salary <= salgrade.hisal
+连接条件 : emp.salary >= salgrade.losal and emp.salary <= salgrade.hisal
 
 ```sql
 -- 方式一
@@ -3332,15 +3305,15 @@ select e.* , s.grade , s.losal, s.hisal from emp e , salgrade s where e.salary >
 select e.* , s.grade , s.losal, s.hisal from emp e , salgrade s where e.salary between s.losal and s.hisal;
 ```
 
-6). 查询  "研发部 " 所有员工的信息及  工资等级
+6). 查询 "研发部 " 所有员工的信息及 工资等级
 
 表 : emp , salgrade , dept
 
-连接条件   : emp.salary between salgrade.losal and salgrade.hisal ,
+连接条件 : emp.salary between salgrade.losal and salgrade.hisal ,
 
 emp.dept_id = dept.id
 
-查询条件   : dept.name = '研发部'
+查询条件 : dept.name = '研发部'
 
 
 ```sql
@@ -3348,11 +3321,11 @@ select e.* , s.grade from emp e , dept d , salgrade s where e.dept_id = d.id and
 ```
 
 
-7). 查询  "研发部 " 员工的平均工资
+7). 查询 "研发部 " 员工的平均工资
 
 表 : emp , dept
 
-连接条件   :  emp.dept_id = dept.id
+连接条件 : emp.dept_id = dept.id
 
 ```sql
 select avg(e.salary) from emp e, dept d where e.dept_id = d.id and d.name = '研发部';
@@ -3360,9 +3333,9 @@ select avg(e.salary) from emp e, dept d where e.dept_id = d.id and d.name = '研
 
 
 
-8). 查询工资比  "灭绝 " 高的员工信息。
+8). 查询工资比 "灭绝 " 高的员工信息。
 
-① . 查询  "灭绝 " 的薪资
+① . 查询 "灭绝 " 的薪资
 
 
 ```sql
@@ -3400,6 +3373,7 @@ select * from emp where salary > ( select avg(salary) from emp );
 
 ```sql
 select avg(e1.salary) from emp e1 where e1.dept_id = 1;
+
 select avg(e1.salary) from emp e1 where e1.dept_id = 2;
 ```
 
@@ -3422,14 +3396,13 @@ select d.id, d.name , ( select count(*) from emp e where e.dept_id = d.id ) '人
 student_course.courseid
 
 ```sql
-select s.name , s.no , c.name from student s , student_course sc , course c wheres.id = sc.studentid and sc.courseid = c.id ;
+select s.name , s.no , c.name from student s , student_course sc , course c 
+	wheres.id = sc.studentid and sc.courseid = c.id ;
 ```
 
 
 
-**备注 : 以上需求的实现方式可能会很多 , SQL写法也有很多，只要能满足我们的需求，查询出符合条**
-
-**件的记录即可。**
+**备注 : 以上需求的实现方式可能会很多 , SQL写法也有很多，只要能满足我们的需求，查询出符合条件的记录即可。**
 
 
 
@@ -3439,38 +3412,29 @@ select s.name , s.no , c.name from student s , student_course sc , course c wher
 
 ### **6.1 事务简介**
 
-事务  是一组操作的集合，它是一个不可分割的工作单位，事务会把所有的操作作为一个整体一起向系
+事务 是一组操作的集合，它是一个不可分割的工作单位，事务会把所有的操作作为一个整体一起向系统提交或撤销操作请求，即这些操作要么同时成功，要么同时失败。
 
-统提交或撤销操作请求，即这些操作要么同时成功，要么同时失败。
-
-就比如 : 张三给李四转账1000块钱，张三银行账户的钱减少1000，而李四银行账户的钱要增加
-
-1000。  这一组操作就必须在一个事务的范围内，要么都成功，要么都失败。
+就比如 : 张三给李四转账1000块钱，张三银行账户的钱减少1000，而李四银行账户的钱要增加1000。 这一组操作就必须在一个事务的范围内，要么都成功，要么都失败。
 ![](./images/chapter1/image325.jpeg)
 
-正常情况 : 转账这个操作 , 需要分为以下这么三步来完成  , 三步完成之后 , 张三减少1000, 而李四
-
-增加1000, 转账成功   :
+正常情况 : 转账这个操作 , 需要分为以下这么三步来完成 , 三步完成之后 , 张三减少1000, 而李四增加1000, 转账成功 :
 
 ![](./images/chapter1/image326.png)![](./images/chapter1/image327.png)
 
 
 
-异常情况 :  转账这个操作 , 也是分为以下这么三步来完成  , 在执行第三步是报错了 , 这样就导致张
-
-三减少1000块钱 , 而李四的金额没变 , 这样就造成了数据的不一致 , 就出现问题了。
+异常情况 : 转账这个操作 , 也是分为以下这么三步来完成 , 在执行第三步是报错了 , 这样就导致张三减少1000块钱 , 而李四的金额没变 , 这样就造成了数据的不一致 , 就出现问题了。
 
 ![](./images/chapter1/image328.png)
 
 ![](./images/chapter1/image329.png)
 
-为了解决上述的问题，就需要通过数据的事务来完成，我们只需要在业务逻辑执行之前开启事务，执行
-
-完毕后提交事务。如果执行过程中报错，则回滚事务，把数据恢复到事务开始之前的状态。
+为了解决上述的问题，就需要通过数据的事务来完成，我们只需要在业务逻辑执行之前开启事务，执行完毕后提交事务。如果执行过程中报错，则回滚事务，把数据恢复到事务开始之前的状态。
 
 ![](./images/chapter1/image330.jpeg)
 
-<font style="background: aquamarine;">***注意：   默认MySQL的事务是自动提交的，也就是说，当执行完一条DML语句时， MySQL会立即隐式的提交事务。***</font>
+<font style="background: aquamarine;">***注意： 默认MySQL的事务是自动提交的，也就是说，当执行完一条DML语句时， MySQL会立即隐式的提交事务。***</font>
+
 
 
 ### **6.2 事务操作**
@@ -3479,12 +3443,14 @@ select s.name , s.no , c.name from student s , student_course sc , course c wher
 
 
 ```sql
-drop  table if exists account;
+drop table if exists account;
+
 create table account(
   id int primary key AUTO_INCREMENT comment 'ID',
   name varchar (10) comment '姓名',
   money double (10,2) comment '余额'
 ) comment '账户表';
+
 insert into account(name, money) VALUES ( '张三',2000), ( '李四',2000);
 ```
 
@@ -3509,8 +3475,6 @@ update account set money = money + 1000 where name = '李四';
 
 ![](./images/chapter1/image334.png)
 
-
-
 2). 测试异常情况
 
 ```sql
@@ -3525,13 +3489,9 @@ update account set money = money - 1000 where name = '张三';
 update account set money = money + 1000 where name = '李四';
 ```
 
-我们把数据都恢复到2000，  然后再次一次性执行上述的SQL语句(出错了 ....  这句话不符合SQL语法 ,执行就会报错)，检查最终的数据情况 , 发现数据在操作前后不一致了。
+我们把数据都恢复到2000， 然后再次一次性执行上述的SQL语句(出错了 .... 这句话不符合SQL语法 ,执行就会报错)，检查最终的数据情况 , 发现数据在操作前后不一致了。
 
 ![](./images/chapter1/image336.png)
-
-
-
-
 
 
 #### **6.2.2 控制事务一**
@@ -3539,8 +3499,12 @@ update account set money = money + 1000 where name = '李四';
 1). 查看/设置事务提交方式
 
 ```sql
-SELECT  @@autocommit ;
-SET   @@autocommit = 0 ;
+SELECT @@autocommit ;
+```
+
+```sql
+-- 设置事务不要自动提交（false）
+SET @@autocommit = 0 ;
 ```
 
 2). 提交事务
@@ -3569,8 +3533,13 @@ ROLLBACK;
 
 
 ```sql
-START  TRANSACTION   或  BEGIN ;
+START TRANSACTION;
 ```
+```sql
+-- 或者
+BEGIN;
+```
+
 2). 提交事务
 
 
@@ -3608,8 +3577,6 @@ commit;
 -- rollback;
 ```
 
-
-
 ### **6.3 事务四大特性**
 
 * 原子性（Atomicity）：事务是不可分割的最小操作单元，要么全部成功，要么全部失败。
@@ -3635,7 +3602,7 @@ commit;
 
 
 
-2). 不可重复读：  一个事务先后读取同一条记录，但两次读取的数据不同，称之为不可重复读。
+2). 不可重复读： 一个事务先后读取同一条记录，但两次读取的数据不同，称之为不可重复读。
 
 ![](./images/chapter1/image347.jpeg)
 
@@ -3643,13 +3610,9 @@ commit;
 
 3). 幻读： 一个事务按照条件查询数据时，没有对应的数据行，但是在插入数据时，又发现这行数据
 
-已经存在，好像出现了  "幻影 "。
+已经存在，好像出现了 "幻影 "。
 
 ![](./images/chapter1/image348.jpeg)
-
-
-
-
 
 
 ### **6.5 事务隔离级别**
@@ -3664,8 +3627,6 @@ commit;
 |**Repeatable Read(默认)**|×|×|√|
 |**Serializable**|×|×|×|
 
-
-
 1). 查看事务隔离级别
 
 
@@ -3673,16 +3634,11 @@ commit;
 SELECT @@TRANSACTION_ISOLATION;
 ```
 
-
-
-2). 设置事务隔离级别
+2). 置事务隔离级别
 
 
 ```sql
-SET  [ SESSION | GLOBAL ]  TRANSACTION  ISOLATION  LEVEL  { READ UNCOMMITTED |READ COMMITTED | REPEATABLE READ | SERIALIZABLE }
+SET [ SESSION | GLOBAL ] TRANSACTION ISOLATION LEVEL { READ UNCOMMITTED |READ COMMITTED | REPEATABLE READ | SERIALIZABLE }
 ```
 
-
-
 <font style="background: aquamarine;">***注意：事务隔离级别越高，数据越安全，但是性能越低。***</font>
-
