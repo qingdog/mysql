@@ -84,3 +84,33 @@
 
 
 处理多个空格`([^ |\r\n|述])(  )(.)`123`$1 $3`
+
+
+
+## read
+
+pdf2md
+
+https://www.ilovepdf.com/zh-cn/pdf_to_word
+
+```shell
+pandoc --extract-media . -o temp.md -i import.docx
+```
+
+缺点：
+
+* word标题不保留数字编号
+
+* word文本框工具上的文字（青色背景文字）不能被识别出来（缺少文字）
+* 表格没有格式
+* 代码没有格式
+
+`^>`123kong
+`\n> `123kong
+\n```{=html}\n<!-- -->\n```123kong
+
+
+
+`{width=.+}$`123kong
+
+`{width=.+\r\nheig.+}`123kong
