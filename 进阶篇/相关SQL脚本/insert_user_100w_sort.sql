@@ -1,0 +1,2 @@
+insert into tb_user (id, username, password, name, birthday, sex) values(1,'zmcTTgUSDV1','zmcTTgUSDV','zmcTTgUSDV','2020-12-14','1');
+insert into tb_user (id, username, password, name, birthday, sex) values(2,'pXpwxkVuAl2','pXpwxkVuAl','pXpwxkVuAl','2020-9-27','2');
