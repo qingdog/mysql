@@ -243,9 +243,7 @@ MySQL是关系型数据库，是基于二维表进行数据存储的，具体的
 
 * 可以使用SQL语句，通过数据库管理系统操作数据库，以及操作数据库中的表结构及数据。
 
-* 一个数据库服务器中可以创建多个数据库， 一个数据库中也可以包含多张表，而一张表中又可以包
-
-含多行记录。
+* 一个数据库服务器中可以创建多个数据库， 一个数据库中也可以包含多张表，而一张表中又可以包含多行记录。
 
 ## **2. SQL**
 
@@ -666,23 +664,17 @@ TRUNCATE TABLE 表名;
 
 ### **2.4 图形化界面工具**
 
-上述，我们已经讲解了通过DDL语句，如何操作数据库、操作表、操作表中的字段，而通过DDL语句执
-
-行在命令进行操作，主要存在以下两点问题：
+上述，我们已经讲解了通过DDL语句，如何操作数据库、操作表、操作表中的字段，而通过DDL语句执行在命令进行操作，主要存在以下两点问题：
 
 1).会影响开发效率 ;
 
 2). 使用起来，并不直观，并不方便 ；
 
-所以呢，我们在日常的开发中，会借助于MySQL的图形化界面，来简化开发，提高开发效率。而目前
-
-mysql主流的图形化界面工具，有以下几种：
+所以呢，我们在日常的开发中，会借助于MySQL的图形化界面，来简化开发，提高开发效率。而目前mysql主流的图形化界面工具，有以下几种：
 
 ![](./images/chapter1/image75.png)
 
-而本次课程中，选择最后一种DataGrip，这种图形化界面工具，功能更加强大，界面提示更加友好，
-
-是我们使用MySQL的不二之选。接下来，我们来介绍一下DataGrip该如何安装、使用。
+而本次课程中，选择最后一种DataGrip，这种图形化界面工具，功能更加强大，界面提示更加友好，是我们使用MySQL的不二之选。接下来，我们来介绍一下DataGrip该如何安装、使用。
 
 
 
@@ -1351,11 +1343,11 @@ SELECT 字段列表 FROM 表名 [ WHERE 条件 ] GROUP BY 分组字段名 [ HAVI
 
 * 判断条件不同： where不能对聚合函数进行判断，而having可以。
 
-> <font style="background: aquamarine;">注意事项 :</font>
+> <font style="background: aquamarine;">***注意事项 :***</font>
 >
-> * <font style="background: aquamarine;">分组之后，查询的字段一般为聚合函数和分组字段，查询其他字段无任何意义。</font>
-> * <font style="background: aquamarine;">执行顺序 : where > 聚合函数 > having 。</font>
-> * <font style="background: aquamarine;">支持多字段分组 , 具体语法为 : group by columnA,columnB</font>
+> * <font style="background: aquamarine;">***分组之后，查询的字段一般为聚合函数和分组字段，查询其他字段无任何意义。***</font>
+> * <font style="background: aquamarine;">***执行顺序 : where > 聚合函数 > having 。***</font>
+> * <font style="background: aquamarine;">***支持多字段分组 , 具体语法为 : group by columnA,columnB***</font>
 
 
 案例 :
@@ -1376,9 +1368,8 @@ select gender, avg(age) from emp group by gender ;
 
 C. 查询年龄小于45的员工 , 并根据工作地址分组 , 获取员工数量大于等于3的工作地址
 ```sql
-select workaddress, count(*) address_count from emp where age < 45 group by
-
-workaddress having address_count >= 3;
+select workaddress, count(*) address_count from emp where age < 45 
+	group by workaddress having address_count >= 3;
 ```
 
 D. 统计各个工作地址上班的男性及女性员工的数量
@@ -1622,7 +1613,7 @@ CREATE USER '用户名'@'主机名' IDENTIFIED BY '密码';
 
 
 ```sql
-ALTER USER '用户名'@'主机名' IDENTIFIED WITH mysql native password BY '新密码' ;
+ALTER USER '用户名'@'主机名' IDENTIFIED WITH mysql_native_password BY '新密码' ;
 ```
 4). 删除用户
 
@@ -2121,7 +2112,7 @@ MySQL的常见函数我们学习完了，那接下来，我们就来分析一下
 
 ```sql
 CREATE TABLE tb_user (
-    id int AUTO INCREMENT PRIMARY KEY COMMENT 'ID唯一标识',
+    id int AUTO_INCREMENT PRIMARY KEY COMMENT 'ID唯一标识',
     name varchar (10) NOT NULL UNIQUE COMMENT '姓名' ,
     age int check (age > 0 && age <= 120) COMMENT '年龄' ,
     status char (1) default '1' COMMENT '状态',
@@ -2179,14 +2170,14 @@ insert into tb_user (name,age,gender) values ( 'Tom5',120, '男');
 
 ```sql
 create table dept(
-    id int auto increment comment 'ID' primary key,
+    id int auto_increment comment 'ID' primary key,
     name varchar (50) not null comment '部门名称'
 )comment '部门表';
 
 INSERT INTO dept (id, name) VALUES (1, '研发部'), (2, '市场部'), (3, '财务部'), (4,'销售部'), (5, '总经办');
 
 create table emp(
-    id int auto increment comment 'ID' primary key,
+    id int auto_increment comment 'ID' primary key,
     name varchar (50) not null comment '姓名',
     age int comment '年龄',
     job varchar (20) comment '职位',
@@ -2397,7 +2388,7 @@ alter table emp add constraint fk_emp_dept_id foreign key (dept_id) references d
 对应的SQL脚本 :
 ```sql
 create table student(
-  id int auto increment primary key comment '主键ID',
+  id int auto_increment primary key comment '主键ID',
   name varchar (10) comment '姓名',
   no varchar (10) comment '学号'
 ) comment '学生表';
@@ -2407,14 +2398,14 @@ insert into student values
 	(null, '殷天正', '2000100103'), (null, '韦一笑', '2000100104');
 
 create table_course (
-    id int auto increment primary key comment '主键ID',
+    id int auto_increment primary key comment '主键ID',
     name varchar (10) comment '课程名称'
 ) comment '课程表';
 
 insert into course values (null, 'Java'), (null, 'PHP'), (null , 'MySQL') ,(null, 'Hadoop');
 
 create table student_course (
-    id int auto increment comment '主键' primary key,
+    id int auto_increment comment '主键' primary key,
     studentid int not null comment '学生ID',
     courseid int not null comment '课程ID',
     constraint fk_courseid foreign key (courseid) references course (id),
@@ -2437,7 +2428,7 @@ insert into student_course values (null,1,1), (null,1,2), (null,1,3), (null,2,2)
 对应的SQL脚本 :
 ```sql
 create table tb_user (
-  id int auto increment primary key comment '主键ID',
+  id int auto_increment primary key comment '主键ID',
   name varchar (10) comment '姓名',
   age int comment '年龄',
   gender char (1) comment '1: 男 , 2: 女 ',
@@ -2445,7 +2436,7 @@ create table tb_user (
 ) comment '用户基本信息表';
 
 create table tb_user edu (
-    id int auto increment primary key comment '主键ID',
+    id int auto_increment primary key comment '主键ID',
     degree varchar (20) comment '学历',
     major varchar (50) comment '专业',
     primaryschool varchar (50) comment '小学',
@@ -2480,7 +2471,7 @@ insert into tb_user_edu (id, degree, major, primaryschool, middleschool, univers
 ```sql
 -- 创建dept表，并插入数据
 create table dept(
-  id int auto increment comment 'ID' primary key,
+  id int auto_increment comment 'ID' primary key,
   name varchar (50) not null comment '部门名称'
 )comment '部门表';
 
@@ -2489,7 +2480,7 @@ INSERT INTO dept (id, name) VALUES
 
 -- 创建emp表，并插入数据
 create table emp(
-    id int auto increment comment 'ID' primary key,
+    id int auto_increment comment 'ID' primary key,
     name varchar (50) not null comment '姓名',
     age int comment '年龄',
     job varchar (20) comment '职位',
@@ -2643,7 +2634,7 @@ select e.name, d.name from emp e join dept d on e.dept_id = d.id;
 
 > <font style="background: aquamarine;">***注意事项 :***</font>
 >
-​		<font style="background: aquamarine;">***一旦为表起了别名，就不能再使用表名来指定对应的字段了，此时只能够使用别名来指定字段。***</font>
+>​		<font style="background: aquamarine;">***一旦为表起了别名，就不能再使用表名来指定对应的字段了，此时只能够使用别名来指定字段。***</font>
 
 
 ### **5.4 外连接**
@@ -2710,7 +2701,7 @@ select d.*, e.* from dept d left outer join emp e on e.dept_id = d.id;
 
 > <font style="background: aquamarine;">***注意事项：***</font>
 >
-​		<font style="background: aquamarine;">***左外连接和右外连接是可以相互替换的，只需要调整在连接查询时SQL中，表结构的先后顺序就可以了。而我们在日常开发使用时，更偏向于左外连接。***</font>
+>​		<font style="background: aquamarine;">***左外连接和右外连接是可以相互替换的，只需要调整在连接查询时SQL中，表结构的先后顺序就可以了。而我们在日常开发使用时，更偏向于左外连接。***</font>
 
 
 
@@ -2742,7 +2733,6 @@ select a.name , b.name from emp a , emp b where a.managerid = b.id;
 ```
 
 
-
 B. 查询所有员工 emp 及其领导的名字 emp , 如果员工没有领导 , 也需要查询出来
 
 表结构 : emp a , emp b
@@ -2755,7 +2745,7 @@ select a.name '员工', b.name '领导' from emp a left join emp b on a.manageri
 
 > <font style="background: aquamarine;">***注意事项 :***</font>
 >
-​		<font style="background: aquamarine;">***在自连接查询中，必须要为表起别名，要不然我们不清楚所指定的条件、返回的字段，到底是哪一张表的字段。***</font>
+>		<font style="background: aquamarine;">***在自连接查询中，必须要为表起别名，要不然我们不清楚所指定的条件、返回的字段，到底是哪一张表的字段。***</font>
 
 
 
@@ -2779,9 +2769,7 @@ SELECT 字段列表 FROM 表B ....;
 
 A. 将薪资低于 5000 的员工 , 和 年龄大于 50 岁的员工全部查询出来 .
 
-当前对于这个需求，我们可以直接使用多条件查询，使用逻辑运算符 or 连接即可。 那这里呢，我们
-
-也可以通过union/union all来联合查询 .
+当前对于这个需求，我们可以直接使用多条件查询，使用逻辑运算符 or 连接即可。 那这里呢，我们也可以通过union/union all来联合查询 .
 
 ```sql
 select * from emp where salary < 5000
@@ -2811,7 +2799,6 @@ union 联合查询，会对查询出来的结果进行去重处理。
 **注意：**
 
 如果多条查询语句查询出来的结果，字段数量不一致，在进行union/union all联合查询时，将会报
-
 错。如：
 
 ![](./images/chapter1/image291.png)
@@ -3435,7 +3422,7 @@ commit;
 
 * 原子性（Atomicity）：事务是不可分割的最小操作单元，要么全部成功，要么全部失败。
 
-* 一致性（Consistency）： 态。
+* 一致性（Consistency）：事务完成时，必须使所有的数据都保持一致状态。
 
 * 隔离性（Isolation）：数据库系统提供的隔离机制，保证事务在不受外部并发操作影响的独立环境下运行。
 
@@ -3491,6 +3478,10 @@ SELECT @@TRANSACTION_ISOLATION;
 
 ```sql
 SET [ SESSION | GLOBAL ] TRANSACTION ISOLATION LEVEL { READ UNCOMMITTED |READ COMMITTED | REPEATABLE READ | SERIALIZABLE }
+```
+
+```sql
+set global transaction isolation level read committe
 ```
 
 <font style="background: aquamarine;">***注意：事务隔离级别越高，数据越安全，但是性能越低。***</font>
