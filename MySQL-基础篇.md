@@ -42,11 +42,9 @@ MySQL数据库有很好的兼容性。
 
 
 
-而不论我们使用的是上面的哪一个关系型数据库，最终在操作时，都是使用SQL语言来进行统一操作， 因为我们前面讲到SQL语言，是操作关系型数据库的 <font color="red">**统一标准**</font> 。所以即使我们现在学习的是MySQL， 假如我们以后到了公司，使用的是别的关系型数据库，如： Oracle、 DB2、 SQLServer，也完全不用
+而不论我们使用的是上面的哪一个关系型数据库，最终在操作时，都是使用SQL语言来进行统一操作， 因为我们前面讲到SQL语言，是操作关系型数据库的 <font color="red">**统一标准**</font> 。
 
-担心，因为操作的方式都是一致的。
-
-
+所以即使我们现在学习的是MySQL， 假如我们以后到了公司，使用的是别的关系型数据库，如： Oracle、 DB2、 SQLServer，也完全不用担心，因为操作的方式都是一致的。
 
 
 
@@ -72,8 +70,6 @@ MySQL官方提供了两种不同的版本：
 
 
 本课程采用的是MySQL最新的社区版-MySQL Community Server 8.0.26
-
-
 
 
 
@@ -185,7 +181,7 @@ net stop mysql80
 
 ![](./images/chapter1/image22.jpeg)
 
-<font style="background-color: rgb(235,248,242)">***注意 ： 上述的 mysql80 是我们在安装MySQL时，默认指定的mysql的系统服务名，不是固定的，如果未改动，默认就是mysql80。***</font>
+> <font style="background-color: rgb(235,248,242)">***注意 ： 上述的 mysql80 是我们在安装MySQL时，默认指定的mysql的系统服务名，不是固定的，如果未改动，默认就是mysql80。***</font>
 
 
 ![](./images/chapter1/image24.png)
@@ -214,7 +210,7 @@ mysql [-h 127.0.0.1] [-P 3306] -u root -p
 
 ![](./images/chapter1/image27.jpeg)
 
-<font style="background: aquamarine;">***注意： 使用这种方式进行连接时，需要安装完毕后配置PATH环境变量。***</font>
+> <font style="background: aquamarine;">***注意： 使用这种方式进行连接时，需要安装完毕后配置PATH环境变量。***</font>
 
 
 #### **1.2.6 数据模型**
@@ -223,13 +219,9 @@ mysql [-h 127.0.0.1] [-P 3306] -u root -p
 
 概念：建立在关系模型基础上，由多张相互连接的二维表组成的数据库。
 
-而所谓二维表，指的是由行和列组成的表，如下图（就类似于Excel表格数据，有表头、有列、有行，
+而所谓二维表，指的是由行和列组成的表，如下图（就类似于Excel表格数据，有表头、有列、有行，还可以通过一列关联另外一个表格中的某一列数据）。
 
-还可以通过一列关联另外一个表格中的某一列数据）。我们之前提到的MySQL、Oracle、 DB2、
-
-SQLServer这些都是属于关系型数据库，里面都是基于二维表存储数据的。简单说，基于二维表存储
-
-数据的数据库就成为关系型数据库，不是基于二维表存储数据的数据库，就是非关系型数据库。
+我们之前提到的MySQL、Oracle、 DB2、SQLServer这些都是属于关系型数据库，里面都是基于二维表存储数据的。简单说，基于二维表存储数据的数据库就成为关系型数据库，不是基于二维表存储数据的数据库，就是非关系型数据库。
 
 ![](./images/chapter1/image29.png)
 
@@ -257,9 +249,7 @@ MySQL是关系型数据库，是基于二维表进行数据存储的，具体的
 
 ## **2. SQL**
 
-全称 Structured Query Language，结构化查询语言。操作关系型数据库的编程语言，定义了
-
-一套操作关系型数据库统一**标准** 。
+全称 Structured Query Language，结构化查询语言。操作关系型数据库的编程语言，定义了一套操作关系型数据库统一**标准** 。
 
 ### **2.1 SQL通用语法**
 
@@ -331,9 +321,7 @@ create database itcast;
 
 ![](./images/chapter1/image37.png)
 
-可以通过if not exists 参数来解决这个问题，数据库不存在 , 则创建该数据库，如果存在，则不
-
-创建。
+可以通过if not exists 参数来解决这个问题，数据库不存在 , 则创建该数据库，如果存在，则不创建。
 
 
 ```sql
@@ -343,8 +331,6 @@ create database if not extists itcast;
 
 ![](./images/chapter1/image39.jpeg)
 
-
-
 B. 创建一个itheima数据库，并且指定字符集
 
 
@@ -353,8 +339,6 @@ create database itheima default charset utf8mb4;
 ```
 
 ![](./images/chapter1/image41.jpeg)
-
-
 
 **4). 删除数据库**
 
@@ -367,8 +351,6 @@ drop database [ if exists ] 数据库名 ;
 执行删除，否则不执行删除。
 
 ![](./images/chapter1/image43.png)
-
-
 
 **5). 切换数据库**
 
@@ -405,34 +387,24 @@ show tables;
 
 ![](./images/chapter1/image48.jpeg)
 
-
-
 **2). 查看指定表结构**
 
 
 ```sql
 desc 表名 ;
 ```
-通过这条指令，我们可以查看到指定表的字段，字段的类型、是否可以为NULL，是否存在默认值等信
-
-息。
+通过这条指令，我们可以查看到指定表的字段，字段的类型、是否可以为NULL，是否存在默认值等信息。
 
 ![](./images/chapter1/image50.jpeg)
-
-
 
 **3). 查询指定表的建表语句**
 
 ```sql
 show create table 表名 ;
 ```
-通过这条指令，主要是用来查看建表语句的，而有部分参数我们在创建表的时候，并未指定也会查询
-
-到，因为这部分是数据库的默认值，如：存储引擎、字符集等。
+通过这条指令，主要是用来查看建表语句的，而有部分参数我们在创建表的时候，并未指定也会查询到，因为这部分是数据库的默认值，如：存储引擎、字符集等。
 
 ![](./images/chapter1/image52.jpeg)
-
-
 
 **4). 创建表结构**
 
@@ -446,7 +418,7 @@ CREATE TABLE 表名(
     字段n 字段n类型 [COMMENT 字段n注释 ]
 ) [ COMMENT 表注释 ] ;
 ```
-<font style="background: aquamarine;">***注意 : [...] 内为可选参数，最后一个字段后面没有逗号***</font>
+> <font style="background: aquamarine;">***注意 : [...] 内为可选参数，最后一个字段后面没有逗号***</font>
 
 
 比如，我们创建一张表 tb_user ，对应的结构如下，那么建表语句为：
@@ -465,15 +437,13 @@ create table tb_user (
 
 ##### **2.3.2.2 表操作-数据类型**
 
-在上述的建表语句中，我们在指定字段的数据类型时，用到了int ，varchar，那么在MySQL中除了
-
-以上的数据类型，还有哪些常见的数据类型呢？ 接下来 ,我们就来详细介绍一下MySQL的数据类型。
+在上述的建表语句中，我们在指定字段的数据类型时，用到了int ，varchar，那么在MySQL中除了以上的数据类型，还有哪些常见的数据类型呢？ 接下来 ,我们就来详细介绍一下MySQL的数据类型。
 
 MySQL中的数据类型有很多，主要分为三类：数值类型、字符串类型、日期时间类型。
 
 ###### 1). 数值类型
 
-|**类型**|**大小**|**有符号(SIGNED)范围**|**无符号(UNSIGNED)范围**|**描述                                                                                                                           **|
+|**类型**|**大小**|**有符号(SIGNED)范围**|**无符号(UNSIGNED)范围**|描述|
 | :- | :- | :- | :- | :- |
 |TINYINT|1byte|(-128， 127)|(0，255)|小整数值|
 |SMALLINT|2bytes|(-32768，32767)|(0， 65535)|大整数值|
@@ -497,7 +467,7 @@ MySQL中的数据类型有很多，主要分为三类：数值类型、字符串
 ###### 2). 字符串类型
 
 
-|**类型**|**大小**|**描述**|
+|**类型**|**大小**|描述|
 | :- | :- | :- |
 |CHAR|0-255 bytes|定长字符串(需要指定长度)|
 |VARCHAR|0-65535 bytes|变长字符串(需要指定长度)|
@@ -527,7 +497,7 @@ char 与 varchar 都可以描述字符串， char是定长字符串，指定长�
 
 ###### 3). 日期时间类型
 
-|**类型**|**大小**|**范围**|**格式**|**描述**|
+|**类型**|**大小**|**范围**|**格式**|描述|
 | :- | :- | :- | :- | :- |
 |DATE|3|1000-01-01 至 9999-12-31|YYYY-MM-DD|日期值|
 |TIME|3|-838:59:59 至 838:59:59|HH:MM:SS|时间值或持续时间|
@@ -584,8 +554,6 @@ SQL语句编写完毕之后，就可以在MySQL的命令行中执行SQL，然后
 
 ![](./images/chapter1/image61.jpeg)
 
-
-
 表结构创建好了，里面的name字段是varchar类型，最大长度为10，也就意味着如果超过10将会报错，如果我们想修改这个字段的类型 或 修改字段的长度该如何操作呢？接下来再来讲解DDL语句中，
 
 如何操作表字段。
@@ -610,8 +578,6 @@ ALTER TABLE 表名 ADD 字段名 类型 (长度) [ COMMENT 注释 ] [ 约束 ];
 ALTER TABLE emp ADD nickname varchar (20) COMMENT '昵称';
 ```
 
-
-
 2). 修改数据类型
 
 ```sql
@@ -633,8 +599,6 @@ ALTER TABLE 表名 CHANGE 旧字段名 新字段名 类型 (长度) [ COMMENT �
 ALTER TABLE emp CHANGE nickname username varchar (30) COMMENT '昵称';
 ```
 
-
-
 4). 删除字段
 
 
@@ -650,8 +614,6 @@ ALTER TABLE 表名 DROP 字段名;
 ALTER TABLE emp DROP username;
 ```
 
-
-
 5). 修改表名
 
 
@@ -666,8 +628,6 @@ ALTER TABLE 表名 RENAME TO 新表名;
 ```sql
 ALTER TABLE emp RENAME TO employee;
 ```
-
-
 
 
 
@@ -699,7 +659,7 @@ DROP TABLE IF EXISTS tb_user;
 TRUNCATE TABLE 表名;
 ```
 
-<font style="background: aquamarine;">***注意 : 在删除表的时候，表中的全部数据也都会被删除。***</font>
+> <font style="background: aquamarine;">***注意 : 在删除表的时候，表中的全部数据也都会被删除。***</font>
 
 
 
@@ -760,33 +720,23 @@ mysql主流的图形化界面工具，有以下几种：
 
 ![](./images/chapter1/image82.jpeg)
 
-配置以及驱动jar包下载完毕之后，就可以点击 "Test Connection" 就可以测试，是否可以连接
-
-MySQL，如果出现 "Successed"，就表名连接成功了 。
+配置以及驱动jar包下载完毕之后，就可以点击 "Test Connection" 就可以测试，是否可以连接MySQL，如果出现 "Successed"，就表名连接成功了 。
 
 ![](./images/chapter1/image83.jpeg)
 
-
-
 2). 展示所有数据库
 
-连接上了MySQL服务之后，并未展示出所有的数据库，此时，我们需要设置，展示所有的数据库，具体
-
-操作如下：
+连接上了MySQL服务之后，并未展示出所有的数据库，此时，我们需要设置，展示所有的数据库，具体操作如下：
 
 ![](./images/chapter1/image84.jpeg)
-
-
 
 3). 创建数据库
 
 ![](./images/chapter1/image85.jpeg)
 
-
-
-<font style="background: aquamarine;">***注意 :***</font>
-
-<font style="background: aquamarine;">***以下两种方式都可以创建数据库：***</font>
+> <font style="background: aquamarine;">***注意 :***</font>
+>
+> <font style="background: aquamarine;">***以下两种方式都可以创建数据库：***</font>
 
 ```sql
 A. create database db01;
@@ -803,8 +753,6 @@ B. create schema db01;
 ![](./images/chapter1/image87.jpeg)
 
 ![](./images/chapter1/image88.jpeg)
-
-
 
 5). 修改表结构
 
@@ -836,10 +784,6 @@ B. create schema db01;
 
 
 
-
-
-
-
 ### **2.5 DML**
 
 DML英文全称是Data Manipulation Language(数据操作语言)，用来对数据库中表的数据记录进
@@ -864,13 +808,12 @@ DML英文全称是Data Manipulation Language(数据操作语言)，用来对数�
 INSERT INTO 表名 (字段名1, 字段名2, ...) VALUES (值1, 值2, ...);
 ```
 
-
-
 案例 : 给employee表所有的字段添加数据 ；
 
 
 ```sql
-insert into employee (id,workno,name,gender,age,idcard,entrydate)values (1, '1', 'Itcast', '男',10, '123456789012345678', '2000-01-01');
+insert into employee (id,workno,name,gender,age,idcard,entrydate) 
+	values (1, '1', 'Itcast', '男',10, '123456789012345678', '2000-01-01');
 ```
 插入数据完成之后，我们有两种方式，查询数据库的数据：
 
@@ -916,8 +859,6 @@ insert into employee (id,workno,name,gender,age,idcard,entrydate)values (1, '1',
 INSERT INTO 表名 VALUES (值1, 值2, ...);
 ```
 
-
-
 案例：插入数据到employee表，具体的SQL如下：
 
 ```sql
@@ -936,27 +877,19 @@ INSERT INTO 表名 (字段名1, 字段名2, ...) VALUES (值1, 值2, ...), (值1
 INSERT INTO 表名 VALUES (值1, 值2, ...), (值1, 值2, ...), (值1, 值2, ...) ;
 ```
 
-
-
 案例：批量插入数据到employee表，具体的SQL如下：
 
 ```sql
-insert into employee values (3, '3', '韦一笑', '男',38, '123456789012345670', '2005-01-01'), (4, '4', '赵敏', '女',18, '123456789012345670', '2005-01-01');
+insert into employee values 
+	(3, '3', '韦一笑', '男',38, '123456789012345670', '2005-01-01'), 
+	(4, '4', '赵敏', '女',18, '123456789012345670', '2005-01-01');
 ```
 
-
-
-<font style="background: aquamarine;">***注意事项 :***</font>
-
-* <font style="background: aquamarine;">***插入数据时，指定的字段顺序需要与值的顺序是一对应的。***</font>
-
-* <font style="background: aquamarine;">***字符串和日期型数据应该包含在引号中。***</font>
-
-* <font style="background: aquamarine;">***插入的数据大小，应该在字段的规定范围内。***</font>
-
-
-
-
+> <font style="background: aquamarine;">***注意事项 :***</font>
+>
+> * <font style="background: aquamarine;">***插入数据时，指定的字段顺序需要与值的顺序是一对应的。***</font>
+> * <font style="background: aquamarine;">***字符串和日期型数据应该包含在引号中。***</font>
+> * <font style="background: aquamarine;">***插入的数据大小，应该在字段的规定范围内。***</font>
 
 
 
@@ -968,8 +901,6 @@ insert into employee values (3, '3', '韦一笑', '男',38, '123456789012345670'
 ```sql
 UPDATE 表名 SET 字段名1 = 值1 , 字段名2 = 值2 , .... [ WHERE 条件 ] ;
 ```
-
-
 
 案例 :
 
@@ -992,11 +923,9 @@ C. 将所有的员工入职日期修改为 2008-01-01
 update employee set entrydate = '2008-01-01';
 ```
 
-
-
-<font style="background: aquamarine;">***注意事项 :***</font>
-
-<font style="background: aquamarine;">***修改语句的条件可以有，也可以没有，如果没有条件，则会修改整张表的所有数据。***</font>
+> <font style="background: aquamarine;">***注意事项 :***</font>
+>
+> ​		<font style="background: aquamarine;">***修改语句的条件可以有，也可以没有，如果没有条件，则会修改整张表的所有数据。***</font>
 
 
 
@@ -1009,8 +938,6 @@ update employee set entrydate = '2008-01-01';
 ```sql
 DELETE FROM 表名 [ WHERE 条件 ] ;
 ```
-
-
 
 案例 :
 
@@ -1026,33 +953,24 @@ B. 删除所有员工
 delete from employee;
 ```
 
-
-
-<font style="background: aquamarine;">***注意事项 :***</font>
-
-* <font style="background: aquamarine;">***DELETE 语句的条件可以有，也可以没有， 如果没有条件，则会删除整张表的所有数据。***</font>
-
-* <font style="background: aquamarine;">***DELETE 语句不能删除某一个字段的值(可以使用UPDATE，将该字段值置为NULL即可)。***</font>
-
-* <font style="background: aquamarine;">***当进行删除全部数据操作时， datagrip会提示我们，询问是否确认删除，我们直接点击 Execute即可。***</font>
-
+> <font style="background: aquamarine;">***注意事项 :***</font>
+>
+> * <font style="background: aquamarine;">***DELETE 语句的条件可以有，也可以没有， 如果没有条件，则会删除整张表的所有数据。***</font>
+> * <font style="background: aquamarine;">***DELETE 语句不能删除某一个字段的值(可以使用UPDATE，将该字段值置为NULL即可)。***</font>
+> * <font style="background: aquamarine;">***当进行删除全部数据操作时， datagrip会提示我们，询问是否确认删除，我们直接点击 Execute即可。***</font>
 
 ![](./images/chapter1/image116.png)
 
 
+
+
 ### **2.6 DQL**
 
-DQL英文全称是Data Query Language(数据查询语言)，数据查询语言，用来查询数据库中表的记
-
-录。
+DQL英文全称是Data Query Language(数据查询语言)，数据查询语言，用来查询数据库中表的记录。
 
 查询关键字 : SELECT
 
-在一个正常的业务系统中，查询操作的频次是要远高于增删改的，当我们去访问企业官网、电商网站，
-
-在这些网站中我们所看到的数据，实际都是需要从数据库中查询并展示的。而且在查询的过程中，可能
-
-还会涉及到条件、排序、分页等操作。
+在一个正常的业务系统中，查询操作的频次是要远高于增删改的，当我们去访问企业官网、电商网站，在这些网站中我们所看到的数据，实际都是需要从数据库中查询并展示的。而且在查询的过程中，可能还会涉及到条件、排序、分页等操作。
 
 ![](./images/chapter1/image117.jpeg)
 
@@ -1064,79 +982,47 @@ DQL英文全称是Data Query Language(数据查询语言)，数据查询语言�
 drop table if exists employee;
 
 create table emp(
-
     id int comment '编号',
-
     workno varchar (10) comment '工号',
-
     name varchar (10) comment '姓名',
-
     gender char (1) comment '性别',
-
     age tinyint unsigned comment '年龄',
-
     idcard char (18) comment '身份证号',
-
     workaddress varchar (50) comment '工作地址',
-
     entrydate date comment '入职时间'
-
 )comment '员工表';
 
 
 INSERT INTO emp (id, workno, name, gender, age, idcard, workaddress, entrydate)
-
 	VALUES (1, '00001', '柳岩666', '女', 20, '123456789012345678', '北京', '2000-01-01');
-
 INSERT INTO emp (id, workno, name, gender, age, idcard, workaddress, entrydate)
-
 	VALUES (2, '00002', '张无忌', '男', 18, '123456789012345670', '北京', '2005-09-01');
-
 INSERT INTO emp (id, workno, name, gender, age, idcard, workaddress, entrydate)
-
 	VALUES (3, '00003', '韦一笑', '男', 38, '123456789712345670', '上海', '2005-08-01');
-
 INSERT INTO emp (id, workno, name, gender, age, idcard, workaddress, entrydate)
-
 	VALUES (4, '00004', '赵敏', '女', 18, '123456757123845670', '北京', '2009-12-01');
-
 INSERT INTO emp (id, workno, name, gender, age, idcard, workaddress, entrydate)
-
 	VALUES (5, '00005', '小昭', '女', 16, '123456769012345678', '上海', '2007-07-01');
-
 INSERT INTO emp (id, workno, name, gender, age, idcard, workaddress, entrydate)
-
 	VALUES (6, '00006', '杨逍', '男', 28, '12345678931234567X', '北京', '2006-01-01');
-
 INSERT INTO emp (id, workno, name, gender, age, idcard, workaddress, entrydate)
-
 	VALUES (7, '00007', '范瑶', '男', 40, '123456789212345670', '北京', '2005-05-01');
-
 INSERT INTO emp (id, workno, name, gender, age, idcard, workaddress, entrydate)
-
 	VALUES (8, '00008', '黛绮丝', '女', 38, '123456157123645670', '天津', '2015-05-01');
-
 INSERT INTO emp (id, workno, name, gender, age, idcard, workaddress, entrydate) 
 	VALUES (9, '00009', '范凉凉', '女', 45, '123156789012345678', '北京', '2010-04-01');
-
 INSERT INTO emp (id, workno, name, gender, age, idcard, workaddress, entrydate) 
 	VALUES (10, '00010', '陈友谅', '男', 53, '123456789012345670', '上海', '2011-01-01');
-
 INSERT INTO emp (id, workno, name, gender, age, idcard, workaddress, entrydate) 
 	VALUES (11, '00011', '张士诚', '男', 55, '123567897123465670', '江苏', '2015-05-01');
-
 INSERT INTO emp (id, workno, name, gender, age, idcard, workaddress, entrydate) 
 	VALUES (12, '00012', '常遇春', '男', 32, '123446757152345670', '北京', '2004-02-01');
-
 INSERT INTO emp (id, workno, name, gender, age, idcard, workaddress, entrydate) 
 	VALUES (13, '00013', '张三丰', '男', 88, '123656789012345678', '江苏', '2020-11-01');
-
 INSERT INTO emp (id, workno, name, gender, age, idcard, workaddress, entrydate) 
 	VALUES (14, '00014', '灭绝', '女', 65, '123456719012345670', '西安', '2019-05-01');
-
 INSERT INTO emp (id, workno, name, gender, age, idcard, workaddress, entrydate)
 	VALUES (15, '00015', '胡青牛', '男', 70, '12345674971234567X', '西安', '2018-04-01');
-
 INSERT INTO emp (id, workno, name, gender, age, idcard, workaddress, entrydate) 
 	VALUES (16, '00016', '周芷若', '女', 18, null, '北京', '2012-06-01');
 ```
@@ -1198,7 +1084,7 @@ SELECT * FROM 表名 ;
 
 
 
-<font style="background: aquamarine;">***注意 : * 号代表查询所有字段，在实际开发中尽量少用（不直观、影响效率）。***</font>
+> <font style="background: aquamarine;">***注意 : * 号代表查询所有字段，在实际开发中尽量少用（不直观、影响效率）。***</font>
 
 
 **2). 字段设置别名**
@@ -1221,8 +1107,6 @@ SELECT 字段1 [ 别名1 ] , 字段2 [ 别名2 ] ... FROM 表名;
 ```sql
 SELECT DISTINCT 字段列表 FROM 表名;
 ```
-
-
 
 案例：
 
@@ -1296,7 +1180,7 @@ SELECT 字段列表 FROM 表名 WHERE 条件列表 ;
 |**逻辑运算符**|**功能**|
 | :- | :- |
 |AND 或 &&|并且 (多个条件同时成立)|
-|OR 或 |||或者 (多个条件任意一个成立)|
+|OR 或 \|\| |或者 (多个条件任意一个成立)|
 |NOT 或 !|非 , 不是|
 
 
@@ -1414,14 +1298,14 @@ A. 统计该企业员工数量
 select count(*) from emp; -- 统计的是总记录数
 select count(idcard) from emp; -- 统计的是idcard字段不为null的记录数
 ```
-对于count聚合函数，统计符合条件的总记录数，还可以通过 count(数字/字符串)的形式进行统计
+对于count聚合函数，统计符合条件的总记录数，还可以通过 count(数字/字符串)的形式进行统计查询，比如：
 
-查询，比如：
+```sql
+select count(1) from emp;
+```
 
+> <font style="background: aquamarine;">***对于count(\*) 、count(字段)、 count(1) 的具体原理，我们在进阶篇中SQL优化部分会详细讲解，此处大家只需要知道如何使用即可。***</font>
 
-|1|select count(1) from emp;|
-| :- | :- |
-|对于count(*) 、count(字段)、 count(1) 的具体原理，我们在进阶篇中SQL优化部分会详细讲解，此处大家只需要知道如何使用即可。|
 B. 统计该企业员工的平均年龄
 
 
@@ -1452,8 +1336,6 @@ select sum (age) from emp where workaddress = '西安';
 
 
 
-
-
 #### **2.6.5 分组查询**
 
 1). 语法
@@ -1469,13 +1351,11 @@ SELECT 字段列表 FROM 表名 [ WHERE 条件 ] GROUP BY 分组字段名 [ HAVI
 
 * 判断条件不同： where不能对聚合函数进行判断，而having可以。
 
-注意事项 :
-
-* 分组之后，查询的字段一般为聚合函数和分组字段，查询其他字段无任何意义。
-
-* 执行顺序 : where > 聚合函数 > having 。
-
-* 支持多字段分组 , 具体语法为 : group by columnA,columnB
+> <font style="background: aquamarine;">注意事项 :</font>
+>
+> * <font style="background: aquamarine;">分组之后，查询的字段一般为聚合函数和分组字段，查询其他字段无任何意义。</font>
+> * <font style="background: aquamarine;">执行顺序 : where > 聚合函数 > having 。</font>
+> * <font style="background: aquamarine;">支持多字段分组 , 具体语法为 : group by columnA,columnB</font>
 
 
 案例 :
@@ -1531,11 +1411,10 @@ SELECT 字段列表 FROM 表名 ORDER BY 字段1 排序方式1 , 字段2 排序�
 
 * DESC: 降序
 
-<font style="background: aquamarine;">***注意事项：***</font>
-
-* <font style="background: aquamarine;">***如果是升序 , 可以不指定排序方式ASC ;***</font>
-
-* <font style="background: aquamarine;">***如果是多字段排序， 当第一个字段值相同时，才会根据第二个字段进行排序 ;***</font>
+> <font style="background: aquamarine;">***注意事项：***</font>
+>
+> * <font style="background: aquamarine;">***如果是升序 , 可以不指定排序方式ASC ;***</font>
+> * <font style="background: aquamarine;">***如果是多字段排序， 当第一个字段值相同时，才会根据第二个字段进行排序 ;***</font>
 
 案例 :
 
@@ -1563,8 +1442,6 @@ select * from emp order by age asc , entrydate desc;
 
 
 
-
-
 #### **2.6.7 分页查询**
 
 分页操作在业务系统开发时，也是非常常见的一个功能，我们在网站中看到的各种各样的分页条，后台
@@ -1582,13 +1459,13 @@ SELECT 字段列表 FROM 表名 LIMIT 起始索引, 查询记录数 ;
 
 
 
-<font style="background: aquamarine;">***注意事项 :***</font>
-
-* <font style="background: aquamarine;">***起始索引从0开始， 起始索引 = （查询页码 - 1） * 每页显示记录数。***</font>
-
-* <font style="background: aquamarine;">***分页查询是数据库的方言，不同的数据库有不同的实现， MySQL中是LIMIT。***</font>
-
-* <font style="background: aquamarine;">***如果查询的是第一页数据，起始索引可以省略，直接简写为 limit 10。***</font>
+> <font style="background: aquamarine;">***注意事项 :***</font>
+>
+> * <font style="background: aquamarine;">***起始索引从0开始， 起始索引 = （查询页码 - 1） \* 每页显示记录数。***</font>
+>
+> * <font style="background: aquamarine;">***分页查询是数据库的方言，不同的数据库有不同的实现， MySQL中是LIMIT。***</font>
+>
+> * <font style="background: aquamarine;">***如果查询的是第一页数据，起始索引可以省略，直接简写为 limit 10。***</font>
 
 
 案例 :
@@ -1731,9 +1608,7 @@ select * from mysql.user;
 
 ![](./images/chapter1/image185.jpeg)
 
-其中 Host代表当前用户访问的主机 , 如果为localhost, 仅代表只能够在当前本机访问，是不可以 远程访问的。 User代表的是访问该数据库的用户名。在MySQL中需要通过Host和User来唯一标识一
-
-个用户。
+其中 Host代表当前用户访问的主机 , 如果为localhost, 仅代表只能够在当前本机访问，是不可以 远程访问的。 User代表的是访问该数据库的用户名。在MySQL中需要通过Host和User来唯一标识一个用户。
 
 
 
@@ -1758,13 +1633,13 @@ DROP USER '用户名'@'主机名' ;
 
 
 
-<font style="background: aquamarine;">***注意事项 :***</font>
-
-* <font style="background: aquamarine;">***在MySQL中需要通过用户名@主机名的方式，来唯一标识一个用户。***</font>
-
-* <font style="background: aquamarine;">***主机名可以使用 % 通配。***</font>
-
-* <font style="background: aquamarine;">***这类SQL开发人员操作的比较少，主要是DBA（ Database Administrator 数据库管理员）使用。***</font>
+> <font style="background: aquamarine;">***注意事项 :***</font>
+>
+> * <font style="background: aquamarine;">***在MySQL中需要通过用户名@主机名的方式，来唯一标识一个用户。***</font>
+>
+> * <font style="background: aquamarine;">***主机名可以使用 % 通配。***</font>
+>
+> * <font style="background: aquamarine;">***这类SQL开发人员操作的比较少，主要是DBA（ Database Administrator 数据库管理员）使用。***</font>
 
 
 案例：
@@ -1838,11 +1713,11 @@ REVOKE 权限列表 ON 数据库名 .表名 FROM '用户名'@'主机名';
 
 
 
-<font style="background: aquamarine;">***注意事项：***</font>
-
-* <font style="background: aquamarine;">***多个权限之间，使用逗号分隔***</font>
-
-* <font style="background: aquamarine;">***授权时， 数据库名和表名可以使用 * 进行通配，代表所有。***</font>
+> <font style="background: aquamarine;">***注意事项：***</font>
+>
+> * <font style="background: aquamarine;">***多个权限之间，使用逗号分隔***</font>
+>
+> * <font style="background: aquamarine;">***授权时， 数据库名和表名可以使用 \* 进行通配，代表所有。***</font>
 
 
 案例 :
@@ -1872,25 +1747,18 @@ revoke all on itcast.* from 'heima'@'%';
 
 ## **3. 函数**
 函数 是指一段可以直接被另一段程序调用的程序或代码。 也就意味着，这一段程序或代码在MySQL中 已经给我们提供了，我们要做的就是在合适的业务场景调用对应的函数完成对应的业务需求即可。
+
 那么，函数到底在哪儿使用呢？
 
 我们先来看两个场景：
 
-
-
 ![](./images/chapter1/image203.png)![](./images/chapter1/image202.png)
 
-1). 在企业的OA或其他的人力系统中，经常会提供的有这样一个功能，每一个员工登录上来之后都能 够看到当前员工入职的天数。 而在数据库中，存储的都是入职日期，如 2000-11-12，那如果快速计
+1). 在企业的OA或其他的人力系统中，经常会提供的有这样一个功能，每一个员工登录上来之后都能 够看到当前员工入职的天数。 而在数据库中，存储的都是入职日期，如 2000-11-12，那如果快速计算出天数呢？
 
-算出天数呢？
-
-2). 在做报表这类的业务需求中 ,我们要展示出学员的分数等级分布。而在数据库中，存储的是学生的
-
-分数值，如98/75，如何快速判定分数的等级呢？
+2). 在做报表这类的业务需求中 ,我们要展示出学员的分数等级分布。而在数据库中，存储的是学生的分数值，如98/75，如何快速判定分数的等级呢？
 
 其实，上述的这一类的需求呢，我们通过MySQL中的函数都可以很方便的实现 。
-
-
 
 MySQL中的函数主要分为以下四类： 字符串函数、数值函数、日期函数、流程函数。
 
@@ -2208,8 +2076,6 @@ MySQL的常见函数我们学习完了，那接下来，我们就来分析一下
 
 
 
-
-
 ## **4. 约束**
 
 ### **4.1 概述**
@@ -2229,7 +2095,7 @@ MySQL的常见函数我们学习完了，那接下来，我们就来分析一下
 |检查约束(8.0.16版本之后)|保证字段值满足某一个条件|CHECK|
 |外键约束|用来让两张表的数据之间建立连接，保证数据的一致性和完整性|FOREIGNKEY|
 
-<font style="background: aquamarine;">***注意：约束是作用于表中字段上的，可以在创建表/修改表的时候添加约束。***</font>
+> <font style="background: aquamarine;">***注意：约束是作用于表中字段上的，可以在创建表/修改表的时候添加约束。***</font>
 
 
 
@@ -2302,7 +2168,7 @@ insert into tb_user (name,age,gender) values ( 'Tom5',120, '男');
 
 
 
-<font style="background: aquamarine;">***注意：目前上述两张表，只是在逻辑上存在这样一层关系；在数据库层面，并未建立外键关联，所以是无法保证数据的一致性和完整性的。***</font>
+> <font style="background: aquamarine;">***注意：目前上述两张表，只是在逻辑上存在这样一层关系；在数据库层面，并未建立外键关联，所以是无法保证数据的一致性和完整性的。***</font>
 
 
 
@@ -2338,15 +2204,11 @@ INSERT INTO emp (id, name, age, job,salary, entrydate, managerid, dept_id) VALUE
 
 ![](./images/chapter1/image238.jpeg)
 
-
-
 接下来，我们可以做一个测试，删除id为1的部门信息。
 
 ![](./images/chapter1/image239.jpeg)
 
-结果，我们看到删除成功，而删除成功之后，部门表不存在id为1的部门，而在emp表中还有很多的员工，关联的为id为1的部门，此时就出现了数据的不完整性。 而要想解决这个问题就得通过数据库的
-
-外键约束。
+结果，我们看到删除成功，而删除成功之后，部门表不存在id为1的部门，而在emp表中还有很多的员工，关联的为id为1的部门，此时就出现了数据的不完整性。 而要想解决这个问题就得通过数据库的外键约束。
 
 
 
@@ -2390,8 +2252,6 @@ alter table emp add constraint fk_emp_dept_id foreign key (dept_id) references d
 ```sql
 ALTER TABLE 表名 DROP FOREIGN KEY 外键名称;
 ```
-
-
 
 案例：
 
@@ -2451,7 +2311,7 @@ A. 修改父表id为1的记录，将id修改为6
 
 我们发现，原来在子表中dept_id值为1的记录，现在也变为6了，这就是cascade级联的效果。
 
-<font style="background: aquamarine;">***在一般的业务系统中，不会修改一张表的主键值。***</font>
+>  <font style="background: aquamarine;">***在一般的业务系统中，不会修改一张表的主键值。***</font>
 
 
 
@@ -2678,9 +2538,7 @@ dept表共6条记录， emp表共17条记录。
 
 ![](./images/chapter1/image262.jpeg)
 
-此时 ,我们看到查询结果中包含了大量的结果集，总共102条记录，而这其实就是员工表emp所有的记录 (17) 与 部门表dept所有记录(6) 的所有组合情况，这种现象称之为笛卡尔积。接下来，就来简单
-
-介绍下笛卡尔积。
+此时 ,我们看到查询结果中包含了大量的结果集，总共102条记录，而这其实就是员工表emp所有的记录 (17) 与 部门表dept所有记录(6) 的所有组合情况，这种现象称之为笛卡尔积。接下来，就来简单介绍下笛卡尔积。
 
 笛卡尔积 : 笛卡尔乘积是指在数学中，两个集合A集合 和 B集合的所有组合情况。
 
@@ -2698,9 +2556,7 @@ select * from emp , dept where emp.dept_id = dept.id;
 
 ![](./images/chapter1/image266.jpeg)
 
-而由于id为17的员工，没有dept_id字段值，所以在多表查询时，根据连接查询的条件并没有查询
-
-到。
+而由于id为17的员工，没有dept_id字段值，所以在多表查询时，根据连接查询的条件并没有查询到。
 
 
 
@@ -2785,8 +2641,8 @@ select e.name, d.name from emp e join dept d on e.dept_id = d.id;
 
 ② . tablea 别名1 , tableb 别名2 ;
 
-<font style="background: aquamarine;">***注意事项 :***</font>
-
+> <font style="background: aquamarine;">***注意事项 :***</font>
+>
 ​		<font style="background: aquamarine;">***一旦为表起了别名，就不能再使用表名来指定对应的字段了，此时只能够使用别名来指定字段。***</font>
 
 
@@ -2852,8 +2708,8 @@ select d.*, e.* from dept d left outer join emp e on e.dept_id = d.id;
 
 
 
-<font style="background: aquamarine;">***注意事项：***</font>
-
+> <font style="background: aquamarine;">***注意事项：***</font>
+>
 ​		<font style="background: aquamarine;">***左外连接和右外连接是可以相互替换的，只需要调整在连接查询时SQL中，表结构的先后顺序就可以了。而我们在日常开发使用时，更偏向于左外连接。***</font>
 
 
@@ -2892,15 +2748,13 @@ B. 查询所有员工 emp 及其领导的名字 emp , 如果员工没有领导 ,
 表结构 : emp a , emp b
 
 ```sql
-select a.name '员工', b.name '领导' from emp a left join emp b on a.managerid =
-
-b.id;
+select a.name '员工', b.name '领导' from emp a left join emp b on a.managerid = b.id;
 ```
 
 
 
-<font style="background: aquamarine;">***注意事项 :***</font>
-
+> <font style="background: aquamarine;">***注意事项 :***</font>
+>
 ​		<font style="background: aquamarine;">***在自连接查询中，必须要为表起别名，要不然我们不清楚所指定的条件、返回的字段，到底是哪一张表的字段。***</font>
 
 
@@ -3433,7 +3287,7 @@ select s.name , s.no , c.name from student s , student_course sc , course c
 
 ![](./images/chapter1/image330.jpeg)
 
-<font style="background: aquamarine;">***注意： 默认MySQL的事务是自动提交的，也就是说，当执行完一条DML语句时， MySQL会立即隐式的提交事务。***</font>
+>  <font style="background: aquamarine;">***注意： 默认MySQL的事务是自动提交的，也就是说，当执行完一条DML语句时， MySQL会立即隐式的提交事务。***</font>
 
 
 
@@ -3522,7 +3376,7 @@ ROLLBACK;
 
 
 
-<font style="background: aquamarine;">***注意：上述的这种方式，我们是修改了事务的自动提交行为 , 把默认的自动提交修改为了手动提交 , 此时我们执行的DML语句都不会提交 , 需要手动的执行commit进行提交。***</font>
+> <font style="background: aquamarine;">***注意：上述的这种方式，我们是修改了事务的自动提交行为 , 把默认的自动提交修改为了手动提交 , 此时我们执行的DML语句都不会提交 , 需要手动的执行commit进行提交。***</font>
 
 
 
@@ -3581,7 +3435,7 @@ commit;
 
 * 原子性（Atomicity）：事务是不可分割的最小操作单元，要么全部成功，要么全部失败。
 
-* 一致性（Consistency）：事务完成时，必须使所有的数据都保持一致状态。
+* 一致性（Consistency）： 态。
 
 * 隔离性（Isolation）：数据库系统提供的隔离机制，保证事务在不受外部并发操作影响的独立环境下运行。
 
@@ -3608,9 +3462,7 @@ commit;
 
 事务A两次读取同一条记录，但是读取到的数据却是不一样的。
 
-3). 幻读： 一个事务按照条件查询数据时，没有对应的数据行，但是在插入数据时，又发现这行数据
-
-已经存在，好像出现了 "幻影 "。
+3). 幻读： 一个事务按照条件查询数据时，没有对应的数据行，但是在插入数据时，又发现这行数据已经存在，好像出现了 "幻影 "。
 
 ![](./images/chapter1/image348.jpeg)
 
