@@ -82,6 +82,7 @@ show engines ;
 | ARCHIVE            | YES     | Archive storage engine                                       | NO           | NO     | NO         |
 | PERFORMANCE_SCHEMA | YES     | Performance Schema                                           | NO           | NO     | NO         |
 | FEDERATED          | NO      | Federated MySQL storage engine                               | <null>       | <null> | <null>     |
+
 C. 创建表 my_myisam , 并指定MyISAM存储引擎
 
 ```sql
@@ -2412,6 +2413,7 @@ call p3();
 |IN|该类参数作为输入，也就是需要调用时传入值|默认|
 |OUT|该类参数作为输出，也就是该参数可以作为返回值||
 |INOUT|既可以作为输入参数，也可以作为输出参数||
+
 用法：
 
 ```sql
