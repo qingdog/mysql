@@ -1,4 +1,5 @@
-# 1. **存储引擎**
+1. **存储引擎**
+
 ## 1.1 **MySQL体系结构**
 ![](./media/image1.jpeg)
 
@@ -89,8 +90,6 @@ create table my_myisam(
 	name varchar(10)
 ) engine = MyISAM ;
 ```
-
-
 
 D. 创建表 my_memory , 指定Memory存储引擎
 
@@ -706,7 +705,7 @@ Com_update: 更新次数
 
 ![](./media/image32.jpeg)
 
->通过上述指令，我们可以查看到当前数据库到底是以查询为主，还是以增删改为主，从而为数据 库优化提供参考依据。 如果是以增删改为主，我们可以考虑不对其进行索引的优化。 如果是以查询为主，那么就要考虑对数据库的索引进行优化了。
+>通过上述指令，我们可以查看到当前数据库到底是以查询为主，还是以增删改为主，从而为数据库优化提供参考依据。 如果是以增删改为主，我们可以考虑不对其进行索引的优化。 如果是以查询为主，那么就要考虑对数据库的索引进行优化了。
 
 那么通过查询SQL的执行频次，我们就能够知道当前数据库到底是增删改为主，还是查询为主。 那假如说是以查询为主，我们又该如何定位针对于那些查询语句进行优化呢？ 次数我们可以借助于慢查询日志。
 
@@ -714,9 +713,7 @@ Com_update: 更新次数
 
 
 ### 2.5.2 **慢查询日志**
-慢查询日志记录了所有执行时间超过指定参数（long_query_time，单位：秒，默认10秒）的所有
-
-SQL语句的日志。
+慢查询日志记录了所有执行时间超过指定参数（long_query_time，单位：秒，默认10秒）的所有SQL语句的日志。
 
 MySQL的慢查询日志默认没有开启，我们可以查看一下系统变量 slow_query_log。
 
@@ -728,10 +725,11 @@ MySQL的慢查询日志默认没有开启，我们可以查看一下系统变量
 vi /etc/my.cnf
 ```
 
-* *g 关闭移至末尾*
-* *i 编辑*
+* *Shift+g光标移至末尾行*
+* *Shift+4光标移至末行尾*
+* *a追加*
 
-```shell
+```cnf
 # 开启MySQL慢日志查询开关
 slow_query_log=1
 
@@ -750,6 +748,10 @@ systemctl restart mysqld
 ```
 
 然后，再次查看开关情况，慢查询日志就已经打开了。
+
+```sql
+show variables like 'slow_query_log';
+```
 
 ![](./media/image34.jpeg)
 
@@ -806,7 +808,7 @@ SET profiling = 1;
 ```
 
 
-开关已经打开了，接下来，我们所执行的SQL语句，都会被MySQL记录，并记录执行时间消耗到哪儿去 了。 我们直接执行如下的SQL语句：
+开关已经打开了，接下来，我们所执行的SQL语句，都会被MySQL记录，并记录执行时间消耗到哪儿去了。 我们直接执行如下的SQL语句：
 
 ```sql
 select * from tb_user;
@@ -822,10 +824,10 @@ select count(*) from tb_sku;
 
 ```sql
 -- 查看每一条SQL的耗时基本情况
-show profiles; 3
+show profiles;
 
 -- 查看指定query_id的SQL语句各个阶段的耗时情况
-show profile for query query_id; 6
+show profile for query query_id;
 
 -- 查看指定query_id的SQL语句CPU的使用情况
 show profile cpu for query query_id;
@@ -922,7 +924,7 @@ SELECT * FROM tb_sku WHERE sn = '100000003145001';
 ![](./media/image45.jpeg)
 
 
-我们明显会看到，sn字段建立了索引之后，查询性能大大提升。建立索引前后，查询耗时都不是一个数 量级的。
+我们明显会看到，sn字段建立了索引之后，查询性能大大提升。建立索引前后，查询耗时都不是一个数量级的。
 
 ### 2.6.2 **最左前缀法则**
 如果索引了多列（联合索引），要遵守最左前缀法则。最左前缀法则指的是查询从索引的最左列开始， 并且不跳过索引中的列。如果跳跃某一列，索引将会部分失效(后面的字段索引失效)。
@@ -981,7 +983,7 @@ explain select * from tb_user where profession = '软件工程' and status = '0'
 
 > 思考题：
 >
-> ​		当执行SQL语句: explain select * from tb_user where age = 31 and status = '0' and profession = '软件工程'；	时，是否满足最左前缀法则，走不走上述的联合索引，索引长度？
+> ​		当执行SQL语句: explain select * from tb_user where age = 31 and status = '0' and profession = '软件工程';	时，是否满足最左前缀法则，走不走上述的联合索引，索引长度？
 >
 > ![](./media/image53.jpeg)
 >
@@ -1087,7 +1089,7 @@ explain select * from tb_user where profession like '%工%';
 ![](./media/image61.jpeg)
 
 
-经过上述的测试，我们发现，在like模糊查询中，在关键字后面加%，索引可以生效。而如果在关键字 前面加了%，索引将会失效。
+经过上述的测试，我们发现，在like模糊查询中，在关键字后面加%，索引可以生效。而如果在关键字前面加了%，索引将会失效。
 
 #### 2.6.4.4 **or连接条件**
 用or分割开的条件， 如果or前的条件中的列有索引，而后面的列中没有索引，那么涉及的索引都不会被用到。
@@ -1136,7 +1138,7 @@ select * from tb_user where phone >= '17799990015';
 
 经过测试我们发现，相同的SQL语句，只是传入的字段值不同，最终的执行计划也完全不一样，这是为什么呢？
 
-就是因为MySQL在查询时，会评估使用索引的效率与走全表扫描的效率，如果走全表扫描更快，则放弃 索引，走全表扫描。 因为索引是用来索引少量数据的，如果通过索引查询返回大批量的数据，则还不如走全表扫描来的快，此时索引就会失效。
+就是因为MySQL在查询时，会评估使用索引的效率与走全表扫描的效率，如果走全表扫描更快，则放弃索引，走全表扫描。 因为索引是用来索引少量数据的，如果通过索引查询返回大批量的数据，则还不如走全表扫描来的快，此时索引就会失效。
 
 
 接下来，我们再来看看 is null 与 is not null 操作是否走索引。执行如下两条语句 ：
@@ -1196,7 +1198,7 @@ C. 创建单列索引后，再次执行A中的SQL语句，查看执行计划，�
 那么，我们能不能在查询的时候，自己来指定使用哪个索引呢？ 答案是肯定的，此时就可以借助于MySQL的SQL提示来完成。 接下来，介绍一下SQL提示。
 
 
-SQL提示，是优化数据库的一个重要手段，简单来说，就是在SQL语句中加入一些人为的提示来达到优 化操作的目的。
+SQL提示，是优化数据库的一个重要手段，简单来说，就是在SQL语句中加入一些人为的提示来达到优化操作的目的。
 
 1). use index ： 建议MySQL使用哪一个索引完成此次查询（仅仅是建议，mysql内部还会再次进行评估）。
 
@@ -1319,7 +1321,7 @@ D. 执行SQL：selet id,name,gender from tb_user where name = 'Arm';
 >​		这样可以避免上述的SQL语句，在查询的过程中，出现回表查询。
 
 ### 2.6.7 **前缀索引**
-当字段类型为字符串（varchar，text，longtext等）时，有时候需要索引很长的字符串，这会让 索引变得很大，查询时，浪费大量的磁盘IO， 影响查询效率。此时可以只将字符串的一部分前缀，建立索引，这样可以大大节约索引空间，从而提高索引效率。
+当字段类型为字符串（varchar，text，longtext等）时，有时候需要索引很长的字符串，这会让索引变得很大，查询时，浪费大量的磁盘IO， 影响查询效率。此时可以只将字符串的一部分前缀，建立索引，这样可以大大节约索引空间，从而提高索引效率。
 
 1). 语法
 
@@ -1458,13 +1460,13 @@ commit;
 
 ```sql
 -- 客户端连接服务端时，加上参数 -–local-infile
-mysql –-local-infile -u root -p 3
+mysql –-local-infile -u root -p
 
 -- 设置全局参数local_infile为1，开启从本地加载文件导入数据的开关
-set global local_infile = 1; 6
+set global local_infile = 1;
 
 -- 执行load指令将准备好的数据，加载到表结构中
-load data local infile '/root/sql1.log' into table tb_user fields terminated by ',' lines terminated by '\n' ;
+load data local infile '/root/sql1.log' into table tb_user fields terminated by ',' lines terminated by'\n';
 ```
 
 > 主键顺序插入性能高于乱序插入
@@ -1519,9 +1521,7 @@ load data local infile '/root/load_user_100w_sort.sql' into table tb_user
 
 1). 数据组织方式
 
-在InnoDB存储引擎中，表数据都是根据主键顺序组织存放的，这种存储方式的表称为索引组织表
-
-(index organized table IOT)。
+在InnoDB存储引擎中，表数据都是根据主键顺序组织存放的，这种存储方式的表称为索引组织表 (index organized table IOT)。
 
 ![](./media/image91.jpeg)
 
@@ -1746,9 +1746,12 @@ explain select id,age,phone from tb_user order by age asc , phone desc ;
 
 1. 根据排序字段建立合适的索引，多字段排序时，也遵循最左前缀法则。
 1. 尽量使用覆盖索引。
-
 1. 多字段排序, 一个升序一个降序，此时需要注意联合索引在创建时的规则（ASC/DESC）。
 1. 如果不可避免的出现filesort，大数据量排序时，可以适当增大排序缓冲区大小 sort_buffer_size(默认256k)。
+
+> ```sql
+> show variables like 'sort_buffer_size'
+> ```
 
 
 
@@ -1770,7 +1773,7 @@ drop index idx_user_age_phone_ad on tb_user;
 接下来，在没有索引的情况下，执行如下SQL，查询执行计划：
 
 ```sql
-explain select profession , count(*) from tb_user group by profession ;
+explain select profession, count(*) from tb_user group by profession ;
 ```
 
 ![](./media/image125.jpeg)
@@ -1778,14 +1781,14 @@ explain select profession , count(*) from tb_user group by profession ;
 然后，我们在针对于 profession ， age， status 创建一个联合索引。
 
 ```sql
-create index idx_user_pro_age_sta on tb_user(profession , age , status);
+create index idx_user_pro_age_sta on tb_user(profession, age, status);
 ```
 
 
 紧接着，再执行前面相同的SQL查看执行计划。
 
 ```sql
-explain select profession , count(*) from tb_user group by profession ;
+explain select profession, count(*) from tb_user group by profession ;
 ```
 
 ![](./media/image126.jpeg)
@@ -1815,12 +1818,83 @@ explain select profession , count(*) from tb_user group by profession ;
 
 因为，当在进行分页查询时，如果执行 limit 2000000,10 ，此时需要MySQL排序前2000010 记录，仅仅返回 2000000 - 2000010 的记录，其他记录丢弃，查询排序的代价非常大 。
 
-
-优化思路: 一般分页查询时，通过创建 覆盖索引 能够比较好地提高性能，可以通过覆盖索引加子查询形式进行优化。
+**总结：MySQL在执行分页查询时会对整个结果集进行排序，而不仅仅返回指定范围的记录。**
 
 ```sql
-explain select * from tb_sku t , (select id from tb_sku order by id limit 2000000,10) a where t.id = a.id;
+explain select * from tb_sku t, (select id from tb_sku order by id limit 2000000,10) a where t.id = a.id;
 ```
+
+
+
+> 即使使用了索引，MySQL执行带有大偏移量的LIMIT查询仍然需要扫描和跳过指定数量的记录。这是因为索引通常用于定位符合条件的记录，而不是用于跳过指定数量的记录。
+>
+> 当使用索引进行分页查询时，MySQL可能会先使用索引定位到起始位置的记录，然后扫描并跳过指定数量的记录，直到达到起始位置。这个过程依然需要花费较长的时间，尤其是在大偏移量的情况下。
+>
+> 在某些情况下，通过加索引可以提升分页查询的执行效率，特别是当查询条件涉及到过滤或排序的字段时。索引可以加速定位符合条件的记录，减少扫描的数据量。
+>
+> 然而，在涉及大偏移量的分页查询中，即使使用索引，性能提升可能并不明显。这是因为MySQL仍然需要扫描和跳过指定数量的记录，这个过程对于大数据集来说仍然是比较耗时的。
+>
+> 为了进一步优化大偏移量的分页查询，可以考虑以下几点：
+>
+> 1. 使用游标方式进行分页查询，而不是使用LIMIT和偏移量。游标方式可以减少对大量记录进行扫描和跳过的开销。
+>
+> 2. 优化数据模型和查询逻辑，尽量避免需要大偏移量的分页查询。通过改变数据结构或查询方式，减少数据量或提高查询效率。
+>
+> 3. 考虑使用其他技术或工具来处理大数据量的分页需求，例如使用分布式数据库或缓存系统。
+>
+> 总而言之，对于带有大偏移量的LIMIT查询，即使使用索引也不能完全提升执行效率。需要综合考虑数据模型、查询逻辑和性能需求，采取合适的优化策略来改善查询性能。
+>
+> 当使用游标方式进行分页查询时，可以通过使用MySQL的游标（Cursor）来实现。游标提供了一种遍历结果集的机制，可以逐行获取结果，而无需一次性获取全部数据。
+>
+> 下面是一个使用游标方式进行分页查询的示例：
+>
+> ```sql
+> -- 创建游标
+> DECLARE cur CURSOR FOR
+> SELECT *
+> FROM tb_sku
+> ORDER BY id; -- 假设按照id字段排序
+> 
+> -- 定义变量
+> DECLARE @id INT;
+> DECLARE @name VARCHAR(255);
+> 
+> -- 打开游标
+> OPEN cur;
+> 
+> -- 定位游标到指定偏移量
+> DECLARE @offset INT = 2000000;
+> DECLARE @count INT = 10;
+> DECLARE @currentRow INT = 0;
+> 
+> FETCH NEXT FROM cur INTO @id, @name;
+> 
+> WHILE @@FETCH_STATUS = 0 AND @currentRow < @offset
+> BEGIN
+>     SET @currentRow = @currentRow + 1;
+>     FETCH NEXT FROM cur INTO @id, @name;
+> END
+> 
+> -- 获取指定范围内的记录
+> SET @currentRow = 0;
+> 
+> WHILE @@FETCH_STATUS = 0 AND @currentRow < @count
+> BEGIN
+>     SET @currentRow = @currentRow + 1;
+>     -- 处理每一行记录，这里可以根据需要进行操作
+>     PRINT CONCAT('ID: ', @id, ', Name: ', @name);
+> 
+>     FETCH NEXT FROM cur INTO @id, @name;
+> END
+> 
+> -- 关闭游标
+> CLOSE cur;
+> DEALLOCATE cur;
+> ```
+>
+> 在这个示例中，我们通过游标方式进行分页查询。首先，我们创建一个游标，选择指定的结果集并按照特定的字段进行排序（在示例中使用id字段）。然后，我们定义一些变量，用于存储每一行记录的数据。接下来，我们打开游标，并通过FETCH语句定位游标到指定的偏移量。然后，我们循环遍历游标，获取指定范围内的记录，并对每一行记录进行处理（在示例中使用PRINT语句输出记录）。
+>
+> 请注意，这只是一个示例，具体实现方式可能会根据实际需求和使用的编程语言而有所不同。游标方式进行分页查询可以提供更好的性能和效率，特别是在处理大数据量的情况下。
 
 
 
@@ -1844,9 +1918,9 @@ count() 是一个聚合函数，对于返回的结果集，一行行地判断，
 
 NULL，累计值就加 1，否则不加，最后返回累计值。
 
-用法：count（*）、count（主键）、count（字段）、count（数字）
+用法：count(*)、count(主键)、count(字段)、count(数字)
 
-|**count用法                                  **|**含义**|
+|count用法|**含义**|
 | :- | :- |
 |count(主键)|InnoDB 引擎会遍历整张表，把每一行的 主键id 值都取出来，返回给服务层。服务层拿到主键后，直接按行进行累加(主键不可能为null)|
 |count(字段)|没有not null 约束 : InnoDB 引擎会遍历整张表把每一行的字段值都取出来，返回给服务层，服务层判断是否为null，不为null，计数累加。有not null 约束：InnoDB 引擎会遍历整张表把每一行的字段值都取出来，返回给服务层，直接按行进行累加。|
@@ -1887,87 +1961,75 @@ update course set name = 'SpringBoot' where name = 'PHP' ;
 通俗的讲，视图只保存了查询的SQL逻辑，不保存查询结果。所以我们在创建视图的时候，主要的工作 就落在创建这条SQL查询语句上。
 
 ### 4.1.2 **语法**
-1. 创建
+1). 创建
 
+```sql
+CREATE [OR REPLACE] VIEW 视图名称[(列名列表)] AS SELECT语句 [ WITH [CASCADED | LOCAL ] CHECK OPTION ]
+```
 
-CREATE	[OR REPLACE]	VIEW 视图名称[(列名列表)]	AS	SELECT语句	[ WITH [
+2). 查询
 
-CASCADED | LOCAL ] CHECK OPTION ]
+```sql
+查看创建视图语句：SHOW CREATE VIEW 视图名称;
+查看视图数据：SELECT * FROM 视图名称 ...... ;
+```
 
-![](data:image/
+3). 修改
 
-1. 查询
-1. 查看创建视图语句：SHOW CREATE VIEW 视图名称;
+```sql
+方式一：CREATE [OR REPLACE]	VIEW 视图名称[(列名列表)] AS SELECT语句 [ WITH [ CASCADED | LOCAL ] CHECK OPTION ]
 
-1. 查看视图数据：SELECT * FROM	视图名称	;
+方式二：ALTER VIEW 视图名称[(列名列表)] AS SELECT语句 [ WITH [ CASCADED | LOCAL ] CHECK OPTION ]
+```
 
-![](data:image/
+4). 删除
 
-1. 修改
-1. 方式一：CREATE	[OR REPLACE]	VIEW 视图名称[(列名列表)]	AS	SELECT语句	[ WITH [ CASCADED | LOCAL ] CHECK OPTION ]
-1. 方式二：ALTER	VIEW 视图名称[(列名列表)]	AS	SELECT语句	[ WITH [ CASCADED |
-
-LOCAL ] CHECK OPTION ]
-
-![](data:image/
-
-1. 删除
-
-
-DROP VIEW [IF EXISTS]	视图名称	[,视图名称] ...
-
-![](data:image/
+```sql
+DROP VIEW [IF EXISTS] 视图名称 [,视图名称] ...
+```
 
 演示示例：
 
-1. -- 创建视图
+```sql
+-- 创建视图
+create or replace view stu_v_1 as select id,name from student where id <= 10;
 
-1. create or replace view stu_v_1 as select id,name from student where id <= 10; 3
-4. -- 查询视图
+-- 查询视图
+show create view stu_v_1;
 
-4. show create view stu_v_1; 6
-7. select * from stu_v_1;
+select * from stu_v_1;
+select * from stu_v_1 where id < 3;
 
-7. select * from stu_v_1 where id < 3; 9
-10. -- 修改视图
+-- 修改视图
+create or replace view stu_v_1 as select id,name,no from student where id <= 10;
 
-10. create or replace view stu_v_1 as select id,name,no from student where id <= 10; 12
+alter view stu_v_1 as select id,name from student where id <= 10;
 
-13	alter view stu_v_1 as select id,name from student where id <= 10; 14
+-- 删除视图
+drop view if exists stu_v_1;
+```
 
-15
+上述我们演示了，视图应该如何创建、查询、修改、删除，那么我们能不能通过视图来插入、更新数据呢？ 接下来，做一个测试。
 
-16. -- 删除视图
+```sql
+create or replace view stu_v_1 as select id,name from student where id <= 10 ;
 
-16. drop view if exists stu_v_1;
+select * from stu_v_1;
 
-![](data:image/
-
-上述我们演示了，视图应该如何创建、查询、修改、删除，那么我们能不能通过视图来插入、更新数据 呢？ 接下来，做一个测试。
-
-
-create or replace view stu_v_1 as select id,name from student where id <= 10 ; 2
-
-3	select * from stu_v_1; 4
-
-5	insert into stu_v_1 values(6,'Tom'); 6
-
-7	insert into stu_v_1 values(17,'Tom22');
-
-![](data:image/
+insert into stu_v_1 values(6, 'Tom');
+insert into stu_v_1 values(17, 'Tom22');
+```
 
 执行上述的SQL，我们会发现，id为6和17的数据都是可以成功插入的。 但是我们执行查询，查询出来的数据，却没有id为17的记录。
 
-![](data:image/
+![](./media/image130.png)
 
 因为我们在创建视图的时候，指定的条件为 id<=10, id为17的数据，是不符合条件的，所以没有查询出来，但是这条数据确实是已经成功的插入到了基表中。
 
 如果我们定义视图时，如果指定了条件，然后我们在插入、修改、删除数据时，是否可以做到必须满足 条件才能操作，否则不能够操作呢？ 答案是可以的，这就需要借助于视图的检查选项了。
 
 ### 4.1.3 **检查选项**
-当使用WITH CHECK OPTION子句创建视图时，MySQL会通过视图检查正在更改的每个行，例如 插入，更新，删除，以使其符合视图的定义。 MySQL允许基于另一个视图创建视图，它还会检查依赖视图中的规则以保持一致性。为了确定检查的范围，mysql提供了两个选项： CASCADED 和 LOCAL
-
-，默认值为 CASCADED 。
+当使用WITH CHECK OPTION子句创建视图时，MySQL会通过视图检查正在更改的每个行，例如 插入，更新，删除，以使其符合视图的定义。 MySQL允许基于另一个视图创建视图，它还会检查依赖视图中的规则以保持一致性。为了确定检查的范围，mysql提供了两个选项： CASCADED 和 LOCAL，默认值为 CASCADED 。
 
 
 1. CASCADED
@@ -1976,16 +2038,19 @@ create or replace view stu_v_1 as select id,name from student where id <= 10 ; 2
 
 比如，v2视图是基于v1视图的，如果在v2视图创建的时候指定了检查选项为 cascaded，但是v1视图创建时未指定检查选项。 则在执行检查时，不仅会检查v2，还会级联检查v2的关联视图v1。
 
-![](data:image/
+![](./media/image131.png)
 
+```sql
+create view v2 as select id, name from v1 where id >= 10 with cascaded chekck option;
+```
 
-1. LOCAL
+2. LOCAL
 
 本地。
 
 比如，v2视图是基于v1视图的，如果在v2视图创建的时候指定了检查选项为 local ，但是v1视图创建时未指定检查选项。 则在执行检查时，知会检查v2，不会检查v2的关联视图v1。
 
-![](data:image/
+![](./media/image132.png)
 
 
 ### 4.1.4 **视图的更新**
@@ -2004,17 +2069,17 @@ create or replace view stu_v_1 as select id,name from student where id <= 10 ; 2
 
 示例演示:
 
-
+```sql
 create view stu_v_count as select count(*) from student;
-
-![](data:image/
+```
 
 上述的视图中，就只有一个单行单列的数据，如果我们对这个视图进行更新或插入的，将会报错。
 
-
+```sql
 insert into stu_v_count values(10);
+```
 
-![](data:image/
+![](./media/image133.jpeg)
 
 
 
@@ -2024,11 +2089,11 @@ insert into stu_v_count values(10);
 
 视图不仅可以简化用户对数据的理解，也可以简化他们的操作。那些被经常使用的查询可以被定义为视 图，从而使得用户不必为以后的操作每次指定全部的条件。
 
-1. 安全
+2. 安全
 
 数据库可以授权，但不能授权到数据库特定行和特定的列上。通过视图用户只能查询和修改他们所能见 到的数据
 
-1. 数据独立
+3. 数据独立
 
 视图可帮助用户屏蔽真实表结构变化带来的影响。
 
@@ -2036,26 +2101,19 @@ insert into stu_v_count values(10);
 ### 4.1.6 **案例**
 1. 为了保证数据库表的安全性，开发人员在操作tb_user表时，只能看到的用户的基本字段，屏蔽 手机号和邮箱两个字段。
 
-
+```sql
 create view tb_user_view as select id,name,profession,age,gender,status,createtime from tb_user;
 
-2
+select * from tb_user_view;
+```
 
-3	select * from tb_user_view;
+2. 查询每个学生所选修的课程（三张表联查），这个功能在很多的业务中都有使用到，为了简化操作，定义一个视图。
 
-![](data:image/
+```sql
+create view tb_stu_course_view as select s.name student_name, s.no student_no, c.name course_name from 			student s, student_course sc ,course c where s.id = sc.studentid and sc.courseid = c.id;
 
-
-1. 查询每个学生所选修的课程（三张表联查），这个功能在很多的业务中都有使用到，为了简化操 作，定义一个视图。
-
-
-create view tb_stu_course_view as select s.name student_name , s.no student_no , c.name course_name from student s, student_course sc , course c where s.id = sc.studentid and sc.courseid = c.id;
-
-2
-
-3	select * from tb_stu_course_view;
-
-![](data:image/
+select * from tb_stu_course_view;
+```
 
 
 
@@ -2066,93 +2124,80 @@ create view tb_stu_course_view as select s.name student_name , s.no student_no ,
 
 存储过程思想上很简单，就是数据库 SQL 语言层面的代码封装与重用。
 
-![](data:image/
+![](./media/image134.jpeg)
 
 特点:
 
-![](data:image/封装，复用 -----------------------> 可以把某一业务SQL封装在存储过程中，需要用到的时候直接调用即可。
+* 封装，复用 -----------------------> 可以把某一业务SQL封装在存储过程中，需要用到的时候直接调用即可。
 
-![](data:image/可以接收参数，也可以返回数据 --------> 再存储过程中，可以传递参数，也可以接收返回值。
+* 可以接收参数，也可以返回数据 --------> 再存储过程中，可以传递参数，也可以接收返回值。
 
-![](data:image/减少网络交互，效率提升 -------------> 如果涉及到多条SQL，每执行一次都是一次网络传输。 而如果封装在存储过程中，我们只需要网络交互一次可能就可以了。
+* 减少网络交互，效率提升 -------------> 如果涉及到多条SQL，每执行一次都是一次网络传输。 而如果封装在存储过程中，我们只需要网络交互一次可能就可以了。
 
 ### 4.2.2 **基本语法**
 1. 创建
-1. CREATE PROCEDURE	存储过程名称 ([ 参数列表 ])
 
-1. BEGIN
+```sql
+CREATE PROCEDURE 存储过程名称 ([ 参数列表 ])
 
-3
-
+BEGIN
 -- SQL语句
+END ;
+```
 
-4	END ;
+2. 调用
 
-![](data:image/
-
-
-1. 调用
-
-
+```sql
 CALL 名称 ([ 参数 ]);
+```
 
-![](data:image/
+3. 查看
 
+```sql
+SELECT * FROM INFORMATION_SCHEMA.ROUTINES WHERE ROUTINE_SCHEMA = 'xxx'; -- 查询指定数据库的存储过程及状态信息
 
-1. 查看
+SHOW CREATE PROCEDURE 存储过程名称 ; -- 查询某个存储过程的定义
+```
 
-1. SELECT * FROM INFORMATION_SCHEMA.ROUTINES WHERE ROUTINE_SCHEMA = 'xxx'; -- 查询指定数据库的存储过程及状态信息
-1. SHOW CREATE PROCEDURE	存储过程名称 ; -- 查询某个存储过程的定义
+4. 删除
 
-![](data:image/
+```sql
+DROP PROCEDURE	[ IF EXISTS ] 存储过程名称;
+```
 
-
-1. 删除
-
-
-DROP PROCEDURE	[ IF EXISTS ] 存储过程名称 ；
-
-![](data:image/
-
-注意:
-
-在命令行中，执行创建存储过程的SQL时，需要通过关键字 delimiter 指定SQL语句的结束符。
-![](data:image/
+> 注意:
+>
+> 在命令行中，执行创建存储过程的SQL时，需要通过关键字 delimiter 指定SQL语句的结束符。
 
 演示示例:
 
-1. -- 存储过程基本语法
+```sql
+-- 存储过程基本语法
 
-1. -- 创建
+-- 创建
+create procedure p1()
 
-1. create procedure p1()
+begin
+	select count(*) from student;
+end;
 
-1. begin
+-- 调用
+call p1();
 
-5
+-- 查看
+select * from information_schema.ROUTINES where ROUTINE_SCHEMA = 'itcast';
 
-select count(*) from student;
+show create procedure p1;
 
-6	end; 7
+-- 删除
+drop procedure if exists p1;
+```
 
-8. -- 调用
-
-8. call p1(); 10
-11. -- 查看
-
-11. select * from information_schema.ROUTINES where ROUTINE_SCHEMA = 'itcast'; 13
-
-14	show create procedure p1; 15
-
-16	-- 删除
-
-17	drop procedure if exists p1;
-
-![](data:image/
-
-
-
-
+> 存储过程 在routines文件夹下
+>
+> 显示创建语句的时候会加上`DEFINER=用户名`
+>
+> ![image-20230524190410917](./media/image-20230524190410917.png)
 
 ### 4.2.3 **变量**
 在MySQL中变量分为三种类型: 系统变量、用户定义变量、局部变量。
@@ -2161,128 +2206,106 @@ select count(*) from student;
 
 1. 查看系统变量
 
-
-SHOW [ SESSION | GLOBAL ]	VARIABLES ;
-
--- 查看所有系统变量
-
-2	SHOW [ SESSION | GLOBAL ]	VARIABLES LIKE '	';
-
--- 可以通过LIKE模糊匹配方
-
-式查找变量
-
-3	SELECT @@[SESSION | GLOBAL] 系统变量名;
-
--- 查看指定变量的值
-
-![](data:image/
-
-
-1. 设置系统变量
-
-1. SET [ SESSION | GLOBAL ]	系统变量名 = 值 ;
-
-1. SET @@[SESSION | GLOBAL]系统变量名 = 值 ;
-![](data:image/
-
-注意:
-
-如果没有指定SESSION/GLOBAL，默认是SESSION，会话变量。
+```sql
+SHOW [ SESSION | GLOBAL ] VARIABLES ; 				-- 查看所有系统变量
+SHOW [ SESSION | GLOBAL ] VARIABLES LIKE '......'; 	-- 可以通过LIKE模糊匹配方式查找变量
+SELECT @@[SESSION | GLOBAL] 系统变量名;			 	-- 查看指定变量的值
+```
 
 
 
-1. 全局变量(GLOBAL): 全局变量针对于所有的会话。
-1. 会话变量(SESSION): 会话变量针对于单个会话，在另外一个会话窗口就不生效了。
+2. 设置系统变量
+
+```sql
+SET [ SESSION | GLOBAL ] 系统变量名 = 值 ;
+SET @@[SESSION | GLOBAL]系统变量名 = 值 ;
+```
+
+> 注意:
+>
+> 如果没有指定SESSION/GLOBAL，默认是SESSION，会话变量。
+>
+> 1. mysql服务重新启动之后，所设置的全局参数会失效，要想不失效，可以在 /etc/my.cnf 中配置。
+>
+>    A. 全局变量(GLOBAL): 全局变量针对于所有的会话。
+>
+>    B. 会话变量(SESSION): 会话变量针对于单个会话，在另外一个会话窗口就不生效了。
 
 
-mysql服务重新启动之后，所设置的全局参数会失效，要想不失效，可以在 /etc/my.cnf 中配置。
-![](data:image/
+
 
 
 演示示例:
 
-1. -- 查看系统变量
+```sql
+-- 查看系统变量
+show session variables ;
 
-1. show session variables ; 3
-4. show session variables like 'auto%';
+show session variables like 'auto%';
+show global variables like 'auto%';
 
-4. show global variables like 'auto%'; 6
-7. select @@global.autocommit;
+select @@global.autocommit;
+select @@session.autocommit;
 
-7. select @@session.autocommit; 9
+-- 设置系统变量
+set session autocommit = 1;
 
-10
+insert into course(id, name) VALUES (6, 'ES');
 
-11. -- 设置系统变量
+set global autocommit = 0;
 
-11. set session autocommit = 1; 13
+select @@global.autocommit;
+```
 
-14	insert into course(id, name) VALUES (6, 'ES'); 15
 
-16	set global autocommit = 0; 17
-
-18	select @@global.autocommit;
-
-![](data:image/
 
 #### 4.2.3.2 **用户定义变量**
 用户定义变量 是用户根据需要自己定义的变量，用户变量不用提前声明，在用的时候直接用 "@变量名" 使用就可以。其作用域为当前连接。
 
-1. 赋值方式一:
+1. 赋值
 
-1. SET	@var_name = expr [, @var_name = expr] ... ;
+方式一:
 
-1. SET	@var_name := expr [, @var_name := expr] ... ;
+```sql
+SET	@var_name = expr [, @var_name = expr] ... ;
 
-![](data:image/
+SET	@var_name := expr [, @var_name := expr] ... ;
+```
 
-赋值时，可以使用 = ，也可以使用 := 。方式二:
+赋值时，可以使用 = ，也可以使用 := 。
 
-1. SELECT	@var_name := expr [, @var_name := expr] ... ;
+方式二:
 
-1. SELECT 字段名 INTO @var_name FROM 表名;
+```sql
+SELECT @var_name := expr [, @var_name := expr] ... ;
 
-![](data:image/
+SELECT 字段名 INTO @var_name FROM 表名;
+```
 
+2. 使用
 
-1. 使用
+```sql
+SELECT @var_name;
+```
 
-
-SELECT	@var_name ;
-
-![](data:image/
-
-注意: 用户定义的变量无需对其进行声明或初始化，只不过获取到的值为NULL。
-![](data:image/
-
+> 注意: 用户定义的变量无需对其进行声明或初始化，只不过获取到的值为NULL。
 
 演示示例:
 
-1. -- 赋值
+```sql
+-- 赋值
+set @myname = 'itcast';
+set @myage := 10;
+set @mygender := '男',@myhobby := 'java';
 
-1. set @myname = 'itcast';
+select @mycolor := 'red';
+select count(*) into @mycount from tb_user;
 
-1. set @myage := 10;
-
-1. set @mygender := '男',@myhobby := 'java'; 5
-6. select @mycolor := 'red';
-
-6. select count(*) into @mycount from tb_user; 8
-9. -- 使用
-
-9. select @myname,@myage,@mygender,@myhobby; 11
-
-12	select @mycolor , @mycount;
-
-![](data:image/
-
-13
-
-14	select @abc;
-![](data:image/
-
-
+-- 使用
+select @myname,@myage,@mygender,@myhobby;
+select @mycolor , @mycount;
+select @abc;
+```
 
 
 
@@ -2291,52 +2314,39 @@ SELECT	@var_name ;
 
 1. 声明
 
-
+```sql
 DECLARE 变量名 变量类型 [DEFAULT ... ] ;
-
-![](data:image/
+```
 
 变量类型就是数据库字段类型：INT、BIGINT、CHAR、VARCHAR、DATE、TIME等。
 
-1. 赋值
-1. SET 变量名 = 值 ;
+2. 赋值
 
-1. SET 变量名 := 值 ;
+```sql
+SET 变量名 = 值 ;
+SET 变量名 := 值 ;
 
-1. SELECT 字段名 INTO 变量名 FROM 表名 ... ;
-
-![](data:image/
+SELECT 字段名 INTO 变量名 FROM 表名 ... ;
+```
 
 
 演示示例:
 
-1. -- 声明局部变量 - declare
+```sql
+-- 声明局部变量 - declare
 
-1. -- 赋值
+-- 赋值
+create procedure p2()
 
-1. create procedure p2()
+begin
+    declare stu_count int default 0;
 
-1. begin
+    select count(*) into stu_count from student;
+    select stu_count;
+end;
 
-5
-
-declare stu_count int default 0;
-
-6
-
-select count(*) into stu_count from student;
-
-7
-
-select stu_count;
-
-8	end; 9
-
-10	call p2();
-
-![](data:image/
-
-
+call p2();
+```
 
 
 
@@ -2346,95 +2356,46 @@ select stu_count;
 
 if 用于做条件判断，具体的语法结构为：
 
-
+```sql
 IF 条件1 THEN
-
-2
-
-.....
-
-3	ELSEIF 条件2 THEN
-
--- 可选
-
-4
-
-.....
-
-5	ELSE
-
--- 可选
-
-6
-
-.....
-
-7	END IF;
-
-![](data:image/
+	.....
+ELSEIF 条件2 THEN -- 可选
+	.....
+ELSE -- 可选
+	.....
+END IF;
+```
 
 在if条件判断的结构中，ELSE IF 结构可以有多个，也可以没有。 ELSE结构可以有，也可以没有。
 
-
-1. 案例
+2. 案例
 
 根据定义的分数score变量，判定当前分数对应的分数等级。
 
-![](data:image/score >= 85分，等级为优秀。
+* score >= 85分，等级为优秀。
 
-![](data:image/score >= 60分 且 score < 85分，等级为及格。score < 60分，等级为不及格。
+* score >= 60分 且 score < 85分，等级为及格。
+* score < 60分，等级为不及格。
 
-1. create procedure p3()
+```sql
+create procedure p3()
+begin
+	declare score int default 58;
+	declare result varchar(10);
 
-1. begin
+	if score >= 85 then
+		set result := '优秀';
+	elseif score >= 60 then
+		set result := '及格';
+	else
+		set result := '不及格';
+	end if;
+	
+	select result;
+end;
 
-3
-
-declare score int default 58;
-
-4
-
-declare result varchar(10);
-
-5
-
-6
-
-if score >= 85 then
-
-7
-
-set result := '优秀';
-
-8
-
-elseif score >= 60 then
-
-9
-
-set result := '及格';
-
-10
-
-else
-
-11
-
-set result := '不及格';
-
-12
-
-end if;
-
-13
-
-select result;
-
-14	end; 15
-
-16	call p3();
-
-![](data:image/
+call p3();
+```
 
 上述的需求我们虽然已经实现了，但是也存在一些问题，比如：score 分数我们是在存储过程中定义死的，而且最终计算出来的分数等级，我们也仅仅是最终查询展示出来而已。
 
@@ -2453,91 +2414,53 @@ select result;
 |INOUT|既可以作为输入参数，也可以作为输出参数||
 用法：
 
-1. CREATE PROCEDURE	存储过程名称 ([ IN/OUT/INOUT 参数名 参数类型 ])
-
-1. BEGIN
-
-3
-
--- SQL语句
-
-4	END ;
-
-![](data:image/
-
-
+```sql
+CREATE PROCEDURE 存储过程名称 ([ IN/OUT/INOUT 参数名 参数类型 ])
+BEGIN
+	-- SQL语句
+END ;
+```
 
 1. 案例一
 
 根据传入参数score，判定当前分数对应的分数等级，并返回。
 
-![](data:image/score >= 85分，等级为优秀。
+* score >= 85分，等级为优秀。
 
-![](data:image/score >= 60分 且 score < 85分，等级为及格。score < 60分，等级为不及格。
+* score >= 60分 且 score < 85分，等级为及格。score < 60分，等级为不及格。
 
-1. create procedure p4(in score int, out result varchar(10))
+```sql
+create procedure p4(in score int, out result varchar(10))
+begin
+	if score >= 85 then
+		set result := '优秀';
+	elseif score >= 60 then
+		set result := '及格';
+	else
+		set result := '不及格';
+	end if;
+	
+end;
 
-1. begin
+-- 定义用户变量 @result来接收返回的数据, 用户变量可以不用声明
+call p4(18, @result);
+select @result;
+```
 
-3
-
-if score >= 85 then
-
-4
-
-set result := '优秀';
-
-5
-
-elseif score >= 60 then
-
-![](data:image/
-
-6
-
-set result := '及格';
-
-7
-
-else
-
-8
-
-set result := '不及格';
-
-9
-
-end if;
-
-10	end; 11
-
-12. -- 定义用户变量 @result来接收返回的数据, 用户变量可以不用声明
-12. call p4(18, @result); 14
-
-15	select @result;
-![](data:image/
-
-
-1. 案例二
+2. 案例二
 
 将**传入**的200分制的分数，进行换算，换算成百分制，然后**返回**。
 
-1. create procedure p5(inout score double)
+```sql
+create procedure p5(inout score double)
+begin
+	set score := score * 0.5;
+end;
 
-1. begin
-
-3
-
-set score := score * 0.5;
-
-4	end; 5
-
-6. set @score = 198;
-6. call p5(@score); 8
-
-9	select @score;
-
-![](data:image/
+set @score = 198;
+call p5(@score);
+select @score;
+```
 
 
 
@@ -2545,138 +2468,67 @@ set score := score * 0.5;
 
 1. 介绍
 
-case结构及作用，和我们在基础篇中所讲解的流程控制函数很类似。有两种语法格式： 语法1：
+case结构及作用，和我们在基础篇中所讲解的流程控制函数很类似。有两种语法格式：
 
-1. -- 含义： 当case_value的值为 when_value1时，执行statement_list1，当值为 when_value2时，
+语法1：
 
-执行statement_list2， 否则就执行 statement_list
-
-1. CASE case_value
-
-3
-
+```sql
+-- 含义： 当case_value的值为 when_value1时，执行statement_list1，当值为 when_value2时，执行statement_list2， 否则就执行 statement_list
+CASE case_value
 WHEN when_value1 THEN statement_list1
-
-4
-
-[ WHEN when_value2 THEN statement_list2] ...
-
-5
-
-[ ELSE statement_list ]
-
-6	END CASE;
-![](data:image/
-
+	[ WHEN when_value2 THEN statement_list2] ...
+	[ ELSE statement_list ]
+END CASE;
+```
 
 语法2：
 
-1. -- 含义： 当条件search_condition1成立时，执行statement_list1，当条件search_condition2成
-
-立时，执行statement_list2， 否则就执行 statement_list
-
-1. CASE
-
-3
-
-WHEN search_condition1 THEN statement_list1
-
-4
-
-[WHEN search_condition2 THEN statement_list2] ...
-
-5
-
-[ELSE statement_list]
-
-6	END CASE;
-
-![](data:image/
+```sql
+-- 含义： 当条件search_condition1成立时，执行statement_list1，当条件search_condition2成立时，执行statement_list2， 否则就执行 statement_list
+CASE
+	WHEN search_condition1 THEN statement_list1
+	[WHEN search_condition2 THEN statement_list2] ...
+	[ELSE statement_list]
+END CASE;
+```
 
 
 1. 案例
 
 根据传入的月份，判定月份所属的季节（要求采用case结构）。
 
-![](data:image/1-3月份，为第一季度
+* 1-3月份，为第一季度
 
-![](data:image/4-6月份，为第二季度
+* 4-6月份，为第二季度
 
-![](data:image/7-9月份，为第三季度
+* 7-9月份，为第三季度
 
-![](data:image/10-12月份，为第四季度
+* 10-12月份，为第四季度
 
-1. create procedure p6(in month int)
+```sql
+create procedure p6(in month int)
+begin
+	declare result varchar(10);
+	case
+		when month >= 1 and month <= 3 then
+			set result := '第一季度';
+		when month >= 4 and month <= 6 then
+			set result := '第二季度';
+		when month >= 7 and month <= 9 then
+			set result := '第三季度';
+		when month >= 10 and month <= 12 then
+			set result := '第四季度';
+		else
+			set result := '非法参数';
+	end case ;
+	
+	select concat('您输入的月份为: ',month, ', 所属的季度为: ',result);
+end;
 
-1. begin
+call p6(16);
+```
 
-3
-
-declare result varchar(10);
-
-4
-
-case
-
-5
-
-when month >= 1 and month <= 3 then
-
-6
-
-set result := '第一季度';
-
-7
-
-when month >= 4 and month <= 6 then
-
-8
-
-set result := '第二季度';
-
-9
-
-when month >= 7 and month <= 9 then
-
-10
-
-set result := '第三季度';
-
-![](data:image/
-
-11
-
-when month >= 10 and month <= 12 then
-
-12
-
-set result := '第四季度';
-
-13
-
-else
-
-14
-
-set result := '非法参数';
-
-15
-
-end case ;
-
-16
-
-17
-
-select concat('您输入的月份为: ',month, ', 所属的季度为: ',result);
-
-18	end; 19
-
-20	call p6(16);
-![](data:image/
-
-注意：如果判定条件有多个，多个条件之间，可以使用 and 或 or 进行连接。
-![](data:image/
+> 注意：如果判定条件有多个，多个条件之间，可以使用 and 或 or 进行连接。
 
 
 ### 4.2.7 **while**
@@ -2685,67 +2537,34 @@ select concat('您输入的月份为: ',month, ', 所属的季度为: ',result);
 
 while 循环是有条件的循环控制语句。满足条件后，再执行循环体中的SQL语句。具体语法为：
 
-1. -- 先判定条件，如果条件为true，则执行逻辑，否则，不执行逻辑
-
-1. WHILE 条件 DO
-
-3
-
-SQL逻辑...
-
-4	END WHILE;
-
-![](data:image/
+```sql
+-- 先判定条件，如果条件为true，则执行逻辑，否则，不执行逻辑
+WHILE 条件 DO
+	SQL逻辑...
+END WHILE;
+```
 
 
-1. 案例
+2. 案例
 
 计算从1累加到n的值，n为传入的参数值。
 
-1. -- A. 定义局部变量, 记录累加之后的值;
+```sql
+-- A. 定义局部变量, 记录累加之后的值;
+-- B. 每循环一次, 就会对n进行减1 , 如果n减到0, 则退出循环
+create procedure p7(in n int)
+begin
+	declare total int default 0;
+	while n>0 do
+		set total := total + n;
+		set n := n - 1;
+	end while;
+	
+	select total;
+end;
 
-1. -- B. 每循环一次, 就会对n进行减1 , 如果n减到0, 则退出循环
-
-3
-
-4. create procedure p7(in n int)
-
-4. begin
-
-6
-
-declare total int default 0;
-
-7
-
-8
-
-while n>0 do
-
-![](data:image/
-
-9
-
-set total := total + n;
-
-10
-
-set n := n - 1;
-
-11
-
-end while;
-
-12
-
-13
-
-select total;
-
-14	end; 15
-
-16	call p7(100);
-![](data:image/
+call p7(100);
+```
 
 
 ### 4.2.8 **repeat**
@@ -2754,79 +2573,37 @@ select total;
 
 repeat是有条件的循环控制语句, 当满足until声明的条件的时候，则退出循环 。具体语法为：
 
-1. -- 先执行一次逻辑，然后判定UNTIL条件是否满足，如果满足，则退出。如果不满足，则继续下一次循环
+```sql
+-- 先执行一次逻辑，然后判定UNTIL条件是否满足，如果满足，则退出。如果不满足，则继续下一次循环
+REPEAT
+	SQL逻辑...
+	UNTIL 条件
+END REPEAT;
+```
 
-1. REPEAT
-
-3
-
-SQL逻辑...
-
-4
-
-UNTIL 条件
-
-5	END REPEAT;
-
-![](data:image/
-
-
-1. 案例
+2. 案例
 
 计算从1累加到n的值，n为传入的参数值。(使用repeat实现)
 
-1. -- A. 定义局部变量, 记录累加之后的值;
+```sql
+-- A. 定义局部变量, 记录累加之后的值;
+-- B. 每循环一次, 就会对n进行-1 , 如果n减到0, 则退出循环
+create procedure p8(in n int)
+begin
+	declare total int default 0;
+		repeat
+	set total := total + n;
+	set n := n - 1;
+	
+	until n <= 0
+	end repeat;
 
-1. -- B. 每循环一次, 就会对n进行-1 , 如果n减到0, 则退出循环
+	select total;
+end;
 
-1. create procedure p8(in n int)
-
-1. begin
-
-5
-
-declare total int default 0;
-
-6
-
-7
-
-repeat
-
-8
-
-set total := total + n;
-
-9
-
-set n := n - 1;
-
-10
-
-until n <= 0
-
-11
-
-end repeat;
-
-12
-
-13
-
-select total;
-
-![](data:image/
-
-14	end; 15
-
-16	call p8(10);
-
-17	call p8(100);
-![](data:image/
-
-
-
-
+call p8(10);
+call p8(100);
+```
 
 ### 4.2.9 **loop**
 
@@ -2836,282 +2613,157 @@ LOOP 实现简单的循环，如果不在SQL逻辑中增加退出循环的条件
 
 LOOP可以配合一下两个语句使用：
 
-![](data:image/LEAVE ：配合循环使用，退出循环。
+* LEAVE ：配合循环使用，退出循环。
 
-![](data:image/ITERATE：必须用在循环中，作用是跳过当前循环剩下的语句，直接进入下一次循环。
+* ITERATE：必须用在循环中，作用是跳过当前循环剩下的语句，直接进入下一次循环。
 
-
+```sql
 [begin_label:] LOOP
-
-2
-
-SQL逻辑...
-
-3	END LOOP [end_label];
-
-1. LEAVE label;	-- 退出指定标记的循环体
-
-1. ITERATE label; -- 直接进入下一次循环
-
-![](data:image/
+	SQL逻辑...
+END LOOP [end_label];
+```
+```sql
+LEAVE label;	-- 退出指定标记的循环体
+ITERATE label; -- 直接进入下一次循环
+```
 
 上述语法中出现的 begin_label，end_label，label 指的都是我们所自定义的标记。
 
 
-1. 案例一
+2. 案例一
 
 计算从1累加到n的值，n为传入的参数值。
 
-1. -- A. 定义局部变量, 记录累加之后的值;
+```sql
+-- A. 定义局部变量, 记录累加之后的值;
+-- B. 每循环一次, 就会对n进行-1 , 如果n减到0, 则退出循环 ----> leave xx
 
-1. -- B. 每循环一次, 就会对n进行-1 , 如果n减到0, 则退出循环 ----> leave xx 3
-4. create procedure p9(in n int)
+create procedure p9(in n int)
+begin
+	declare total int default 0;
+	sum:loop
+		if n<=0 then
+			leave sum;
+		end if;
+		
+		set total := total + n;
+		set n := n - 1;
+	
+	end loop sum;
+	
+	select total;
+end;
 
-4. begin
+call p9(100);
+```
 
-6
-
-declare total int default 0;
-
-7
-
-8
-
-sum:loop
-
-9
-
-if n<=0 then
-
-10
-
-leave sum;
-
-![](data:image/
-
-11
-
-end if;
-
-12
-
-13
-
-set total := total + n;
-
-14
-
-set n := n - 1;
-
-15
-
-end loop sum;
-
-16
-
-17
-
-select total;
-
-18	end; 19
-
-20	call p9(100);
-![](data:image/
-
-
-1. 案例二
+3. 案例二
 
 计算从1到n之间的偶数累加的值，n为传入的参数值。
 
-1. -- A. 定义局部变量, 记录累加之后的值;
+```sql
+-- A. 定义局部变量, 记录累加之后的值;
+-- B. 每循环一次, 就会对n进行-1 , 如果n减到0, 则退出循环 ----> leave xx
+-- C. 如果当次累加的数据是奇数, 则直接进入下一次循环. --------> iterate xx
 
-1. -- B. 每循环一次, 就会对n进行-1 , 如果n减到0, 则退出循环 ----> leave xx
+create procedure p10(in n int)
+begin
+	declare total int default 0;
 
-1. -- C. 如果当次累加的数据是奇数, 则直接进入下一次循环. --------> iterate xx 4
-5. create procedure p10(in n int)
+	sum:loop
+		if n<=0 then
+			leave sum;
+		end if;
+		if n%2 = 1 then
+			set n := n - 1;
+			iterate sum;
+		end if;
 
-5. begin
+		set total := total + n;
+		set n := n - 1;
+	end loop sum;
 
-7
+	select total;
+end;
 
-declare total int default 0;
-
-8
-
-9
-
-sum:loop
-
-10
-
-if n<=0 then
-
-11
-
-leave sum;
-
-12
-
-end if;
-
-13
-
-14
-
-if n%2 = 1 then
-
-15
-
-set n := n - 1;
-
-16
-
-iterate sum;
-
-17
-
-end if;
-
-18
-
-19
-
-set total := total + n;
-
-20
-
-set n := n - 1;
-
-21
-
-end loop sum;
-
-22
-
-![](data:image/
-
-23
-
-select total;
-
-24	end; 25
-
-26	call p10(100);
-
-27
-![](data:image/
-
+call p10(100);
+```
 
 ### 4.2.10 **游标**
 1. 介绍
 
 游标（CURSOR）是用来存储查询结果集的数据类型 , 在存储过程和函数中可以使用游标对结果集进行循环的处理。游标的使用包括游标的声明、OPEN、FETCH 和 CLOSE，其语法分别如下。
 
-1. 声明游标
+A. 声明游标
 
+```sql
+DECLARE 游标名称 CURSOR FOR 查询语句 ;
+```
 
-DECLARE	游标名称 CURSOR FOR 查询语句 ;
+B. 打开游标
 
-![](data:image/
+```sql
+OPEN 游标名称;
+```
 
-1. 打开游标
+C. 获取游标记录
 
-
-OPEN	游标名称 ;
-
-![](data:image/
-
-1. 获取游标记录
-
-
+```sql
 FETCH 游标名称 INTO 变量 [, 变量 ] ;
+```
 
-![](data:image/
+D. 关闭游标
 
-1. 关闭游标
+```sql
+CLOSE 游标名称 ;
+```
 
+2. 案例
 
-CLOSE	游标名称 ;
+根据传入的参数uage，来查询用户表tb_user中，所有的用户年龄小于等于uage的用户姓名（name）和专业（profession），并将用户的姓名和专业插入到所创建的一张新表(id,name,profession)中。
 
-![](data:image/
-
-
-1. 案例
-
-根据传入的参数uage，来查询用户表tb_user中，所有的用户年龄小于等于uage的用户姓名
-
-（name）和专业（profession），并将用户的姓名和专业插入到所创建的一张新表
-
-(id,name,profession)中。
-
-
+```sql
 -- 逻辑:
+-- A. 声明游标, 存储查询结果集
+-- B. 准备: 创建表结构
+-- C. 开启游标
+-- D. 获取游标中的记录
+-- E. 插入数据到新表中
+-- F. 关闭游标
 
-2. -- A. 声明游标, 存储查询结果集
+create procedure p11(in uage int)
+begin
+	declare uname varchar(100);
+	declare upro varchar(100);
+	declare u_cursor cursor for select name,profession from tb_user where age <= uage;
 
-2. -- B. 准备: 创建表结构
+	drop table if exists tb_user_pro;
+	
+	create table if not exists tb_user_pro(
+		id int primary key auto_increment,
+		name varchar(100),
+		profession varchar(100) 20 );
 
-2. -- C. 开启游标
+	open u_cursor;
 
-2. -- D. 获取游标中的记录
+	while true do
+		fetch u_cursor into uname,upro;
+		insert into tb_user_pro values (null, uname, upro);
+	end while;
 
-2. -- E. 插入数据到新表中
+	close u_cursor;
+end;
 
-![](data:image/
-
-![](data:image/7	-- F. 关闭游标
-
-8
-
-9. create procedure p11(in uage int)
-
-9. begin
-
-9. declare uname varchar(100);
-
-9. declare upro varchar(100);
-
-9. `	`declare u_cursor cursor for select name,profession from tb_user where age <= uage;
-
-14
-
-15. drop table if exists tb_user_pro;
-
-15. create table if not exists tb_user_pro(
-
-15. id int primary key auto_increment,
-
-15. name varchar(100),
-
-15. profession varchar(100) 20	);
-
-21
-
-22. open u_cursor;
-
-22. while true do
-
-22. fetch u_cursor into uname,upro;
-
-22. insert into tb_user_pro values (null, uname, upro);
-
-22. end while;
-
-22. close u_cursor; 28
-
-29	end; 30
-
-31
-
-32	call p11(30);
+call p11(30);
+```
 
 上述的存储过程，最终我们在调用的过程中，会报错，之所以报错是因为上面的while循环中，并没有 退出条件。当游标的数据集获取完毕之后，再次获取数据，就会报错，从而终止了程序的执行。
 
-![](data:image/
+![](./media/image135.jpeg)
 
 但是此时，tb_user_pro表结构及其数据都已经插入成功了，我们可以直接刷新表结构，检查表结构 中的数据。
 
-![](data:image/
+![](./media/image136.jpeg)
 
 
 上述的功能，虽然我们实现了，但是逻辑并不完善，而且程序执行完毕，获取不到数据，数据库还报 错。 接下来，我们就需要来完成这个存储过程，并且解决这个问题。
@@ -3124,274 +2776,104 @@ CLOSE	游标名称 ;
 
 条件处理程序（Handler）可以用来定义在流程控制结构执行过程中遇到问题时相应的处理步骤。具体 语法为：
 
+```sql
+DECLARE handler_action HANDLER FOR condition_value [, condition_value] ... statement ;
 
-DECLARE	handler_action	HANDLER FOR	condition_value [, condition_value]
+handler_action 的取值：
+	CONTINUE: 继续执行当前程序
+	EXIT: 终止执行当前程序
 
-...	statement ;
+	condition_value 的取值：
+	SQLSTATE sqlstate_value: 状态码，如 02000
 
-2
+	SQLWARNING: 所有以01开头的SQLSTATE代码的简写
+	NOT FOUND: 所有以02开头的SQLSTATE代码的简写
 
-3	handler_action 的取值：
+	SQLEXCEPTION: 所有没有被SQLWARNING 或 NOT FOUND捕获的SQLSTATE代码的简写
+```
 
-4
-
-CONTINUE: 继续执行当前程序
-
-5
-
-EXIT: 终止执行当前程序
-
-6
-
-7	condition_value 的取值：
-
-8
-
-SQLSTATE sqlstate_value: 状态码，如 02000
-
-9
-
-10
-
-SQLWARNING: 所有以01开头的SQLSTATE代码的简写
-
-11
-
-NOT FOUND: 所有以02开头的SQLSTATE代码的简写
-
-12
-
-SQLEXCEPTION: 所有没有被SQLWARNING 或 NOT FOUND捕获的SQLSTATE代码的简写
-![](data:image/
-
-
-1. 案例
+2. 案例
 
 我们继续来完成在上一小节提出的这个需求，并解决其中的问题。
 
-根据传入的参数uage，来查询用户表tb_user中，所有的用户年龄小于等于uage的用户姓名
+根据传入的参数uage，来查询用户表tb_user中，所有的用户年龄小于等于uage的用户姓名（name）和专业（profession），并将用户的姓名和专业插入到所创建的一张新表(id,name,profession)中。
 
-（name）和专业（profession），并将用户的姓名和专业插入到所创建的一张新表
+A. 通过SQLSTATE指定具体的状态码
 
-(id,name,profession)中。
-
-1. 通过SQLSTATE指定具体的状态码
-
-
+```sql
 -- 逻辑:
-
-2. -- A. 声明游标, 存储查询结果集
-
-2. -- B. 准备: 创建表结构
-
-2. -- C. 开启游标
-
-2. -- D. 获取游标中的记录
-
-2. -- E. 插入数据到新表中
-
-2. -- F. 关闭游标
-
-8
-
-9. create procedure p11(in uage int)
-
-9. begin
-
-11
-
-declare uname varchar(100);
-
-12
-
-declare upro varchar(100);
-
-13
-
-declare u_cursor cursor for select name,profession from tb_user where age <=
-
-uage;
-
-![](data:image/
-
-14
-
--- 声明条件处理程序 ： 当SQL语句执行抛出的状态码为02000时，将关闭游标u_cursor，并退出
-
-15
-
-declare exit handler for SQLSTATE '02000' close u_cursor;
-
-16
-
-17
-
-drop table if exists tb_user_pro;
-
-18
-
-create table if not exists tb_user_pro(
-
-19
-
-id int primary key auto_increment,
-
-20
-
-name varchar(100),
-
-21
-
-profession varchar(100)
-
-22
-
-);
-
-23
-
-24
-
-open u_cursor;
-
-25
-
-while true do
-
-26
-
-fetch u_cursor into uname,upro;
-
-27
-
-insert into tb_user_pro values (null, uname, upro);
-
-28
-
-end while;
-
-29
-
-close u_cursor;
-
-30
-
-31	end; 32
-
-33	call p11(30);
-![](data:image/
-
-
-1. 通过SQLSTATE的代码简写方式 NOT FOUND 02 开头的状态码，代码简写为 NOT FOUND
-1. create procedure p12(in uage int)
-
-1. begin
-
-3
-
-declare uname varchar(100);
-
-4
-
-declare upro varchar(100);
-
-5		declare u_cursor cursor for select name,profession from tb_user where age <= uage;
-
-6
-
--- 声明条件处理程序 ： 当SQL语句执行抛出的状态码为02开头时，将关闭游标u_cursor，并退出
-
-7
-
-declare exit handler for not found close u_cursor;
-
-8
-
-9
-
-drop table if exists tb_user_pro;
-
-10
-
-create table if not exists tb_user_pro(
-
-11
-
-id int primary key auto_increment,
-
-![](data:image/
-
-
-
-|12||name varchar(100),|
-| :- | :- | :- |
-|13||profession varchar(100)|
-|14|);||
-|15|||
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-16
-
-open u_cursor;
-
-17
-
-while true do
-
-18
-
-fetch u_cursor into uname,upro;
-
-19
-
-insert into tb_user_pro values (null, uname, upro);
-
-20
-
-end while;
-
-21
-
-close u_cursor;
-
-22
-
-23	end; 24
-
-25
-
-26	call p12(30);
-![](data:image/具体的错误状态码，可以参考官方文档：
-
-[**https://dev.mysql.com/doc/refman/8.0/en/declare-handler.html**](https://dev.mysql.com/doc/refman/8.0/en/declare-handler.html)
-
-[**https://dev.mysql.com/doc/mysql-errors/8.0/en/server-error-reference.html**](https://dev.mysql.com/doc/mysql-errors/8.0/en/server-error-reference.html)
-
-
-
-
+-- A. 声明游标, 存储查询结果集
+-- B. 准备: 创建表结构
+-- C. 开启游标
+-- D. 获取游标中的记录
+-- E. 插入数据到新表中
+-- F. 关闭游标
+
+create procedure p11(in uage int)
+begin
+	declare uname varchar(100);
+	declare upro varchar(100);
+	declare u_cursor cursor for select name,profession from tb_user where age <= uage;
+	
+	-- 声明条件处理程序 ： 当SQL语句执行抛出的状态码为02000时，将关闭游标u_cursor，并退出
+	declare exit handler for SQLSTATE '02000' close u_cursor;
+	drop table if exists tb_user_pro;
+	
+	create table if not exists tb_user_pro(
+		id int primary key auto_increment,
+		name varchar(100),
+		profession varchar(100)
+	);
+
+	open u_cursor;
+
+	while true do
+		fetch u_cursor into uname,upro;
+		insert into tb_user_pro values (null, uname, upro);
+	end while;
+
+	close u_cursor;
+end;
+
+call p11(30);
+```
+
+B. 通过SQLSTATE的代码简写方式 NOT FOUND 02 开头的状态码，代码简写为 NOT FOUND
+
+```sql
+create procedure p12(in uage int)
+begin
+	declare uname varchar(100);
+	declare upro varchar(100);
+	declare u_cursor cursor for select name,profession from tb_user where age <= uage;
+
+	-- 声明条件处理程序 ： 当SQL语句执行抛出的状态码为02开头时，将关闭游标u_cursor，并退出
+	declare exit handler for not found close u_cursor;
+
+	drop table if exists tb_user_pro;
+	create table if not exists tb_user_pro(
+		id int primary key auto_increment,
+		name varchar(100),
+		profession varchar(100)
+	);
+
+	open u_cursor;
+	while true do
+		fetch u_cursor into uname,upro;
+		insert into tb_user_pro values (null, uname, upro);
+	end while;
+	
+	close u_cursor;
+end;
+
+call p12(30);
+```
+
+> 具体的错误状态码，可以参考官方文档：
+> 
+> [**https://dev.mysql.com/doc/refman/8.0/en/declare-handler.html**](https://dev.mysql.com/doc/refman/8.0/en/declare-handler.html)
+>
+> [**https://dev.mysql.com/doc/mysql-errors/8.0/en/server-error-reference.html**](https://dev.mysql.com/doc/mysql-errors/8.0/en/server-error-reference.html)
 
 
 ## 4.3 **存储函数**
@@ -3399,91 +2881,54 @@ close u_cursor;
 
 存储函数是有返回值的存储过程，存储函数的参数只能是IN类型的。具体语法如下：
 
-1. CREATE FUNCTION	存储函数名称 ([ 参数列表 ])
-
-1. RETURNS type [characteristic ...]
-
-1. BEGIN
-
-4
-
--- SQL语句
-
-5
-
-RETURN ...;
-
-6	END ;
-
-![](data:image/
+```sql
+CREATE FUNCTION 存储函数名称 ([ 参数列表 ])
+RETURNS type [characteristic ...]
+BEGIN
+	-- SQL语句
+	RETURN ...;
+END ;
+```
 
 characteristic说明：
 
-![](data:image/DETERMINISTIC：相同的输入参数总是产生相同的结果
+* DETERMINISTIC：相同的输入参数总是产生相同的结果
 
-![](data:image/NO SQL ：不包含 SQL 语句。
+* NO SQL ：不包含 SQL 语句。
 
-![](data:image/READS SQL DATA：包含读取数据的语句，但不包含写入数据的语句。
+* READS SQL DATA：包含读取数据的语句，但不包含写入数据的语句。
 
 
-1. 案例
+2. 案例
 
 计算从1累加到n的值，n为传入的参数值。
 
-1. create function fun1(n int)
+```sql
+create function fun1(n int)
+returns int deterministic
 
-1. returns int deterministic
+begin
+	declare total int default 0;
+	while n>0 do
+		set total := total + n;
+		set n := n - 1;
+	end while;
+	return total;
+end;
 
-1. begin
-
-4
-
-declare total int default 0;
-
-5
-
-6
-
-while n>0 do
-
-7
-
-set total := total + n;
-
-8
-
-set n := n - 1;
-
-9
-
-end while;
-
-10
-
-11
-
-return total;
-
-12	end; 13
-
-14	select fun1(50);
-
-![](data:image/
-
+select fun1(50);
+```
 
 在mysql8.0版本中binlog默认是开启的，一旦开启了，mysql就要求在定义存储过程时，需要指定
 
 characteristic特性，否则就会报如下错误：
 
-![](data:image/
-
+![](./media/image137.jpeg)
 
 
 ## 4.4 **触发器**
 ### 4.4.1 **介绍**
-触发器是与表有关的数据库对象，指在insert/update/delete之前(BEFORE)或之后(AFTER)，触 发并执行触发器中定义的SQL语句集合。触发器的这种特性可以协助应用在数据库端确保数据的完整性
-
-, 日志记录 , 数据校验等操作 。
+触发器是与表有关的数据库对象，指在insert/update/delete之前(BEFORE)或之后(AFTER)，触 发并执行触发器中定义的SQL语句集合。触发器的这种特性可以协助应用在数据库端确保数据的完整性, 日志记录 , 数据校验等操作 。
 
 使用别名OLD和NEW来引用触发器中发生变化的记录内容，这与其他的数据库是相似的。现在触发器还 只支持行级触发，不支持语句级触发。
 
@@ -3496,35 +2941,28 @@ characteristic特性，否则就会报如下错误：
 
 ### 4.4.2 **语法**
 1. 创建
-1. CREATE TRIGGER trigger_name
 
-1. BEFORE/AFTER INSERT/UPDATE/DELETE
+```sql
+CREATE TRIGGER trigger_name
+BEFORE/AFTER INSERT/UPDATE/DELETE
+ON tbl_name FOR EACH ROW -- 行级触发器
 
-1. ON tbl_name	FOR EACH ROW -- 行级触发器
+BEGIN
+	trigger_stmt ;
+END;
+```
 
-1. BEGIN
+2. 查看
 
-5
-
-trigger_stmt ;
-
-6	END;
-
-![](data:image/
-
-1. 查看
-
-
+```sql
 SHOW TRIGGERS ;
+```
 
-![](data:image/
+3. 删除
 
-1. 删除
-
-
+```sql
 DROP TRIGGER [schema_name.]trigger_name ; -- 如果没有指定 schema_name，默认为当前数据库 。
-
-![](data:image/
+```
 
 
 ### 4.4.3 **案例**
@@ -3532,151 +2970,99 @@ DROP TRIGGER [schema_name.]trigger_name ; -- 如果没有指定 schema_name，�
 
 表结构准备:
 
-1. -- 准备工作 : 日志表 user_logs
-
-1. create table user_logs(
-
-3
-
-id int(11) not null auto_increment,
-
-4
-
-operation varchar(20) not null comment '操作类型, insert/update/delete',
-
-5
-
-operate_time datetime not null comment '操作时间',
-
-6
-
-operate_id int(11) not null comment '操作的ID',
-
-7
-
-operate_params varchar(500) comment '操作参数',
-
-8
-
-primary key(`id`)
-
-9	)engine=innodb default charset=utf8;
-![](data:image/
-
-
+```sql
+-- 准备工作: 日志表 user_logs
+create table user_logs(
+	id int(11) not null auto_increment,
+	operation varchar(20) not null comment '操作类型, insert/update/delete',
+	operate_time datetime not null comment '操作时间',
+	operate_id int(11) not null comment '操作的ID',
+	operate_params varchar(500) comment '操作参数',
+	primary key(`id`)
+)engine=innodb default charset=utf8;
+```
 
 1. 插入数据触发器
 
-
+```sql
 create trigger tb_user_insert_trigger
-
-2
-
 after insert on tb_user for each row
 
-3. begin
-
-3. `	`insert into user_logs(id, operation, operate_time, operate_id, operate_params) VALUES
-3. (null, 'insert', now(), new.id, concat('插入的数据内容为:
-
-id=',new.id,',name=',new.name, ', phone=', NEW.phone, ', email=', NEW.email, ', profession=', NEW.profession));
-
-6	end;
-
-![](data:image/
-
+begin
+	insert into user_logs(id, operation, operate_time, operate_id, operate_params) VALUES
+		(null, 'insert', now(), new.id, concat('插入的数据内容为:
+	id=',new.id,',name=',new.name, ', phone=', NEW.phone, ', email=', NEW.email, ', profession=', NEW.profession));
+end;
+```
 
 测试:
 
-1. -- 查看
+```sql
+-- 查看
+show triggers ;
 
-1. show triggers ; 3
-4. -- 插入数据到tb_user
-
-4. insert into tb_user(id, name, phone, email, profession, age, gender, status, createtime) VALUES (26,'三皇子','18809091212','erhuangzi@163.com','软件工
-
-程',23,'1','1',now());
-
-![](data:image/
+-- 插入数据到tb_user
+insert into tb_user(id, name, phone, email, profession, age, gender, status, createtime) 
+	VALUES (26,'三皇子','18809091212','erhuangzi@163.com','软件工程',23,'1','1',now());
+```
 
 测试完毕之后，检查日志表中的数据是否可以正常插入，以及插入数据的正确性。
 
+2. 修改数据触发器
 
-1. 修改数据触发器
-
-
+```sql
 create trigger tb_user_update_trigger
-
-2
-
 after update on tb_user for each row
 
-3. begin
-3. `	`insert into user_logs(id, operation, operate_time, operate_id, operate_params) VALUES
-
-5
-
-(null, 'update', now(), new.id,
-
-6. `	`concat('更新之前的数据: id=',old.id,',name=',old.name, ', phone=', old.phone, ', email=', old.email, ', profession=', old.profession,
-6. ' | 更新之后的数据: id=',new.id,',name=',new.name, ', phone=',
-
-NEW.phone, ', email=', NEW.email, ', profession=', NEW.profession));
-
-8	end;
-![](data:image/
+begin
+	insert into user_logs(id, operation, operate_time, operate_id, operate_params) VALUES
+        (null, 'update', now(), new.id,
+        	concat('更新之前的数据: id=',old.id,',name=',old.name, ', phone=', old.phone, ', email=', old.email, ', profession=', old.profession,' | 
+                   更新之后的数据: id=',new.id,',name=',new.name, ', phone=',NEW.phone, ', email=', NEW.email, ', profession=', NEW.profession));
+	
+end;
+```
 
 
 测试:
 
-1. -- 查看
+```sql
+-- 查看
+show triggers ;
 
-1. show triggers ; 3
-4. -- 更新
-
-4. update tb_user set profession = '会计' where id = 23;
-
-4. update tb_user set profession = '会计' where id <= 5;
-
-![](data:image/
+-- 更新
+update tb_user set profession = '会计' where id = 23;
+update tb_user set profession = '会计' where id <= 5;
+```
 
 测试完毕之后，检查日志表中的数据是否可以正常插入，以及插入数据的正确性。
 
+3. 删除数据触发器
 
-1. 删除数据触发器
-
-
+```sql
 create trigger tb_user_delete_trigger
-
-2
-
 after delete on tb_user for each row
 
-3. begin
-3. `	`insert into user_logs(id, operation, operate_time, operate_id, operate_params) VALUES
+begin
+	insert into user_logs(id, operation, operate_time, operate_id, operate_params) 
+		VALUES (null, 'delete', now(), old.id, 
+            concat('删除之前的数据: id=',old.id,',name=',old.name, ', phone=', old.phone, ', email=', old.email, ', profession=', old.profession));
 
-5
-
-(null, 'delete', now(), old.id,
-
-6		concat('删除之前的数据: id=',old.id,',name=',old.name, ', phone=', old.phone, ', email=', old.email, ', profession=', old.profession));
-
-7	end;
-
-![](data:image/
+end;
+```
 
 测试:
 
-1. -- 查看
+```sql
+-- 查看
+show triggers ;
 
-1. show triggers ; 3
-4. -- 删除数据
-
-4. delete from tb_user where id = 26;
-
-![](data:image/
+-- 删除数据
+delete from tb_user where id = 26;
+```
 
 测试完毕之后，检查日志表中的数据是否可以正常插入，以及插入数据的正确性。
+
 
 
 
@@ -3686,9 +3072,10 @@ after delete on tb_user for each row
 
 MySQL中的锁，按照锁的粒度分，分为以下三类：
 
-![](data:image/全局锁：锁定数据库中的所有表。表级锁：每次操作锁住整张表。
+* 全局锁：锁定数据库中的所有表。
+* 表级锁：每次操作锁住整张表。
 
-![](data:image/行级锁：每次操作锁住对应的行数据。
+* 行级锁：每次操作锁住对应的行数据。
 
 
 ## 5.2 **全局锁**
@@ -3704,66 +3091,62 @@ MySQL中的锁，按照锁的粒度分，分为以下三类：
 
 假设在数据库中存在这样三张表: tb_stock 库存表，tb_order 订单表，tb_orderlog 订单日志表。
 
-![](data:image/
+![](./media/image138.jpeg)
 
-![](data:image/在进行数据备份时，先备份了tb_stock库存表。
+* 在进行数据备份时，先备份了tb_stock库存表。
 
-![](data:image/然后接下来，在业务系统中，执行了下单操作，扣减库存，生成订单（更新tb_stock表，插入
+* 然后接下来，在业务系统中，执行了下单操作，扣减库存，生成订单（更新tb_stock表，插入tb_order表）。
 
-tb_order表）。
+* 然后再执行备份 tb_order表的逻辑。业务中执行插入订单日志操作。
 
-![](data:image/然后再执行备份 tb_order表的逻辑。业务中执行插入订单日志操作。
-
-![](data:image/最后，又备份了tb_orderlog表。
+* 最后，又备份了tb_orderlog表。
 
 此时备份出来的数据，是存在问题的。因为备份出来的数据，tb_stock表与tb_order表的数据不一 致(有最新操作的订单信息,但是库存数没减)。
 
 那如何来规避这种问题呢? 此时就可以借助于MySQL的全局锁来解决。
 
 
-1. 再来分析一下加了全局锁后的情况
+2. 再来分析一下加了全局锁后的情况
 
-![](data:image/
+![](./media/image139.png)
 
 对数据库进行进行逻辑备份之前，先对整个数据库加上全局锁，一旦加了全局锁之后，其他的DDL、 DML全部都处于阻塞状态，但是可以执行DQL语句，也就是处于只读状态，而数据备份就是查询操作。 那么数据在进行逻辑备份的过程中，数据库中的数据就是不会发生变化的，这样就保证了数据的一致性 和完整性。
 
 ### 5.2.2 **语法**
 1. 加全局锁
 
-
+```sql
 flush tables with read lock ;
+```
 
-![](data:image/
+2. 数据备份
 
-1. 数据备份
-
-
+```sql
 mysqldump -uroot –p1234 itcast > itcast.sql
+```
 
-![](data:image/
+数据备份的相关指令, 在后面MySQL管理章节, 还会详细讲解. 
 
-数据备份的相关指令, 在后面MySQL管理章节, 还会详细讲解. 3). 释放锁
+3. 释放锁
 
-
+```sql
 unlock tables ;
-
-![](data:image/
+```
 
 
 ### 5.2.3 **特点**
 数据库中加全局锁，是一个比较重的操作，存在以下问题：
 
-![](data:image/如果在主库上备份，那么在备份期间都不能执行更新，业务基本上就得停摆。
+* 如果在主库上备份，那么在备份期间都不能执行更新，业务基本上就得停摆。
 
-![](data:image/如果在从库上备份，那么在备份期间从库不能执行主库同步过来的二进制日志（binlog），会导 致主从延迟。
+* 如果在从库上备份，那么在备份期间从库不能执行主库同步过来的二进制日志（binlog），会导 致主从延迟。
 
 
 在InnoDB引擎中，我们可以在备份时加上参数 --single-transaction 参数来完成不加锁的一致性数据备份。
 
-
+```sql
 mysqldump --single-transaction -uroot –p123456 itcast > itcast.sql
-
-![](data:image/
+```
 
 
 ## 5.3 **表级锁**
@@ -3774,45 +3157,47 @@ InnoDB、BDB等存储引擎中。
 
 对于表级锁，主要分为以下三类：
 
-![](data:image/表锁
+* 表锁
 
-![](data:image/元数据锁（meta data lock，MDL） 意向锁
+* 元数据锁（meta data lock，MDL）
+
+* 意向锁
 
 ### 5.3.2 **表锁**
 对于表锁，分为两类：
 
-![](data:image/表共享读锁（read lock） 表独占写锁（write lock）
+* 表共享读锁（read lock）
+* 表独占写锁（write lock）
 
 
 语法：
 
-![](data:image/加锁：lock tables 表名... read/write。释放锁：unlock tables / 客户端断开连接 。
+* 加锁：lock tables 表名... read/write。
+* 释放锁：unlock tables / 客户端断开连接 。
 
 
 特点:
 
 1. 读锁
 
-![](data:image/
+![](./media/image140.jpeg)
 
 左侧为客户端一，对指定表加了读锁，不会影响右侧客户端二的读，但是会阻塞右侧客户端的写。 测试:
 
-![](data:image/
+![](./media/image141.jpeg)
 
 
 
+2. 写锁
 
-1. 写锁
-
-![](data:image/
+![](./media/image142.jpeg)
 
 左侧为客户端一，对指定表加了写锁，会阻塞右侧客户端的读和写。测试:
 
-![](data:image/
+![](./media/image143.jpeg)
 
 
-结论: 读锁不会阻塞其他客户端的读，但是会阻塞写。写锁既会阻塞其他客户端的读，又会阻塞其他客户端的写。
-![](data:image/
+> 结论: 读锁不会阻塞其他客户端的读，但是会阻塞写。写锁既会阻塞其他客户端的读，又会阻塞其他客户端的写。
 
 
 ### 5.3.3 **元数据锁**
@@ -3838,26 +3223,21 @@ MDL加锁过程是系统自动控制，无需显式使用，在访问一张表�
 
 当执行SELECT、INSERT、UPDATE、DELETE等语句时，添加的是元数据共享锁（SHARED_READ / SHARED_WRITE），之间是兼容的。
 
-![](data:image/
+![](./media/image144.jpeg)
 
-当执行SELECT语句时，添加的是元数据共享锁（SHARED_READ），会阻塞元数据排他锁
+当执行SELECT语句时，添加的是元数据共享锁（SHARED_READ），会阻塞元数据排他锁（EXCLUSIVE），之间是互斥的。
 
-（EXCLUSIVE），之间是互斥的。
-
-![](data:image/
+![](./media/image145.jpeg)
 
 我们可以通过下面的SQL，来查看数据库中的元数据锁的情况：
 
-
-
-select object_type,object_schema,object_name,lock_type,lock_duration from
-
-performance_schema.metadata_locks ;
-![](data:image/
+```sql
+select object_type,object_schema,object_name,lock_type,lock_duration from performance_schema.metadata_locks ;
+```
 
 我们在操作过程中，可以通过上述的SQL语句，来查看元数据锁的加锁情况。
 
-![](data:image/
+![](./media/image146.jpeg)
 
 
 
@@ -3871,13 +3251,11 @@ performance_schema.metadata_locks ;
 
 首先客户端一，开启一个事务，然后执行DML操作，在执行DML语句时，会对涉及到的行加行锁。
 
-![](data:image/
+![](./media/image147.jpeg)
 
 当客户端二，想对这张表加表锁时，会检查当前表是否有对应的行锁，如果没有，则添加表锁，此时就 会从第一行数据，检查到最后一行数据，效率较低。
 
-![](data:image/
-
-
+![](./media/image148.jpeg)
 
 
 
@@ -3885,72 +3263,63 @@ performance_schema.metadata_locks ;
 
 客户端一，在执行DML操作时，会对涉及的行加行锁，同时也会对该表加上意向锁。
 
-![](data:image/
+![](./media/image149.jpeg)
 
 而其他客户端，在对这张表加表锁的时候，会根据该表上所加的意向锁来判定是否可以成功加表锁，而 不用逐行判断行锁情况了。
 
-![](data:image/
+![](./media/image150.jpeg)
 
 
 
-1. 分类
+2. 分类
 
-![](data:image/: 由语句select ... lock in share mode添加 。 与 表锁共享锁
+* 意向共享锁(IS): 由语句select ... lock in share mode添加 。 与 表锁共享锁 (read)兼容，与表锁排他锁(write)互斥。
 
-(read)兼容，与表锁排他锁(write)互斥。
+* 意向排他锁(IX): 都互斥，意向锁之间不会互斥。
 
-![](data:image/都互斥，意向锁之间不会互斥。
-
-一旦事务提交了，意向共享锁、意向排他锁，都会自动释放。
-
-![](data:image/
+> 一旦事务提交了，意向共享锁、意向排他锁，都会自动释放。
 
 
 可以通过以下SQL，查看意向锁及行锁的加锁情况：
 
-
-select object_schema,object_name,index_name,lock_type,lock_mode,lock_data from
-
-performance_schema.data_locks;
-
-![](data:image/
+```sql
+select object_schema,object_name,index_name,lock_type,lock_mode,lock_data 
+	from performance_schema.data_locks;
+```
 
 
 演示：
 
-1. 意向共享锁与表读锁是兼容的
+A. 意向共享锁与表读锁是兼容的
 
-![](data:image/
+![](./media/image151.jpeg)
 
 
-1. 意向排他锁与表读锁、写锁都是互斥的
+B. 意向排他锁与表读锁、写锁都是互斥的
 
-![](data:image/
+![](./media/image152.jpeg)
 
 
 
 ## 5.4 **行级锁**
 ### 5.4.1 **介绍**
 
-行级锁，每次操作锁住对应的行数据。锁定粒度最小，发生锁冲突的概率最低，并发度最高。应用在
-
-InnoDB存储引擎中。
+行级锁，每次操作锁住对应的行数据。锁定粒度最小，发生锁冲突的概率最低，并发度最高。应用在InnoDB存储引擎中。
 
 InnoDB的数据是基于索引组织的，行锁是通过对索引上的索引项加锁来实现的，而不是对记录加的 锁。对于行级锁，主要分为以下三类：
 
-![](data:image/行锁（Record Lock）：锁定单个行记录的锁，防止其他事务对此行进行update和delete。在RC、RR隔离级别下都支持。
+* 行锁（Record Lock）：锁定单个行记录的锁，防止其他事务对此行进行update和delete。在RC、RR隔离级别下都支持。
 
-![](data:image/
+![](./media/image153.png)
 
-间隙锁（Gap Lock）：锁定索引记录间隙（不含该记录），确保索引记录间隙不变，防止其他事务在这个间隙进行insert，产生幻读。在RR隔离级别下都支持。
+* 间隙锁（Gap Lock）：锁定索引记录间隙（不含该记录），确保索引记录间隙不变，防止其他事务在这个间隙进行insert，产生幻读。在RR隔离级别下都支持。
 
-![](data:image/
+![](./media/image154.jpeg)
 
-临键锁（Next-Key Lock）：行锁和间隙锁组合，同时锁住数据，并锁住数据前面的间隙Gap。在RR隔离级别下支持。
+* 临键锁（Next-Key Lock）：行锁和间隙锁组合，同时锁住数据，并锁住数据前面的间隙Gap。在RR隔离级别下支持。
 
-![](data:image/
+![](./media/image155.jpeg)
 
-![](data:image/
 
 ### 5.4.2 **行锁**
 
@@ -3958,14 +3327,14 @@ InnoDB的数据是基于索引组织的，行锁是通过对索引上的索引�
 
 InnoDB实现了以下两种类型的行锁：
 
-![](data:image/共享锁（S）：允许一个事务去读一行，阻止其他事务获得相同数据集的排它锁。
+* 共享锁（S）：允许一个事务去读一行，阻止其他事务获得相同数据集的排它锁。
 
-![](data:image/排他锁（X）：允许获取排他锁的事务更新数据，阻止其他事务获得相同数据集的共享锁和排他 锁。
+* 排他锁（X）：允许获取排他锁的事务更新数据，阻止其他事务获得相同数据集的共享锁和排他 锁。
 
 
 两种行锁的兼容情况如下:
 
-![](data:image/
+![](./media/image156.png)
 
 常见的SQL语句，在执行时，所加的行锁如下：
 
@@ -3980,81 +3349,62 @@ InnoDB实现了以下两种类型的行锁：
 |SELECT ... FOR UPDATE|排他锁|需要手动在SELECT之后加FOR UPDATE|
 
 
-1. 演示
+2. 演示
 
 默认情况下，InnoDB在 REPEATABLE READ事务隔离级别运行，InnoDB使用 next-key 锁进行搜索和索引扫描，以防止幻读。
 
-![](data:image/针对唯一索引进行检索时，对已存在的记录进行等值匹配时，将会自动优化为行锁。
+* 针对唯一索引进行检索时，对已存在的记录进行等值匹配时，将会自动优化为行锁。
 
-![](data:image/InnoDB的行锁是针对于索引加的锁，不通过索引条件检索数据，那么InnoDB将对表中的所有记 录加锁，此时 就会升级为表锁。
+* InnoDB的行锁是针对于索引加的锁，不通过索引条件检索数据，那么InnoDB将对表中的所有记 录加锁，此时 就会升级为表锁。
 
 
 可以通过以下SQL，查看意向锁及行锁的加锁情况：
 
-
-select object_schema,object_name,index_name,lock_type,lock_mode,lock_data from
-
-performance_schema.data_locks;
-
-![](data:image/
+```sql
+select object_schema,object_name,index_name,lock_type,lock_mode,lock_data 
+	from performance_schema.data_locks;
+```
 
 **示例演示**
 
 数据准备:
 
-
+```sql
 CREATE TABLE `stu` (
+	`id` int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	`name` varchar(255) DEFAULT NULL,
+	`age` int NOT NULL
+) ENGINE = InnoDB CHARACTER SET = utf8mb4;
 
-2
-
-`id` int NOT NULL PRIMARY KEY AUTO_INCREMENT,
-
-3
-
-`name` varchar(255) DEFAULT NULL,
-
-4
-
-`age` int NOT NULL
-
-5	) ENGINE = InnoDB CHARACTER SET = utf8mb4; 6
-
-7. INSERT INTO `stu` VALUES (1, 'tom', 1);
-
-7. INSERT INTO `stu` VALUES (3, 'cat', 3);
-
-7. INSERT INTO `stu` VALUES (8, 'rose', 8);
-
-7. INSERT INTO `stu` VALUES (11, 'jetty', 11);
-
-7. INSERT INTO `stu` VALUES (19, 'lily', 19);
-
-12	INSERT INTO `stu` VALUES (25, 'luci', 25);
-![](data:image/
+INSERT INTO `stu` VALUES (1, 'tom', 1);
+INSERT INTO `stu` VALUES (3, 'cat', 3);
+INSERT INTO `stu` VALUES (8, 'rose', 8);
+INSERT INTO `stu` VALUES (11, 'jetty', 11);
+INSERT INTO `stu` VALUES (19, 'lily', 19);
+INSERT INTO `stu` VALUES (25, 'luci', 25);
+```
 
 演示行锁的时候，我们就通过上面这张表来演示一下。
 
 
-1. 普通的select语句，执行时，不会加锁。
+A. 普通的select语句，执行时，不会加锁。
 
-![](data:image/
+![](./media/image157.jpeg)
 
-1. select...lock in share mode，加共享锁，共享锁与共享锁之间兼容。
+select...lock in share mode，加共享锁，共享锁与共享锁之间兼容。
 
-![](data:image/
+![](./media/image158.jpeg)
 
 共享锁与排他锁之间互斥。
 
-![](data:image/
+![](./media/image159.jpeg)
 
-客户端一获取的是id为1这行的共享锁，客户端二是可以获取id为3这行的排它锁的，因为不是同一行 数据。 而如果客户端二想获取id为1这行的排他锁，会处于阻塞状态，以为共享锁与排他锁之间互
-
-斥。
+客户端一获取的是id为1这行的共享锁，客户端二是可以获取id为3这行的排它锁的，因为不是同一行 数据。 而如果客户端二想获取id为1这行的排他锁，会处于阻塞状态，以为共享锁与排他锁之间互斥。
 
 
-1. 排它锁与排他锁之间互斥
+B. 排它锁与排他锁之间互斥
 
-![](data:image/
+![](./media/image160.jpeg)
 
 当客户端一，执行update语句，会为id为1的记录加排他锁； 客户端二，如果也执行update语句更新id为1的数据，也要为id为1的数据加排他锁，但是客户端二会处于阻塞状态，因为排他锁之间是互 斥的。 直到客户端一，把事务提交了，才会把这一行的行锁释放，此时客户端二，解除阻塞。
 
@@ -4063,12 +3413,12 @@ CREATE TABLE `stu` (
 
 stu表中数据如下:
 
-![](data:image/
+![](./media/image161.jpeg)
 
 
 我们在两个客户端中执行如下操作:
 
-![](data:image/
+![](./media/image162.jpeg)
 
 在客户端一中，开启事务，并执行update语句，更新name为Lily的数据，也就是id为19的记录 。然后在客户端二中更新id为3的记录，却不能直接执行，会处于阻塞状态，为什么呢？
 
@@ -4077,42 +3427,41 @@ stu表中数据如下:
 
 接下来，我们再针对name字段建立索引，索引建立之后，再次做一个测试：
 
-![](data:image/
+![](./media/image163.jpeg)
 
 此时我们可以看到，客户端一，开启事务，然后依然是根据name进行更新。而客户端二，在更新id为3 的数据时，更新成功，并未进入阻塞状态。 这样就说明，我们根据索引字段进行更新操作，就可以避免行锁升级为表锁的情况。
 
 ### 5.4.3 **间隙锁&临键锁**
 默认情况下，InnoDB在 REPEATABLE READ事务隔离级别运行，InnoDB使用 next-key 锁进行搜索和索引扫描，以防止幻读。
 
-![](data:image/，给不存在的记录加锁时, 优化为间隙锁 。
+* 索引上的等值查询(唯一索引)，给不存在的记录加锁时, 优化为间隙锁 。
 
-![](data:image/，向右遍历时最后一个值不满足查询需求时，next-key lock 退化为间隙锁。
+* 索引上的等值查询(非唯一普通索引)，向右遍历时最后一个值不满足查询需求时，next-key lock 退化为间隙锁。
 
-![](data:image/--会访问到不满足条件的第一个值为止。
+* 索引上的范围查询(唯一索引)--会访问到不满足条件的第一个值为止。
 
-注意：间隙锁唯一目的是防止其他事务插入间隙。间隙锁可以共存，一个事务采用的间隙锁不会 阻止另一个事务在同一间隙上采用间隙锁。
-![](data:image/
+> 注意：间隙锁唯一目的是防止其他事务插入间隙。间隙锁可以共存，一个事务采用的间隙锁不会 阻止另一个事务在同一间隙上采用间隙锁。
 
 **示例演示**
 
 1. 索引上的等值查询(唯一索引)，给不存在的记录加锁时, 优化为间隙锁 。
 
-![](data:image/
+![](./media/image164.jpeg)
 
 
-1. 索引上的等值查询(非唯一普通索引)，向右遍历时最后一个值不满足查询需求时，next-key lock 退化为间隙锁。
+2. 索引上的等值查询(非唯一普通索引)，向右遍历时最后一个值不满足查询需求时，next-key lock 退化为间隙锁。
 
 介绍分析一下：
 
 我们知道InnoDB的B+树索引，叶子节点是有序的双向链表。 假如，我们要根据这个二级索引查询值为18的数据，并加上共享锁，我们是只锁定18这一行就可以了吗？ 并不是，因为是非唯一索引，这个结构中可能有多个18的存在，所以，在加锁时会继续往后找，找到一个不满足条件的值（当前案例中也 就是29）。此时会对18加临键锁，并对29之前的间隙加锁。
 
-![](data:image/
+![](./media/image165.png)
 
-![](data:image/
+![](./media/image166.jpeg)
 
-1. 索引上的范围查询(唯一索引)--会访问到不满足条件的第一个值为止。
+3. 索引上的范围查询(唯一索引)--会访问到不满足条件的第一个值为止。
 
-![](data:image/
+![](./media/image167.jpeg)
 
 查询的条件为id>=19，并添加共享锁。 此时我们可以根据数据库表中现有的数据，将数据分为三个部分：
 
@@ -4130,44 +3479,44 @@ stu表中数据如下:
 ## 6.1 **逻辑存储结构**
 InnoDB的逻辑存储结构如下图所示:
 
-![](data:image/
+![](./media/image168.jpeg)
 
 1. 表空间
 
 表空间是InnoDB存储引擎逻辑结构的最高层， 如果用户启用了参数 innodb_file_per_table(在8.0版本中默认开启) ，则每张表都会有一个表空间（xxx.ibd），一个mysql实例可以对应多个表空间，用于存储记录、索引等数据。
 
-1. 段
+2. 段
 
 段，分为数据段（Leaf node segment）、索引段（Non-leaf node segment）、回滚段
 
 （Rollback segment），InnoDB是索引组织表，数据段就是B+树的叶子节点， 索引段即为B+树的非叶子节点。段用来管理多个Extent（区）。
 
-1. 区
+3. 区
 
 区，表空间的单元结构，每个区的大小为1M。 默认情况下， InnoDB存储引擎页大小为16K， 即一个区中一共有64个连续的页。
 
-1. 页
+4. 页
 
 页，是InnoDB 存储引擎磁盘管理的最小单元，每个页的大小默认为 16KB。为了保证页的连续性， InnoDB 存储引擎每次从磁盘申请 4-5 个区。
 
-1. 行
+5. 行
 
 行，InnoDB 存储引擎数据是按行进行存放的。在行中，默认有两个隐藏字段：
 
-![](data:image/Trx_id：每次对某条记录进行改动时，都会把对应的事务id赋值给trx_id隐藏列。
+* Trx_id：每次对某条记录进行改动时，都会把对应的事务id赋值给trx_id隐藏列。
 
-![](data:image/Roll_pointer：每次对某条引记录进行改动时，都会把旧的版本写入到undo日志中，然后这个 隐藏列就相当于一个指针，可以通过它来找到该记录修改前的信息。
+* Roll_pointer：每次对某条引记录进行改动时，都会把旧的版本写入到undo日志中，然后这个 隐藏列就相当于一个指针，可以通过它来找到该记录修改前的信息。
 
 
 ## 6.2 **架构**
 ### 6.2.1 **概述**
 MySQL5.5 版本开始，默认使用InnoDB存储引擎，它擅长事务处理，具有崩溃恢复特性，在日常开发中使用非常广泛。下面是InnoDB架构图，左侧为内存结构，右侧为磁盘结构。
 
-![](data:image/
+![](./media/image169.jpeg)
 
 
 ### 6.2.2 **内存结构**
-![](data:image/
+![](./media/image170.jpeg)
 
 在左侧的内存结构中，主要分为这么四大块儿： Buffer Pool、Change Buffer、Adaptive Hash Index、Log Buffer。 接下来介绍一下这四个部分。
 
@@ -4191,15 +3540,15 @@ InnoDB的锁信息等等。
 - dirty page：脏页，被使用page，数据被修改过，也中数据与磁盘的数据产生了不一致。
 
 
-在专用服务器上，通常将多达80％的物理内存分配给缓冲池 。参数设置：	show variables like 'innodb_buffer_pool_size';
+在专用服务器上，通常将多达80％的物理内存分配给缓冲池 。参数设置： show variables like 'innodb_buffer_pool_size';
 
-![](data:image/
-
-
+![](./media/image171.jpeg)
 
 
 
-1. Change Buffer
+
+
+2. Change Buffer
 
 Change Buffer，更改缓冲区（针对于非唯一二级索引页），在执行DML语句时，如果这些数据Page
 
@@ -4209,12 +3558,12 @@ Change Buffer，更改缓冲区（针对于非唯一二级索引页），在执�
 
 先来看一幅图，这个是二级索引的结构图：
 
-![](data:image/
+![](./media/image172.jpeg)
 
 与聚集索引不同，二级索引通常是非唯一的，并且以相对随机的顺序插入二级索引。同样，删除和更新 可能会影响索引树中不相邻的二级索引页，如果每一次都操作磁盘，会造成大量的磁盘IO。有了ChangeBuffer之后，我们可以在缓冲池中进行合并处理，减少磁盘IO。
 
 
-1. Adaptive Hash Index
+3. Adaptive Hash Index
 
 自适应hash索引，用于优化对Buffer Pool数据的查询。MySQL的innoDB引擎中虽然没有直接支持hash索引，但是给我们提供了一个功能就是这个自适应hash索引。因为前面我们讲到过，hash索引在 进行等值匹配时，一般性能是要高于B+树的，因为hash索引一般只需要一次IO即可，而B+树，可能需 要几次匹配，所以hash索引的效率要高，但是hash索引又不适合做范围查询、模糊匹配等。
 
@@ -4226,26 +3575,30 @@ InnoDB存储引擎会监控对表上各索引页的查询，如果观察到在�
 
 
 
-1. Log Buffer
+4. Log Buffer
 
 Log Buffer：日志缓冲区，用来保存要写入到磁盘中的log日志数据（redo log 、undo log）， 默认大小为 16MB，日志缓冲区的日志会定期刷新到磁盘中。如果需要更新、插入或删除许多行的事务，增加日志缓冲区的大小可以节省磁盘 I/O。
 
-参数: innodb_log_buffer_size：缓冲区大小
+参数: 
 
-innodb_flush_log_at_trx_commit：日志刷新到磁盘时机，取值主要包含以下三个： 1: 日志在每次事务提交时写入并刷新到磁盘，默认值。
+innodb_log_buffer_size：缓冲区大小
+
+innodb_flush_log_at_trx_commit：日志刷新到磁盘时机，取值主要包含以下三个： 
+
+1: 日志在每次事务提交时写入并刷新到磁盘，默认值。
 
 0: 每秒将日志写入并刷新到磁盘一次。
 
 2: 日志在每次事务提交后写入，并每秒刷新到磁盘一次。
 
-![](data:image/
+![](./media/image173.jpeg)
 
 
 
 ### 6.2.3 **磁盘结构**
 接下来，再来看看InnoDB体系结构的右边部分，也就是磁盘结构：
 
-![](data:image/
+![](./media/image174.jpeg)
 
 1. System Tablespace
 
@@ -4253,81 +3606,77 @@ innodb_flush_log_at_trx_commit：日志刷新到磁盘时机，取值主要包�
 
 参数：innodb_data_file_path
 
-![](data:image/
+![](./media/image175.jpeg)
 
 系统表空间，默认的文件名叫 ibdata1。
 
 
-1. File-Per-Table Tablespaces
+2. File-Per-Table Tablespaces
 
 如果开启了innodb_file_per_table开关 ，则每个表的文件表空间包含单个InnoDB表的数据和索引 ，并存储在文件系统上的单个数据文件中。
 
 开关参数：innodb_file_per_table ，该参数默认开启。
 
-![](data:image/
+![](./media/image176.jpeg)
 
 那也就是说，我们没创建一个表，都会产生一个表空间文件，如图：
 
-![](data:image/
+![](./media/image177.jpeg)
 
 
-1. General Tablespaces
+3. General Tablespaces
 
 通用表空间，需要通过 CREATE TABLESPACE 语法创建通用表空间，在创建表时，可以指定该表空间。
 
-1. 创建表空间
+A. 创建表空间
 
-
+```sql
 CREATE TABLESPACE ts_name ADD DATAFILE 'file_name' ENGINE = engine_name;
+```
+![](./media/image178.jpeg)
 
-![](data:image/
+B. 创建表时指定表空间
 
-
-1. 创建表时指定表空间
-
-
+```sql
 CREATE TABLE xxx ... TABLESPACE ts_name;
+```
 
-![](data:image/
+![](./media/image179.jpeg)
 
+4. Undo Tablespaces
 
-
-1. Undo Tablespaces
-
-撤销表空间，MySQL实例在初始化时会自动创建两个默认的undo表空间（初始大小16M），用于存储
-
-undo log日志。
+撤销表空间，MySQL实例在初始化时会自动创建两个默认的undo表空间（初始大小16M），用于存储 undo log日志。
 
 
-1. Temporary Tablespaces
+5. Temporary Tablespaces
 
 InnoDB 使用会话临时表空间和全局临时表空间。存储用户创建的临时表等数据。
 
 
-1. Doublewrite Buffer Files
+6. Doublewrite Buffer Files
 
 双写缓冲区，innoDB引擎将数据页从Buffer Pool刷新到磁盘前，先将数据页写入双写缓冲区文件中，便于系统异常时恢复数据。
 
-![](data:image/
+![](./media/image180.jpeg)
 
 
-1. Redo Log
+7. Redo Log
 
 重做日志，是用来实现事务的持久性。该日志文件由两部分组成：重做日志缓冲（redo log buffer）以及重做日志文件（redo log）,前者是在内存中，后者在磁盘中。当事务提交之后会把所有修改信息都会存到该日志中, 用于在刷新脏页到磁盘时,发生错误时, 进行数据恢复使用。
 
 以循环方式写入重做日志文件，涉及两个文件：
 
-![](data:image/
+![](./media/image181.jpeg)
 
 
 前面我们介绍了InnoDB的内存结构，以及磁盘结构，那么内存中我们所更新的数据，又是如何到磁盘 中的呢？ 此时，就涉及到一组后台线程，接下来，就来介绍一些InnoDB中涉及到的后台线程。
 
-![](data:image/
+![](./media/image182.jpeg)
 
 
 ### 6.2.4 **后台线程**
 
-![](data:image/
+![](./media/image183.png)
 
 在InnoDB的后台线程中，分为4类，分别是：Master Thread 、IO Thread、Purge Thread、Page Cleaner Thread。
 
@@ -4337,7 +3686,7 @@ InnoDB 使用会话临时表空间和全局临时表空间。存储用户创建�
 核心后台线程，负责调度其他线程，还负责将缓冲池中的数据异步刷新到磁盘中, 保持数据的一致性， 还包括脏页的刷新、合并插入缓存、undo页的回收 。
 
 
-1. IO Thread
+2. IO Thread
 
 在InnoDB存储引擎中大量使用了AIO来处理IO请求, 这样可以极大地提高数据库的性能，而IO Thread主要负责这些IO请求的回调。
 
@@ -4352,19 +3701,19 @@ InnoDB 使用会话临时表空间和全局临时表空间。存储用户创建�
 我们可以通过以下的这条指令，查看到InnoDB的状态信息，其中就包含IO Thread信息。
 
 
-
+```sql
 show engine innodb status \G;
-![](data:image/
+```
 
-![](data:image/
+![](./media/image184.jpeg)
 
 
-1. Purge Thread
+3. Purge Thread
 
 主要用于回收事务已经提交了的undo log，在事务提交之后，undo log可能不用了，就用它来回收。
 
 
-1. Page Cleaner Thread
+4. Page Cleaner Thread
 
 协助 Master Thread 刷新脏页到磁盘的线程，它可以减轻 Master Thread 的工作压力，减少阻塞。
 
@@ -4378,7 +3727,7 @@ show engine innodb status \G;
 事务 是一组操作的集合，它是一个不可分割的工作单位，事务会把所有的操作作为一个整体一起向系统提交或撤销操作请求，即这些操作要么同时成功，要么同时失败。
 
 
-1. 特性
+2. 特性
 
 - 原子性（Atomicity）：事务是不可分割的最小操作单元，要么全部成功，要么全部失败。
 - 一致性（Consistency）：事务完成时，必须使所有的数据都保持一致状态。
@@ -4389,11 +3738,11 @@ show engine innodb status \G;
 
 那实际上，我们研究事务的原理，就是研究MySQL的InnoDB引擎是如何保证事务的这四大特性的。
 
-![](data:image/
+![](./media/image185.jpeg)
 
 而对于这四大特性，实际上分为两个部分。 其中的原子性、一致性、持久化，实际上是由InnoDB中的两份日志来保证的，一份是redo log日志，一份是undo log日志。 而持久性是通过数据库的锁， 加上MVCC来保证的。
 
-![](data:image/
+![](./media/image186.jpeg)
 
 我们在讲解事务原理的时候，主要就是来研究一下redolog，undolog以及MVCC。
 
@@ -4407,16 +3756,14 @@ show engine innodb status \G;
 
 如果没有redolog，可能会存在什么问题的？ 我们一起来分析一下。
 
-我们知道，在InnoDB引擎中的内存结构中，主要的内存区域就是缓冲池，在缓冲池中缓存了很多的数据页。 当我们在一个事务中，执行多个增删改的操作时，InnoDB引擎会先操作缓冲池中的数据，如果缓冲区没有对应的数据，会通过后台线程将磁盘中的数据加载出来，存放在缓冲区中，然后将缓冲池中 的数据修改，修改后的数据页我们称为脏页。 而脏页则会在一定的时机，通过后台线程刷新到磁盘
+我们知道，在InnoDB引擎中的内存结构中，主要的内存区域就是缓冲池，在缓冲池中缓存了很多的数据页。 当我们在一个事务中，执行多个增删改的操作时，InnoDB引擎会先操作缓冲池中的数据，如果缓冲区没有对应的数据，会通过后台线程将磁盘中的数据加载出来，存放在缓冲区中，然后将缓冲池中 的数据修改，修改后的数据页我们称为脏页。 而脏页则会在一定的时机，通过后台线程刷新到磁盘中，从而保证缓冲区与磁盘的数据一致。 而缓冲区的脏页数据并不是实时刷新的，而是一段时间之后将缓冲区的数据刷新到磁盘中，假如刷新到磁盘的过程出错了，而提示给用户事务提交成功，而数据却 没有持久化下来，这就出现问题了，没有保证事务的持久性。
 
-中，从而保证缓冲区与磁盘的数据一致。 而缓冲区的脏页数据并不是实时刷新的，而是一段时间之后将缓冲区的数据刷新到磁盘中，假如刷新到磁盘的过程出错了，而提示给用户事务提交成功，而数据却 没有持久化下来，这就出现问题了，没有保证事务的持久性。
-
-![](data:image/
+![](./media/image187.jpeg)
 
 
 那么，如何解决上述的问题呢？ 在InnoDB中提供了一份日志 redo log，接下来我们再来分析一下，通过redolog如何解决这个问题。
 
-![](data:image/
+![](./media/image188.jpeg)
 
 有了redolog之后，当对缓冲区的数据进行增删改之后，会首先将操作的数据页的变化，记录在redo log buffer中。在事务提交时，会将redo log buffer中的数据刷新到redo log磁盘文件中。过一段时间之后，如果刷新缓冲区的脏页到磁盘时，发生错误，此时就可以借助于redo log进行数据恢复，这样就保证了事务的持久性。 而如果脏页成功刷新到磁盘 或 或者涉及到的数据已经落盘，此时redolog就没有作用了，就可以删除了，所以存在的两个redolog文件是循环写的。
 
@@ -4427,18 +3774,14 @@ show engine innodb status \G;
 
 ### 6.3.3 **undo log**
 
-回滚日志，用于记录数据被修改前的信息 , 作用包含两个 : 提供回滚(保证事务的原子性) 和
-
-MVCC(多版本并发控制) 。
+回滚日志，用于记录数据被修改前的信息 , 作用包含两个 : 提供回滚(保证事务的原子性) 和 MVCC(多版本并发控制) 。
 
 undo log和redo log记录物理日志不一样，它是逻辑日志。可以认为当delete一条记录时，undo log中会记录一条对应的insert记录，反之亦然，当update一条记录时，它记录一条对应相反的update记录。当执行rollback时，就可以从undo log中的逻辑记录读取到相应的内容并进行回滚。
 
 
 Undo log销毁：undo log在事务执行时产生，事务提交时，并不会立即删除undo log，因为这些日志可能还用于MVCC。
 
-Undo log存储：undo log采用段的方式进行管理和记录，存放在前面介绍的 rollback segment
-
-回滚段中，内部包含1024个undo log segment。
+Undo log存储：undo log采用段的方式进行管理和记录，存放在前面介绍的 rollback segment 回滚段中，内部包含1024个undo log segment。
 
 
 ## 6.4 **MVCC**
@@ -4451,29 +3794,28 @@ Undo log存储：undo log采用段的方式进行管理和记录，存放在前�
 
 测试：
 
-![](data:image/
+![](./media/image189.jpeg)
 
 在测试中我们可以看到，即使是在默认的RR隔离级别下，事务A中依然可以读取到事务B最新提交的内 容，因为在查询语句后面加上了 lock in share mode 共享锁，此时是当前读操作。当然，当我们加排他锁的时候，也是当前读操作。
 
 
-1. 快照读
+2. 快照读
 
-简单的select（不加锁）就是快照读，快照读，读取的是记录数据的可见版本，有可能是历史数据， 不加锁，是非阻塞读。
+简单的select（不加锁）就是快照读，快照读，读取的是记录数据的可见版本，有可能是历史数据，不加锁，是非阻塞读。
 
 - Read Committed：每次select，都生成一个快照读。
-
 - Repeatable Read：开启事务后第一个select语句才是快照读的地方。
 - Serializable：快照读会退化为当前读。
 
 
 测试:
 
-![](data:image/
+![](./media/image190.jpeg)
 
 在测试中,我们看到即使事务B提交了数据,事务A中也查询不到。 原因就是因为普通的select是快照读，而在当前默认的RR隔离级别下，开启事务后第一个select语句才是快照读的地方，后面执行相同 的select语句都是从快照中获取数据，可能不是当前的最新数据，这样也就保证了可重复读。
 
 
-1. MVCC
+3. MVCC
 
 全称 Multi-Version Concurrency Control，多版本并发控制。指维护一个数据的多个版本， 使得读写操作没有冲突，快照读为MySQL实现MVCC提供了一个非阻塞读功能。MVCC的具体实现，还需 要依赖于数据库记录中的三个隐式字段、undo log日志、readView。
 
@@ -4482,7 +3824,8 @@ Undo log存储：undo log采用段的方式进行管理和记录，存放在前�
 
 ### 6.4.2 **隐藏字段**
 #### 6.4.2.1 **介绍**
-![](data:image/
+
+![](./media/image191.jpeg)
 
 当我们创建了上面的这张表，我们在查看表结构的时候，就可以显式的看到这三个字段。 实际上除了这三个字段以外，InnoDB还会自动的给我们添加三个隐藏字段及其含义分别是：
 
@@ -4504,41 +3847,39 @@ Undo log存储：undo log采用段的方式进行管理和记录，存放在前�
 ibd2sdi stu.ibd
 ```
 
-![](data:image/
-
 查看到的表结构信息中，有一栏 columns，在其中我们会看到处理我们建表时指定的字段以外，还有额外的两个字段 分别是：DB_TRX_ID 、 DB_ROLL_PTR ，因为该表有主键，所以没有DB_ROW_ID 隐藏字段。
 
-![](data:image/
+![](./media/image192.jpeg)
 
-![](data:image/
+![](./media/image193.jpeg)
 
+![](./media/image194.jpeg)
 
-1. 查看没有主键的表 employee
+2. 查看没有主键的表 employee
 
 建表语句：
 
-
+```sql
 create table employee (id int , name varchar(10));
-
-![](data:image/
+```
 
 此时，我们再通过以下指令来查看表结构及其其中的字段信息：
 
-1	ibd2sdi employee.ibd
-
-![](data:image/
+```sql
+ibd2sdi employee.ibd
+```
 
 查看到的表结构信息中，有一栏 columns，在其中我们会看到处理我们建表时指定的字段以外，还有额外的三个字段 分别是：DB_TRX_ID 、 DB_ROLL_PTR 、DB_ROW_ID，因为employee表是没有指定主键的。
 
+![](./media/image195.jpeg)
+
+![](./media/image196.jpeg)
+
+![](./media/image197.png)
+
+![](./media/image198.jpeg)
 
 
-
-
-![](data:image/
-
-![](data:image/
-
-![](data:image/
 
 
 ### 6.4.3 **undolog**
@@ -4556,42 +3897,40 @@ DB_TRX_ID : 代表最近修改事务ID，记录插入这条记录或最后一次
 
 DB_ROLL_PTR ： 由于这条数据是才插入的，没有被更新过，所以该字段值为null。
 
-![](data:image/
+![](./media/image199.png)
 
 
 然后，有四个并发事务同时在访问这张表。
 
 1. 第一步
 
-![](data:image/
+![](./media/image200.jpeg)
 
 当事务2执行第一条修改语句时，会记录undo log日志，记录数据变更之前的样子; 然后更新记录， 并且记录本次操作的事务ID，回滚指针，回滚指针用来指定如果发生回滚，回滚到哪一个版本。
 
-![](data:image/
+![](./media/image201.png)
 
+2. 第二步
 
-1. 第二步
-
-![](data:image/
+![](./media/image202.jpeg)
 
 当事务3执行第一条修改语句时，也会记录undo log日志，记录数据变更之前的样子; 然后更新记录，并且记录本次操作的事务ID，回滚指针，回滚指针用来指定如果发生回滚，回滚到哪一个版本。
 
-![](data:image/
+![](./media/image203.jpeg)
 
 
 
 
 
-1. 第三步
+3. 第三步
 
-![](data:image/
+![](./media/image204.jpeg)
 
 当事务4执行第一条修改语句时，也会记录undo log日志，记录数据变更之前的样子; 然后更新记录，并且记录本次操作的事务ID，回滚指针，回滚指针用来指定如果发生回滚，回滚到哪一个版本。
 
-![](data:image/
+![](./media/image205.png)
 
-最终我们发现，不同事务或相同事务对同一条记录进行修改，会导致该记录的undolog生成一条 记录版本链表，链表的头部是最新的旧记录，链表尾部是最早的旧记录。
-![](data:image/
+>  最终我们发现，不同事务或相同事务对同一条记录进行修改，会导致该记录的undolog生成一条 记录版本链表，链表的头部是最新的旧记录，链表尾部是最早的旧记录。
 
 
 ### 6.4.4 **readview**
@@ -4639,39 +3978,38 @@ RC隔离级别下，在事务中每一次执行快照读时生成ReadView。
 
 在事务5中，查询了两次id为30的记录，由于隔离级别为Read Committed，所以每一次进行快照读都会生成一个ReadView，那么两次生成的ReadView如下。
 
-![](data:image/
+![](./media/image206.jpeg)
 
 那么这两次快照读在获取数据时，就需要根据所生成的ReadView以及ReadView的版本链访问规则， 到undolog版本链中匹配数据，最终决定此次快照读返回的数据。
 
 
 1. 先来看第一次快照读具体的读取过程：
 
-![](data:image/
+![](./media/image207.jpeg)
+
+![](./media/image208.jpeg)
 
 在进行匹配时，会从undo log的版本链，从上到下进行挨个匹配：
 
-* 先匹配	这条记录，这条记录对应的
+* 先匹配![](./media/image209.jpeg)这条记录，这条记录对应的trx_id为4，也就是将4带入右侧的匹配规则中。 ①不满足 ②不满足 ③不满足 ④也不满足 ， 都不满足，则继续匹配undo log版本链的下一条。
 
-trx_id为4，也就是将4带入右侧的匹配规则中。 ①不满足 ②不满足 ③不满足 ④也不满足 ， 都不满足，则继续匹配undo log版本链的下一条。
+*  再匹配第二条![](./media/image210.jpeg)，这条记录对应的trx_id为3，也就是将3带入右侧的匹配规则中。①不满足 ②不满足 ③不满足 ④也不满足 ，都不满足，则继续匹配undo log版本链的下一条。
 
-![](data:image/ ，这条记录对应的trx_id为3，也就是将3带入右侧的匹配规则中。①不满足 ②不满足 ③不满足 ④也不满足 ，都不满足，则继续匹配undo log版本链的下一条。
+* 第匹配第三条![](./media/image211.jpeg)，这条记录对应的trx_id为2，也就是将2带入右侧的匹配规则中。①不满足 ②满足 终止匹配，此次快照读，返回的数据就是版本链中记录的这条数据。
 
-![](data:image/ ，这条记录对应的trx_id为2，也就是将2带入右侧的匹配规则中。①不满足 ②满足 终止匹配，此次快照读，返回的数据就是版本链中记录的这条数据。
+2. 再来看第二次快照读具体的读取过程:
 
+![](./media/image212.jpeg)
 
-1. 再来看第二次快照读具体的读取过程:
-
-![](data:image/
+![](./media/image213.jpeg)
 
 在进行匹配时，会从undo log的版本链，从上到下进行挨个匹配：
 
-![](data:image/先匹配	这条记录，这条记录对应的
+先匹配![](./media/image210.jpeg)这条记录，这条记录对应的
 
 trx_id为4，也就是将4带入右侧的匹配规则中。 ①不满足 ②不满足 ③不满足 ④也不满足 ， 都不满足，则继续匹配undo log版本链的下一条。
 
-![](data:image/ ，这条
-
-记录对应的trx_id为3，也就是将3带入右侧的匹配规则中。①不满足 ②满足 。终止匹配，此次快照读，返回的数据就是版本链中记录的这条数据。
+* 再匹配第二条 ，这条![](./media/image211.jpeg)记录对应的trx_id为3，也就是将3带入右侧的匹配规则中。①不满足 ②满足 。终止匹配，此次 快照读，返回的数据就是版本链中记录的这条数据。
 
 
 
@@ -4680,14 +4018,14 @@ RR隔离级别下，仅在事务中第一次执行快照读时生成ReadView，�
 
 那MySQL是如何做到可重复读的呢? 我们简单分析一下就知道了
 
-![](data:image/
+![](./media/image214.jpeg)
 
 我们看到，在RR隔离级别下，只是在事务中第一次快照读时生成ReadView，后续都是复用该ReadView，那么既然ReadView都一样， ReadView的版本链匹配规则也一样， 那么最终快照读返回的结果也是一样的。
 
 
 所以呢，MVCC的实现原理就是通过 InnoDB表的隐藏字段、UndoLog 版本链、ReadView来实现的。而MVCC + 锁，则实现了事务的隔离性。 而一致性则是由redolog 与 undolog保证。
 
-![](data:image/
+![](./media/image215.jpeg)
 
 
 # 7. **MySQL管理**
@@ -4707,73 +4045,62 @@ Mysql数据库安装完成后，自带了一下四个数据库，具体作用如
 
 该mysql不是指mysql服务，而是指mysql的客户端工具。
 
+```sql
+语法 ：
+	mysql [options] [database]
+选项 ：
+	-u, --user=name 		#指定用户名
+	-p, --password[=name] 	#指定密码
+	-h, --host=name 		#指定服务器IP或域名
+	-P, --port=port 		#指定连接端口
+	-e, --execute=name 		#执行SQL语句并退出
+```
 
-
-
-|3|选项 ：||
-| :- | :- | :- |
-|4|-u, --user=name|#指定用户名|
-|5|-p, --password[=name]|#指定密码|
-|6|-h, --host=name|#指定服务器IP或域名|
-|7|-P, --port=port|#指定连接端口|
-|8|-e, --execute=name|#执行SQL语句并退出|
-
-1	语法 ：
-
-2
-
-mysql	[options]	[database]
-![](data:image/-e选项可以在Mysql客户端执行SQL语句，而不用连接到MySQL数据库再执行，对于一些批处理脚本， 这种方式尤其方便。
+-e选项可以在Mysql客户端执行SQL语句，而不用连接到MySQL数据库再执行，对于一些批处理脚本， 这种方式尤其方便。
 
 
 示例：
 
-1	mysql -uroot –p123456 db01 -e "select * from stu";
+```sql
+mysql -uroot –p123456 db01 -e "select * from stu";
+```
 
-![](data:image/
+![](./media/image216.jpeg)
 
-![](data:image/
 
 
 ### 7.2.2 **mysqladmin**
 
 mysqladmin 是一个执行管理操作的客户端程序。可以用它来检查服务器的配置和当前状态、创建并删除数据库等。
 
-1	通过帮助文档查看选项：
+```sql
+通过帮助文档查看选项：
 
-2
+	mysqladmin --help
+```
 
-mysqladmin --help
-
-![](data:image/
-
-
+![](./media/image217.jpeg)
 
 
+```sql
+语法:
+	mysqladmin [options] command ...
+选项:
+	-u, --user=name 		#指定用户名
+	-p, --password[=name] 	#指定密码
+	-h, --host=name 		#指定服务器IP或域名
+	-P, --port=port 		#指定连接端口
+```
 
+示例：
 
+```sql
+mysqladmin -uroot –p1234 drop 'test01';
 
-|3|选项:||
-| :- | :- | :- |
-|4|-u, --user=name|#指定用户名|
-|5|-p, --password[=name]|#指定密码|
-|6|-h, --host=name|#指定服务器IP或域名|
-|7|-P, --port=port|#指定连接端口|
+mysqladmin -uroot –p1234 version;
+```
 
-
-
-1. 语法:
-
-1. mysqladmin [options] command ...
-![](data:image/示例：
-
-1. mysqladmin -uroot –p1234 drop 'test01';
-
-1. mysqladmin -uroot –p1234 version;
-
-![](data:image/
-
-![](data:image/
+![](./media/image218.jpeg)
 
 
 
@@ -4781,62 +4108,28 @@ mysqladmin --help
 
 由于服务器生成的二进制日志文件以二进制格式保存，所以如果想要检查这些文本的文本格式，就会使 用到mysqlbinlog 日志管理工具。
 
-1	语法 ：
-
-2
-
-mysqlbinlog [options] log-files1 log-files2 ...
-
-3	选项 ：
-
-4
-
--d, --database=name
-
-指定数据库名称，只列出指定的数据库相关操作。
-
-5
-
--o, --offset=#
-
-忽略掉日志中的前n行命令。
-
-6
-
--r,--result-file=name
-
-将输出的文本格式日志输出到指定文件。
-
-7
-
--s, --short-form
-
-显示简单格式， 省略掉一些信息。
-
-8
-
---start-datatime=date1 --stop-datetime=date2
-
-指定日期间隔内的所有日志。
-
-9
-
---start-position=pos1 --stop-position=pos2
-
-指定位置间隔内的所有日志。
-
-![](data:image/
+```sql
+语法 ：
+	mysqlbinlog [options] log-files1 log-files2 ...
+选项 ：
+	-d, --database=name 							指定数据库名称，只列出指定的数据库相关操作。
+	-o, --offset=# 									忽略掉日志中的前n行命令。
+    -r,--result-file=name 							将输出的文本格式日志输出到指定文件。
+    -s, --short-form 								显示简单格式， 省略掉一些信息。
+    --start-datatime=date1 --stop-datetime=date2 	指定日期间隔内的所有日志。
+    --start-position=pos1 --stop-position=pos2 		指定位置间隔内的所有日志。
+```
 
 
 示例:
 
 A. 查看 binlog.000008这个二进制文件中的数据信息
 
-![](data:image/
+![](./media/image219.jpeg)
 
 上述查看到的二进制日志文件数据信息量太多了，不方便查询。 我们可以加上一个参数 -s 来显示简单格式。
 
-![](data:image/
+![](./media/image220.jpeg)
 
 
 
@@ -4845,85 +4138,58 @@ A. 查看 binlog.000008这个二进制文件中的数据信息
 
 mysqlshow 客户端对象查找工具，用来很快地查找存在哪些数据库、数据库中的表、表中的列或者索引。
 
-1	语法 ：
-
-2
-
-mysqlshow [options] [db_name [table_name [col_name]]]
-
-3	选项 ：
-
-4
-
---count
-
-显示数据库及表的统计信息（数据库，表 均可以不指定）
-
-5
-
--i
-
-显示指定数据库或者指定表的状态信息
-
-6	示例：
-
-7
-
-8
-
-9
-
-#查询test库中每个表中的字段书，及行数
-
-10
-
-mysqlshow -uroot -p2143 test --count
-
-11
-
-12
-
-#查询test库中book表的详细情况
-
-13
-
-mysqlshow -uroot -p2143 test book --count
-
-![](data:image/
-
-
+```sql
+语法 ：
+	mysqlshow [options] [db_name [table_name [col_name]]]
+选项 ：
+    --count	显示数据库及表的统计信息（数据库，表 均可以不指定）
+    -i 		显示指定数据库或者指定表的状态信息
+    示例：
+    	#查询test库中每个表中的字段书，及行数
+    	mysqlshow -uroot -p2143 test --count
+    	
+        #查询test库中book表的详细情况
+        mysqlshow -uroot -p2143 test book --count
+```
 
 示例：
 
 1. 查询每个数据库的表的数量及表中记录的数量
 
+```sql
 mysqlshow -uroot -p1234 --count
+```
 
-![](data:image/
+![](./media/image221.jpeg)
 
 
 
-1. 查看数据库db01的统计信息
+2. 查看数据库db01的统计信息
 
+```sql
 mysqlshow -uroot -p1234 db01 --count
+```
 
-![](data:image/
+![](./media/image222.jpeg)
 
 
+3. 查看数据库db01中的course表的信息
 
-1. 查看数据库db01中的course表的信息
-
+```sql
 mysqlshow -uroot -p1234 db01 course --count
+```
 
-![](data:image/
+![](./media/image223.jpeg)
 
 
 
-1. 查看数据库db01中的course表的id字段的信息
+4. 查看数据库db01中的course表的id字段的信息
 
+```sql
 mysqlshow -uroot -p1234 db01 course id --count
+```
 
-![](data:image/
+![](./media/image224.jpeg)
 
 
 
@@ -4931,129 +4197,77 @@ mysqlshow -uroot -p1234 db01 course id --count
 
 mysqldump 客户端工具用来备份数据库或在不同数据库之间进行数据迁移。备份内容包含创建表，及插入表的SQL语句。
 
-![](data:image/
-
-1	语法 ：
-
-2
-
-mysqldump [options] db_name [tables]
-
-3
-
-mysqldump [options] --database/-B db1 [db2 db3...]
-
-4
-
-mysqldump [options] --all-databases/-A
-
-5	连接选项 ：
-
-6
-
--u, --user=name
-
-指定用户名
-
-7
-
--p, --password[=name]
-
-指定密码
-
-8
-
--h, --host=name
-
-指定服务器ip或域名
-
-9
-
--P, --port=#
-
-指定连接端口
-
-10	输出选项：
-
-11
-
---add-drop-database
-
-在每个数据库创建语句前加上 drop database 语句
-
-12
-
---add-drop-table
-
-在每个表创建语句前加上 drop table 语句 , 默认开启 ; 不
-
-开启 (--skip-add-drop-table)
-
-13
-
--n, --no-create-db
-
-不包含数据库的创建语句
-
-14
-
--t, --no-create-info
-
-不包含数据表的创建语句
-
-15
-
--d --no-data
-
-不包含数据
-
-16
-
--T, --tab=name
-
-自动生成两个文件：一个.sql文件，创建表结构的语句；一
-
-个.txt文件，数据文件
-![](data:image/
-
-
+```sql
+语法 ：
+	mysqldump [options] db_name [tables]
+	mysqldump [options] --database/-B db1 [db2 db3...]
+	mysqldump [options] --all-databases/-A
+连接选项 ：
+	-u, --user=name			指定用户名
+	-p, --password[=name]	指定密码
+	-h, --host=name			指定服务器ip或域名
+	-P, --port=#			指定连接端口
+	
+输出选项：
+--add-drop-database 		在每个数据库创建语句前加上 drop database 语句
+--add-drop-table 			在每个表创建语句前加上 drop table 语句 , 默认开启 ; 不开启 (--skip-add-drop-table)
+-n, --no-create-db 			不包含数据库的创建语句
+-t, --no-create-info 		不包含数据表的创建语句
+-d --no-data 				不包含数据
+-T, --tab=name 				自动生成两个文件：一个.sql文件，创建表结构的语句；一个.txt文件，数据文件
+```
 
 示例:
 
 1. 备份db01数据库
 
+```sql
 mysqldump -uroot -p1234 db01 > db01.sql
+```
 
-![](data:image/
+![](./media/image225.jpeg)
 
 可以直接打开db01.sql，来查看备份出来的数据到底什么样。
 
-![](data:image/
+![](./media/image226.jpeg)
 
 备份出来的数据包含：
 
-![](data:image/删除表的语句创建表的语句数据插入语句
+* 删除表的语句
+* 创建表的语句
+* 数据插入语句
 
 如果我们在数据备份时，不需要创建表，或者不需要备份数据，只需要备份表结构，都可以通过对应的 参数来实现。
 
+2. 备份db01数据库中的表数据，不备份表结构(-t)
 
-1. ![](data:image/ mysqldump -uroot -p1234 -t db01 > db01.sql
+```sql
+mysqldump -uroot -p1234 -t db01 > db01.sql
+```
+
+![](./media/image227.jpeg)
 
 打开 db02.sql ，来查看备份的数据，只有insert语句，没有备份表结构。
 
-![](data:image/
+![](./media/image228.jpeg)
 
-1. 将db01数据库的表的表结构与数据分开备份(-T) mysqldump -uroot -p1234 -T /root db01 score
+C. 将db01数据库的表的表结构与数据分开备份(-T)
 
-![](data:image/
+```sql
+mysqldump -uroot -p1234 -T /root db01 score
+```
+
+![](./media/image229.jpeg)
 
 执行上述指令，会出错，数据不能完成备份，原因是因为我们所指定的数据存放目录/root，MySQL认 为是不安全的，需要存储在MySQL信任的目录下。那么，哪个目录才是MySQL信任的目录呢，可以查看 一下系统变量 secure_file_priv 。执行结果如下：
 
-![](data:image/
+![](./media/image230.jpeg)
+
+![](./media/image231.jpeg)
 
 上述的两个文件 score.sql 中记录的就是表结构文件，而 score.txt 就是表数据文件，但是需要注意表数据文件，并不是记录一条条的insert语句，而是按照一定的格式记录表结构中的数据。如 下：
 
-![](data:image/
+![](./media/image232.jpeg)
 
 
 ### 7.2.6 **mysqlimport/source**
@@ -5062,38 +4276,22 @@ mysqldump -uroot -p1234 db01 > db01.sql
 
 mysqlimport 是客户端数据导入工具，用来导入mysqldump 加 -T 参数后导出的文本文件。
 
-1	语法 ：
+```sql
+语法 ：
+	mysqlimport [options] db_name textfile1 [textfile2...]
 
-2
+示例 ：
+	mysqlimport -uroot -p2143 test /tmp/city.txt
+```
 
-mysqlimport [options] db_name textfile1 [textfile2...]
-
-3	示例 ：
-
-4
-
-mysqlimport -uroot -p2143 test /tmp/city.txt
-
-![](data:image/
+![](./media/image233.jpeg)
 
 
-
-1. source
+2. source
 
 如果需要导入sql文件,可以使用mysql中的source 指令 :
 
-1	语法 ：
-
-2
-
-source /root/xxxxx.sql
-
-![](data:image/
-
-```
-
-```
-
-```
-
+```sql
+语法 ：
+	source /root/xxxxx.sql
 ```

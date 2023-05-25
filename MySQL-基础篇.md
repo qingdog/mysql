@@ -552,9 +552,7 @@ SQL语句编写完毕之后，就可以在MySQL的命令行中执行SQL，然后
 
 ![](./images/chapter1/image61.jpeg)
 
-表结构创建好了，里面的name字段是varchar类型，最大长度为10，也就意味着如果超过10将会报错，如果我们想修改这个字段的类型 或 修改字段的长度该如何操作呢？接下来再来讲解DDL语句中，
-
-如何操作表字段。
+表结构创建好了，里面的name字段是varchar类型，最大长度为10，也就意味着如果超过10将会报错，如果我们想修改这个字段的类型 或 修改字段的长度该如何操作呢？接下来再来讲解DDL语句中，如何操作表字段。
 
 
 
@@ -832,7 +830,8 @@ select * from employee;
 
 
 ```sql
-insert into employee (id,workno,name,gender,age,idcard,entrydate)values (1, '1', 'Itcast', '男',-1, '123456789012345678', '2000-01-01');
+insert into employee (id,workno,name,gender,age,idcard,entrydate) 
+	values (1, '1', 'Itcast', '男',-1, '123456789012345678', '2000-01-01');
 ```
 执行上述的SQL语句时，报错了，具体的错误信息如下：
 
@@ -1112,7 +1111,7 @@ B. 查询返回所有字段
 
 
 ```sql
-select id ,workno,name,gender,age,idcard,workaddress,entrydate from emp;
+select id,workno,name,gender,age,idcard,workaddress,entrydate from emp;
 ```
 
 
@@ -1187,8 +1186,6 @@ select * from emp where age = 88;
 ```
 B. 查询年龄小于 20 的员工信息
 
-
-
 ```sql
 select * from emp where age < 20;
 ```
@@ -1237,20 +1234,21 @@ I. 查询年龄等于18 或 20 或 40 的员工信息
 
 ```sql
 select * from emp where age = 18 or age = 20 or age =40;
+
 select * from emp where age in (18,20,40);
 ```
 J. 查询姓名为两个字的员工信息 _ %
 
 
 ```sql
-select * from emp where name like ' ';
+select * from emp where name like '__';
 ```
 K. 查询身份证号最后一位是X的员工信息
 
 ```sql
 select * from emp where idcard like '%X';
 
-select * from emp where idcard like 'X';
+select * from emp where idcard like '_________________X';
 ```
 
 #### **2.6.4 聚合函数**
@@ -1310,19 +1308,19 @@ C. 统计该企业员工的最大年龄
 
 
 ```sql
-select max (age) from emp;
+select max(age) from emp;
 ```
 D. 统计该企业员工的最小年龄
 
 
 ```sql
-select min (age) from emp;
+select min(age) from emp;
 ```
 E. 统计西安地区员工的年龄之和
 
 
 ```sql
-select sum (age) from emp where workaddress = '西安';
+select sum(age) from emp where workaddress = '西安';
 ```
 
 
@@ -1337,9 +1335,7 @@ SELECT 字段列表 FROM 表名 [ WHERE 条件 ] GROUP BY 分组字段名 [ HAVI
 
 2). where与having区别
 
-* 执行时机不同： where是分组之前进行过滤，不满足where条件，不参与分组；而having是分组
-
-之后对结果进行过滤。
+* 执行时机不同： where是分组之前进行过滤，不满足where条件，不参与分组；而having是分组之后对结果进行过滤。
 
 * 判断条件不同： where不能对聚合函数进行判断，而having可以。
 
@@ -1428,7 +1424,7 @@ C. 根据年龄对公司的员工进行升序排序 , 年龄相同 , 再按照�
 
 
 ```sql
-select * from emp order by age asc , entrydate desc;
+select * from emp order by age asc, entrydate desc;
 ```
 
 
@@ -1485,7 +1481,7 @@ select * from emp where gender = '女' and age in (20,21,22,23);
 2). 查询性别为 男 ，并且年龄在 20-40 岁(含)以内的姓名为三个字的员工。
 
 ```sql
-select * from emp where gender = '男' and ( age between 20 and 40 ) and name like '___';
+select * from emp where gender = '男' and (age between 20 and 40) and name like '___';
 ```
 
 3). 统计员工表中 , 年龄小于60岁的 , 男性员工和女性员工的人数。
@@ -1493,17 +1489,13 @@ select * from emp where gender = '男' and ( age between 20 and 40 ) and name li
 ```sql
 select gender, count(*) from emp where age < 60 group by gender;
 ```
-4). 查询所有年龄小于等于35岁员工的姓名和年龄，并对查询结果按年龄升序排序，如果年龄相同按
-
-入职时间降序排序。
+4). 查询所有年龄小于等于35岁员工的姓名和年龄，并对查询结果按年龄升序排序，如果年龄相同按入职时间降序排序。
 
 
 ```sql
 select name , age from emp where age <= 35 order by age asc , entrydate desc;
 ```
-5). 查询性别为男，且年龄在20-40 岁(含)以内的前5个员工信息，对查询的结果按年龄升序排序，
-
-年龄相同按入职时间升序排序。
+5). 查询性别为男，且年龄在20-40 岁(含)以内的前5个员工信息，对查询的结果按年龄升序排序，年龄相同按入职时间升序排序。
 
 
 ```sql
@@ -1517,9 +1509,7 @@ select * from emp where gender = '男' and age between 20 and 40 order by age as
 
 #### **2.6.9 执行顺序**
 
-在讲解DQL语句的具体语法之前，我们已经讲解了DQL语句的完整语法，及编写顺序，接下来，我们要
-
-来说明的是DQL语句在执行时的执行顺序，也就是先执行那一部分，后执行那一部分。
+在讲解DQL语句的具体语法之前，我们已经讲解了DQL语句的完整语法，及编写顺序，接下来，我们来说明的是DQL语句在执行时的执行顺序，也就是先执行那一部分，后执行那一部分。
 
 ![](./images/chapter1/image177.jpeg)
 
@@ -1528,8 +1518,6 @@ select * from emp where gender = '男' and age between 20 and 40 order by age as
 验证：
 
 查询年龄大于15的员工姓名、年龄，并根据年龄进行升序排序。
-
-
 
 ```sql
 select name , age from emp where age > 15 order by age asc;
@@ -1543,13 +1531,9 @@ select name , age from emp where age > 15 order by age asc;
 ```sql
 select e.name , e.age from emp e where e.age > 15 order by age asc;
 ```
-执行上述SQL语句后，我们看到依然可以正常的查询到结果，此时就说明： from 先执行 , 然后
+执行上述SQL语句后，我们看到依然可以正常的查询到结果，此时就说明： from 先执行 , 然后 where 和 select 执行。那 where 和 select 到底哪个先执行呢 ?
 
-where 和 select 执行。那 where 和 select 到底哪个先执行呢 ?
-
-此时，此时我们可以给select后面的字段起别名，然后在 where 中使用这个别名，然后看看是否可
-
-以执行成功。
+此时，此时我们可以给select后面的字段起别名，然后在 where 中使用这个别名，然后看看是否可以执行成功。
 
 
 ```sql
@@ -1677,8 +1661,6 @@ MySQL中定义了很多种权限，但是常用的就以下几种：
 |DROP|删除数据库/表/视图|
 |CREATE|创建数据库/表|
 
-
-
 上述只是简单罗列了常见的几种权限描述，其他权限描述及含义，可以直接参考[**官方文档**](https://dev.mysql.com/doc/refman/8.0/en/privileges-provided.html)。
 
 
@@ -1693,13 +1675,13 @@ SHOW GRANTS FOR '用户名'@'主机名' ;
 
 
 ```sql
-GRANT 权限列表 ON 数据库名 .表名 TO '用户名'@'主机名';
+GRANT 权限列表 ON 数据库名.表名 TO '用户名'@'主机名';
 ```
 3). 撤销权限
 
 
 ```sql
-REVOKE 权限列表 ON 数据库名 .表名 FROM '用户名'@'主机名';
+REVOKE 权限列表 ON 数据库名.表名 FROM '用户名'@'主机名';
 ```
 
 
@@ -1823,9 +1805,7 @@ select substring( 'Hello MySQL ',1,5);
 
 ![](./images/chapter1/image211.jpeg)
 
-由于业务需求变更，企业员工的工号，统一为5位数，目前不足5位数的全部在前面补0。比如： 1号员
-
-工的工号应该为00001。
+由于业务需求变更，企业员工的工号，统一为5位数，目前不足5位数的全部在前面补0。比如： 1号员工的工号应该为00001。
 
 
 ```sql
@@ -1834,8 +1814,6 @@ update emp set workno = lpad(workno, 5, '0');
 处理完毕后 , 具体的数据为 :
 
 ![](./images/chapter1/image213.jpeg)
-
-
 
 
 
@@ -1894,9 +1872,7 @@ select round(2.344,2);
 
 通过数据库的函数，生成一个六位数的随机验证码。
 
-思路： 获取随机数可以通过rand()函数，但是获取出来的随机数是在0-1之间的，所以可以在其基础
-
-上乘以1000000，然后舍弃小数部分，如果长度不足6位，补0
+思路： 获取随机数可以通过rand()函数，但是获取出来的随机数是在0-1之间的，所以可以在其基础上乘以1000000，然后舍弃小数部分，如果长度不足6位，补0
 
 
 ```sql
@@ -1920,7 +1896,7 @@ select lpad(round(rand()*1000000 , 0), 6, '0');
 |MONTH(date)|获取指定date的月份|
 |DAY(date)|获取指定date的日期|
 |DATE_ADD(date, INTERVAL exprtype)|返回一个日期/时间值加上一个时间间隔expr后的时间值|
-|DATEDIFF(date1,date2)|返回起始时间date1 和 结束时间date2之间的天数|
+|DATEDIFF(date1, date2)|返回起始时间date1 和 结束时间date2之间的天数|
 
 
 
@@ -1930,38 +1906,38 @@ A. curdate：当前日期
 
 
 ```sql
-select curdate ();
+select curdate();
 ```
 B. curtime：当前时间
 
 
 ```sql
-select curtime ();
+select curtime();
 ```
 C. now：当前日期和时间
 
 
 ```sql
-select now ();
+select now();
 ```
 D. YEAR , MONTH , DAY：当前年、月、日
 
 
 ```sql
-select YEAR(now ());
-select MONTH(now ());
-select DAY(now ());
+select YEAR(now());
+select MONTH(now());
+select DAY(now());
 ```
 E. date_add：增加指定的时间间隔
 
 ```sql
-select date add(now (), INTERVAL 70 YEAR );
+select date_add(now(), INTERVAL 70 YEAR );
 ```
 F. datediff：获取两个日期相差的天数
 
 
 ```sql
-select datediff( '2021-10-01', '2021-12-01');
+select datediff('2021-10-01', '2021-12-01');
 ```
 
 
@@ -1974,7 +1950,7 @@ select datediff( '2021-10-01', '2021-12-01');
 
 
 ```sql
-select name, datediff(curdate (), entrydate) as 'entrydays' from emp order byentrydays desc;
+select name, datediff(curdate(), entrydate) as 'entrydays' from emp order byentrydays desc;
 ```
 
 
@@ -2007,8 +1983,8 @@ B. ifnull
 
 
 ```sql
-select ifnull( 'Ok', 'Default');
-select ifnull( '', 'Default');
+select ifnull('Ok', 'Default');
+select ifnull('', 'Default');
 select ifnull(null, 'Default');
 ```
 
@@ -2081,10 +2057,10 @@ MySQL的常见函数我们学习完了，那接下来，我们就来分析一下
 | :- | :- | :- |
 |非空约束|限制该字段的数据不能为null|NOT NULL|
 |唯一约束|保证该字段的所有数据都是唯一、不重复的|UNIQUE|
-|主键约束|主键是一行数据的唯一标识，要求非空且唯一|PRIMARYKEY|
+|主键约束|主键是一行数据的唯一标识，要求非空且唯一|PRIMARY KEY|
 |默认约束|保存数据时，如果未指定该字段的值，则采用默认值|DEFAULT|
 |检查约束(8.0.16版本之后)|保证字段值满足某一个条件|CHECK|
-|外键约束|用来让两张表的数据之间建立连接，保证数据的一致性和完整性|FOREIGNKEY|
+|外键约束|用来让两张表的数据之间建立连接，保证数据的一致性和完整性|FOREIGN KEY|
 
 > <font style="background: aquamarine;">***注意：约束是作用于表中字段上的，可以在创建表/修改表的时候添加约束。***</font>
 
@@ -2092,9 +2068,7 @@ MySQL的常见函数我们学习完了，那接下来，我们就来分析一下
 
 ### **4.2 约束演示**
 
-上面我们介绍了数据库中常见的约束，以及约束涉及到的关键字，那这些约束我们到底如何在创建表、
-
-修改表的时候来指定呢，接下来我们就通过一个案例，来演示一下。
+上面我们介绍了数据库中常见的约束，以及约束涉及到的关键字，那这些约束我们到底如何在创建表、修改表的时候来指定呢，接下来我们就通过一个案例，来演示一下。
 
 案例需求： 根据需求， 完成表结构的创建。需求如下：
 
@@ -2259,9 +2233,7 @@ alter table emp drop foreign key fk_emp_dept_id;
 
 #### **4.3.3 删除/更新行为**
 
-添加了外键之后，再删除父表数据时产生的约束行为，我们就称为删除/更新行为。具体的删除/更新行
-
-为有以下几种 :
+添加了外键之后，再删除父表数据时产生的约束行为，我们就称为删除/更新行为。具体的删除/更新行为有以下几种 :
 
 
 |**行为**|**说明**|
@@ -2284,9 +2256,7 @@ ALTER TABLE 表名 ADD CONSTRAINT 外键名称 FOREIGN KEY (外键字段) REFERE
 
 演示如下：
 
-由于NO ACTION 是默认行为，我们前面语法演示的时候，已经测试过了，就不再演示了，这里我们再
-
-演示其他的两种行为： CASCADE、 SET NULL。
+由于NO ACTION 是默认行为，我们前面语法演示的时候，已经测试过了，就不再演示了，这里我们再演示其他的两种行为： CASCADE、 SET NULL。
 
 1). CASCADE
 
@@ -2320,7 +2290,7 @@ B. 删除父表id为6的记录
 
 ```sql
 alter table emp add constraint fk_emp_dept_id foreign key (dept_id) references dept(id) 
-	on update set null on delete set null ;
+	on update set null on delete set null;
 ```
 
 
@@ -2329,9 +2299,7 @@ alter table emp add constraint fk_emp_dept_id foreign key (dept_id) references d
 
 ![](./images/chapter1/image253.png)
 
-我们发现父表的记录是可以正常的删除的，父表的数据删除之后，再打开子表 emp，我们发现子表emp
-
-的dept_id字段，原来dept_id为1的数据，现在都被置为NULL了。
+我们发现父表的记录是可以正常的删除的，父表的数据删除之后，再打开子表 emp，我们发现子表emp的dept_id字段，原来dept_id为1的数据，现在都被置为NULL了。
 
 ![](./images/chapter1/image254.png)
 
@@ -2683,9 +2651,7 @@ select e.*, d.name from emp e left join dept d on e.dept_id = d.id;
 
 B. 查询dept表的所有数据 , 和对应的员工信息(右外连接)
 
-由于需求中提到，要查询dept表的所有数据，所以是不能内连接查询的，需要考虑使用外连接查
-
-询。
+由于需求中提到，要查询dept表的所有数据，所以是不能内连接查询的，需要考虑使用外连接查询。
 
 表结构 : emp, dept
 
@@ -2709,9 +2675,7 @@ select d.*, e.* from dept d left outer join emp e on e.dept_id = d.id;
 
 #### **5.5.1 自连接查询**
 
-自连接查询，顾名思义，就是自己连接自己，也就是把一张表连接查询多次。我们先来学习一下自连接
-
-的查询语法：
+自连接查询，顾名思义，就是自己连接自己，也就是把一张表连接查询多次。我们先来学习一下自连接的查询语法：
 
 
 ```sql
@@ -2741,11 +2705,9 @@ B. 查询所有员工 emp 及其领导的名字 emp , 如果员工没有领导 ,
 select a.name '员工', b.name '领导' from emp a left join emp b on a.managerid = b.id;
 ```
 
-
-
 > <font style="background: aquamarine;">***注意事项 :***</font>
 >
->		<font style="background: aquamarine;">***在自连接查询中，必须要为表起别名，要不然我们不清楚所指定的条件、返回的字段，到底是哪一张表的字段。***</font>
+>​		<font style="background: aquamarine;">***在自连接查询中，必须要为表起别名，要不然我们不清楚所指定的条件、返回的字段，到底是哪一张表的字段。***</font>
 
 
 
@@ -2898,7 +2860,7 @@ select * from emp where entrydate > (select entrydate from emp where name = '方
 
 子查询返回的结果是一列（可以是多行），这种子查询称为列子查询。
 
-常用的操作符： IN 、NOT IN 、 ANY 、 SOME 、 ALL
+常用的操作符：IN 、NOT IN 、 ANY 、 SOME 、 ALL
 
 
 |**操作符**|**描述**|
@@ -2985,11 +2947,11 @@ select * from emp where salary > any
 
 案例 :
 
-A. 查询与 "张无忌 " 的薪资及直属领导相同的员工信息 ;
+A. 查询与 "张无忌" 的薪资及直属领导相同的员工信息 ;
 
 这个需求同样可以拆解为两步进行 :
 
-① . 查询 "张无忌 " 的薪资及直属领导
+① . 查询 "张无忌" 的薪资及直属领导
 
 
 ```sql
@@ -2997,7 +2959,7 @@ select salary, managerid from emp where name = '张无忌';
 ```
 
 
-② . 查询与 "张无忌 " 的薪资及直属领导相同的员工信息 ;
+② . 查询与 "张无忌" 的薪资及直属领导相同的员工信息 ;
 
 ```sql
 select * from emp where (salary,managerid) = (select salary, managerid from emp where name = '张无忌');
@@ -3140,7 +3102,8 @@ select e.*, d.name from emp e left join dept d on e.dept_id = d.id where e.age >
 
 ```sql
 -- 方式一
-select e.* , s.grade , s.losal, s.hisal from emp e , salgrade s where e.salary >= s.losal and e.salary <= s.hisal;
+select e.* , s.grade , s.losal, s.hisal from emp e , salgrade s 
+	where e.salary >= s.losal and e.salary <= s.hisal;
 
 -- 方式二
 select e.* , s.grade , s.losal, s.hisal from emp e , salgrade s where e.salary between s.losal and s.hisal;
