@@ -40,7 +40,7 @@ CREATE TABLE 表名(
 	字段1 字段1类型	[ COMMENT 字段1注释 ] ,
 	......
 	字段n 字段n类型	[COMMENT 字段n注释 ]
-) ENGINE = INNODB	[ COMMENT 表注释 ] ;
+) ENGINE = INNODB	[ COMMENT 表注释 ];
 ```
 
 2). 查询当前数据库支持的存储引擎
@@ -66,7 +66,7 @@ show create table account;
 B. 查询当前数据库支持的存储引擎
 
 ```sql
-show engines ;
+show engines;
 ```
 
 ![](./media/image4.jpeg)
@@ -83,22 +83,22 @@ show engines ;
 | PERFORMANCE_SCHEMA | YES     | Performance Schema                                           | NO           | NO     | NO         |
 | FEDERATED          | NO      | Federated MySQL storage engine                               | <null>       | <null> | <null>     |
 
-C. 创建表 my_myisam , 并指定MyISAM存储引擎
+C. 创建表 my_myisam, 并指定MyISAM存储引擎
 
 ```sql
 create table my_myisam(
 	id int,
 	name varchar(10)
-) engine = MyISAM ;
+) engine = MyISAM;
 ```
 
-D. 创建表 my_memory , 指定Memory存储引擎
+D. 创建表 my_memory, 指定Memory存储引擎
 
 ```sql
 create table my_memory(
 	id int,
 	name varchar(10)
-) engine = Memory ;
+) engine = Memory;
 ```
 
 
@@ -295,7 +295,7 @@ MySQL的索引是在存储引擎层实现的，不同的存储引擎有不同的
 |B+Tree索引|最常见的索引类型，大部分引擎都支持 B+ 树索引|
 |Hash索引|底层数据结构是用哈希表实现的, 只有精确匹配索引列的查询才有效, 不支持范围查询|
 |R-tree(空间索引）|空间索引是MyISAM引擎的一个特殊索引类型，主要用于地理空间数据类型，通常使用较少|
-|Full-text(全文索引)|是一种通过建立倒排索引,快速匹配文档的方式。类似于Lucene,Solr,ES|
+|Full-text(全文索引)|是一种通过建立倒排索引,快速匹配文档的方式。类似于Lucene, Solr, ES|
 
 
 上述是MySQL中所支持的所有的索引结构，接下来，我们再来看看不同的存储引擎对于索引结构的支持 情况。
@@ -507,9 +507,9 @@ C. 查询效率高，通常(不存在hash冲突的情况)只需要一次检索�
 >
 >​		以下两条SQL语句，那个执行效率高? 为什么?
 >
->​		A. select * from user where id = 10 ;
+>​		A. select * from user where id = 10;
 >
->​		B. select * from user where name = 'Arm' ;
+>​		B. select * from user where name = 'Arm';
 >
 >​		备注: id为主键，name字段创建的有索引；
 >
@@ -537,7 +537,7 @@ C. 查询效率高，通常(不存在hash冲突的情况)只需要一次检索�
 >
 >高度为2：
 >
->​		n * 8 + (n + 1) * 6 = 16*1024 , 算出n约为 1170 
+>​		n * 8 + (n + 1) * 6 = 16*1024, 算出n约为 1170 
 >
 >​		1171* 16 = 18736
 >
@@ -557,19 +557,19 @@ C. 查询效率高，通常(不存在hash冲突的情况)只需要一次检索�
 1). 创建索引
 
 ```sql
-CREATE [ UNIQUE | FULLTEXT ] INDEX index_name ON table_name (index_col_name,... ) ; 
+CREATE [ UNIQUE | FULLTEXT ] INDEX index_name ON table_name (index_col_name,... ); 
 ```
 
 2). 查看索引
 
 ```sql
-SHOW INDEX FROM table_name ;
+SHOW INDEX FROM table_name;
 ```
 
 3). 删除索引
 
 ```sql
-DROP INDEX index_name ON table_name ;
+DROP INDEX index_name ON table_name;
 ```
 
 **案例演示:**
@@ -584,13 +584,13 @@ create table tb_user(
 	email varchar(100) comment '邮箱',
 	profession varchar(11) comment '专业',
 	age tinyint unsigned comment '年龄',
-	gender char(1) comment '性别 , 1: 男, 2: 女',
+	gender char(1) comment '性别, 1: 男, 2: 女',
 	status char(1) comment '状态',
 	createtime datetime comment '创建时间'
 ) comment '系统用户表'; 12
 
 INSERT INTO tb_user (name, phone, email, profession, age, gender, status, createtime) 
-	VALUES ('吕布','17799990000', 'lvbu666@163.com', '软件工程', 23, '1', '6', '2001-02-02 00:00:00');
+	VALUES ('吕布', '17799990000', 'lvbu666@163.com', '软件工程', 23, '1', '6', '2001-02-02 00:00:00');
 INSERT INTO tb_user (name, phone, email, profession, age, gender, status, createtime) 
 	VALUES ('曹操', '17799990001', 'caocao666@qq.com', '通讯工程', 33, '1', '0', '2001-03-05 00:00:00');
 INSERT INTO tb_user (name, phone, email, profession, age, gender, status, createtime) 
@@ -660,7 +660,7 @@ CREATE UNIQUE INDEX idx_user_phone ON tb_user(phone);
 C. 为profession、age、status创建联合索引。
 
 ```sql
-CREATE INDEX idx_user_pro_age_sta ON tb_user(profession,age,status);
+CREATE INDEX idx_user_pro_age_sta ON tb_user(profession, age, status);
 ```
 
 D. 为email建立合适的索引来提升查询效率。
@@ -687,8 +687,8 @@ show index from tb_user;
 MySQL 客户端连接成功后，通过 `show [session|global] status` 命令可以提供服务器状态信息。通过如下指令，可以查看当前数据库的INSERT、UPDATE、DELETE、SELECT的访问频次：
 
 ```sql
--- session 是查看当前会话 ;
--- global 是查询全局数据 ;
+-- session 是查看当前会话;
+-- global 是查询全局数据;
 SHOW GLOBAL STATUS LIKE 'Com_______';
 ```
 
@@ -797,7 +797,7 @@ B. 检查慢查询日志 ：
 show profiles 能够在做SQL优化时帮助我们了解时间都耗费到哪里去了。通过have_profiling 参数，能够看到当前MySQL是否支持profile操作：
 
 ```sql
-SELECT @@have_profiling ;
+SELECT @@have_profiling;
 ```
 
 ![](./media/image37.jpeg)
@@ -855,7 +855,7 @@ EXPLAIN 或者 DESC命令获取 MySQL 如何执行 SELECT 语句的信息，包�
 
 ```sql
 -- 直接在select语句之前加上关键字 explain / desc
-EXPLAIN	SELECT	字段列表	FROM	表名	WHERE 条件 ;
+EXPLAIN	SELECT	字段列表	FROM	表名	WHERE 条件;
 ```
 
 ![](./media/image40.jpeg)
@@ -881,7 +881,7 @@ Explain 执行计划中各个字段的含义:
 
 ## 2.6 **索引使用**
 ### 2.6.1 **验证索引效率**
-在讲解索引的使用原则之前，先通过一个简单的案例，来验证一下索引，看看是否能够通过索引来提升数据查询性能。在演示的时候，我们还是使用之前准备的一张表 tb_sku , 在这张表中准备了1000w 的记录。
+在讲解索引的使用原则之前，先通过一个简单的案例，来验证一下索引，看看是否能够通过索引来提升数据查询性能。在演示的时候，我们还是使用之前准备的一张表 tb_sku, 在这张表中准备了1000w 的记录。
 
 ![](./media/image41.jpeg)
 
@@ -909,7 +909,7 @@ SELECT * FROM tb_sku WHERE sn = '100000003145001';
 创建索引：
 
 ```sql
-create index idx_sku_sn on tb_sku(sn) ;
+create index idx_sku_sn on tb_sku(sn);
 ```
 
 ![](./media/image44.jpeg)
@@ -1040,7 +1040,7 @@ explain select * from tb_user where phone = '17799990015';
 B. 当根据phone字段进行函数运算操作之后，索引失效。
 
 ```sql
-explain select * from tb_user where substring(phone,10,2) = '15';
+explain select * from tb_user where substring(phone, 10, 2) = '15';
 ```
 
 
@@ -1193,7 +1193,7 @@ C. 创建单列索引后，再次执行A中的SQL语句，查看执行计划，�
 
 ![](./media/image74.jpeg)
 
-测试结果，我们可以看到，possible_keys中 idx_user_pro_age_sta,idx_user_pro 这两个索引都可能用到，最终MySQL选择了idx_user_pro_age_sta索引。这是MySQL自动选择的结果。
+测试结果，我们可以看到，possible_keys中 idx_user_pro_age_sta, idx_user_pro 这两个索引都可能用到，最终MySQL选择了idx_user_pro_age_sta索引。这是MySQL自动选择的结果。
 
 
 那么，我们能不能在查询的时候，自己来指定使用哪个索引呢？ 答案是肯定的，此时就可以借助于MySQL的SQL提示来完成。 接下来，介绍一下SQL提示。
@@ -1249,13 +1249,13 @@ explain select * from tb_user force index(idx_user_pro_age_sta) where profession
 接下来，我们来看一组SQL的执行计划，看看执行计划的差别，然后再来具体做一个解析。
 
 ```sql
-explain select id, profession from tb_user where profession = '软件工程' and age =31 and status = '0' ;
+explain select id, profession from tb_user where profession = '软件工程' and age =31 and status = '0';
 
-explain select id,profession,age, status from tb_user 
-	where profession = '软件工程' and age = 31 and status = '0' ;
+explain select id, profession, age, status from tb_user 
+	where profession = '软件工程' and age = 31 and status = '0';
 
-explain select id,profession,age, status, name from tb_user 
-	where profession = '软件工程' and age = 31 and status = '0' ;
+explain select id, profession, age, status, name from tb_user 
+	where profession = '软件工程' and age = 31 and status = '0';
 
 explain select * from tb_user where profession = '软件工程' and age = 31 and status= '0';
 ```
@@ -1265,7 +1265,7 @@ explain select * from tb_user where profession = '软件工程' and age = 31 and
 ![](./media/image78.jpeg)
 
 
-从上述的执行计划我们可以看到，这四条SQL语句的执行计划前面所有的指标都是一样的，看不出来差 异。但是此时，我们主要关注的是后面的Extra，前面两天SQL的结果为 Using where; Using Index ; 而后面两条SQL的结果为: Using index condition 。
+从上述的执行计划我们可以看到，这四条SQL语句的执行计划前面所有的指标都是一样的，看不出来差 异。但是此时，我们主要关注的是后面的Extra，前面两天SQL的结果为 Using where; Using Index; 而后面两条SQL的结果为: Using index condition 。
 
 
 |**Extra**|**含义**|
@@ -1291,13 +1291,13 @@ B. 执行SQL : select * from tb_user where id = 2;
 
 根据id查询，直接走聚集索引查询，一次索引扫描，直接返回数据，性能高。
 
-C. 执行SQL：selet id,name from tb_user where name = 'Arm';
+C. 执行SQL：selet id, name from tb_user where name = 'Arm';
 
 ![](./media/image81.jpeg)
 
 虽然是根据name字段查询，查询二级索引，但是由于查询返回在字段为 id，name，在name的二级索引中，这两个值都是可以直接获取到的，因为覆盖索引，所以不需要回表查询，性能高。
 
-D. 执行SQL：selet id,name,gender from tb_user where name = 'Arm';
+D. 执行SQL：selet id, name, gender from tb_user where name = 'Arm';
 
 ![](./media/image82.jpeg)
 
@@ -1310,13 +1310,13 @@ D. 执行SQL：selet id,name,gender from tb_user where name = 'Arm';
 >​		一张表, 有四个字段(id, username, password, status), 由于数据量大, 需要对以下SQL语句进行优化, 该如何进行才是最优方案:
 >
 >```sql
->select id,username,password from tb_user where username = 'itcast';
+>select id, username, password from tb_user where username = 'itcast';
 >```
 >
 >​		答案: 针对于 username, password建立联合索引, sql为: 
 >
 >```sql
->create index idx_user_name_pass on tb_user(username,password);
+>create index idx_user_name_pass on tb_user(username, password);
 >```
 >
 >​		这样可以避免上述的SQL语句，在查询的过程中，出现回表查询。
@@ -1327,7 +1327,7 @@ D. 执行SQL：selet id,name,gender from tb_user where name = 'Arm';
 1). 语法
 
 ```sql
-create index idx_xxxx on table_name(column(n)) ;
+create index idx_xxxx on table_name(column(n));
 ```
 
 
@@ -1348,9 +1348,9 @@ create index idx_email_5 on tb_user(email(5));
 可以根据索引的选择性来决定，而选择性是指不重复的索引值（基数）和数据表的记录总数的比值， 索引选择性越高则查询效率越高， 唯一索引的选择性是1，这是最好的索引选择性，性能也是最好的。
 
 ```sql
-select count(distinct email) / count(*)	from tb_user ;
+select count(distinct email) / count(*)	from tb_user;
 
-select count(distinct substring(email,1,5)) / count(*) from tb_user ;
+select count(distinct substring(email, 1, 5)) / count(*) from tb_user;
 ```
 
 3). 前缀索引的查询流程
@@ -1379,7 +1379,7 @@ select count(distinct substring(email,1,5)) / count(*) from tb_user ;
 紧接着，我们再来创建一个phone和name字段的联合索引来查询一下执行计划。
 
 ```sql
-create unique index idx_user_phone_name on tb_user(phone,name);
+create unique index idx_user_phone_name on tb_user(phone, name);
 ```
 
 ![](./media/image87.jpeg)
@@ -1415,16 +1415,16 @@ create unique index idx_user_phone_name on tb_user(phone,name);
 如果我们需要一次性往数据库表中插入多条记录，可以从以下三个方面进行优化。
 
 ```sql
-insert into tb_test values(1,'tom');
-insert into tb_test values(2,'cat');
-insert into tb_test values(3,'jerry');
+insert into tb_test values(1, 'tom');
+insert into tb_test values(2, 'cat');
+insert into tb_test values(3, 'jerry');
 .....
 ```
 
 1). 优化方案一批量插入数据
 
 ```sql
-Insert into tb_test values(1,'Tom'),(2,'Cat'),(3,'Jerry');
+Insert into tb_test values(1, 'Tom'),(2, 'Cat'),(3, 'Jerry');
 ```
 
 2). 优化方案二
@@ -1434,9 +1434,9 @@ Insert into tb_test values(1,'Tom'),(2,'Cat'),(3,'Jerry');
 ```sql
 start transaction;
 
-insert into tb_test values(1,'Tom'),(2,'Cat'),(3,'Jerry');
-insert into tb_test values(4,'Tom'),(5,'Cat'),(6,'Jerry');
-insert into tb_test values(7,'Tom'),(8,'Cat'),(9,'Jerry');
+insert into tb_test values(1, 'Tom'),(2, 'Cat'),(3, 'Jerry');
+insert into tb_test values(4, 'Tom'),(5, 'Cat'),(6, 'Jerry');
+insert into tb_test values(7, 'Tom'),(8, 'Cat'),(9, 'Jerry');
 
 commit;
 ```
@@ -1467,7 +1467,7 @@ mysql –-local-infile -u root -p
 set global local_infile = 1;
 
 -- 执行load指令将准备好的数据，加载到表结构中
-load data local infile '/root/sql1.log' into table tb_user fields terminated by ',' lines terminated by'\n';
+load data local infile '/root/sql1.log' into table tb_user fields terminated by ', ' lines terminated by'\n';
 ```
 
 > 主键顺序插入性能高于乱序插入
@@ -1477,16 +1477,16 @@ load data local infile '/root/sql1.log' into table tb_user fields terminated by 
 A. 创建表结构
 
 ```sql
-CREATE TABLE `tb_user` (
-	`id` INT(11) NOT NULL AUTO_INCREMENT,
-	`username` VARCHAR(50) NOT NULL,
-	`password` VARCHAR(50) NOT NULL,
-	`name` VARCHAR(20) NOT NULL,
-	`birthday` DATE DEFAULT NULL,
-	`sex` CHAR(1) DEFAULT NULL,
-	PRIMARY KEY (`id`),
-	UNIQUE KEY `unique_user_username` (`username`)
-) ENGINE=INNODB DEFAULT CHARSET=utf8 ;
+CREATE TABLE tb_user (
+	id INT(11) NOT NULL AUTO_INCREMENT,
+	username VARCHAR(50) NOT NULL,
+	password VARCHAR(50) NOT NULL,
+	name VARCHAR(20) NOT NULL,
+	birthday DATE DEFAULT NULL,
+	sex CHAR(1) DEFAULT NULL,
+	PRIMARY KEY (id),
+	UNIQUE KEY unique_user_username (username)
+) ENGINE=INNODB DEFAULT CHARSET=utf8;
 ```
 
 B. 设置参数
@@ -1503,7 +1503,7 @@ C. load加载数据
 
 ```sql
 load data local infile '/root/load_user_100w_sort.sql' into table tb_user 
-	fields terminated by ',' lines terminated by '\n' ;
+	fields terminated by ', ' lines terminated by '\n';
 ```
 
 ![](./media/image90.jpeg)
@@ -1556,7 +1556,7 @@ A. 主键顺序插入效果
 
 B. 主键乱序插入效果
 
-①. 加入1#,2#页都已经写满了，存放了如图所示的数据
+①. 加入1#, 2#页都已经写满了，存放了如图所示的数据
 
 ![](./media/image97.jpeg)
 
@@ -1652,13 +1652,13 @@ drop index idx_user_name on tb_user;
 B. 执行排序SQL
 
 ```sql
-explain select id,age,phone from tb_user order by age ;
+explain select id, age, phone from tb_user order by age;
 ```
 
 ![](./media/image112.jpeg)
 
 ```sql
-explain select id,age,phone from tb_user order by age, phone ;
+explain select id, age, phone from tb_user order by age, phone;
 ```
 
 ![](./media/image113.jpeg)
@@ -1669,19 +1669,19 @@ C. 创建索引
 
 ```sql
 -- 创建索引
-create index idx_user_age_phone_aa on tb_user(age,phone);
+create index idx_user_age_phone_aa on tb_user(age, phone);
 ```
 
 D. 创建索引后，根据age, phone进行升序排序
 
 ```sql
-explain select id,age,phone from tb_user order by age;
+explain select id, age, phone from tb_user order by age;
 ```
 
 ![](./media/image114.jpeg)
 
 ```sql
-explain select id,age,phone from tb_user order by age , phone;
+explain select id, age, phone from tb_user order by age, phone;
 ```
 
 ![](./media/image115.jpeg)
@@ -1692,7 +1692,7 @@ explain select id,age,phone from tb_user order by age , phone;
 E. 创建索引后，根据age, phone进行降序排序
 
 ```sql
-explain select id,age,phone from tb_user order by age desc , phone desc ;
+explain select id, age, phone from tb_user order by age desc, phone desc;
 ```
 
 ![](./media/image116.jpeg)
@@ -1702,7 +1702,7 @@ explain select id,age,phone from tb_user order by age desc , phone desc ;
 F. 根据phone，age进行升序排序，phone在前，age在后。
 
 ```sql
-explain select id,age,phone from tb_user order by phone , age;
+explain select id, age, phone from tb_user order by phone, age;
 ```
 
 ![](./media/image117.jpeg)
@@ -1712,7 +1712,7 @@ explain select id,age,phone from tb_user order by phone , age;
 F. 根据age, phone进行降序一个升序，一个降序
 
 ```sql
-explain select id,age,phone from tb_user order by age asc , phone desc ;
+explain select id, age, phone from tb_user order by age asc, phone desc;
 ```
 
 ![](./media/image118.jpeg)
@@ -1732,7 +1732,7 @@ create index idx_user_age_phone_ad on tb_user(age asc, phone desc);
 H. 然后再次执行如下SQL
 
 ```sql
-explain select id,age,phone from tb_user order by age asc , phone desc ;
+explain select id, age, phone from tb_user order by age asc, phone desc;
 ```
 
 ![](./media/image120.jpeg)
@@ -1774,7 +1774,7 @@ drop index idx_user_age_phone_ad on tb_user;
 接下来，在没有索引的情况下，执行如下SQL，查询执行计划：
 
 ```sql
-explain select profession, count(*) from tb_user group by profession ;
+explain select profession, count(*) from tb_user group by profession;
 ```
 
 ![](./media/image125.jpeg)
@@ -1789,7 +1789,7 @@ create index idx_user_pro_age_sta on tb_user(profession, age, status);
 紧接着，再执行前面相同的SQL查看执行计划。
 
 ```sql
-explain select profession, count(*) from tb_user group by profession ;
+explain select profession, count(*) from tb_user group by profession;
 ```
 
 ![](./media/image126.jpeg)
@@ -1798,7 +1798,7 @@ explain select profession, count(*) from tb_user group by profession ;
 
 ![](./media/image127.jpeg)![](./media/image128.jpeg)
 
-我们发现，如果仅仅根据age分组，就会出现 Using temporary ；而如果是 根据profession,age两个字段同时分组，则不会出现 Using temporary。原因是因为对于分组操作， 在联合索引中，也是符合最左前缀法则的。
+我们发现，如果仅仅根据age分组，就会出现 Using temporary ；而如果是 根据profession, age两个字段同时分组，则不会出现 Using temporary。原因是因为对于分组操作， 在联合索引中，也是符合最左前缀法则的。
 
 
 所以，在分组操作中，我们需要通过以下两点进行优化，以提升性能：
@@ -1817,15 +1817,13 @@ explain select profession, count(*) from tb_user group by profession ;
 
 通过测试我们会看到，越往后，分页查询效率越低，这就是分页查询的问题所在。
 
-因为，当在进行分页查询时，如果执行 limit 2000000,10 ，此时需要MySQL排序前2000010 记录，仅仅返回 2000000 - 2000010 的记录，其他记录丢弃，查询排序的代价非常大 。
+因为，当在进行分页查询时，如果执行 limit 2000000, 10 ，此时需要MySQL排序前2000010 记录，仅仅返回 2000000 - 2000010 的记录，其他记录丢弃，查询排序的代价非常大 。
 
 **总结：MySQL在执行分页查询时会对整个结果集进行排序，而不仅仅返回指定范围的记录。**
 
 ```sql
-explain select * from tb_sku t, (select id from tb_sku order by id limit 2000000,10) a where t.id = a.id;
+explain select * from tb_sku t, (select id from tb_sku order by id limit 2000000, 10) a where t.id = a.id;
 ```
-
-
 
 > 即使使用了索引，MySQL执行带有大偏移量的LIMIT查询仍然需要扫描和跳过指定数量的记录。这是因为索引通常用于定位符合条件的记录，而不是用于跳过指定数量的记录。
 >
@@ -1851,10 +1849,7 @@ explain select * from tb_sku t, (select id from tb_sku order by id limit 2000000
 >
 > ```sql
 > -- 创建游标
-> DECLARE cur CURSOR FOR
-> SELECT *
-> FROM tb_sku
-> ORDER BY id; -- 假设按照id字段排序
+> DECLARE cur CURSOR FOR SELECT * FROM tb_sku ORDER BY id; -- 假设按照id字段排序
 > 
 > -- 定义变量
 > DECLARE @id INT;
@@ -1895,6 +1890,18 @@ explain select * from tb_sku t, (select id from tb_sku order by id limit 2000000
 >
 > 在这个示例中，我们通过游标方式进行分页查询。首先，我们创建一个游标，选择指定的结果集并按照特定的字段进行排序（在示例中使用id字段）。然后，我们定义一些变量，用于存储每一行记录的数据。接下来，我们打开游标，并通过FETCH语句定位游标到指定的偏移量。然后，我们循环遍历游标，获取指定范围内的记录，并对每一行记录进行处理（在示例中使用PRINT语句输出记录）。
 >
+> `@@FETCH_STATUS` 是一个内置变量，用于检查上一次 FETCH 操作的状态。它返回一个整数值，表示 FETCH 操作的结果。常见的返回值有以下几种：
+>
+> - 0: FETCH 操作成功并获取了一行记录。
+> - -1: FETCH 操作失败或未找到记录。
+> - -2: FETCH 操作成功，但没有更多的记录可用。
+>
+> 在使用游标进行遍历时，通过检查 `@@FETCH_STATUS` 的值，可以确定是否还有更多的记录可用，并进行相应的处理。在上面的示例中，`@@FETCH_STATUS = 0` 的条件用于判断是否成功获取了一行记录，并继续进行下一次 FETCH 操作。
+>
+> 请注意，`@@FETCH_STATUS` 是一个会话级别的变量，在使用游标之前需要先声明和初始化。在示例中，我们使用 `DECLARE` 语句声明了 `@@FETCH_STATUS` 变量，并在 FETCH 操作后检查其值。
+>
+> 通过检查 `@@FETCH_STATUS` 可以确保在游标遍历期间获取有效的记录，并避免在遍历结束后继续进行无效的 FETCH 操作。
+>
 > 请注意，这只是一个示例，具体实现方式可能会根据实际需求和使用的编程语言而有所不同。游标方式进行分页查询可以提供更好的性能和效率，特别是在处理大数据量的情况下。
 
 
@@ -1904,7 +1911,7 @@ explain select * from tb_sku t, (select id from tb_sku order by id limit 2000000
 ### 3.6.1 **概述**
 
 ```sql
-select count(*) from tb_user ;
+select count(*) from tb_user;
 ```
 
 在之前的测试中，我们发现，如果数据量很大，在执行count操作时，是非常耗时的。
@@ -1935,7 +1942,7 @@ NULL，累计值就加 1，否则不加，最后返回累计值。
 我们主要需要注意一下update语句执行时的注意事项。
 
 ```sql
-update course set name = 'javaEE' where id = 1 ;
+update course set name = 'javaEE' where id = 1;
 ```
 
 当我们在执行删除的SQL语句时，会锁定id为1这一行的数据，然后事务提交之后，行锁释放。
@@ -1944,7 +1951,7 @@ update course set name = 'javaEE' where id = 1 ;
 但是当我们在执行如下SQL时。
 
 ```sql
-update course set name = 'SpringBoot' where name = 'PHP' ;
+update course set name = 'SpringBoot' where name = 'PHP';
 ```
 
 当我们开启多个事务，在执行上述的SQL时，我们发现行锁升级为了表锁。 导致该update语句的性能大大降低。
@@ -1972,7 +1979,7 @@ CREATE [OR REPLACE] VIEW 视图名称[(列名列表)] AS SELECT语句 [ WITH [CA
 
 ```sql
 查看创建视图语句：SHOW CREATE VIEW 视图名称;
-查看视图数据：SELECT * FROM 视图名称 ...... ;
+查看视图数据：SELECT * FROM 视图名称 ......;
 ```
 
 3). 修改
@@ -1993,7 +2000,7 @@ DROP VIEW [IF EXISTS] 视图名称 [,视图名称] ...
 
 ```sql
 -- 创建视图
-create or replace view stu_v_1 as select id,name from student where id <= 10;
+create or replace view stu_v_1 as select id, name from student where id <= 10;
 
 -- 查询视图
 show create view stu_v_1;
@@ -2002,9 +2009,9 @@ select * from stu_v_1;
 select * from stu_v_1 where id < 3;
 
 -- 修改视图
-create or replace view stu_v_1 as select id,name,no from student where id <= 10;
+create or replace view stu_v_1 as select id, name, no from student where id <= 10;
 
-alter view stu_v_1 as select id,name from student where id <= 10;
+alter view stu_v_1 as select id, name from student where id <= 10;
 
 -- 删除视图
 drop view if exists stu_v_1;
@@ -2013,7 +2020,7 @@ drop view if exists stu_v_1;
 上述我们演示了，视图应该如何创建、查询、修改、删除，那么我们能不能通过视图来插入、更新数据呢？ 接下来，做一个测试。
 
 ```sql
-create or replace view stu_v_1 as select id,name from student where id <= 10 ;
+create or replace view stu_v_1 as select id, name from student where id <= 10;
 
 select * from stu_v_1;
 
@@ -2103,7 +2110,7 @@ insert into stu_v_count values(10);
 1. 为了保证数据库表的安全性，开发人员在操作tb_user表时，只能看到的用户的基本字段，屏蔽 手机号和邮箱两个字段。
 
 ```sql
-create view tb_user_view as select id,name,profession,age,gender,status,createtime from tb_user;
+create view tb_user_view as select id, name, profession, age, gender, status, createtime from tb_user;
 
 select * from tb_user_view;
 ```
@@ -2111,7 +2118,7 @@ select * from tb_user_view;
 2. 查询每个学生所选修的课程（三张表联查），这个功能在很多的业务中都有使用到，为了简化操作，定义一个视图。
 
 ```sql
-create view tb_stu_course_view as select s.name student_name, s.no student_no, c.name course_name from 			student s, student_course sc ,course c where s.id = sc.studentid and sc.courseid = c.id;
+create view tb_stu_course_view as select s.name student_name, s.no student_no, c.name course_name from 			student s, student_course sc , course c where s.id = sc.studentid and sc.courseid = c.id;
 
 select * from tb_stu_course_view;
 ```
@@ -2143,7 +2150,7 @@ CREATE PROCEDURE 存储过程名称 ([ 参数列表 ])
 
 BEGIN
 -- SQL语句
-END ;
+END;
 ```
 
 2. 调用
@@ -2157,7 +2164,7 @@ CALL 名称 ([ 参数 ]);
 ```sql
 SELECT * FROM INFORMATION_SCHEMA.ROUTINES WHERE ROUTINE_SCHEMA = 'xxx'; -- 查询指定数据库的存储过程及状态信息
 
-SHOW CREATE PROCEDURE 存储过程名称 ; -- 查询某个存储过程的定义
+SHOW CREATE PROCEDURE 存储过程名称; -- 查询某个存储过程的定义
 ```
 
 4. 删除
@@ -2208,7 +2215,7 @@ drop procedure if exists p1;
 1. 查看系统变量
 
 ```sql
-SHOW [ SESSION | GLOBAL ] VARIABLES ; 				-- 查看所有系统变量
+SHOW [ SESSION | GLOBAL ] VARIABLES; 				-- 查看所有系统变量
 SHOW [ SESSION | GLOBAL ] VARIABLES LIKE '......'; 	-- 可以通过LIKE模糊匹配方式查找变量
 SELECT @@[SESSION | GLOBAL] 系统变量名;			 	-- 查看指定变量的值
 ```
@@ -2218,8 +2225,8 @@ SELECT @@[SESSION | GLOBAL] 系统变量名;			 	-- 查看指定变量的值
 2. 设置系统变量
 
 ```sql
-SET [ SESSION | GLOBAL ] 系统变量名 = 值 ;
-SET @@[SESSION | GLOBAL]系统变量名 = 值 ;
+SET [ SESSION | GLOBAL ] 系统变量名 = 值;
+SET @@[SESSION | GLOBAL]系统变量名 = 值;
 ```
 
 > 注意:
@@ -2240,7 +2247,7 @@ SET @@[SESSION | GLOBAL]系统变量名 = 值 ;
 
 ```sql
 -- 查看系统变量
-show session variables ;
+show session variables;
 
 show session variables like 'auto%';
 show global variables like 'auto%';
@@ -2268,9 +2275,9 @@ select @@global.autocommit;
 方式一:
 
 ```sql
-SET	@var_name = expr [, @var_name = expr] ... ;
+SET	@var_name = expr [, @var_name = expr] ...;
 
-SET	@var_name := expr [, @var_name := expr] ... ;
+SET	@var_name := expr [, @var_name := expr] ...;
 ```
 
 赋值时，可以使用 = ，也可以使用 := 。
@@ -2278,7 +2285,7 @@ SET	@var_name := expr [, @var_name := expr] ... ;
 方式二:
 
 ```sql
-SELECT @var_name := expr [, @var_name := expr] ... ;
+SELECT @var_name := expr [, @var_name := expr] ...;
 
 SELECT 字段名 INTO @var_name FROM 表名;
 ```
@@ -2304,7 +2311,7 @@ select count(*) into @mycount from tb_user;
 
 -- 使用
 select @myname,@myage,@mygender,@myhobby;
-select @mycolor , @mycount;
+select @mycolor, @mycount;
 select @abc;
 ```
 
@@ -2316,7 +2323,7 @@ select @abc;
 1. 声明
 
 ```sql
-DECLARE 变量名 变量类型 [DEFAULT ... ] ;
+DECLARE 变量名 变量类型 [DEFAULT ... ];
 ```
 
 变量类型就是数据库字段类型：INT、BIGINT、CHAR、VARCHAR、DATE、TIME等。
@@ -2324,10 +2331,10 @@ DECLARE 变量名 变量类型 [DEFAULT ... ] ;
 2. 赋值
 
 ```sql
-SET 变量名 = 值 ;
-SET 变量名 := 值 ;
+SET 变量名 = 值;
+SET 变量名 := 值;
 
-SELECT 字段名 INTO 变量名 FROM 表名 ... ;
+SELECT 字段名 INTO 变量名 FROM 表名 ...;
 ```
 
 
@@ -2376,6 +2383,7 @@ END IF;
 * score >= 85分，等级为优秀。
 
 * score >= 60分 且 score < 85分，等级为及格。
+
 * score < 60分，等级为不及格。
 
 ```sql
@@ -2420,10 +2428,10 @@ call p3();
 CREATE PROCEDURE 存储过程名称 ([ IN/OUT/INOUT 参数名 参数类型 ])
 BEGIN
 	-- SQL语句
-END ;
+END;
 ```
 
-1. 案例一
+2. 案例一
 
 根据传入参数score，判定当前分数对应的分数等级，并返回。
 
@@ -2446,10 +2454,11 @@ end;
 
 -- 定义用户变量 @result来接收返回的数据, 用户变量可以不用声明
 call p4(18, @result);
+
 select @result;
 ```
 
-2. 案例二
+3. 案例二
 
 将**传入**的200分制的分数，进行换算，换算成百分制，然后**返回**。
 
@@ -2461,6 +2470,7 @@ end;
 
 set @score = 198;
 call p5(@score);
+
 select @score;
 ```
 
@@ -2494,8 +2504,7 @@ CASE
 END CASE;
 ```
 
-
-1. 案例
+2. 案例
 
 根据传入的月份，判定月份所属的季节（要求采用case结构）。
 
@@ -2522,9 +2531,9 @@ begin
 			set result := '第四季度';
 		else
 			set result := '非法参数';
-	end case ;
+	end case;
 	
-	select concat('您输入的月份为: ',month, ', 所属的季度为: ',result);
+	select concat('您输入的月份为: ', month, ', 所属的季度为: ', result);
 end;
 
 call p6(16);
@@ -2553,7 +2562,7 @@ END WHILE;
 
 ```sql
 -- A. 定义局部变量, 记录累加之后的值;
--- B. 每循环一次, 就会对n进行减1 , 如果n减到0, 则退出循环
+-- B. 每循环一次, 就会对n进行减1, 如果n减到0, 则退出循环
 create procedure p7(in n int)
 begin
 	declare total int default 0;
@@ -2589,7 +2598,7 @@ END REPEAT;
 
 ```sql
 -- A. 定义局部变量, 记录累加之后的值;
--- B. 每循环一次, 就会对n进行-1 , 如果n减到0, 则退出循环
+-- B. 每循环一次, 就会对n进行-1, 如果n减到0, 则退出循环
 create procedure p8(in n int)
 begin
 	declare total int default 0;
@@ -2638,7 +2647,7 @@ ITERATE label; -- 直接进入下一次循环
 
 ```sql
 -- A. 定义局部变量, 记录累加之后的值;
--- B. 每循环一次, 就会对n进行-1 , 如果n减到0, 则退出循环 ----> leave xx
+-- B. 每循环一次, 就会对n进行-1, 如果n减到0, 则退出循环 ----> leave xx
 
 create procedure p9(in n int)
 begin
@@ -2665,7 +2674,7 @@ call p9(100);
 
 ```sql
 -- A. 定义局部变量, 记录累加之后的值;
--- B. 每循环一次, 就会对n进行-1 , 如果n减到0, 则退出循环 ----> leave xx
+-- B. 每循环一次, 就会对n进行-1, 如果n减到0, 则退出循环 ----> leave xx
 -- C. 如果当次累加的数据是奇数, 则直接进入下一次循环. --------> iterate xx
 
 create procedure p10(in n int)
@@ -2694,12 +2703,12 @@ call p10(100);
 ### 4.2.10 **游标**
 1. 介绍
 
-游标（CURSOR）是用来存储查询结果集的数据类型 , 在存储过程和函数中可以使用游标对结果集进行循环的处理。游标的使用包括游标的声明、OPEN、FETCH 和 CLOSE，其语法分别如下。
+游标（CURSOR）是用来存储查询结果集的数据类型, 在存储过程和函数中可以使用游标对结果集进行循环的处理。游标的使用包括游标的声明、OPEN、FETCH 和 CLOSE，其语法分别如下。
 
 A. 声明游标
 
 ```sql
-DECLARE 游标名称 CURSOR FOR 查询语句 ;
+DECLARE 游标名称 CURSOR FOR 查询语句;
 ```
 
 B. 打开游标
@@ -2711,18 +2720,18 @@ OPEN 游标名称;
 C. 获取游标记录
 
 ```sql
-FETCH 游标名称 INTO 变量 [, 变量 ] ;
+FETCH 游标名称 INTO 变量 [, 变量 ];
 ```
 
 D. 关闭游标
 
 ```sql
-CLOSE 游标名称 ;
+CLOSE 游标名称;
 ```
 
 2. 案例
 
-根据传入的参数uage，来查询用户表tb_user中，所有的用户年龄小于等于uage的用户姓名（name）和专业（profession），并将用户的姓名和专业插入到所创建的一张新表(id,name,profession)中。
+根据传入的参数uage，来查询用户表tb_user中，所有的用户年龄小于等于uage的用户姓名（name）和专业（profession），并将用户的姓名和专业插入到所创建的一张新表(id, name, profession)中。
 
 ```sql
 -- 逻辑:
@@ -2737,19 +2746,20 @@ create procedure p11(in uage int)
 begin
 	declare uname varchar(100);
 	declare upro varchar(100);
-	declare u_cursor cursor for select name,profession from tb_user where age <= uage;
+	declare u_cursor cursor for select name, profession from tb_user where age <= uage;
 
 	drop table if exists tb_user_pro;
 	
 	create table if not exists tb_user_pro(
 		id int primary key auto_increment,
 		name varchar(100),
-		profession varchar(100) 20 );
+		profession varchar(100)
+    );
 
 	open u_cursor;
 
 	while true do
-		fetch u_cursor into uname,upro;
+		fetch u_cursor into uname, upro;
 		insert into tb_user_pro values (null, uname, upro);
 	end while;
 
@@ -2779,7 +2789,7 @@ call p11(30);
 条件处理程序（Handler）可以用来定义在流程控制结构执行过程中遇到问题时相应的处理步骤。具体 语法为：
 
 ```sql
-DECLARE handler_action HANDLER FOR condition_value [, condition_value] ... statement ;
+DECLARE handler_action HANDLER FOR condition_value [, condition_value] ... statement;
 
 handler_action 的取值：
 	CONTINUE: 继续执行当前程序
@@ -2798,7 +2808,7 @@ handler_action 的取值：
 
 我们继续来完成在上一小节提出的这个需求，并解决其中的问题。
 
-根据传入的参数uage，来查询用户表tb_user中，所有的用户年龄小于等于uage的用户姓名（name）和专业（profession），并将用户的姓名和专业插入到所创建的一张新表(id,name,profession)中。
+根据传入的参数uage，来查询用户表tb_user中，所有的用户年龄小于等于uage的用户姓名（name）和专业（profession），并将用户的姓名和专业插入到所创建的一张新表(id, name, profession)中。
 
 A. 通过SQLSTATE指定具体的状态码
 
@@ -2815,7 +2825,7 @@ create procedure p11(in uage int)
 begin
 	declare uname varchar(100);
 	declare upro varchar(100);
-	declare u_cursor cursor for select name,profession from tb_user where age <= uage;
+	declare u_cursor cursor for select name, profession from tb_user where age <= uage;
 	
 	-- 声明条件处理程序 ： 当SQL语句执行抛出的状态码为02000时，将关闭游标u_cursor，并退出
 	declare exit handler for SQLSTATE '02000' close u_cursor;
@@ -2830,7 +2840,7 @@ begin
 	open u_cursor;
 
 	while true do
-		fetch u_cursor into uname,upro;
+		fetch u_cursor into uname, upro;
 		insert into tb_user_pro values (null, uname, upro);
 	end while;
 
@@ -2847,7 +2857,7 @@ create procedure p12(in uage int)
 begin
 	declare uname varchar(100);
 	declare upro varchar(100);
-	declare u_cursor cursor for select name,profession from tb_user where age <= uage;
+	declare u_cursor cursor for select name, profession from tb_user where age <= uage;
 
 	-- 声明条件处理程序 ： 当SQL语句执行抛出的状态码为02开头时，将关闭游标u_cursor，并退出
 	declare exit handler for not found close u_cursor;
@@ -2861,7 +2871,7 @@ begin
 
 	open u_cursor;
 	while true do
-		fetch u_cursor into uname,upro;
+		fetch u_cursor into uname, upro;
 		insert into tb_user_pro values (null, uname, upro);
 	end while;
 	
@@ -2885,11 +2895,12 @@ call p12(30);
 
 ```sql
 CREATE FUNCTION 存储函数名称 ([ 参数列表 ])
-RETURNS type [characteristic ...]
+	RETURNS type [characteristic ...]
+
 BEGIN
 	-- SQL语句
 	RETURN ...;
-END ;
+END;
 ```
 
 characteristic说明：
@@ -2907,7 +2918,7 @@ characteristic说明：
 
 ```sql
 create function fun1(n int)
-returns int deterministic
+	returns int deterministic
 
 begin
 	declare total int default 0;
@@ -2930,45 +2941,45 @@ characteristic特性，否则就会报如下错误：
 
 ## 4.4 **触发器**
 ### 4.4.1 **介绍**
-触发器是与表有关的数据库对象，指在insert/update/delete之前(BEFORE)或之后(AFTER)，触 发并执行触发器中定义的SQL语句集合。触发器的这种特性可以协助应用在数据库端确保数据的完整性, 日志记录 , 数据校验等操作 。
+触发器是与表有关的数据库对象，指在insert/update/delete之前(BEFORE)或之后(AFTER)，触 发并执行触发器中定义的SQL语句集合。触发器的这种特性可以协助应用在数据库端确保数据的完整性, 日志记录, 数据校验等操作 。
 
-使用别名OLD和NEW来引用触发器中发生变化的记录内容，这与其他的数据库是相似的。现在触发器还 只支持行级触发，不支持语句级触发。
+使用别名OLD和NEW来引用触发器中发生变化的记录内容，这与其他的数据库是相似的。现在触发器还只支持行级触发，不支持语句级触发。
 
-|**触发器类型**|**NEW**|**和 OLD**|
-| :- | -: | :- |
-|INSERT 型触发器|NEW|表示将要或者已经新增的数据|
-|UPDATE 型触发器|OLD|表示修改之前的数据 , NEW 表示将要或已经修改后的数据|
-|DELETE 型触发器|OLD|表示将要或者已经删除的数据|
-
+| **触发器类型**  | **NEW 和 OLD**                                           |
+| :-------------- | :------------------------------------------------------- |
+| INSERT 型触发器 | NEW  表示将要或者已经新增的数据                          |
+| UPDATE 型触发器 | OLD  表示修改之前的数据, NEW 表示将要或已经修改后的数据 |
+| DELETE 型触发器 | OLD  表示将要或者已经删除的数据                          |
 
 ### 4.4.2 **语法**
+
 1. 创建
 
 ```sql
-CREATE TRIGGER trigger_name
-BEFORE/AFTER INSERT/UPDATE/DELETE
-ON tbl_name FOR EACH ROW -- 行级触发器
+CREATE TRIGGER trigger_name 
+	BEFORE/AFTER INSERT/UPDATE/DELETE 
+		ON tbl_name FOR EACH ROW -- 行级触发器
 
 BEGIN
-	trigger_stmt ;
+	trigger_stmt;
 END;
 ```
 
 2. 查看
 
 ```sql
-SHOW TRIGGERS ;
+SHOW TRIGGERS;
 ```
 
 3. 删除
 
 ```sql
-DROP TRIGGER [schema_name.]trigger_name ; -- 如果没有指定 schema_name，默认为当前数据库 。
+DROP TRIGGER [schema_name.]trigger_name; -- 如果没有指定 schema_name，默认为当前数据库 。
 ```
 
 
 ### 4.4.3 **案例**
-通过触发器记录 tb_user 表的数据变更日志，将变更日志插入到日志表user_logs中, 包含增加, 修改 , 删除 ;
+通过触发器记录 tb_user 表的数据变更日志，将变更日志插入到日志表user_logs中, 包含增加, 修改, 删除;
 
 表结构准备:
 
@@ -2988,12 +2999,13 @@ create table user_logs(
 
 ```sql
 create trigger tb_user_insert_trigger
-after insert on tb_user for each row
+	after insert on tb_user for each row
 
 begin
-	insert into user_logs(id, operation, operate_time, operate_id, operate_params) VALUES
-		(null, 'insert', now(), new.id, concat('插入的数据内容为:
-	id=',new.id,',name=',new.name, ', phone=', NEW.phone, ', email=', NEW.email, ', profession=', NEW.profession));
+	insert into user_logs(id, operation, operate_time, operate_id, operate_params) 
+		VALUES (null, 'insert', now(), new.id, 
+                concat('插入的数据内容为:id=', new.id, ', name=', new.name, ', phone=', NEW.phone, ', 
+                       email=', NEW.email, ', profession=', NEW.profession));
 end;
 ```
 
@@ -3001,11 +3013,11 @@ end;
 
 ```sql
 -- 查看
-show triggers ;
+show triggers;
 
 -- 插入数据到tb_user
 insert into tb_user(id, name, phone, email, profession, age, gender, status, createtime) 
-	VALUES (26,'三皇子','18809091212','erhuangzi@163.com','软件工程',23,'1','1',now());
+	VALUES (26, '三皇子', '18809091212', 'erhuangzi@163.com', '软件工程', 23, '1', '1', now());
 ```
 
 测试完毕之后，检查日志表中的数据是否可以正常插入，以及插入数据的正确性。
@@ -3014,14 +3026,15 @@ insert into tb_user(id, name, phone, email, profession, age, gender, status, cre
 
 ```sql
 create trigger tb_user_update_trigger
-after update on tb_user for each row
+	after update on tb_user for each row
 
 begin
-	insert into user_logs(id, operation, operate_time, operate_id, operate_params) VALUES
-        (null, 'update', now(), new.id,
-        	concat('更新之前的数据: id=',old.id,',name=',old.name, ', phone=', old.phone, ', email=', old.email, ', profession=', old.profession,' | 
-                   更新之后的数据: id=',new.id,',name=',new.name, ', phone=',NEW.phone, ', email=', NEW.email, ', profession=', NEW.profession));
-	
+	insert into user_logs(id, operation, operate_time, operate_id, operate_params) 
+		VALUES (null, 'update', now(), new.id, 
+                concat('更新之前的数据: id=', old.id, ', name=', old.name, ', phone=', old.phone, ', 
+                       email=', old.email, ', profession=', old.profession, ' | 
+                       更新之后的数据: id=', new.id, ', name=', new.name, ', phone=', NEW.phone, ', 
+                       email=', NEW.email, ', profession=', NEW.profession));
 end;
 ```
 
@@ -3030,7 +3043,7 @@ end;
 
 ```sql
 -- 查看
-show triggers ;
+show triggers;
 
 -- 更新
 update tb_user set profession = '会计' where id = 23;
@@ -3043,12 +3056,13 @@ update tb_user set profession = '会计' where id <= 5;
 
 ```sql
 create trigger tb_user_delete_trigger
-after delete on tb_user for each row
+	after delete on tb_user for each row
 
 begin
 	insert into user_logs(id, operation, operate_time, operate_id, operate_params) 
 		VALUES (null, 'delete', now(), old.id, 
-            concat('删除之前的数据: id=',old.id,',name=',old.name, ', phone=', old.phone, ', email=', old.email, ', profession=', old.profession));
+                concat('删除之前的数据: id=', old.id, ', name=', old.name, ', phone=', old.phone, ', 
+                       email=', old.email, ', profession=', old.profession));
 
 end;
 ```
@@ -3057,7 +3071,7 @@ end;
 
 ```sql
 -- 查看
-show triggers ;
+show triggers;
 
 -- 删除数据
 delete from tb_user where id = 26;
@@ -3118,7 +3132,7 @@ MySQL中的锁，按照锁的粒度分，分为以下三类：
 1. 加全局锁
 
 ```sql
-flush tables with read lock ;
+flush tables with read lock;
 ```
 
 2. 数据备份
@@ -3132,7 +3146,7 @@ mysqldump -uroot –p1234 itcast > itcast.sql
 3. 释放锁
 
 ```sql
-unlock tables ;
+unlock tables;
 ```
 
 
@@ -3203,7 +3217,7 @@ InnoDB、BDB等存储引擎中。
 
 
 ### 5.3.3 **元数据锁**
-meta data lock , 元数据锁，简写MDL。
+meta data lock, 元数据锁，简写MDL。
 
 MDL加锁过程是系统自动控制，无需显式使用，在访问一张表的时候会自动加上。MDL锁主要作用是维 护表元数据的数据一致性，在表上有活动事务的时候，不可以对元数据进行写入操作。**为了避免DML与DDL冲突，保证读写的正确性。**
 
@@ -3234,7 +3248,7 @@ MDL加锁过程是系统自动控制，无需显式使用，在访问一张表�
 我们可以通过下面的SQL，来查看数据库中的元数据锁的情况：
 
 ```sql
-select object_type,object_schema,object_name,lock_type,lock_duration from performance_schema.metadata_locks ;
+select object_type, object_schema, object_name, lock_type, lock_duration from performance_schema.metadata_locks;
 ```
 
 我们在操作过程中，可以通过上述的SQL语句，来查看元数据锁的加锁情况。
@@ -3285,7 +3299,7 @@ select object_type,object_schema,object_name,lock_type,lock_duration from perfor
 可以通过以下SQL，查看意向锁及行锁的加锁情况：
 
 ```sql
-select object_schema,object_name,index_name,lock_type,lock_mode,lock_data 
+select object_schema, object_name, index_name, lock_type, lock_mode, lock_data 
 	from performance_schema.data_locks;
 ```
 
@@ -3363,7 +3377,7 @@ InnoDB实现了以下两种类型的行锁：
 可以通过以下SQL，查看意向锁及行锁的加锁情况：
 
 ```sql
-select object_schema,object_name,index_name,lock_type,lock_mode,lock_data 
+select object_schema, object_name, index_name, lock_type, lock_mode, lock_data 
 	from performance_schema.data_locks;
 ```
 
@@ -3469,7 +3483,7 @@ stu表中数据如下:
 
 [19]
 
-(19,25]
+(19, 25]
 
 (25,+∞]
 
@@ -3776,7 +3790,7 @@ show engine innodb status \G;
 
 ### 6.3.3 **undo log**
 
-回滚日志，用于记录数据被修改前的信息 , 作用包含两个 : 提供回滚(保证事务的原子性) 和 MVCC(多版本并发控制) 。
+回滚日志，用于记录数据被修改前的信息, 作用包含两个 : 提供回滚(保证事务的原子性) 和 MVCC(多版本并发控制) 。
 
 undo log和redo log记录物理日志不一样，它是逻辑日志。可以认为当delete一条记录时，undo log中会记录一条对应的insert记录，反之亦然，当update一条记录时，它记录一条对应相反的update记录。当执行rollback时，就可以从undo log中的逻辑记录读取到相应的内容并进行回滚。
 
@@ -3843,7 +3857,7 @@ Undo log存储：undo log采用段的方式进行管理和记录，存放在前�
 #### 6.4.2.2 **测试**
 1. 查看有主键的表 stu
 
-进入服务器中的 /var/lib/mysql/itcast/ , 查看stu的表结构信息, 通过如下指令:
+进入服务器中的 /var/lib/mysql/itcast/, 查看stu的表结构信息, 通过如下指令:
 
 ```shell
 ibd2sdi stu.ibd
@@ -3862,7 +3876,7 @@ ibd2sdi stu.ibd
 建表语句：
 
 ```sql
-create table employee (id int , name varchar(10));
+create table employee (id int, name varchar(10));
 ```
 
 此时，我们再通过以下指令来查看表结构及其其中的字段信息：
@@ -4212,7 +4226,7 @@ mysqldump 客户端工具用来备份数据库或在不同数据库之间进行�
 	
 输出选项：
 --add-drop-database 		在每个数据库创建语句前加上 drop database 语句
---add-drop-table 			在每个表创建语句前加上 drop table 语句 , 默认开启 ; 不开启 (--skip-add-drop-table)
+--add-drop-table 			在每个表创建语句前加上 drop table 语句, 默认开启; 不开启 (--skip-add-drop-table)
 -n, --no-create-db 			不包含数据库的创建语句
 -t, --no-create-info 		不包含数据表的创建语句
 -d --no-data 				不包含数据
