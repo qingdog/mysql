@@ -1,4 +1,4 @@
-1. **存储引擎**
+# 1. **存储引擎**
 
 ## 1.1 **MySQL体系结构**
 ![](./media/image1.jpeg)
@@ -3137,11 +3137,11 @@ flush tables with read lock;
 
 2. 数据备份
 
-```sql
+```shell
 mysqldump -uroot –p1234 itcast > itcast.sql
 ```
 
-数据备份的相关指令, 在后面MySQL管理章节, 还会详细讲解. 
+数据备份的相关指令, 在后面MySQL管理章节, 还会详细讲解。
 
 3. 释放锁
 
@@ -3155,7 +3155,7 @@ unlock tables;
 
 * 如果在主库上备份，那么在备份期间都不能执行更新，业务基本上就得停摆。
 
-* 如果在从库上备份，那么在备份期间从库不能执行主库同步过来的二进制日志（binlog），会导 致主从延迟。
+* 如果在从库上备份，那么在备份期间从库不能执行主库同步过来的二进制日志（binlog），会导致主从延迟。
 
 
 在InnoDB引擎中，我们可以在备份时加上参数 --single-transaction 参数来完成不加锁的一致性数据备份。
@@ -3167,9 +3167,7 @@ mysqldump --single-transaction -uroot –p123456 itcast > itcast.sql
 
 ## 5.3 **表级锁**
 ### 5.3.1 **介绍**
-表级锁，每次操作锁住整张表。锁定粒度大，发生锁冲突的概率最高，并发度最低。应用在MyISAM、
-
-InnoDB、BDB等存储引擎中。
+表级锁，每次操作锁住整张表。锁定粒度大，发生锁冲突的概率最高，并发度最低。应用在MyISAM、InnoDB、BDB等存储引擎中。
 
 对于表级锁，主要分为以下三类：
 
@@ -3188,8 +3186,8 @@ InnoDB、BDB等存储引擎中。
 
 语法：
 
-* 加锁：lock tables 表名... read/write。
-* 释放锁：unlock tables / 客户端断开连接 。
+* 加锁：`lock tables 表名... read/write;`
+* 释放锁：`unlock tables;` / 客户端断开连接 。
 
 
 特点:
@@ -3219,20 +3217,20 @@ InnoDB、BDB等存储引擎中。
 ### 5.3.3 **元数据锁**
 meta data lock, 元数据锁，简写MDL。
 
-MDL加锁过程是系统自动控制，无需显式使用，在访问一张表的时候会自动加上。MDL锁主要作用是维 护表元数据的数据一致性，在表上有活动事务的时候，不可以对元数据进行写入操作。**为了避免DML与DDL冲突，保证读写的正确性。**
+MDL加锁过程是系统自动控制，无需显式使用，在访问一张表的时候会自动加上。MDL锁主要作用是维护表元数据的数据一致性，在表上有活动事务的时候，不可以对元数据进行写入操作。**为了避免DML与DDL冲突，保证读写的正确性。**
 
 这里的元数据，大家可以简单理解为就是一张表的表结构。 也就是说，某一张表涉及到未提交的事务时，是不能够修改这张表的表结构的。
 
-在MySQL5.5中引入了MDL，当对一张表进行增删改查的时候，加MDL读锁(共享)；当对表结构进行变 更操作的时候，加MDL写锁(排他)。
+在MySQL5.5中引入了MDL，当对一张表进行增删改查的时候，加MDL读锁(共享)；当对表结构进行变更操作的时候，加MDL写锁(排他)。
 
 常见的SQL操作时，所添加的元数据锁：
 
 |**对应SQL**|**锁类型**|**说明**|
 | :- | :- | :- |
 |lock tables xxx read / write|SHARED_READ_ONLY / SHARED_NO_READ_WRITE||
-|select 、select ... lock in share mode|SHARED_READ|与SHARED_READ、SHARED_WRITE兼容，与EXCLUSIVE互斥|
-|insert 、update、delete、select ... for update|SHARED_WRITE|与SHARED_READ、SHARED_WRITE兼容，与EXCLUSIVE互斥|
-|alter table ...|EXCLUSIVE|与其他的MDL都互斥|
+|select 、select ... lock in share mode|SHARED_READ（共享读锁）|与SHARED_READ、SHARED_WRITE兼容，与EXCLUSIVE互斥|
+|insert 、update、delete、select ... for update|SHARED_WRITE（共享写锁）|与SHARED_READ、SHARED_WRITE兼容，与EXCLUSIVE互斥|
+|alter table ...|EXCLUSIVE（排他锁）|与其他的MDL都互斥|
 
 
 演示：
@@ -3248,7 +3246,8 @@ MDL加锁过程是系统自动控制，无需显式使用，在访问一张表�
 我们可以通过下面的SQL，来查看数据库中的元数据锁的情况：
 
 ```sql
-select object_type, object_schema, object_name, lock_type, lock_duration from performance_schema.metadata_locks;
+select object_type, object_schema, object_name, lock_type, lock_duration 
+	from performance_schema.metadata_locks;
 ```
 
 我们在操作过程中，可以通过上述的SQL语句，来查看元数据锁的加锁情况。
@@ -3260,12 +3259,12 @@ select object_type, object_schema, object_name, lock_type, lock_duration from pe
 ### 5.3.4 **意向锁**
 1. 介绍
 
-为了避免DML在执行时，加的行锁与表锁的冲突，在InnoDB中引入了意向锁，使得表锁不用检查每行 数据是否加锁，使用意向锁来减少表锁的检查。
+为了避免DML在执行时，加的行锁与表锁的冲突，在InnoDB中引入了意向锁，使得表锁不用检查每行数据是否加锁，使用意向锁来减少表锁的检查。
 
 
 假如没有意向锁，客户端一对表加了行锁后，客户端二如何给表加表锁呢，来通过示意图简单分析一 下：
 
-首先客户端一，开启一个事务，然后执行DML操作，在执行DML语句时，会对涉及到的行加行锁。
+首先客户端一，开启一个事务，然后执行DML操作，在执行DML语句时，会对涉及到的行加行锁。（根据主键修改一行数据）
 
 ![](./media/image147.jpeg)
 
@@ -3277,7 +3276,7 @@ select object_type, object_schema, object_name, lock_type, lock_duration from pe
 
 有了意向锁之后 :
 
-客户端一，在执行DML操作时，会对涉及的行加行锁，同时也会对该表加上意向锁。
+客户端一，在执行DML操作时，会对涉及的行***加行锁，同时也会对该表加上意向锁***。
 
 ![](./media/image149.jpeg)
 
@@ -3289,7 +3288,7 @@ select object_type, object_schema, object_name, lock_type, lock_duration from pe
 
 2. 分类
 
-* 意向共享锁(IS): 由语句select ... lock in share mode添加 。 与 表锁共享锁 (read)兼容，与表锁排他锁(write)互斥。
+* 意向共享锁(IS): 由语句`select ... lock in share mode`添加 。 与表锁共享锁 (read)兼容，与表锁排他锁 (write)互斥。
 
 * 意向排他锁(IX): 都互斥，意向锁之间不会互斥。
 
@@ -3477,7 +3476,7 @@ stu表中数据如下:
 
 3. 索引上的范围查询(唯一索引)--会访问到不满足条件的第一个值为止。
 
-![](./media/image167.jpeg)
+<img src="./media/image167.jpeg"  />
 
 查询的条件为id>=19，并添加共享锁。 此时我们可以根据数据库表中现有的数据，将数据分为三个部分：
 
@@ -3489,7 +3488,13 @@ stu表中数据如下:
 
 所以数据库数据在加锁是，就是将19加了行锁，25的临键锁（包含25及25之前的间隙），正无穷的临 键锁(正无穷及之前的间隙)。
 
-
+> GAP 间隙锁（避免多事物并发幻读）
+>
+> S 临键锁（当前行及与前面一行中的间隙）
+>
+> REC_NOT_GAP 行锁
+>
+> supremum pseudo-recode 正无穷临键锁
 
 # 6. **InnoDB引擎**
 ## 6.1 **逻辑存储结构**
