@@ -36,11 +36,7 @@
 
 * SQLLite：嵌入式的微型数据库。 Android内置的数据库采用的就是该数据库。
 
-* MariaDB：开源免费的中小型数据库。是MySQL数据库的另外一个分支、另外一个衍生产品，与
-
-MySQL数据库有很好的兼容性。
-
-
+* MariaDB：开源免费的中小型数据库。是MySQL数据库的另外一个分支、另外一个衍生产品，与MySQL数据库有很好的兼容性。
 
 而不论我们使用的是上面的哪一个关系型数据库，最终在操作时，都是使用SQL语言来进行统一操作， 因为我们前面讲到SQL语言，是操作关系型数据库的 <font color="red">**统一标准**</font> 。
 
@@ -124,8 +120,6 @@ MySQL官方提供了两种不同的版本：
 
 ![](./images/chapter1/image13.jpeg)
 
-
-
 <font color="red">**输入MySQL中root用户的密码 ,一定记得记住该密码**</font>
 
 ![](./images/chapter1/image14.jpeg)
@@ -204,9 +198,7 @@ mysql [-h 127.0.0.1] [-P 3306] -u root -p
     -p ： MySQL数据库用户名对应的密码
 ```
 
-[]内为可选参数，如果需要连接远程的MySQL，需要加上这两个参数来指定远程主机IP、端口，如果
-
-连接本地的MySQL，则无需指定这两个参数。
+[]内为可选参数，如果需要连接远程的MySQL，需要加上这两个参数来指定远程主机IP、端口，如果连接本地的MySQL，则无需指定这两个参数。
 
 ![](./images/chapter1/image27.jpeg)
 
@@ -287,7 +279,7 @@ Data Definition Language，数据定义语言，用来定义数据库对象(数�
 
 
 ```sql
-show databases ;
+show databases;
 ```
 
 ![](./images/chapter1/image32.jpeg)
@@ -295,13 +287,13 @@ show databases ;
 **2). 查询当前数据库**
 
 ```sql
-select database () ;
+select database();
 ```
 
 **3). 创建数据库**
 
 ```sql
-create database [ if not exists ] 数据库名 [ default charset 字符集 ] [ collate 排序规则 ] ;
+create database [ if not exists ] 数据库名 [ default charset 字符集 ] [ collate 排序规则 ];
 ```
 
 案例：
@@ -342,7 +334,7 @@ create database itheima default charset utf8mb4;
 
 
 ```sql
-drop database [ if exists ] 数据库名 ;
+drop database [ if exists ] 数据库名;
 ```
 如果删除一个不存在的数据库，将会报错。此时，可以加上参数 if exists ，如果数据库存在，再
 
@@ -354,7 +346,7 @@ drop database [ if exists ] 数据库名 ;
 
 
 ```sql
-use 数据库名 ;
+use 数据库名;
 ```
 我们要操作某一个数据库下的表时，就需要通过该指令，切换到对应的数据库下，否则是不能操作的。
 
@@ -389,7 +381,7 @@ show tables;
 
 
 ```sql
-desc 表名 ;
+desc 表名;
 ```
 通过这条指令，我们可以查看到指定表的字段，字段的类型、是否可以为NULL，是否存在默认值等信息。
 
@@ -398,7 +390,7 @@ desc 表名 ;
 **3). 查询指定表的建表语句**
 
 ```sql
-show create table 表名 ;
+show create table 表名;
 ```
 通过这条指令，主要是用来查看建表语句的，而有部分参数我们在创建表的时候，并未指定也会查询到，因为这部分是数据库的默认值，如：存储引擎、字符集等。
 
@@ -414,7 +406,7 @@ CREATE TABLE 表名(
     字段3 字段3类型 [COMMENT 字段3注释 ],
      ......
     字段n 字段n类型 [COMMENT 字段n注释 ]
-) [ COMMENT 表注释 ] ;
+) [ COMMENT 表注释 ];
 ```
 > <font style="background: aquamarine;">***注意 : [...] 内为可选参数，最后一个字段后面没有逗号***</font>
 
@@ -425,11 +417,11 @@ CREATE TABLE 表名(
 ![](./images/chapter1/image55.png)
 
 ```sql
-create table tb_user (
+create table tb_user(
     id int comment '编号',
-    name varchar (50) comment '姓名',
+    name varchar(50) comment '姓名',
     age int comment '年龄',
-    gender varchar (1) comment '性别'
+    gender varchar(1) comment '性别'
 ) comment '用户表';
 ```
 
@@ -459,7 +451,7 @@ MySQL中的数据类型有很多，主要分为三类：数值类型、字符串
     age tinyint unsigned
     
     2). 分数 -- 总分100分, 最多出现一位小数
-    score double (4,1)
+    score double(4,1)
 ```
 
 ###### 2). 字符串类型
@@ -484,13 +476,13 @@ char 与 varchar 都可以描述字符串， char是定长字符串，指定长�
 如：
 
     1). 用户名 username ------> 长度不定, 最长不会超过50
-    username varchar (50)
+    username varchar(50)
     
     2). 性别 gender ---------> 存储值, 不是男,就是女
-    gender char (1)
+    gender char(1)
     
     3). 手机号 phone --------> 固定长度为11
-    phone char (11)
+    phone char(11)
 ```
 
 ###### 3). 日期时间类型
@@ -518,17 +510,11 @@ char 与 varchar 都可以描述字符串， char是定长字符串，指定长�
 设计一张员工信息表，要求如下：
 
 1. 编号（纯数字）
-
-2. 员工工号 (字符串类型，长度不超过10位)
-
+2. 员工工号（字符串类型，长度不超过10位）
 3. 员工姓名（字符串类型，长度不超过10位）
-
 4. 性别（男/女，存储一个汉字）
-
 5. 年龄（正常人年龄，不可能存储负数）
-
 6. 身份证号（二代身份证号均为18位，身份证中有X这样的字符）
-
 7. 入职时间（取值年月日即可）
 
 
@@ -538,11 +524,11 @@ char 与 varchar 都可以描述字符串， char是定长字符串，指定长�
 ```sql
 create table emp(
     id int comment '编号',
-    workno varchar (10) comment '工号',
-    name varchar (10) comment '姓名',
-    gender char (1) comment '性别',
+    workno varchar(10) comment '工号',
+    name varchar(10) comment '姓名',
+    gender char(1) comment '性别',
     age tinyint unsigned comment '年龄',
-    idcard char (18) comment '身份证号',
+    idcard char(18) comment '身份证号',
     entrydate date comment '入职时间'
 ) comment '员工表';
 ```
@@ -563,7 +549,7 @@ SQL语句编写完毕之后，就可以在MySQL的命令行中执行SQL，然后
 
 
 ```sql
-ALTER TABLE 表名 ADD 字段名 类型 (长度) [ COMMENT 注释 ] [ 约束 ];
+ALTER TABLE 表名 ADD 字段名 类型(长度) [ COMMENT 注释 ] [ 约束 ];
 ```
 案例 :
 
@@ -571,20 +557,20 @@ ALTER TABLE 表名 ADD 字段名 类型 (长度) [ COMMENT 注释 ] [ 约束 ];
 
 
 ```sql
-ALTER TABLE emp ADD nickname varchar (20) COMMENT '昵称';
+ALTER TABLE emp ADD nickname varchar(20) COMMENT '昵称';
 ```
 
 2). 修改数据类型
 
 ```sql
-ALTER TABLE 表名 MODIFY 字段名 新数据类型 (长度);
+ALTER TABLE 表名 MODIFY 字段名 新数据类型(长度);
 ```
 
 3). 修改字段名和字段类型
 
 
 ```sql
-ALTER TABLE 表名 CHANGE 旧字段名 新字段名 类型 (长度) [ COMMENT 注释 ] [ 约束 ];
+ALTER TABLE 表名 CHANGE 旧字段名 新字段名 类型(长度) [ COMMENT 注释 ] [ 约束 ];
 ```
 案例 :
 
@@ -592,7 +578,7 @@ ALTER TABLE 表名 CHANGE 旧字段名 新字段名 类型 (长度) [ COMMENT �
 
 
 ```sql
-ALTER TABLE emp CHANGE nickname username varchar (30) COMMENT '昵称';
+ALTER TABLE emp CHANGE nickname username varchar(30) COMMENT '昵称';
 ```
 
 4). 删除字段
@@ -636,9 +622,7 @@ ALTER TABLE emp RENAME TO employee;
 ```sql
 DROP TABLE [ IF EXISTS ] 表名;
 ```
-可选项 IF EXISTS 代表，只有表名存在时才会删除该表，表名不存在，则不执行删除操作(如果不
-
-加该参数项，删除一张不存在的表，执行将会报错)。
+可选项 IF EXISTS 代表，只有表名存在时才会删除该表，表名不存在，则不执行删除操作(如果不加该参数项，删除一张不存在的表，执行将会报错)。
 
 案例 :
 
@@ -664,7 +648,7 @@ TRUNCATE TABLE 表名;
 
 上述，我们已经讲解了通过DDL语句，如何操作数据库、操作表、操作表中的字段，而通过DDL语句执行在命令进行操作，主要存在以下两点问题：
 
-1).会影响开发效率 ;
+1).会影响开发效率;
 
 2). 使用起来，并不直观，并不方便 ；
 
@@ -860,12 +844,12 @@ insert into employee values (2, '2', '张无忌', '男',18, '123456789012345670'
 
 
 ```sql
-INSERT INTO 表名 (字段名1, 字段名2, ...) VALUES (值1, 值2, ...), (值1, 值2, ...), (值1, 值2, ...) ;
+INSERT INTO 表名 (字段名1, 字段名2, ...) VALUES (值1, 值2, ...), (值1, 值2, ...), (值1, 值2, ...);
 ```
 
 
 ```sql
-INSERT INTO 表名 VALUES (值1, 值2, ...), (值1, 值2, ...), (值1, 值2, ...) ;
+INSERT INTO 表名 VALUES (值1, 值2, ...), (值1, 值2, ...), (值1, 值2, ...);
 ```
 
 案例：批量插入数据到employee表，具体的SQL如下：
@@ -890,7 +874,7 @@ insert into employee values
 
 
 ```sql
-UPDATE 表名 SET 字段名1 = 值1 , 字段名2 = 值2 , .... [ WHERE 条件 ] ;
+UPDATE 表名 SET 字段名1 = 值1 , 字段名2 = 值2 , .... [ WHERE 条件 ];
 ```
 
 案例 :
@@ -927,7 +911,7 @@ update employee set entrydate = '2008-01-01';
 
 
 ```sql
-DELETE FROM 表名 [ WHERE 条件 ] ;
+DELETE FROM 表名 [ WHERE 条件 ];
 ```
 
 案例 :
@@ -974,12 +958,12 @@ drop table if exists employee;
 
 create table emp(
     id int comment '编号',
-    workno varchar (10) comment '工号',
-    name varchar (10) comment '姓名',
-    gender char (1) comment '性别',
+    workno varchar(10) comment '工号',
+    name varchar(10) comment '姓名',
+    gender char(1) comment '性别',
     age tinyint unsigned comment '年龄',
-    idcard char (18) comment '身份证号',
-    workaddress varchar (50) comment '工作地址',
+    idcard char(18) comment '身份证号',
+    workaddress varchar(50) comment '工作地址',
     entrydate date comment '入职时间'
 )comment '员工表';
 
@@ -1067,10 +1051,10 @@ LIMIT
 
 
 ```sql
-SELECT 字段1, 字段2, 字段3 ... FROM 表名 ;
+SELECT 字段1, 字段2, 字段3 ... FROM 表名;
 ```
 ```sql
-SELECT * FROM 表名 ;
+SELECT * FROM 表名;
 ```
 
 
@@ -1145,7 +1129,7 @@ select distinct workaddress '工作地址' from emp;
 
 
 ```sql
-SELECT 字段列表 FROM 表名 WHERE 条件列表 ;
+SELECT 字段列表 FROM 表名 WHERE 条件列表;
 ```
 **2). 条件**
 
@@ -1272,7 +1256,7 @@ select * from emp where idcard like '_________________X';
 
 
 ```sql
-SELECT 聚合函数(字段列表) FROM 表名 ;
+SELECT 聚合函数(字段列表) FROM 表名;
 ```
 
 注意 : NULL值是不参与所有聚合函数运算的。
@@ -1352,13 +1336,13 @@ A. 根据性别分组 , 统计男性员工 和 女性员工的数量
 
 
 ```sql
-select gender, count(*) from emp group by gender ;
+select gender, count(*) from emp group by gender;
 ```
 B. 根据性别分组 , 统计男性员工 和 女性员工的平均年龄
 
 
 ```sql
-select gender, avg(age) from emp group by gender ;
+select gender, avg(age) from emp group by gender;
 ```
 
 
@@ -1390,7 +1374,7 @@ select workaddress, gender, count(*) '数量' from emp group by gender , workadd
 
 
 ```sql
-SELECT 字段列表 FROM 表名 ORDER BY 字段1 排序方式1 , 字段2 排序方式2 ;
+SELECT 字段列表 FROM 表名 ORDER BY 字段1 排序方式1 , 字段2 排序方式2;
 ```
 2). 排序方式
 
@@ -1400,8 +1384,8 @@ SELECT 字段列表 FROM 表名 ORDER BY 字段1 排序方式1 , 字段2 排序�
 
 > <font style="background: aquamarine;">***注意事项：***</font>
 >
-> * <font style="background: aquamarine;">***如果是升序 , 可以不指定排序方式ASC ;***</font>
-> * <font style="background: aquamarine;">***如果是多字段排序， 当第一个字段值相同时，才会根据第二个字段进行排序 ;***</font>
+> * <font style="background: aquamarine;">***如果是升序 , 可以不指定排序方式ASC;***</font>
+> * <font style="background: aquamarine;">***如果是多字段排序， 当第一个字段值相同时，才会根据第二个字段进行排序;***</font>
 
 案例 :
 
@@ -1441,7 +1425,7 @@ select * from emp order by age asc, entrydate desc;
 
 
 ```sql
-SELECT 字段列表 FROM 表名 LIMIT 起始索引, 查询记录数 ;
+SELECT 字段列表 FROM 表名 LIMIT 起始索引, 查询记录数;
 ```
 
 
@@ -1499,7 +1483,7 @@ select name , age from emp where age <= 35 order by age asc , entrydate desc;
 
 
 ```sql
-select * from emp where gender = '男' and age between 20 and 40 order by age asc ,entrydate asc limit 5 ;
+select * from emp where gender = '男' and age between 20 and 40 order by age asc ,entrydate asc limit 5;
 ```
 
 
@@ -1597,13 +1581,13 @@ CREATE USER '用户名'@'主机名' IDENTIFIED BY '密码';
 
 
 ```sql
-ALTER USER '用户名'@'主机名' IDENTIFIED WITH mysql_native_password BY '新密码' ;
+ALTER USER '用户名'@'主机名' IDENTIFIED WITH mysql_native_password BY '新密码';
 ```
 4). 删除用户
 
 
 ```sql
-DROP USER '用户名'@'主机名' ;
+DROP USER '用户名'@'主机名';
 ```
 
 
@@ -1669,7 +1653,7 @@ MySQL中定义了很多种权限，但是常用的就以下几种：
 
 
 ```sql
-SHOW GRANTS FOR '用户名'@'主机名' ;
+SHOW GRANTS FOR '用户名'@'主机名';
 ```
 2). 授予权限
 
@@ -1761,42 +1745,42 @@ A. concat : 字符串拼接
 
 
 ```sql
-select concat( 'Hello' , ' MySQL');
+select concat('Hello', ' MySQL');
 ```
 B. lower : 全部转小写
 
 
 ```sql
-select lower ( 'Hello');
+select lower('Hello');
 ```
 C. upper : 全部转大写
 
 
 ```sql
-select upper ( 'Hello');
+select upper('Hello');
 ```
 D. lpad : 左填充
 
 
 ```sql
-select lpad( '01', 5, '-');
+select lpad('01', 5, '-');
 ```
 E. rpad : 右填充
 
 
 ```sql
-select rpad( '01', 5, '-');
+select rpad('01', 5, '-');
 ```
 F. trim : 去除空格
 
 
 ```sql
-select trim ( 'Hello MySQL ');
+select trim('Hello MySQL ');
 ```
 G. substring : 截取子字符串
 
 ```sql
-select substring( 'Hello MySQL ',1,5);
+select substring('Hello MySQL ', 1, 5);
 ```
 
 
@@ -1845,7 +1829,7 @@ B. floor：向下取整
 
 
 ```sql
-select floor (1.9);
+select floor(1.9);
 ```
 C. mod：取模
 
@@ -1876,7 +1860,7 @@ select round(2.344,2);
 
 
 ```sql
-select lpad(round(rand()*1000000 , 0), 6, '0');
+select lpad(round(rand()*1000000, 0), 6, '0');
 ```
 
 
@@ -1928,7 +1912,7 @@ select YEAR(now());
 select MONTH(now());
 select DAY(now());
 ```
-E. date_add：增加指定的时间间隔
+E. date_add：增加指定的时间**间隔**
 
 ```sql
 select date_add(now(), INTERVAL 70 YEAR );
@@ -1988,6 +1972,8 @@ select ifnull('', 'Default');
 select ifnull(null, 'Default');
 ```
 
+<!--case条件 或者case字段 when1 then1 [when1 then1...]-->
+
 C. case when then else end
 
 需求 : 查询emp表的员工姓名和工作地址 (北京/上海 ----> 一线城市 , 其他 ----> 二线城市)
@@ -2006,7 +1992,7 @@ from emp;
 ```sql
 create table score (
   id int comment 'ID',
-  name varchar (20) comment '姓名',
+  name varchar(20) comment '姓名',
   math int comment '数学',
   english int comment '英语',
   chinese int comment '语文'
@@ -2087,12 +2073,14 @@ MySQL的常见函数我们学习完了，那接下来，我们就来分析一下
 ```sql
 CREATE TABLE tb_user (
     id int AUTO_INCREMENT PRIMARY KEY COMMENT 'ID唯一标识',
-    name varchar (10) NOT NULL UNIQUE COMMENT '姓名' ,
-    age int check (age > 0 && age <= 120) COMMENT '年龄' ,
-    status char (1) default '1' COMMENT '状态',
-    gender char (1) COMMENT '性别'
+    name varchar(10) NOT NULL UNIQUE COMMENT '姓名' ,
+    age int CHECK(age > 0 && age <= 120) COMMENT '年龄',
+    status char(1) default '1' COMMENT '状态',
+    gender char(1) COMMENT '性别'
 );
 ```
+> `age int CHECK(age > 0 && age <= 120) COMMENT '年龄'`
+
 在为字段添加约束时，我们只需要在字段之后加上约束的关键字即可，需要关注其语法。我们执行上面 的SQL把表结构创建完成，然后接下来，就可以通过一组数据进行测试，从而验证一下，约束是否可以生效。
 
 
@@ -2106,8 +2094,6 @@ insert into tb_user (name,age,status,gender) values ( 'Tom5',-1, '1', '男');
 insert into tb_user (name,age,status,gender) values ( 'Tom5',121, '1', '男');
 insert into tb_user (name,age,gender) values ( 'Tom5',120, '男');
 ```
-
-
 
 上面，我们是通过编写SQL语句的形式来完成约束的指定，那加入我们是通过图形化界面来创建表结构时，又该如何来指定约束呢？ 只需要在创建表的时候，根据我们的需要选择对应的约束即可。
 
@@ -2131,8 +2117,6 @@ insert into tb_user (name,age,gender) values ( 'Tom5',120, '男');
 
 部门表dept的主键id，那emp表的dept_id就是外键 ,关联的是另一张表的主键。
 
-
-
 > <font style="background: aquamarine;">***注意：目前上述两张表，只是在逻辑上存在这样一层关系；在数据库层面，并未建立外键关联，所以是无法保证数据的一致性和完整性的。***</font>
 
 
@@ -2145,16 +2129,16 @@ insert into tb_user (name,age,gender) values ( 'Tom5',120, '男');
 ```sql
 create table dept(
     id int auto_increment comment 'ID' primary key,
-    name varchar (50) not null comment '部门名称'
+    name varchar(50) not null comment '部门名称'
 )comment '部门表';
 
 INSERT INTO dept (id, name) VALUES (1, '研发部'), (2, '市场部'), (3, '财务部'), (4,'销售部'), (5, '总经办');
 
 create table emp(
     id int auto_increment comment 'ID' primary key,
-    name varchar (50) not null comment '姓名',
+    name varchar(50) not null comment '姓名',
     age int comment '年龄',
-    job varchar (20) comment '职位',
+    job varchar(20) comment '职位',
     salary int comment '薪资',
     entrydate date comment '入职时间',
     managerid int comment '直属领导ID',
@@ -2162,9 +2146,9 @@ create table emp(
 )comment '员工表';
 
 INSERT INTO emp (id, name, age, job,salary, entrydate, managerid, dept_id) VALUES 
-	(1, '金庸', 66, '总裁',20000, '2000-01-01', null,5), (2, '张无忌', 20,'项目经理',12500, '2005-12-05', 1,1),
-	(3, '杨逍', 33, '开发', 8400, '2000-11-03', 2,1), (4, '韦一笑', 48, '开发',11000, '2002-02-05', 2,1),
-	(5, '常遇春', 43, '开发',10500, '2004-09-07', 3,1), (6, '小昭', 19, '程序员鼓励师',6600, '2004-10-12', 2,1);
+	(1, '金庸', 66, '总裁',20000, '2000-01-01', null, 5), (2, '张无忌', 20,'项目经理',12500, '2005-12-05', 1,1),
+	(3, '杨逍', 33, '开发', 8400, '2000-11-03', 2, 1), (4, '韦一笑', 48, '开发',11000, '2002-02-05', 2, 1),
+	(5, '常遇春', 43, '开发',10500, '2004-09-07', 3, 1), (6, '小昭', 19, '程序员鼓励师',6600, '2004-10-12',2,1);
 ```
 
 ![](./images/chapter1/image238.jpeg)
@@ -2181,17 +2165,18 @@ INSERT INTO emp (id, name, age, job,salary, entrydate, managerid, dept_id) VALUE
 #### **4.3.2 语法**
 
 1). 添加外键
-```text
+
+```sql
 CREATE TABLE 表名(
   字段名 数据类型,
    ...
    [CONSTRAINT] [外键名称] FOREIGN KEY (外键字段名) REFERENCES 主表 (主表列名)
 );
 
-ALTER TABLE 表名 ADD CONSTRAINT 外键名称 FOREIGN KEY (外键字段名) REFERENCES 主表 (主表列名) ;
+ALTER TABLE 表名 ADD CONSTRAINT 外键名称 FOREIGN KEY (外键字段名) REFERENCES 主表 (主表列名);
 ```
 
-
+<!--CONSTRAINT约束-->
 
 
 案例 :
@@ -2200,7 +2185,7 @@ ALTER TABLE 表名 ADD CONSTRAINT 外键名称 FOREIGN KEY (外键字段名) REF
 
 
 ```sql
-alter table emp add constraint fk_emp_dept_id foreign key (dept_id) references dept(id);
+alter table emp add constraint fk_emp_dept_id foreign key(dept_id) references dept(id);
 ```
 
 ![](./images/chapter1/image243.png)
@@ -2226,8 +2211,6 @@ ALTER TABLE 表名 DROP FOREIGN KEY 外键名称;
 ```sql
 alter table emp drop foreign key fk_emp_dept_id;
 ```
-
-
 
 
 
@@ -2262,7 +2245,7 @@ ALTER TABLE 表名 ADD CONSTRAINT 外键名称 FOREIGN KEY (外键字段) REFERE
 
 ```sql
 alter table emp add constraint fk_emp_dept_id foreign key (dept_id) references dept(id) 
-	on update cascade on delete cascade ;
+	on update cascade on delete cascade;
 ```
 
 A. 修改父表id为1的记录，将id修改为6
@@ -2307,29 +2290,19 @@ alter table emp add constraint fk_emp_dept_id foreign key (dept_id) references d
 
 
 
-
-
-
-
 ## **5. 多表查询**
 
-我们之前在讲解SQL语句的时候，讲解了DQL语句，也就是数据查询语句，但是之前讲解的查询都是单
-
-表查询，而本章节我们要学习的则是多表查询操作，主要从以下几个方面进行讲解。
+我们之前在讲解SQL语句的时候，讲解了DQL语句，也就是数据查询语句，但是之前讲解的查询都是单表查询，而本章节我们要学习的则是多表查询操作，主要从以下几个方面进行讲解。
 
 ### **5.1 多表关系**
 
-项目开发中，在进行数据库表结构设计时，会根据业务需求及业务模块之间的关系，分析并设计表结
-
-构，由于业务之间相互关联，所以各个表结构之间也存在着各种联系，基本上分为三种：
+项目开发中，在进行数据库表结构设计时，会根据业务需求及业务模块之间的关系，分析并设计表结构，由于业务之间相互关联，所以各个表结构之间也存在着各种联系，基本上分为三种：
 
 * 一对多(多对一)
 
 * 多对多
 
 * 一对一
-
-
 
 #### **5.1.1 一对多**
 
@@ -2357,8 +2330,8 @@ alter table emp add constraint fk_emp_dept_id foreign key (dept_id) references d
 ```sql
 create table student(
   id int auto_increment primary key comment '主键ID',
-  name varchar (10) comment '姓名',
-  no varchar (10) comment '学号'
+  name varchar(10) comment '姓名',
+  no varchar(10) comment '学号'
 ) comment '学生表';
 
 insert into student values 
@@ -2367,7 +2340,7 @@ insert into student values
 
 create table_course (
     id int auto_increment primary key comment '主键ID',
-    name varchar (10) comment '课程名称'
+    name varchar(10) comment '课程名称'
 ) comment '课程表';
 
 insert into course values (null, 'Java'), (null, 'PHP'), (null , 'MySQL') ,(null, 'Hadoop');
@@ -2397,21 +2370,21 @@ insert into student_course values (null,1,1), (null,1,2), (null,1,3), (null,2,2)
 ```sql
 create table tb_user (
   id int auto_increment primary key comment '主键ID',
-  name varchar (10) comment '姓名',
+  name varchar(10) comment '姓名',
   age int comment '年龄',
-  gender char (1) comment '1: 男 , 2: 女 ',
-  phone char (11) comment '手机号'
+  gender char(1) comment '1: 男 , 2: 女 ',
+  phone char(11) comment '手机号'
 ) comment '用户基本信息表';
 
 create table tb_user edu (
     id int auto_increment primary key comment '主键ID',
-    degree varchar (20) comment '学历',
-    major varchar (50) comment '专业',
-    primaryschool varchar (50) comment '小学',
-    middleschool varchar (50) comment '中学',
-    university varchar (50) comment '大学',
+    degree varchar(20) comment '学历',
+    major varchar(50) comment '专业',
+    primaryschool varchar(50) comment '小学',
+    middleschool varchar(50) comment '中学',
+    university varchar(50) comment '大学',
     userid int unique comment '用户ID',
-    constraint fk_userid foreign key (userid) references tb_user (id)
+    constraint fk_userid foreign key(userid) references tb_user (id)
 ) comment '用户教育信息表';
 
 insert into tb_user (id, name, age, gender, phone) values
@@ -2440,7 +2413,7 @@ insert into tb_user_edu (id, degree, major, primaryschool, middleschool, univers
 -- 创建dept表，并插入数据
 create table dept(
   id int auto_increment comment 'ID' primary key,
-  name varchar (50) not null comment '部门名称'
+  name varchar(50) not null comment '部门名称'
 )comment '部门表';
 
 INSERT INTO dept (id, name) VALUES 
@@ -2449,9 +2422,9 @@ INSERT INTO dept (id, name) VALUES
 -- 创建emp表，并插入数据
 create table emp(
     id int auto_increment comment 'ID' primary key,
-    name varchar (50) not null comment '姓名',
+    name varchar(50) not null comment '姓名',
     age int comment '年龄',
-    job varchar (20) comment '职位',
+    job varchar(20) comment '职位',
     salary int comment '薪资',
     entrydate date comment '入职时间',
     managerid int comment '直属领导ID',
@@ -2459,7 +2432,7 @@ create table emp(
 )comment '员工表';
 
 -- 添加外键
-alter table emp add constraint fk_emp_dept_id foreign key (dept_id) references dept(id);
+alter table emp add constraint fk_emp_dept_id foreign key(dept_id) references dept(id);
 
 INSERT INTO emp (id, name, age, job,salary, entrydate, managerid, dept_id) VALUES
     (1, '金庸', 66, '总裁',20000, '2000-01-01', null,5),
@@ -2511,7 +2484,9 @@ dept表共6条记录， emp表共17条记录。
 
 在SQL语句中，如何来去除无效的笛卡尔积呢？ 我们可以给多表查询加上连接查询的条件即可。
 
+```sql
 select * from emp , dept where emp.dept_id = dept.id;
+```
 
 ![](./images/chapter1/image266.jpeg)
 
@@ -2551,13 +2526,13 @@ select * from emp , dept where emp.dept_id = dept.id;
 
 
 ```sql
-SELECT 字段列表 FROM 表1 , 表2 WHERE 条件 ... ;
+SELECT 字段列表 FROM 表1 , 表2 WHERE 条件 ...;
 ```
 2). 显式内连接
 
 
 ```sql
-SELECT 字段列表 FROM 表1 [ INNER ] JOIN 表2 ON 连接条件 ... ;
+SELECT 字段列表 FROM 表1 [ INNER ] JOIN 表2 ON 连接条件 ...;
 ```
 
 
@@ -2572,7 +2547,7 @@ A. 查询每一个员工的姓名 , 及关联的部门的名称 (隐式内连接
 
 
 ```sql
-select emp.name , dept.name from emp , dept where emp.dept_id = dept.id ;
+select emp.name , dept.name from emp , dept where emp.dept_id = dept.id;
 
 -- 为每一张表起别名,简化SQL编写
 select e.name,d.name from emp e , dept d where e.dept_id = d.id;
@@ -2596,13 +2571,15 @@ select e.name, d.name from emp e join dept d on e.dept_id = d.id;
 
 表的别名 :
 
-① . tablea as 别名1 , tableb as 别名2 ;
+① . tablea as 别名1 , tableb as 别名2;
 
-② . tablea 别名1 , tableb 别名2 ;
+② . tablea 别名1 , tableb 别名2;
 
 > <font style="background: aquamarine;">***注意事项 :***</font>
 >
->​		<font style="background: aquamarine;">***一旦为表起了别名，就不能再使用表名来指定对应的字段了，此时只能够使用别名来指定字段。***</font>
+> ​		<font style="background: aquamarine;">***一旦为表起了别名，就不能再使用表名来指定对应的字段了，此时只能够使用别名来指定字段。***</font>
+
+
 
 
 ### **5.4 外连接**
@@ -2615,7 +2592,7 @@ select e.name, d.name from emp e join dept d on e.dept_id = d.id;
 
 
 ```sql
-SELECT 字段列表 FROM 表1 LEFT [ OUTER ] JOIN 表2 ON 条件 ... ;
+SELECT 字段列表 FROM 表1 LEFT [ OUTER ] JOIN 表2 ON 条件 ...;
 ```
 左外连接相当于查询表1(左表)的所有数据，当然也包含表1和表2交集部分的数据。
 
@@ -2625,7 +2602,7 @@ SELECT 字段列表 FROM 表1 LEFT [ OUTER ] JOIN 表2 ON 条件 ... ;
 
 
 ```sql
-SELECT 字段列表 FROM 表1 RIGHT [ OUTER ] JOIN 表2 ON 条件 ... ;
+SELECT 字段列表 FROM 表1 RIGHT [ OUTER ] JOIN 表2 ON 条件 ...;
 ```
 右外连接相当于查询表2(右表)的所有数据，当然也包含表1和表2交集部分的数据。
 
@@ -2663,8 +2640,6 @@ select d.*, e.* from emp e right outer join dept d on e.dept_id = d.id;
 select d.*, e.* from dept d left outer join emp e on e.dept_id = d.id;
 ```
 
-
-
 > <font style="background: aquamarine;">***注意事项：***</font>
 >
 >​		<font style="background: aquamarine;">***左外连接和右外连接是可以相互替换的，只需要调整在连接查询时SQL中，表结构的先后顺序就可以了。而我们在日常开发使用时，更偏向于左外连接。***</font>
@@ -2679,7 +2654,7 @@ select d.*, e.* from dept d left outer join emp e on e.dept_id = d.id;
 
 
 ```sql
-SELECT 字段列表 FROM 表A 别名A JOIN 表A 别名B ON 条件 ... ;
+SELECT 字段列表 FROM 表A 别名A JOIN 表A 别名B ON 条件 ...;
 ```
 而对于自连接查询，可以是内连接查询，也可以是外连接查询。
 
@@ -2723,7 +2698,7 @@ SELECT 字段列表 FROM 表B ....;
 ```
 * 对于联合查询的多张表的列数必须保持一致，字段类型也需要保持一致。
 
-* union all 会将全部的数据直接合并在一起， union 会对合并之后的数据去重。
+* union all 会将全部的数据直接合并在一起， **union 会对合并之后的数据去重**。
 
 
 
@@ -2756,12 +2731,9 @@ select * from emp where age > 50;
 
 union 联合查询，会对查询出来的结果进行去重处理。
 
-
-
 **注意：**
 
-如果多条查询语句查询出来的结果，字段数量不一致，在进行union/union all联合查询时，将会报
-错。如：
+如果多条查询语句查询出来的结果，**字段数量不一致，在进行union/union all联合查询时，将会报错**。如：
 
 ![](./images/chapter1/image291.png)
 
@@ -2935,8 +2907,6 @@ select * from emp where salary > any
 
 
 
-
-
 #### **5.6.4 行子查询**
 
 子查询返回的结果是一行（可以是多列），这种子查询称为行子查询。
@@ -2947,7 +2917,7 @@ select * from emp where salary > any
 
 案例 :
 
-A. 查询与 "张无忌" 的薪资及直属领导相同的员工信息 ;
+A. 查询与 "张无忌" 的薪资及直属领导相同的员工信息;
 
 这个需求同样可以拆解为两步进行 :
 
@@ -2959,7 +2929,7 @@ select salary, managerid from emp where name = '张无忌';
 ```
 
 
-② . 查询与 "张无忌" 的薪资及直属领导相同的员工信息 ;
+② . 查询与 "张无忌" 的薪资及直属领导相同的员工信息;
 
 ```sql
 select * from emp where (salary,managerid) = (select salary, managerid from emp where name = '张无忌');
@@ -3006,11 +2976,11 @@ B. 查询入职日期是 "2006-01-01" 之后的员工信息 , 及其部门信息
 ```sql
 select * from emp where entrydate > '2006-01-01';
 ```
-② . 查询这部分员工 , 对应的部门信息 ;
+② . 查询这部分员工 , 对应的部门信息;
 
 ```sql
 select e.*, d.* from (select * from emp where entrydate > '2006-01-01') e 
-	left join dept d on e.dept_id = d.id ;
+	left join dept d on e.dept_id = d.id;
 ```
 
 
@@ -3081,7 +3051,7 @@ select distinct d.id , d.name from emp e , dept d where e.dept_id = d.id;
 
 
 
-4). 查询所有年龄大于40岁的员工 , 及其归属的部门名称 ; 如果员工没有分配部门 , 也需要展示出来(外连接)
+4). 查询所有年龄大于40岁的员工 , 及其归属的部门名称; 如果员工没有分配部门 , 也需要展示出来(外连接)
 
 表 : emp , dept
 
@@ -3089,7 +3059,7 @@ select distinct d.id , d.name from emp e , dept d where e.dept_id = d.id;
 
 
 ```sql
-select e.*, d.name from emp e left join dept d on e.dept_id = d.id where e.age >40 ;
+select e.*, d.name from emp e left join dept d on e.dept_id = d.id where e.age >40;
 ```
 
 
@@ -3201,14 +3171,10 @@ student_course.courseid
 
 ```sql
 select s.name , s.no , c.name from student s , student_course sc , course c 
-	wheres.id = sc.studentid and sc.courseid = c.id ;
+	wheres.id = sc.studentid and sc.courseid = c.id;
 ```
 
-
-
 **备注 : 以上需求的实现方式可能会很多 , SQL写法也有很多，只要能满足我们的需求，查询出符合条件的记录即可。**
-
-
 
 
 
@@ -3251,8 +3217,8 @@ drop table if exists account;
 
 create table account(
   id int primary key AUTO_INCREMENT comment 'ID',
-  name varchar (10) comment '姓名',
-  money double (10,2) comment '余额'
+  name varchar(10) comment '姓名',
+  money double(10,2) comment '余额'
 ) comment '账户表';
 
 insert into account(name, money) VALUES ( '张三',2000), ( '李四',2000);
@@ -3303,12 +3269,12 @@ update account set money = money + 1000 where name = '李四';
 1). 查看/设置事务提交方式
 
 ```sql
-SELECT @@autocommit ;
+SELECT @@autocommit;
 ```
 
 ```sql
 -- 设置事务不要自动提交（false）
-SET @@autocommit = 0 ;
+SET @@autocommit = 0;
 ```
 
 2). 提交事务
@@ -3338,12 +3304,8 @@ ROLLBACK;
 
 ```sql
 START TRANSACTION;
+-- 或者BEGIN;
 ```
-```sql
--- 或者
-BEGIN;
-```
-
 2). 提交事务
 
 
@@ -3398,7 +3360,7 @@ commit;
 
 ### **6.4 并发事务问题**
 
-1). 赃读： 一个事务读到另外一个事务还没有提交的数据。
+1). 赃读： 一个事务读到另外一个事务还没有提交的数据。**（读未提交）**
 
 ![](./images/chapter1/image346.png)
 
@@ -3406,13 +3368,13 @@ commit;
 
 
 
-2). 不可重复读： 一个事务先后读取同一条记录，但两次读取的数据不同，称之为不可重复读。
+2). 不可重复读： 一个事务先后读取同一条记录，但两次读取的数据不同，称之为不可重复读。**（读已提交）**
 
 ![](./images/chapter1/image347.jpeg)
 
 事务A两次读取同一条记录，但是读取到的数据却是不一样的。
 
-3). 幻读： 一个事务按照条件查询数据时，没有对应的数据行，但是在插入数据时，又发现这行数据已经存在，好像出现了 "幻影 "。
+3). 幻读： 一个事务按照条件查询数据时，没有对应的数据行，但是在插入数据时，又发现这行数据已经存在，好像出现了 "幻影 "。**（插入了唯一的数据）**
 
 ![](./images/chapter1/image348.jpeg)
 
