@@ -1972,7 +1972,7 @@ select ifnull('', 'Default');
 select ifnull(null, 'Default');
 ```
 
-<!--case条件 或者case字段 when1 then1 [when1 then1...]-->
+> case条件 或者case字段 when1 then1 [when1 then1...]
 
 C. case when then else end
 
@@ -2176,7 +2176,7 @@ CREATE TABLE 表名(
 ALTER TABLE 表名 ADD CONSTRAINT 外键名称 FOREIGN KEY (外键字段名) REFERENCES 主表 (主表列名);
 ```
 
-<!--CONSTRAINT约束-->
+> CONSTRAINT约束
 
 
 案例 :
