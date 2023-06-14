@@ -33,7 +33,7 @@
 
 存储引擎就是存储数据、建立索引、更新/查询数据等技术的实现方式 。存储引擎是基于表的，而不是基于库的，所以存储引擎也可被称为表类型。我们可以在创建表的时候，来指定选择的存储引擎，如果 没有指定将自动选择默认的存储引擎。
 
-1). 建表时指定存储引擎
+1. 建表时指定存储引擎
 
 ```sql
 CREATE TABLE 表名(
@@ -41,12 +41,6 @@ CREATE TABLE 表名(
 	......
 	字段n 字段n类型	[COMMENT 字段n注释 ]
 ) ENGINE = INNODB	[ COMMENT 表注释 ];
-```
-
-2). 查询当前数据库支持的存储引擎
-
-```sql
-show engines;
 ```
 
 **示例演示:**
@@ -70,6 +64,10 @@ show engines;
 ```
 
 ![](./media/image4.jpeg)
+
+```sql
+select * from information_schema.engines
+```
 
 | Engine             | Support | Comment                                                      | Transactions | XA     | Savepoints |
 | ------------------ | ------- | ------------------------------------------------------------ | ------------ | ------ | ---------- |
@@ -3282,7 +3280,7 @@ select object_type, object_schema, object_name, lock_type, lock_duration
 ### 5.3.4 **意向锁**
 1. 介绍
 
-为了避免DML在执行时，加的行锁与表锁的冲突，在InnoDB中引入了意向锁，使得表锁不用检查每行数据是否加锁，使用意向锁来减少表锁的检查。
+为了避免DML在执行时，加的行锁与表锁的冲突，在InnoDB中引入了**意向锁，使得表锁不用检查每行数据是否加锁**，使用意向锁来减少表锁的检查。
 
 
 假如没有意向锁，客户端一对表加了行锁后，客户端二如何给表加表锁呢，来通过示意图简单分析一 下：
@@ -3299,7 +3297,7 @@ select object_type, object_schema, object_name, lock_type, lock_duration
 
 有了意向锁之后 :
 
-客户端一，在执行DML操作时，会对涉及的行***加行锁，同时也会对该表加上意向锁***。
+客户端一，在执行DML操作时，会对涉及的行***加行锁，同时也会对该表加上意向锁***。（意向锁属于表级）
 
 ![](./media/image149.jpeg)
 
@@ -3389,7 +3387,7 @@ InnoDB实现了以下两种类型的行锁：
 
 2. 演示
 
-默认情况下，InnoDB在 REPEATABLE READ 事务隔离级别运行，InnoDB使用 next-key 锁进行搜索和索引扫描，以防止幻读。
+默认情况下，InnoDB在 REPEATABLE READ 事务隔离级别运行，InnoDB使用 **next-key 锁进行搜索和索引扫描，以防止幻读**。
 
 * 针对唯一索引进行检索时，对已存在的记录进行等值匹配时，将会自动优化为行锁。
 
@@ -3470,7 +3468,7 @@ stu表中数据如下:
 此时我们可以看到，客户端一，开启事务，然后依然是根据name进行更新。而客户端二，在更新id为3的数据时，更新成功，并未进入阻塞状态。 这样就说明，我们根据索引字段进行更新操作，就可以避免行锁升级为表锁的情况。
 
 ### 5.4.3 **间隙锁&临键锁**
-默认情况下，InnoDB在 REPEATABLE READ事务隔离级别运行，InnoDB使用 next-key 锁进行搜索和索引扫描，以防止幻读。
+默认情况下，InnoDB在 **REPEATABLE READ事务隔离级别**运行，InnoDB使用 **next-key 锁进行搜索和索引扫描，以防止幻读**。
 
 * 索引上的等值查询(唯一索引)，给不存在的记录加锁时, 优化为间隙锁 。
 
@@ -3527,11 +3525,11 @@ InnoDB的逻辑存储结构如下图所示:
 
 1. 表空间
 
-表空间是InnoDB存储引擎逻辑结构的最高层， 如果用户启用了参数 innodb_file_per_table(在8.0版本中默认开启) ，则每张表都会有一个表空间（xxx.ibd），一个mysql实例可以对应多个表空间，用于存储记录、索引等数据。
+表空间是InnoDB存储引擎逻辑结构的最高层， 如果用户启用了参数 **innodb_file_per_table**（在8.0版本中默认开启） ，则**每张表都会有一个表空间（xxx.ibd）**，一个mysql实例可以对应多个表空间，用于存储记录、索引等数据。
 
 2. 段
 
-段，分为数据段（Leaf node segment）、索引段（Non-leaf node segment）、回滚段（Rollback segment），InnoDB是索引组织表，数据段就是B+树的叶子节点， 索引段即为B+树的非叶子节点。段用来管理多个Extent（区）。
+段，分为数据段（Leaf node segment）、索引段（Non-leaf node segment）、回滚段（Rollback segment），InnoDB是索引组织表，**数据段就是B+树的叶子节点**， **索引段即为B+树的非叶子节点**。段用来管理多个Extent（区）。
 
 3. 区
 
@@ -3545,12 +3543,14 @@ InnoDB的逻辑存储结构如下图所示:
 
 行，InnoDB 存储引擎数据是按行进行存放的。在行中，默认有两个隐藏字段：
 
-* Trx_id：每次对某条记录进行改动时，都会把对应的事务id赋值给trx_id隐藏列。
+* Trx_id（事务id）：每次对某条记录进行改动时，都会把对应的事务id赋值给trx_id隐藏列。
 
-* Roll_pointer：每次对某条引记录进行改动时，都会把旧的版本写入到undo日志中，然后这个隐藏列就相当于一个指针，可以通过它来找到该记录修改前的信息。
+* Roll_pointer（回滚指针）：每次对某条引记录进行改动时，都会把旧的版本写入到undo日志中，然后这个隐藏列就相当于一个指针，可以通过它来找到该记录修改前的信息。
+
 
 
 ## 6.2 **架构**
+
 ### 6.2.1 **概述**
 MySQL5.5 版本开始，默认使用InnoDB存储引擎，它擅长事务处理，具有崩溃恢复特性，在日常开发中使用非常广泛。下面是InnoDB架构图，左侧为内存结构，右侧为磁盘结构。
 
@@ -3564,11 +3564,9 @@ MySQL5.5 版本开始，默认使用InnoDB存储引擎，它擅长事务处理�
 
 1. Buffer Pool
 
-InnoDB存储引擎基于磁盘文件存储，访问物理硬盘和在内存中进行访问，速度相差很大，为了尽可能 弥补这两者之间的I/O效率的差值，就需要把经常使用的数据加载到缓冲池中，避免每次访问都进行磁 盘I/O。
+InnoDB存储引擎基于磁盘文件存储，访问物理硬盘和在内存中进行访问，速度相差很大，为了尽可能 弥补这两者之间的I/O效率的差值，就需要把经常使用的数据加载到缓冲池中，避免每次访问都进行磁盘I/O。
 
-在InnoDB的缓冲池中不仅缓存了索引页和数据页，还包含了undo页、插入缓存、自适应哈希索引以及
-
-InnoDB的锁信息等等。
+在InnoDB的缓冲池中不仅缓存了索引页和数据页，还包含了undo页、插入缓存、自适应哈希索引以及InnoDB的锁信息等等。
 
 
 缓冲池 Buffer Pool，是主内存中的一个区域，里面可以缓存磁盘上经常操作的真实数据，在执行增删改查操作时，先操作缓冲池中的数据（若缓冲池没有数据，则从磁盘加载并缓存），然后再以一定频 率刷新到磁盘，从而减少磁盘IO，加快处理速度。
@@ -3581,41 +3579,49 @@ InnoDB的锁信息等等。
 - clean page：被使用page，数据没有被修改过。
 - dirty page：脏页，被使用page，数据被修改过，也中数据与磁盘的数据产生了不一致。
 
+在专用服务器上，**通常将多达80％的物理内存分配给缓冲池** 。参数大小：
 
-在专用服务器上，通常将多达80％的物理内存分配给缓冲池 。参数设置： show variables like 'innodb_buffer_pool_size';
+```sql
+MySQL (none)@localhost:(none)> show variables like 'innodb_buffer_pool_size'
++-------------------------+-----------+
+| Variable_name           | Value     |
++-------------------------+-----------+
+| innodb_buffer_pool_size | 134217728 |
++-------------------------+-----------+
+```
 
 ![](./media/image171.jpeg)
 
-
-
-
-
 2. Change Buffer
 
-Change Buffer，更改缓冲区（针对于非唯一二级索引页），在执行DML语句时，如果这些数据Page
-
-没有在Buffer Pool中，不会直接操作磁盘，而会将数据变更存在更改缓冲区 Change Buffer
-
-中，在未来数据被读取时，再将数据合并恢复到Buffer Pool中，再将合并后的数据刷新到磁盘中。Change Buffer的意义是什么呢?
+Change Buffer，更改缓冲区（针对于非唯一二级索引页），在执行DML语句时，如果这些数据Page没有在Buffer Pool中，不会直接操作磁盘，而会将数据变更存在更改缓冲区 Change Buffer中，在未来数据被读取时，再将数据合并恢复到Buffer Pool中，再将合并后的数据刷新到磁盘中。Change Buffer的意义是什么呢?
 
 先来看一幅图，这个是二级索引的结构图：
 
 ![](./media/image172.jpeg)
 
-与聚集索引不同，二级索引通常是非唯一的，并且以相对随机的顺序插入二级索引。同样，删除和更新 可能会影响索引树中不相邻的二级索引页，如果每一次都操作磁盘，会造成大量的磁盘IO。有了ChangeBuffer之后，我们可以在缓冲池中进行合并处理，减少磁盘IO。
+与聚集索引不同，二级索引通常是非唯一的，并且以相对随机的顺序插入二级索引。同样，删除和更新 可能会影响索引树中不相邻的二级索引页，如果每一次都操作磁盘，会造成大量的磁盘IO。有了ChangeBuffer之后，我们可以在**缓冲池中进行合并处理，减少磁盘IO**。
 
 
 3. Adaptive Hash Index
 
-自适应hash索引，用于优化对Buffer Pool数据的查询。MySQL的innoDB引擎中虽然没有直接支持hash索引，但是给我们提供了一个功能就是这个自适应hash索引。因为前面我们讲到过，hash索引在 进行等值匹配时，一般性能是要高于B+树的，因为hash索引一般只需要一次IO即可，而B+树，可能需 要几次匹配，所以hash索引的效率要高，但是hash索引又不适合做范围查询、模糊匹配等。
+自适应hash索引，用于优化对Buffer Pool数据的查询。MySQL的innoDB引擎中虽然没有直接支持hash索引，但是给我们提供了一个功能就是这个自适应hash索引。因为前面我们讲到过，hash索引在进行等值匹配时，一般性能是要高于B+树的，因为hash索引一般只需要一次IO即可，而B+树，可能需 要几次匹配，所以hash索引的效率要高，但是hash索引又不适合做范围查询、模糊匹配等。
 
 InnoDB存储引擎会监控对表上各索引页的查询，如果观察到在特定的条件下hash索引可以提升速度， 则建立hash索引，称之为自适应hash索引。
 
 **自适应哈希索引，无需人工干预，是系统根据情况自动完成。**
 
-参数： adaptive_hash_index
+参数： innodb_adaptive_hash_index
 
-
+```sql
+MySQL (none)@localhost:(none)> show variables like 'innodb_adaptive_hash_index%'
++----------------------------------+-------+
+| Variable_name                    | Value |
++----------------------------------+-------+
+| innodb_adaptive_hash_index       | ON    |
+| innodb_adaptive_hash_index_parts | 8     |
++----------------------------------+-------+
+```
 
 4. Log Buffer
 
@@ -3627,11 +3633,20 @@ innodb_log_buffer_size：缓冲区大小
 
 innodb_flush_log_at_trx_commit：日志刷新到磁盘时机，取值主要包含以下三个： 
 
-1: 日志在每次事务提交时写入并刷新到磁盘，默认值。
+* 1: 日志在每次事务提交时写入并刷新到磁盘，默认值。
 
-0: 每秒将日志写入并刷新到磁盘一次。
+* 0: 每秒将日志写入并刷新到磁盘一次。
 
-2: 日志在每次事务提交后写入，并每秒刷新到磁盘一次。
+* 2: 日志在每次事务提交后写入，并每秒刷新到磁盘一次。
+
+```sql
+MySQL (none)@localhost:(none)> select @@innodb_log_buffer_size,@@innodb_flush_log_at_trx_commit
++--------------------------+----------------------------------+
+| @@innodb_log_buffer_size | @@innodb_flush_log_at_trx_commit |
++--------------------------+----------------------------------+
+| 16777216                 | 1                                |
++--------------------------+----------------------------------+
+```
 
 ![](./media/image173.jpeg)
 
@@ -3648,16 +3663,34 @@ innodb_flush_log_at_trx_commit：日志刷新到磁盘时机，取值主要包�
 
 参数：innodb_data_file_path
 
+```sql
+MySQL (none)@localhost:(none)> show variables like 'innodb_data_file_path'
++-----------------------+------------------------+
+| Variable_name         | Value                  |
++-----------------------+------------------------+
+| innodb_data_file_path | ibdata1:12M:autoextend |
++-----------------------+------------------------+
+```
+
 ![](./media/image175.jpeg)
 
-系统表空间，默认的文件名叫 ibdata1。
+**系统表空间，默认的文件名叫 ibdata1**。
 
 
 2. File-Per-Table Tablespaces
 
-如果开启了innodb_file_per_table开关 ，则每个表的文件表空间包含单个InnoDB表的数据和索引 ，并存储在文件系统上的单个数据文件中。
+如果开启了innodb_file_per_table开关，则每个表的文件表空间包含单个InnoDB表的数据和索引，并存储在文件系统上的单个数据文件中。
 
 开关参数：innodb_file_per_table ，该参数默认开启。
+
+```sql
+MySQL (none)@localhost:(none)> show variables like 'innodb_file_per_table'
++-----------------------+-------+
+| Variable_name         | Value |
++-----------------------+-------+
+| innodb_file_per_table | ON    |
++-----------------------+-------+
+```
 
 ![](./media/image176.jpeg)
 
@@ -3673,14 +3706,14 @@ innodb_flush_log_at_trx_commit：日志刷新到磁盘时机，取值主要包�
 A. 创建表空间
 
 ```sql
-CREATE TABLESPACE ts_name ADD DATAFILE 'file_name' ENGINE = engine_name;
+CREATE TABLESPACE 表空间名 ADD DATAFILE '文件名' ENGINE = innodb;
 ```
 ![](./media/image178.jpeg)
 
 B. 创建表时指定表空间
 
 ```sql
-CREATE TABLE xxx ... TABLESPACE ts_name;
+CREATE TABLE a(id int)engine=innodb TABLESPACE 表空间名;
 ```
 
 ![](./media/image179.jpeg)
@@ -3697,21 +3730,32 @@ InnoDB 使用会话临时表空间和全局临时表空间。存储用户创建�
 
 6. Doublewrite Buffer Files
 
-双写缓冲区，innoDB引擎将数据页从Buffer Pool刷新到磁盘前，先将数据页写入双写缓冲区文件中，便于系统异常时恢复数据。`#ib_..._0.dblwr`
+双写缓冲区，innoDB引擎将数据页从Buffer Pool刷新到磁盘前，**先将数据页写入双写缓冲区文件中，便于系统异常时恢复数据**。
+
+```text
+#ib_..._0.dblwr
+```
 
 ![](./media/image180.jpeg)
 
 
 7. Redo Log
 
-重做日志，是用来实现事务的持久性。该日志文件由两部分组成：重做日志缓冲（redo log buffer）以及重做日志文件（redo log）,前者是在内存中，后者在磁盘中。当事务提交之后会把所有修改信息都会存到该日志中, 用于在刷新脏页到磁盘时,发生错误时, 进行数据恢复使用。
+重做日志，是用来实现事务的持久性。该日志文件由两部分组成：重做日志缓冲（redo log buffer）以及重做日志文件（redo log），前者是在内存中，后者在磁盘中。当事务提交之后会把所有修改信息都会存到该日志中， 用于在刷新脏页到磁盘时，发生错误时，进行数据恢复使用。
 
-以循环方式写入重做日志文件，涉及两个文件：`ib_logfile0`
+以循环方式写入重做日志文件，涉及两个文件：
+
+```text
+ib_logfile0
+ib_logfile1
+```
+
+
 
 ![](./media/image181.jpeg)
 
 
-前面我们介绍了InnoDB的内存结构，以及磁盘结构，那么内存中我们所更新的数据，又是如何到磁盘 中的呢？ 此时，就涉及到一组后台线程，接下来，就来介绍一些InnoDB中涉及到的后台线程。
+前面我们介绍了InnoDB的内存结构，以及磁盘结构，那么内存中我们所更新的数据，又是如何到磁盘中的呢？ 此时，就涉及到一组后台线程，接下来，就来介绍一些InnoDB中涉及到的后台线程。
 
 ![](./media/image182.jpeg)
 
@@ -3725,12 +3769,12 @@ InnoDB 使用会话临时表空间和全局临时表空间。存储用户创建�
 
 1. Master Thread
 
-核心后台线程，负责调度其他线程，还负责将缓冲池中的数据异步刷新到磁盘中，保持数据的一致性， 还包括脏页的刷新、合并插入缓存、undo页的回收 。
+核心后台线程，**负责调度其他线程**，还负责**将缓冲池中的数据异步刷新到磁盘中**，保持数据的一致性， 还包括脏页的刷新、合并插入缓存、undo页的回收 。
 
 
 2. IO Thread
 
-在InnoDB存储引擎中大量使用了AIO（异步io）来处理IO请求，这样可以极大地提高数据库的性能，而IO Thread主要负责这些IO请求的回调。
+在InnoDB存储引擎中大量使用了AIO**（异步io）来处理IO请求**，这样可以极大地提高数据库的性能，而IO Thread主要负责这些IO请求的回调。
 
 
 |**线程类型**|**默认个数**|**职责**|
@@ -3752,12 +3796,12 @@ show engine innodb status \G;
 
 3. Purge Thread（清理线程）
 
-主要用于回收事务已经提交了的undo log，在事务提交之后，undo log可能不用了，就用它来回收。
+主要用于回收事务已经提交了的undo log，在**事务提交之后，undo log可能不用了，就用它来回收**。
 
 
 4. Page Cleaner Thread（页面清理线程）
 
-协助 Master Thread 刷新脏页到磁盘的线程，它可以减轻 Master Thread 的工作压力，减少阻塞。
+**协助 Master Thread 刷新脏页到磁盘的线程**，它可以减轻 Master Thread 的工作压力，减少阻塞。
 
 
 
@@ -3809,11 +3853,9 @@ show engine innodb status \G;
 
 有了redolog之后，当对缓冲区的数据进行增删改之后，会首先将操作的数据页的变化，记录在redo log buffer中。在事务提交时，会将redo log buffer中的数据刷新到redo log磁盘文件中。过一段时间之后，如果刷新缓冲区的脏页到磁盘时，发生错误，此时就可以借助于redo log进行数据恢复，这样就保证了事务的持久性。 而如果脏页成功刷新到磁盘 或 或者涉及到的数据已经落盘，此时redolog就没有作用了，就可以删除了，所以存在的两个redolog文件是循环写的。
 
+**那为什么每一次提交事务，要刷新redo log 到磁盘中呢，而不是直接将buffer pool中的脏页刷新到磁盘呢 ?**
 
-
-那为什么每一次提交事务，要刷新redo log 到磁盘中呢，而不是直接将buffer pool中的脏页刷新到磁盘呢 ?
-
-因为在业务操作中，我们操作数据一般都是随机读写磁盘的，而不是顺序读写磁盘。 而redo log在往磁盘文件中写入数据，由于是日志文件，所以都是顺序写的。顺序写的效率，要远大于随机写。 这种先写日志的方式，称之为 WAL（Write-Ahead Logging）。
+因为在业务操作中，我们操作数据一般都是随机读写磁盘的，而不是顺序读写磁盘。 而**redo log在往磁盘文件中写入数据，由于是日志文件，所以都是顺序写的。顺序写的效率，要远大于随机写。** 这种先写日志的方式，称之为 WAL（Write-Ahead Logging）。
 
 > 默认情况下，每个Redo Log文件的大小是 50MB。通过修改 `innodb_log_files_in_group` 参数来指定数量。通过修改 `innodb_log_file_size` 参数来指定大小。这些参数的值应该根据具体的应用需求和系统配置进行调整。
 >
@@ -3905,7 +3947,7 @@ Undo log存储：undo log采用段的方式进行管理和记录，存放在前�
 ibd2sdi stu.ibd
 ```
 
-查看到的表结构信息中，有一栏 columns，在其中我们会看到处理我们建表时指定的字段以外，还有额外的两个字段 分别是：DB_TRX_ID 、 DB_ROLL_PTR ，因为该表有主键，所以没有DB_ROW_ID 隐藏字段。
+查看到的表结构信息中，有一栏 columns，在其中我们会看到处理我们建表时指定的字段以外，还有额外的两个字段分别是：DB_TRX_ID 、 DB_ROLL_PTR ，因为该表有主键，所以没有DB_ROW_ID 隐藏字段。
 
 ![](./media/image192.jpeg)
 
@@ -3942,11 +3984,11 @@ ibd2sdi employee.ibd
 
 ### 6.4.3 **undolog**
 #### 6.4.3.1 **介绍**
-回滚日志，在insert、update、delete的时候产生的便于数据回滚的日志。
+**回滚日志，在insert、update、delete的时候产生的便于数据回滚的日志。**
 
-当insert的时候，产生的undo log日志只在回滚时需要，在事务提交后，可被立即删除。
+**当insert的时候**，产生的undo log日志只在回滚时需要，**在事务提交后，可被立即删除。**
 
-而update、delete的时候，产生的undo log日志不仅在回滚时需要，在快照读时也需要，不会立即被删除。
+而update、delete的时候，产生的undo log日志不仅在回滚时需要，**在快照读时也需要**，不会立即被删除。
 
 #### 6.4.3.2 **版本链**
 有一张表原始数据为：
@@ -3976,10 +4018,6 @@ DB_ROLL_PTR ： 由于这条数据是才插入的，没有被更新过，所以�
 
 ![](./media/image203.jpeg)
 
-
-
-
-
 3. 第三步
 
 ![](./media/image204.jpeg)
@@ -3988,12 +4026,12 @@ DB_ROLL_PTR ： 由于这条数据是才插入的，没有被更新过，所以�
 
 ![](./media/image205.png)
 
->  最终我们发现，不同事务或相同事务对同一条记录进行修改，会导致该记录的undolog生成一条 记录版本链表，链表的头部是最新的旧记录，链表尾部是最早的旧记录。
+>  最终我们发现，**不同事务或相同事务对同一条记录进行修改，会导致该记录的undolog生成一条 记录版本链表**，链表的头部是最新的旧记录，链表尾部是最早的旧记录。
 
 
 ### 6.4.4 **readview**
 
-ReadView（读视图）是 快照读 SQL执行时MVCC提取数据的依据，记录并维护系统当前活跃的事务（未提交的）id。
+ReadView（读视图）是 快照读 SQL执行时MVCC提取数据的依据，**记录并维护系统当前活跃的事务（未提交的）id**。
 
 ReadView中包含了四个核心字段：
 
@@ -4078,9 +4116,11 @@ RR隔离级别下，仅在事务中第一次执行快照读时生成ReadView，�
 
 ![](./media/image215.jpeg)
 
-* trx_id：每次对某条记录进行改动时，都会把对应的事务id赋值给trx_id隐藏列。（事务id）
-* roll_pointer：每次对某条引记录进行改动时，都会把旧的版本写入到undo日志中，然后这个隐藏列就相当于一个指针，可以通过它来找到该记录修改前的信息。（回滚指针）
-* row_id（虚拟行id）
+* db_trx_id：每次对某条记录进行改动时，都会把对应的事务id赋值给trx_id隐藏列。（事务id）
+* db_roll_pointer：每次对某条引记录进行改动时，都会把旧的版本写入到undo日志中，然后这个隐藏列就相当于一个指针，可以通过它来找到该记录修改前的信息。（回滚指针）
+* db_row_id（虚拟行id）
+
+
 
 
 # 7. **MySQL管理**
@@ -4090,7 +4130,7 @@ Mysql数据库安装完成后，自带了一下四个数据库，具体作用如
 |**数据库**|**含义**|
 | :- | :- |
 |mysql|存储MySQL服务器正常运行所需要的各种信息 （时区、主从、用户、权限等）|
-|information_schema|提供了访问数据库元数据的各种表和视图，包含数据库、表、字段类型及访问权限等|
+|information_schema|提供了访问数据库**元数据**的各种表和视图，包含数据库、表、字段类型及访问权限等|
 |performance_schema|为MySQL服务器运行时状态提供了一个底层监控功能，主要用于收集数据库服务器性能参数|
 |sys|包含了一系列方便 DBA 和开发人员利用 performance_schema性能数据库进行性能调优和诊断的视图|
 
